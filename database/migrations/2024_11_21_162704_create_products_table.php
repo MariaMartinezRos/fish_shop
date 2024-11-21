@@ -18,7 +18,8 @@ return new class extends Migration
             $table->decimal('price_per_kg', 10, 2);
             $table->decimal('stock_kg', 10, 2);
             $table->string('description');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
