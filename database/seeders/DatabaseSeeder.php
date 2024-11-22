@@ -20,10 +20,45 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
         ]);
 
-        $categories = Category::factory(4)->create();
-        Product::factory(50)->create([
-            'category_id' => $categories->random()->id,
+//        $categories = Category::factory(4)->create();
+//        Product::factory(20)->create([
+//            'category_id' => $categories->id,
+//        ]);
+        $categories = Category::factory()->createMany([
+            ['name' => 'fresh'],
+            ['name' => 'frozen'],
+            ['name' => 'cut'],
+            ['name' => 'seafood'],
         ]);
+
+        $products = [
+                ['name' => 'lubina', 'category_id' => $categories[0]->id, 'price_per_kg' => '7.00', 'stock_kg' => '20', 'description' => 'Lubina de crianza en piscifactoría'],
+                ['name' => 'salmón', 'category_id' => $categories[1]->id, 'price_per_kg' => '16.00', 'stock_kg' => '5.5', 'description' => 'Salmón de crianza en piscifactoría'],
+                ['name' => 'bacalao', 'category_id' => $categories[0]->id, 'price_per_kg' => '8.00', 'stock_kg' => '3', 'description' => 'Bacalao salado'],
+                ['name' => 'merluza', 'category_id' => $categories[2]->id, 'price_per_kg' => '10.00', 'stock_kg' => '8.00', 'description' => 'Merluza fresca'],
+                ['name' => 'mejillones', 'category_id' => $categories[3]->id, 'price_per_kg' => '4.00', 'stock_kg' => '10.00', 'description' => 'Mejillones frescos'],
+                ['name' => 'calamar', 'category_id' => $categories[3]->id, 'price_per_kg' => '12.00', 'stock_kg' => '6.5', 'description' => 'Calamar fresco'],
+                ['name' => 'atún', 'category_id' => $categories[1]->id, 'price_per_kg' => '18.00', 'stock_kg' => '7.00', 'description' => 'Atún rojo de captura sostenible'],
+                ['name' => 'trucha', 'category_id' => $categories[0]->id, 'price_per_kg' => '9.50', 'stock_kg' => '11.00', 'description' => 'Trucha fresca'],
+                ['name' => 'rodaballo', 'category_id' => $categories[0]->id, 'price_per_kg' => '25.00', 'stock_kg' => '4.00', 'description' => 'Rodaballo de acuicultura'],
+                ['name' => 'rape', 'category_id' => $categories[2]->id, 'price_per_kg' => '20.00', 'stock_kg' => '3.5', 'description' => 'Rape fresco'],
+                ['name' => 'jurel', 'category_id' => $categories[1]->id, 'price_per_kg' => '7.50', 'stock_kg' => '12.00', 'description' => 'Jurel fresco'],
+                ['name' => 'caballa', 'category_id' => $categories[1]->id, 'price_per_kg' => '5.00', 'stock_kg' => '15.00', 'description' => 'Caballa fresca'],
+                ['name' => 'pez limón', 'category_id' => $categories[0]->id, 'price_per_kg' => '12.50', 'stock_kg' => '9.00', 'description' => 'Pez limón fresco'],
+                ['name' => 'pez espada', 'category_id' => $categories[2]->id, 'price_per_kg' => '28.00', 'stock_kg' => '3.00', 'description' => 'Pez espada fresco'],
+                ['name' => 'langosta', 'category_id' => $categories[3]->id, 'price_per_kg' => '35.00', 'stock_kg' => '2.00', 'description' => 'Langosta fresca'],
+                ['name' => 'almejas', 'category_id' => $categories[3]->id, 'price_per_kg' => '14.00', 'stock_kg' => '6.00', 'description' => 'Almejas frescas'],
+                ['name' => 'ostra', 'category_id' => $categories[3]->id, 'price_per_kg' => '40.00', 'stock_kg' => '1.00', 'description' => 'Ostras frescas'],
+                ['name' => 'camarón', 'category_id' => $categories[3]->id, 'price_per_kg' => '25.00', 'stock_kg' => '8.00', 'description' => 'Camarón fresco'],
+                ['name' => 'pargo', 'category_id' => $categories[0]->id, 'price_per_kg' => '18.50', 'stock_kg' => '5.00', 'description' => 'Pargo fresco'],
+                ['name' => 'tilapia', 'category_id' => $categories[0]->id, 'price_per_kg' => '6.50', 'stock_kg' => '20.00', 'description' => 'Tilapia de cultivo'],
+                ['name' => 'sardinas', 'category_id' => $categories[1]->id, 'price_per_kg' => '4.50', 'stock_kg' => '10.00', 'description' => 'Sardinas congeladas']
+
+        ];
+
+        foreach ($products as $product) {
+            Product::create($product);
+        }
 
     }
 }
