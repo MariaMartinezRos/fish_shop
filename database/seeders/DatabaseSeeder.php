@@ -20,8 +20,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
         ]);
 
-        Category::factory(10)->create();
-        Product::factory(50)->create();
+        $categories = Category::factory(10)->create();
+        Product::factory(50)->create([
+            'category_id' => $categories->random()->id,
+        ]);
 
     }
 }
