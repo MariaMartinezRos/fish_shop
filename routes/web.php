@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
@@ -21,6 +22,16 @@ Route::get('/stock', function () {
 Route::get('/transaction', function () {
     return view('transactions');
 })->middleware(['auth', 'verified'])->name('transaction');
+
+Route::get('/category', [CategoryController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('category');
+
+
+//Route::get('/category', function () {
+//    return view('category');
+//})->middleware(['auth', 'verified'])->name('category');
+//Route::get('/categories', [CategoryController::class, 'index']);
 
 //errors
 Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
