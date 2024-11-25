@@ -23,9 +23,9 @@ Route::get('/stock', [ProductController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('stock');
 
-Route::get('/transaction', function () {
-    return view('transactions');
-})->middleware(['auth', 'verified'])->name('transaction');
+Route::get('/transaction', [TransactionController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('transaction');
 
 Route::get('/category', [CategoryController::class, 'index'])
     ->middleware(['auth', 'verified'])
