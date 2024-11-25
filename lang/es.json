@@ -103,6 +103,15 @@
     "The stock section": "La sección de existencias",
     "The transactions section": "La sección de transacciones",
     "Today's money:": "Dinero de hoy:",
-    "Today's clients:": "Clientes de hoy:"
+    "Today's clients:": "Clientes de hoy:",
+    "Price (€/Kg): ": "Precio (€/Kg): ",
+    "Description: ": "Descripción: ",
+    "Name: ": "Nombre: ",
+    "No categories found.": "No se encontraron categorías.",
+    "No products found.": "No se encontraron productos.",
+    "fresh": "fresco",
+    "frozen": "congelado",
+    "cut": "de corte",
+    "seafood": "marisco"
 
 }
