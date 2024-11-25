@@ -15,9 +15,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/sales', function () {
-    return view('sales');
-})->middleware(['auth', 'verified'])->name('sales');
+Route::get('/sales', [TransactionController::class, 'showSales', 'showClients'])
+    ->middleware(['auth', 'verified'])
+    ->name('sales');
 
 Route::get('/stock', [ProductController::class, 'index'])
     ->middleware(['auth', 'verified'])

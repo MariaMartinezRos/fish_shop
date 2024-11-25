@@ -102,8 +102,8 @@
     "The sales section": "La sección de ventas",
     "The stock section": "La sección de existencias",
     "The transactions section": "La sección de transacciones",
-    "Today's money:": "Dinero de hoy:",
-    "Today's clients:": "Clientes de hoy:",
+    "Today's money: ": "Dinero de hoy: ",
+    "Today's clients: ": "Clientes de hoy: ",
     "Price (€/Kg): ": "Precio (€/Kg): ",
     "Description: ": "Descripción: ",
     "Name: ": "Nombre: ",
@@ -112,6 +112,19 @@
     "fresh": "fresco",
     "frozen": "congelado",
     "cut": "de corte",
-    "seafood": "marisco"
-
+    "seafood": "marisco",
+    "Serial Number: ": "Número de serie: ",
+    "Terminal Number: ": "Número de terminal: ",
+    "Operation: ": "Operación: ",
+    "Amount (€): ": "Cantidad (€): ",
+    "Card Number: ": "Número de tarjeta: ",
+    "Date/Time: ": "Fecha/Hora: ",
+    "Transaction Number: ": "Número de transacción: ",
+    "Sale ID: ": "ID de venta: ",
+    "Created At: ": "Creado en: ",
+    "The categories section": "La sección de categorías",
+    "Category": "Categoría",
+    "category": "categoría",
+    "Categories": "Categorías",
+    "categories": "categorías"
 }

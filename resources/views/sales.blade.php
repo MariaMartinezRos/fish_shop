@@ -12,10 +12,10 @@
                     {{ __("The sales section") }}
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Today's money:") }}
+                    {{ __("Today's money: ") }}{{ $totalAmount }}
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Today's clients:") }}
+                    {{ __("Today's clients: ") }}{{ $totalClients }}
                 </div>
             </div>
         </div>
