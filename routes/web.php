@@ -13,6 +13,9 @@ Route::get('/dashboard', function () {
 Route::get('/sales', function () {
     return view('sales');
 })->middleware(['auth', 'verified'])->name('sales');
+Route::get('/stock', function () {
+    return view('stock');
+})->middleware(['auth', 'verified'])->name('stock');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
