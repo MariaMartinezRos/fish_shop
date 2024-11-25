@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,10 @@ Route::get('/stock', function () {
     return view('stock');
 })->middleware(['auth', 'verified'])->name('stock');
 
-//Route::get('/import-transactions', [TransactionController::class, 'importTransactions']);
+//errors
+Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
+Route::get('/error/404', [ErrorController::class, 'notFound']);
+Route::get('/error/500', [ErrorController::class, 'internalServerError']);
 
 
 Route::middleware('auth')->group(function () {
@@ -28,3 +32,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
