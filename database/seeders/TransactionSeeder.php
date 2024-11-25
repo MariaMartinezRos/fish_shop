@@ -3,18 +3,16 @@
 namespace Database\Seeders;
 
 use App\Models\Transaction;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Model;
 
 class TransactionSeeder extends Seeder
 {
     public function run(): void
     {
-        $filePath = Storage::path('private/transactions.json');
+        $filePath = Storage::path('transactions.json');
         $jsonData = file_get_contents($filePath);
-        $transactions = json_decode($jsonData, true)['transactions'];
+        $transactions = json_decode($jsonData, true);
 
         foreach ($transactions as $transaction) {
             Transaction::create([

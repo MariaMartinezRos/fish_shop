@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
 
-//    protected $fillable = [
-//        'tpv',
-//        'serial_number',
-//        'terminal_number',
-//        'operation',
-//        'amount',
-//        'card_number',
-//        'date_time',
-//        'transaction_number',
-//        'sale_id',
-//        'created_at',
-//        'updated_at',
-//    ];
+    protected $fillable = [
+        'tpv',
+        'serial_number',
+        'terminal_number',
+        'operation',
+        'amount',
+        'card_number',
+        'date_time',
+        'transaction_number',
+        'sale_id',
+        'created_at',
+        'updated_at',
+    ];
     public static function create(array $transaction): Transaction
     {
 
