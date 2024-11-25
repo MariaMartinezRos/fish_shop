@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
@@ -13,12 +14,15 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/sales', function () {
     return view('sales');
 })->middleware(['auth', 'verified'])->name('sales');
-Route::get('/stock', function () {
-    return view('stock');
-})->middleware(['auth', 'verified'])->name('stock');
+
+Route::get('/stock', [ProductController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('stock');
+
 Route::get('/transaction', function () {
     return view('transactions');
 })->middleware(['auth', 'verified'])->name('transaction');

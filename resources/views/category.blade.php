@@ -13,9 +13,6 @@
                 </div>
 
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-{{--                    @foreach($categories as $category)--}}
-{{--                        <h2>{{ $category->name }}</h2>--}}
-{{--                    @endforeach--}}
                     @if(isset($categories) && count($categories) > 0)
                         @foreach($categories as $category)
                             <h2>{{ $category->name }}</h2>
