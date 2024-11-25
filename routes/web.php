@@ -18,6 +18,9 @@ Route::get('/sales', function () {
 Route::get('/stock', function () {
     return view('stock');
 })->middleware(['auth', 'verified'])->name('stock');
+Route::get('/transaction', function () {
+    return view('transactions');
+})->middleware(['auth', 'verified'])->name('transaction');
 
 //errors
 Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
