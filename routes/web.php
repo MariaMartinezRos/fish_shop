@@ -15,9 +15,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/sales', [TransactionController::class, 'showSales', 'showClients'])
+Route::get('/sales', [TransactionController::class, 'showSales'])
     ->middleware(['auth', 'verified'])
     ->name('sales');
+//Route::get('/sales', [TransactionController::class, 'showClients'])
+//    ->middleware(['auth', 'verified'])
+//    ->name('sales');
+//Route::middleware(['auth', 'verified'])->group(function () {
+//    Route::get('/sales', [TransactionController::class, 'showSales'])->name('sales');
+//    Route::get('/sales', [TransactionController::class, 'showClients'])->name('sales');
+//});
 
 Route::get('/stock', [ProductController::class, 'index'])
     ->middleware(['auth', 'verified'])

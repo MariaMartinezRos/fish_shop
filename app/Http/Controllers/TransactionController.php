@@ -21,12 +21,15 @@ class TransactionController extends Controller
     }
     public function showSales()
     {
+//        $totalAmount = DB::table('transactions')->sum('amount');
+//        return view('sales', compact('totalAmount'));
         $totalAmount = DB::table('transactions')->sum('amount');
-        return view('sales', compact('totalAmount'));
-    }
-    public function showClients()
-    {
         $totalClients = DB::table('transactions')->count();
-        return view('sales', compact('totalClients'));
+        return view('sales', compact('totalAmount', 'totalClients'));
     }
+//    public function showClients()
+//    {
+//        $totalClients = DB::table('transactions')->count();
+//        return view('sales', compact('totalClients'));
+//    }
 }
