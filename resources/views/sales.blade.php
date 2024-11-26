@@ -17,7 +17,13 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Today's clients: ") }}{{ $totalClients }}
                 </div>
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {!! $chart->container() !!}
+                </div>
             </div>
         </div>
     </div>
+{{--    <script src="{{ $chart->cdn() }}"></script>--}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{ $chart->script() }}
 </x-app-layout>
