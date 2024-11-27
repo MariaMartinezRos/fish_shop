@@ -18,13 +18,6 @@ Route::get('/dashboard', function () {
 Route::get('/sales', [TransactionController::class, 'showSales'])
     ->middleware(['auth', 'verified'])
     ->name('sales');
-//Route::get('/sales', [TransactionController::class, 'showClients'])
-//    ->middleware(['auth', 'verified'])
-//    ->name('sales');
-//Route::middleware(['auth', 'verified'])->group(function () {
-//    Route::get('/sales', [TransactionController::class, 'showSales'])->name('sales');
-//    Route::get('/sales', [TransactionController::class, 'showClients'])->name('sales');
-//});
 
 Route::get('/stock', [ProductController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -37,12 +30,6 @@ Route::get('/transaction', [TransactionController::class, 'index'])
 Route::get('/category', [CategoryController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('category');
-
-
-//Route::get('/category', function () {
-//    return view('category');
-//})->middleware(['auth', 'verified'])->name('category');
-//Route::get('/categories', [CategoryController::class, 'index']);
 
 //errors
 Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
