@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 //        $products = DB::table('products')->get();
+
+        $filter = $this->filter($request);
 
         $products = Product::paginate(10); // 10 productos por página
 
@@ -18,11 +20,26 @@ class ProductController extends Controller
             return view('stock', ['products' => []]);
         }
 
-        return view('stock', compact('products'));
+        return view('stock', compact('products', 'filter'));
     }
-//    public function showStock()
-//    {
-//        $products = Product::paginate(10); // 10 productos por página
-//        return view('stock', compact('products'));
-//    }
+    public function filter(Request $request)
+    {
+        $filter = $request->input('filter', '');
+        $category = $request->input('category', '');
+        $sort = $request->input('sort', '');
+
+        $query = Product::query();
+
+        if ($filter) {
+            $query->where('name', 'like', '%' . $filter . '%');
+        }
+
+        if ($category) {
+            $query->where('category_id', $category);
+        }
+
+        if ($sort) {
+            $query->orderBy('name', $sort);
+        }
+    }
 }
