@@ -2,6 +2,7 @@
 
 namespace App\Charts;
 
+use Carbon\Carbon;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 use Illuminate\Support\Facades\DB;
 
@@ -19,18 +20,30 @@ class SalesPerWeekChart extends Chart
     public function build(): void
     {
         // crear una variable con la consulta a la base de datos
+//        $salesData = DB::table('transactions')
+//            ->whereDate('date_time', '>=', now()->subDays(5))  // Se filtra los datos para los últimos 7 días
+//            ->select(DB::raw('DATE(date_time) as date'), DB::raw('SUM(amount) as total'))
+//            ->groupBy('date')
+//            ->orderBy('date')
+//            ->limit(5)
+//            ->get();
         $salesData = DB::table('transactions')
-            ->whereDate('date_time', '>=', now()->subDays(7))  // Se filtra los datos para los últimos 7 días
-            ->select(DB::raw('DAY(date_time) as day'), DB::raw('SUM(amount) as total'))
-            ->groupBy('day')
-            ->orderBy('day')
+            ->whereDate('date_time', '>=', now()->startOfWeek()->addDays(1))  // martes
+            ->whereDate('date_time', '<=', now()->startOfWeek()->addDays(5))  // sabado
+            ->select(DB::raw('DATE(date_time) as date'), DB::raw('SUM(amount) as total'))
+            ->groupBy('date')
+            ->orderBy('date')
+//            ->limit(5)
             ->get();
 
-        $hours = $salesData->pluck('day')->toArray();
+        // Formatear los días
+        $days = $salesData->pluck('date')->map(function ($date) {
+            return Carbon::parse($date)->locale('es')->isoFormat('dddd D');
+        })->toArray();
         $totals = $salesData->pluck('total')->toArray();
 
-        $this->labels($hours);
-        $this->dataset('Sales per Day', 'line', $totals)
+        $this->labels($days);
+        $this->dataset('Sales per Week', 'line', $totals)
             ->options([
                 'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
                 'borderColor' => 'rgba(54, 162, 235, 1)',
