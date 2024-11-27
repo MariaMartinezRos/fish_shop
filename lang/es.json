@@ -126,5 +126,11 @@
     "Category": "Categoría",
     "category": "categoría",
     "Categories": "Categorías",
-    "categories": "categorías"
+    "categories": "categorías",
+    "Sales per Week": "Ventas por semana",
+    "Sales per Month": "Ventas por mes",
+    "Sales per Year": "Ventas por año",
+    "Sales per Hour": "Ventas por hora",
+    "Previous": "Anterior",
+    "Next": "Siguiente"
 }

@@ -40,10 +40,10 @@ class SalesPerWeekChart extends Chart
         $days = $salesData->pluck('date')->map(function ($date) {
             return Carbon::parse($date)->locale('es')->isoFormat('dddd D');
         })->toArray();
-        $totals = $salesData->pluck('total')->toArray();
+        $totals = $salesData->pluck( __('total'))->toArray();
 
         $this->labels($days);
-        $this->dataset('Sales per Week', 'line', $totals)
+        $this->dataset( __('Sales per Week'), 'line', $totals)
             ->options([
                 'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
                 'borderColor' => 'rgba(54, 162, 235, 1)',

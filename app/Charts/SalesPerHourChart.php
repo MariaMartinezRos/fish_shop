@@ -26,11 +26,11 @@ class SalesPerHourChart extends Chart
             ->orderBy('hour')
             ->get();
 
-        $hours = $salesData->pluck('hour')->toArray();
-        $totals = $salesData->pluck('total')->toArray();
+        $hours = $salesData->pluck( __('hour') )->toArray();
+        $totals = $salesData->pluck( __('total') )->toArray();
 
         $this->labels($hours);
-        $this->dataset('Sales per Hour', 'line', $totals)
+        $this->dataset( __('Sales per Hour'), 'line', $totals)
             ->options([
                 'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
                 'borderColor' => 'rgba(54, 162, 235, 1)',
