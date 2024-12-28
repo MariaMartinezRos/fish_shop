@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -31,6 +34,24 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+//    /**
+//     * The attributes that should be cast.
+//     *
+//     * @var array<string, string>
+//     */
+//    protected $attributes = [
+//        'role_id' => 2, // Assuming 2 is the ID of the customer role
+//    ];
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class, 'tpv', 'name');
+    }
 
     /**
      * Get the attributes that should be cast.
