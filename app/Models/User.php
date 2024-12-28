@@ -35,14 +35,21 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-//    /**
-//     * The attributes that should be cast.
-//     *
-//     * @var array<string, string>
-//     */
-//    protected $attributes = [
-//        'role_id' => 2, // Assuming 2 is the ID of the customer role
-//    ];
+    /**
+     * Sets the role of the user to customer by default.
+     *
+     * @var array<string, string>
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $customerRole = Role::where('name', 'customer')->first();
+            $user->role_id = $customerRole->id;
+        });
+    }
+
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
