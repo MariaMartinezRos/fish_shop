@@ -26,6 +26,15 @@ pest()->extend(Tests\TestCase::class)
 |
 */
 
+//function loginAsUser(User $user = null)
+//{
+//        $user ?? $user = User::factory()->create();
+//
+//    actingAs($user);
+//
+//    return $user;
+//}
+
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
