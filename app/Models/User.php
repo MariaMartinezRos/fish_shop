@@ -40,15 +40,16 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::creating(function ($user) {
-            $customerRole = Role::where('name', 'customer')->first();
-            $user->role_id = $customerRole->id;
-        });
-    }
+//    protected static function boot(): void
+//    {
+//        parent::boot();
+//
+//        static::creating(function ($user) {
+//            $customerRole = Role::where('name', 'customer')->first();
+//            $user->role_id = $customerRole ? $customerRole->id : 1; // Default to 1 if customer role does not exist
+//
+//        });
+//    }
 
     public function role(): BelongsTo
     {

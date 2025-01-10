@@ -24,19 +24,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $guestRole = Role::where('name', 'guest')->first();
-
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'role_id' => $guestRole?->id, // Assign the guest role if it exists
-
-//            'role_id' => Role::where('name', 'guest')->first()->id, // Assign the guest role
-
-//            'role_id' => 4,
+            'role_id' => Role::factory(), //
 
         ];
     }
