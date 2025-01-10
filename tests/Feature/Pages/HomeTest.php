@@ -13,7 +13,7 @@ it('shows user if logged in', function () {
     $user = User::factory()->create();
 
     // Act
-    $response = $this->actingAs($user)->get('/');
+    $response = $this->actingAs($user)->get('/dashboard');
 
     // Assert
     $response->assertSee($user->name);
