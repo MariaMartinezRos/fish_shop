@@ -11,6 +11,11 @@ class ProductSeeder extends Seeder
 
     public function run(): void
     {
+
+        if ($this->isDataAlreadyGiven()) {
+            return;
+        }
+
         $categories = Category::all();
         $products = [
             ['name' => 'lubina', 'category_id' => $categories[0]->id, 'price_per_kg' => '7.00', 'stock_kg' => '20', 'description' => 'Lubina de crianza en piscifactoría'],
@@ -51,5 +56,40 @@ class ProductSeeder extends Seeder
         foreach ($products as $product) {
             Product::create($product);
         }
+    }
+
+    private function isDataAlreadyGiven()
+    {
+        return Product::where('name', 'lubina')->exists()
+            && Product::where('name', 'salmón')->exists()
+            && Product::where('name', 'bacalao')->exists()
+            && Product::where('name', 'merluza')->exists()
+            && Product::where('name', 'mejillones')->exists()
+            && Product::where('name', 'calamar')->exists()
+            && Product::where('name', 'atún')->exists()
+            && Product::where('name', 'trucha')->exists()
+            && Product::where('name', 'rodaballo')->exists()
+            && Product::where('name', 'rape')->exists()
+            && Product::where('name', 'jurel')->exists()
+            && Product::where('name', 'caballa')->exists()
+            && Product::where('name', 'pez limón')->exists()
+            && Product::where('name', 'pez espada')->exists()
+            && Product::where('name', 'langosta')->exists()
+            && Product::where('name', 'almejas')->exists()
+            && Product::where('name', 'ostra')->exists()
+            && Product::where('name', 'camarón')->exists()
+            && Product::where('name', 'pargo')->exists()
+            && Product::where('name', 'tilapia')->exists()
+            && Product::where('name', 'sardinas')->exists()
+            && Product::where('name', 'preparado')->exists()
+            && Product::where('name', 'pulpo')->exists()
+            && Product::where('name', 'sepia')->exists()
+            && Product::where('name', 'gambas')->exists()
+            && Product::where('name', 'cigalas')->exists()
+            && Product::where('name', 'bogavante')->exists()
+            && Product::where('name', 'vieiras')->exists()
+            && Product::where('name', 'cangrejo')->exists()
+            && Product::where('name', 'carabineros')->exists()
+            && Product::where('name', 'salmonete')->exists();
     }
 }

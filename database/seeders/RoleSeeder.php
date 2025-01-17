@@ -12,6 +12,10 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
+        if ($this->isDataAlreadyGiven()) {
+            return;
+        }
+
         $roles = [
             ['name' => 'admin', 'display_name' => 'Administrator', 'description' => 'User has full access to manage the system, including user roles and permissions'],
             ['name' => 'tpv', 'display_name' => 'Terminal', 'description' => 'User is responsible for managing transactions and sales operations'],
@@ -22,12 +26,14 @@ class RoleSeeder extends Seeder
         foreach ($roles as $role) {
             Role::create($role);
         }
+    }
 
-
-
-
-        //default??
-//        Role::create(['name' => 'guest']);
-
+    private function isDataAlreadyGiven(): bool
+    {
+        return Role::where('name', 'admin')->exists()
+            && Role::where('name', 'tpv')->exists()
+            && Role::where('name', 'employee')->exists()
+            && Role::where('name', 'customer')->exists()
+            && Role::where('name', 'guest')->exists();
     }
 }
