@@ -5,8 +5,9 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-
+uses(RefreshDatabase::class);
 
 it('adds given category', function () {
     //Assert
@@ -25,6 +26,7 @@ it('adds given category', function () {
 });
 
 it('adds given category only once', function () {
+
     //Act
     $this->artisan('db:seed');
     $this->artisan('db:seed');

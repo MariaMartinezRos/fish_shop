@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
             'role_id' => 1,
         ]);
