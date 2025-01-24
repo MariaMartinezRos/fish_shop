@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends Factory<Category>
  */
 class CategoryFactory extends Factory
 {
@@ -16,13 +17,6 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-//        return [
-            // Devuelve un array indicando que cada categoria es un tipo de pescado
-            // (fresh(id:0), frozen(id:1), cut(id:2), seafood(id:3))
-//            'name' => $this->faker->randomElement(['fresh', 'frozen', 'cut', 'seafood']),
-//                'name' => $this->getCategory(),
-
-//        ];
         static $categories = ['fresh', 'frozen', 'cut', 'seafood'];
         $name = array_shift($categories) ?? 'fresh';
         return [
@@ -30,27 +24,3 @@ class CategoryFactory extends Factory
         ];
     }
 }
-    //this would have to be removes in the future.
-    // This function is used to get a random category
-//    private function getCategory(): string
-//    {
-//        $categories = [
-//            'fresh' => 50,  // 50% chance
-//            'frozen' => 20, // 20% chance
-//            'cut' => 20,    // 20% chance
-//            'seafood' => 10 // 10% chance
-//        ];
-//
-//        $totalWeight = array_sum($categories);
-//        $random = mt_rand(1, $totalWeight);
-//
-//        foreach ($categories as $category => $weight) {
-//            if ($random <= $weight) {
-//                return $category;
-//            }
-//            $random -= $weight;
-//        }
-//
-//        return 'fresh'; // Default
-//    }
-

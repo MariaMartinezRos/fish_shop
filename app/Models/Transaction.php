@@ -31,6 +31,11 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class, 'tpv', 'name');
     }
+
+    /**
+     * @param array $transaction
+     * @return Transaction
+     */
     public static function create(array $transaction): Transaction
     {
 

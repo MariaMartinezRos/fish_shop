@@ -15,6 +15,9 @@ class Product extends Model
         'stock_kg',
         'description',
     ];
+    /**
+     * Crea un nuevo producto.
+     */
     public static function create(array $product): Product
     {
         $newProduct = new self();

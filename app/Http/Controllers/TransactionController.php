@@ -11,6 +11,9 @@ use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
+    /**
+     * Muestra la lista de transacciones.
+     */
     public function index()
     {
         $transactions = DB::table('transactions')->get();
@@ -21,22 +24,30 @@ class TransactionController extends Controller
 
         return view('transactions', compact('transactions'));
     }
+
+    /**
+     * Filtra las transacciones por fecha y cantidad.
+     */
     public function showSales()
     {
-//        $totalAmount = DB::table('transactions')->sum('amount');
-//        return view('sales', compact('totalAmount'));
         $totalAmount = DB::table('transactions')->sum('amount');
         $totalClients = DB::table('transactions')->count();
         $chartHour = $this->showGraphicHour();
         $chartWeek = $this->showGraphicWeek();
         return view('sales', compact('totalAmount', 'totalClients', 'chartHour', 'chartWeek'));
     }
+    /**
+     * Muestra gráficos de ventas por hora.
+     */
     public function showGraphicHour()
     {
         $chartHour = new SalesPerHourChart();
         $chartHour->build();
         return $chartHour;
     }
+    /**
+     * Muestra gráficos de ventas por semana.
+     */
     public function showGraphicWeek()
     {
         $chartWeek = new SalesPerWeekChart();

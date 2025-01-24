@@ -34,28 +34,16 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
     /**
-     * Sets the role of the user to customer by default.
-     *
-     * @var array<string, string>
+     * The attributes that should be cast.
      */
-//    protected static function boot(): void
-//    {
-//        parent::boot();
-//
-//        static::creating(function ($user) {
-//            $customerRole = Role::where('name', 'customer')->first();
-//            $user->role_id = $customerRole ? $customerRole->id : 1; // Default to 1 if customer role does not exist
-//
-//        });
-//    }
-
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
-
+    /**
+     * Get the transactions for the user.
+     */
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class, 'tpv', 'name');

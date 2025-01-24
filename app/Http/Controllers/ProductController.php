@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    /**
+     * Muestra la lista de productos.
+     */
     public function index(Request $request)
     {
-//        $products = DB::table('products')->get();
-
         $filter = $this->filter($request);
 
         $products = Product::paginate(10); // 10 productos por página
@@ -22,6 +23,10 @@ class ProductController extends Controller
 
         return view('stock', compact('products', 'filter'));
     }
+
+    /**
+     * Filtra los productos por nombre, categoría y orden.
+     */
     public function filter(Request $request)
     {
         $filter = $request->input('filter', '');

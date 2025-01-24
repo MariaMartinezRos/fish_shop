@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    /**
+     * Muestra la lista de categorías.
+     */
     public function index()
     {
         $categories = DB::table('categories')->get();
