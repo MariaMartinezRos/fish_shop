@@ -4,6 +4,7 @@
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Role;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -112,15 +113,22 @@ it('adds given role only once', function () {
 });
 
 it('adds given transaction', function () {
-    //Arrange
+    //Act
+    $this->assertDatabaseCount(Transaction::class, 0);
 
-    //Act && Assert
+    //Act
+    $this->artisan('db:seed');
+    $this->assertDatabaseCount(Transaction::class, 40);
+    $this->assertDatabaseHas(Transaction::class, ['sale_id' => '101']);
 });
 
 it('adds given transaction only once', function () {
-    //Arrange
+    //Act
+    $this->artisan('db:seed');
+    $this->artisan('db:seed');
 
     //Act && Assert
+    $this->assertDatabaseCount(Transaction::class, 40);
 });
 
 it('adds given user', function () {

@@ -10,6 +10,10 @@ class TransactionSeeder extends Seeder
 {
     public function run(): void
     {
+        if ($this->isDataAlreadyGiven()) {
+            return;
+        }
+
         $filePath = Storage::path('transactions.json');
         $jsonData = file_get_contents($filePath);
         $transactions = json_decode($jsonData, true);
@@ -30,15 +34,9 @@ class TransactionSeeder extends Seeder
             ]);
         }
     }
+
+    private function isDataAlreadyGiven(): bool
+    {
+        return Transaction::where('sale_id', '101')->exists();
+    }
 }
-//$table->string('tpv');
-//$table->string('serial_number');
-//$table->string('terminal_number');
-//$table->string('operation');
-//$table->decimal('amount', 10, 2);
-//$table->string('card_number');
-//$table->dateTime('date_time');
-//$table->string('transaction_number');
-//$table->unsignedBigInteger('sale_id')->index();
-//$table->timestamp('created_at')->nullable();
-//$table->timestamp('updated_at')->nullable();
