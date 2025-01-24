@@ -26,7 +26,6 @@ it('adds given category', function () {
 });
 
 it('adds given category only once', function () {
-
     //Act
     $this->artisan('db:seed');
     $this->artisan('db:seed');
