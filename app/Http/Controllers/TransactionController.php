@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Charts\SalesPerHourChart;
 use App\Charts\SalesPerWeekChart;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -30,8 +31,17 @@ class TransactionController extends Controller
      */
     public function showSales()
     {
-        $totalAmount = DB::table('transactions')->sum('amount');
-        $totalClients = DB::table('transactions')->count();
+
+//        $totalAmount = DB::table('transactions')->sum('amount');
+//        $totalClients = DB::table('transactions')->count();
+        $totalAmount = DB::table('transactions')
+            ->whereDate('date_time', Carbon::today())
+            ->sum('amount');
+
+        $totalClients = DB::table('transactions')
+            ->whereDate('date_time', Carbon::today())
+            ->count();
+
         $chartHour = $this->showGraphicHour();
         $chartWeek = $this->showGraphicWeek();
         return view('sales', compact('totalAmount', 'totalClients', 'chartHour', 'chartWeek'));
