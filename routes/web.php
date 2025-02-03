@@ -31,6 +31,10 @@ Route::get('/category', [CategoryController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('category');
 
+Route::get('/products', [ProductController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('products.index');
+
 //errors
 Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
 Route::get('/error/404', [ErrorController::class, 'notFound']);
