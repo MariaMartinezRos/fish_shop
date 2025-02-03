@@ -22,6 +22,10 @@ class ProductController extends Controller
             })
             ->paginate(10);
 
+        if ($request->ajax()) {
+            return view('components.product-list', compact('products'))->render();
+        }
+
         return view('stock', compact('products'));
 //    public function index(Request $request)
 //    {

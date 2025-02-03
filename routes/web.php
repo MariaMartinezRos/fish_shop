@@ -31,6 +31,7 @@ Route::get('/category', [CategoryController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('category');
 
+// ruta para mostrar los productos filtrados
 Route::get('/products', [ProductController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('products.index');
