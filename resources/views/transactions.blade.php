@@ -12,7 +12,16 @@
                     {{ __("The transactions section") }}
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+
                     @if(isset($transactions) && count($transactions) > 0)
+                        <div class="mt-4">
+                            <x-tertiary-button>
+                                {{ __('ALHAMA') }}
+                            </x-tertiary-button>
+                            <x-tertiary-button>
+                                {{ __('LIBRILLA') }}
+                            </x-tertiary-button>
+                        </div>
                         @foreach($transactions as $transaction)
                             <h2>{{ __("TPV: ") }}{{ $transaction->tpv }}</h2><br/>
                             <h2>{{ __("Serial Number: ") }}{{ $transaction->serial_number }}</h2><br/>

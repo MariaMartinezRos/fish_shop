@@ -31,9 +31,6 @@ class TransactionController extends Controller
      */
     public function showSales()
     {
-
-//        $totalAmount = DB::table('transactions')->sum('amount');
-//        $totalClients = DB::table('transactions')->count();
         $totalAmount = DB::table('transactions')
             ->whereDate('date_time', Carbon::today())
             ->sum('amount');
