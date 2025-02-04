@@ -27,4 +27,13 @@ class ProductController extends Controller
 
         return view('stock', compact('products'));
     }
+
+    /**
+     * Muestra un producto en particular
+     */
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('products.show', compact('product'));
+    }
 }

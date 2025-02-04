@@ -8,7 +8,9 @@
                 'alt' => $product->name,
                 'name' => $product->name,
                 'description' => $product->description,
-                'price' => $product->price_per_kg
+                'category' => asset('images/'.$product->category_id.'.png'),
+                'price' => $product->price_per_kg,
+                'id' => $product->id
             ];
         }
     @endphp

@@ -31,10 +31,18 @@ Route::get('/category', [CategoryController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('category');
 
+Route::get('/categories/{category}', [CategoryController::class, 'show'])
+    ->middleware(['auth', 'verified'])
+    ->name('categories.show');
+
 // ruta para mostrar los productos filtrados
 Route::get('/products', [ProductController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('products.index');
+
+Route::get('/products/{id}', [ProductController::class, 'show'])
+    ->middleware(['auth', 'verified'])
+    ->name('products.show');
 
 //errors
 Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
