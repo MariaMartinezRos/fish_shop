@@ -139,7 +139,7 @@ it('adds given user', function () {
     $this->artisan('db:seed');
 
     //Assert
-    $this->assertDatabaseCount(User::class, 1);
+    $this->assertDatabaseCount(User::class, 3);
     $this->assertDatabaseHas(User::class, ['email' => 'admin@admin.com']);
 });
 
@@ -149,6 +149,6 @@ it('adds given user only once', function () {
     $this->artisan('db:seed');
 
     //Act && Assert
-    $this->assertDatabaseCount(User::class, 1);
+    $this->assertDatabaseCount(User::class, 3);
 });
 

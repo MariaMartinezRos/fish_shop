@@ -24,10 +24,26 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'role_id' => 1,
         ]);
+        User::factory()->create([
+            'name' => 'Employee',
+            'email' => 'employee@employee.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'role_id' => 3,
+        ]);
+        User::factory()->create([
+            'name' => 'Customer',
+            'email' => 'customer@customer.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'role_id' => 2,
+        ]);
     }
 
     private function isDataAlreadyGiven(): bool
     {
-        return User::where('email', 'admin@admin.com')->exists();
+        return User::where('email', 'admin@admin.com')->exists()
+            && User::where('email', 'employee@employee.com')->exists()
+            && User::where('email', 'customer@customer.com')->exists();
     }
 }
