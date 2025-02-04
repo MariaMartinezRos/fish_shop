@@ -19,22 +19,114 @@
     <!-- Navbar -->
     <nav class="bg-blue-600 text-white p-4 shadow-lg w-full">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold"> {{ __('Pescaderías Benito') }}</h1>
+            <h1 class="text-2xl font-bold"> {{ __('Benito\'s Fish Markets') }}</h1>
             <ul class="flex space-x-4">
-                <li><a href="#about" class="hover:underline"> {{ __('Nosotros') }}</a></li>
-                <li><a href="#products" class="hover:underline"> {{ __('Productos') }}</a></li>
-                <li><a href="#shops" class="hover:underline"> {{ __('Tiendas') }}</a></li>
-                <li><a href="#recipees" class="hover:underline"> {{ __('Recetas') }}</a></li>
-                <li><a href="#discover" class="hover:underline"> {{ __('Descubre') }}</a></li>
-                <li><a href="#contact" class="hover:underline"> {{ __('Contacto') }}</a></li>
+                <li>
+                    <a href="#about" class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        {{ __('About us') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#products" class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        {{ __('Products') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#shops" class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        {{ __('Shops') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#recipees" class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        {{ __('Recipes') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#discover" class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        {{ __('Discover') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        {{ __('Contact') }}
+                    </a>
+                </li>
+                @if (Route::has('login'))
+                    <nav class="-mx-3 flex flex-1 justify-end">
+                        @auth
+                            <a
+                                href="{{ url('/') }}"
+                                class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                            >
+                                {{__('Home')}}
+                            </a>
+                        @else
+                            <a
+                                href="{{ route('login') }}"
+                                class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                            >
+                                {{ __('Log in')}}
+                            </a>
+
+                            @if (Route::has('register'))
+                                <a
+                                    href="{{ route('register') }}"
+                                    class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                >
+                                    {{ __('Register')}}
+                                </a>
+                            @endif
+                        @endauth
+                    </nav>
+                @endif
             </ul>
         </div>
+
+        {{--        <div class="container mx-auto flex justify-between items-center">--}}
+{{--            <h1 class="text-2xl font-bold"> {{ __('Pescaderías Benito') }}</h1>--}}
+{{--            <ul class="flex space-x-4">--}}
+{{--                <li><a href="#about" class="hover:underline"> {{ __('Nosotros') }}</a></li>--}}
+{{--                <li><a href="#products" class="hover:underline"> {{ __('Productos') }}</a></li>--}}
+{{--                <li><a href="#shops" class="hover:underline"> {{ __('Tiendas') }}</a></li>--}}
+{{--                <li><a href="#recipees" class="hover:underline"> {{ __('Recetas') }}</a></li>--}}
+{{--                <li><a href="#discover" class="hover:underline"> {{ __('Descubre') }}</a></li>--}}
+{{--                <li><a href="#contact" class="hover:underline"> {{ __('Contacto') }}</a></li>--}}
+{{--                @if (Route::has('login'))--}}
+{{--                    <nav class="-mx-3 flex flex-1 justify-end">--}}
+{{--                        @auth--}}
+{{--                            <a--}}
+{{--                                href="{{ url('/') }}"--}}
+{{--                                class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"--}}
+{{--                            >--}}
+{{--                                {{__('Home')}}--}}
+{{--                            </a>--}}
+{{--                        @else--}}
+{{--                            <a--}}
+{{--                                href="{{ route('login') }}"--}}
+{{--                                class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"--}}
+{{--                            >--}}
+{{--                                {{ __('Log in')}}--}}
+{{--                            </a>--}}
+
+{{--                            @if (Route::has('register'))--}}
+{{--                                <a--}}
+{{--                                    href="{{ route('register') }}"--}}
+{{--                                    class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"--}}
+{{--                                >--}}
+{{--                                    {{ __('Register')}}--}}
+{{--                                </a>--}}
+{{--                            @endif--}}
+{{--                        @endauth--}}
+{{--                    </nav>--}}
+{{--                @endif--}}
+{{--            </ul>--}}
+{{--        </div>--}}
     </nav>
 
     <!-- Hero Section -->
     <header class="bg-blue-500 text-white text-center py-20 w-full">
-        <h2 class="text-4xl font-bold"> {{ __('Frescura del mar a tu mesa') }}</h2>
-        <p class="mt-4 text-lg"> {{ __('Los mejores mariscos y pescados seleccionados para ti.') }}</p>
+        <h2 class="text-4xl font-bold"> {{ __('Freshness from the sea to your table') }}</h2>
+        <p class="mt-4 text-lg"> {{ __('The best seafood and fish selected for you.') }}</p>
     </header>
 
     <!-- Secciones -->
@@ -44,10 +136,10 @@
 
     <!-- Footer -->
     <footer class="bg-blue-600 text-white text-center py-4 w-full mt-12">
-        <p>&copy; {{ __('1986 Pescaderías Benito. Todos los derechos reservados.') }}</p>
+        <p>&copy; {{ __('1986 Benito\'s Fish Markets. All rights reserved.') }}</p>
         <ul class="flex justify-center space-x-4 mt-2">
-            <li><a href="#privacy" class="hover:underline"> {{ __('Política de Privacidad') }}</a></li>
-            <li><a href="#terms" class="hover:underline"> {{ __('Términos de Servicio') }}</a></li>
+            <li><a href="#privacy" class="hover:underline"> {{ __('Privacy Policy') }}</a></li>
+            <li><a href="#terms" class="hover:underline"> {{ __('Terms of Service') }}</a></li>
         </ul>
     </footer>
 </div>
