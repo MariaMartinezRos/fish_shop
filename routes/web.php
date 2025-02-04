@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarrouselController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProductController;
@@ -7,9 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {   //ARREGLAR EN EL FUTURO Y CAMBIAR POR HOME
-    return view('home');
-})->name('home');
+Route::get('/', [CarrouselController::class, 'index'])
+    ->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

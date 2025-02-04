@@ -31,11 +31,32 @@
         </div>
     </nav>
 
+{{--    <!-- Hero Section -->--}}
+{{--    <header class="bg-blue-500 text-white text-center py-20 w-full">--}}
+
+{{--        <h2 class="text-4xl font-bold"> {{ __('Frescura del mar a tu mesa') }}</h2>--}}
+{{--        <p class="mt-4 text-lg"> {{ __('Los mejores mariscos y pescados seleccionados para ti.') }}</p>--}}
+{{--    </header>--}}
+
     <!-- Hero Section -->
     <header class="bg-blue-500 text-white text-center py-20 w-full">
-        <h2 class="text-4xl font-bold"> {{ __('Frescura del mar a tu mesa') }}</h2>
-        <p class="mt-4 text-lg"> {{ __('Los mejores mariscos y pescados seleccionados para ti.') }}</p>
+        <!-- Carrusel de Imágenes -->
+        <div id="carrousel">
+            @include('components.carrousel')
+        </div>
+
+        <!-- Texto del Hero -->
+        <div class="relative z-10">
+            <h2 class="text-4xl font-bold">{{ __('Frescura del mar a tu mesa') }}</h2>
+            <p class="mt-4 text-lg">{{ __('Los mejores mariscos y pescados seleccionados para ti.') }}</p>
+        </div>
     </header>
+
+
+
+
+
+
 
     <!-- Secciones -->
     <div class="w-full sm:max-w-4xl mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md sm:rounded-lg">
