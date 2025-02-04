@@ -3,11 +3,16 @@
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
+use Database\Seeders\ProductSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\get;
 
 uses(RefreshDatabase::class);
+
+//beforeEach(function () {
+//    $this->seed(ProductSeeder::class);
+//});
 
 it('returns a successful response for stock page', function () {
     // Arrange
@@ -19,6 +24,7 @@ it('returns a successful response for stock page', function () {
 });
 
 it('shows stock overview', function () {
+
     // Arrange
     $firstProduct = Product::factory()->create();
     $secondProduct = Product::factory()->create();

@@ -16,6 +16,10 @@ class ProductSeeder extends Seeder
         }
 
         $categories = Category::all();
+
+        if ($categories->isEmpty()) {
+            throw new \Exception('No categories found in the database.');
+        }
         $products = [
             ['name' => 'lubina', 'category_id' => $categories[0]->id, 'price_per_kg' => '7.00', 'stock_kg' => '20', 'description' => 'Lubina de crianza en piscifactoría'],
             ['name' => 'salmón', 'category_id' => $categories[1]->id, 'price_per_kg' => '16.00', 'stock_kg' => '5.5', 'description' => 'Salmón de crianza en piscifactoría'],
@@ -91,9 +95,18 @@ class ProductSeeder extends Seeder
             && Product::where('name', 'salmonete')->exists();
     }
 
-    public static function getRandomProduct(): Product
+    public static function getProduct(): Product
     {
-        $product = Product::inRandomOrder()->first();
+        //get all products
+
+        $products = Product::all();
+
+        // get one product in random
+        $product = $products->random();
+
+//        $product = $products->first();
+
+
         if (! $product) {
             throw new \Exception(__('No products found.'));
         }

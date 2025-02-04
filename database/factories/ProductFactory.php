@@ -22,7 +22,7 @@ class ProductFactory extends Factory
     {
         //        $products = ProductSeeder::$products;
         //        $product = $this->faker->randomElement($products);
-        $product = ProductSeeder::getRandomProduct();
+        $product = ProductSeeder::getProduct();
 
         return [
             'name' => $product['name'],
