@@ -8,7 +8,7 @@ use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {   //ARREGLAR EN EL FUTURO Y CAMBIAR POR HOME
-    return view('welcome');
+    return view('home');
 })->name('home');
 
 Route::get('/dashboard', function () {
