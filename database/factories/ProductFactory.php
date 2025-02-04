@@ -17,11 +17,14 @@ class ProductFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
+     * @throws \Exception
      */
     public function definition(): array
     {
-        $products = ProductSeeder::$products;
-        $product = $this->faker->randomElement($products);
+//        $products = ProductSeeder::$products;
+//        $product = $this->faker->randomElement($products);
+        $product = ProductSeeder::getRandomProduct();
+
         return [
             'name' => $product['name'],
             'category_id' => $product['category_id'],

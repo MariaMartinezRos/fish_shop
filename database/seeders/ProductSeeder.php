@@ -92,4 +92,13 @@ class ProductSeeder extends Seeder
             && Product::where('name', 'carabineros')->exists()
             && Product::where('name', 'salmonete')->exists();
     }
+
+    public static function getRandomProduct(): Product
+    {
+        $product = Product::inRandomOrder()->first();
+        if (!$product) {
+            throw new \Exception( __('No products found in the database.'));
+        }
+        return $product;
+    }
 }
