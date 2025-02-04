@@ -8,7 +8,6 @@ use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
-
     public function run(): void
     {
 
@@ -48,8 +47,7 @@ class ProductSeeder extends Seeder
             ['name' => 'vieiras', 'category_id' => $categories[3]->id, 'price_per_kg' => '35.00', 'stock_kg' => '2.00', 'description' => 'Vieiras frescas'],
             ['name' => 'cangrejo', 'category_id' => $categories[3]->id, 'price_per_kg' => '25.00', 'stock_kg' => '4.00', 'description' => 'Cangrejo fresco'],
             ['name' => 'carabineros', 'category_id' => $categories[3]->id, 'price_per_kg' => '40.00', 'stock_kg' => '1.00', 'description' => 'Carabineros frescos'],
-            ['name' => 'salmonete', 'category_id' => $categories[0]->id, 'price_per_kg' => '14.00', 'stock_kg' => '7.00', 'description' => 'Salmonete frescos']
-
+            ['name' => 'salmonete', 'category_id' => $categories[0]->id, 'price_per_kg' => '14.00', 'stock_kg' => '7.00', 'description' => 'Salmonete frescos'],
 
         ];
 
@@ -96,9 +94,10 @@ class ProductSeeder extends Seeder
     public static function getRandomProduct(): Product
     {
         $product = Product::inRandomOrder()->first();
-        if (!$product) {
-            throw new \Exception( __('No products found in the database.'));
+        if (! $product) {
+            throw new \Exception(__('No products found.'));
         }
+
         return $product;
     }
 }

@@ -19,6 +19,7 @@ class CategoryFactory extends Factory
     {
         static $categories = ['fresh', 'frozen', 'cut', 'seafood'];
         $name = array_shift($categories) ?? 'fresh';
+
         return [
             'name' => $name,
         ];

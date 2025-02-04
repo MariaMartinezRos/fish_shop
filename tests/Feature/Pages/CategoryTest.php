@@ -10,4 +10,3 @@ it('returns a successful response for category page', function () {
     $response = $this->actingAs($user)->get('category');
     $response->assertStatus(200);
 });
-

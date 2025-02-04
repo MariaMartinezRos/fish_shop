@@ -41,7 +41,6 @@ Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
 Route::get('/error/404', [ErrorController::class, 'notFound']);
 Route::get('/error/500', [ErrorController::class, 'internalServerError']);
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -49,6 +48,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
-

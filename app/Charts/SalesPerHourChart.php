@@ -16,6 +16,7 @@ class SalesPerHourChart extends Chart
     {
         parent::__construct();
     }
+
     public function build(): void
     {
         /**
@@ -38,11 +39,11 @@ class SalesPerHourChart extends Chart
                 ->get();
         }
 
-        $hours = $salesData->pluck( __('hour') )->toArray();
-        $totals = $salesData->pluck( __('total') )->toArray();
+        $hours = $salesData->pluck(__('hour'))->toArray();
+        $totals = $salesData->pluck(__('total'))->toArray();
 
         $this->labels($hours);
-        $this->dataset( __('Sales per Hour'), 'line', $totals)
+        $this->dataset(__('Sales per Hour'), 'line', $totals)
             ->options([
                 'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
                 'borderColor' => 'rgba(54, 162, 235, 1)',
@@ -50,7 +51,7 @@ class SalesPerHourChart extends Chart
             ]);
 
         // Añadir un título y un título para el eje y
-//        $this->title('Sales per Hour');
+        //        $this->title('Sales per Hour');
 
     }
 }

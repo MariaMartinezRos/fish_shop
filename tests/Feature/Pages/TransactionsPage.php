@@ -10,4 +10,3 @@ it('returns a successful response for transactions page', function () {
     $response = $this->actingAs($user)->get('transactions');
     $response->assertStatus(200);
 });
-

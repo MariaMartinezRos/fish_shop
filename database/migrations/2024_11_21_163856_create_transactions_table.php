@@ -25,7 +25,7 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
 
-//            $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade');
+            //            $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade');
         });
     }
 

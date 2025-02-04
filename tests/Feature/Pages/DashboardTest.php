@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Models\User;
 
 it('returns a successful response for dashboard page', function () {

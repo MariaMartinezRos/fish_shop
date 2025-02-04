@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Role;
@@ -151,4 +150,3 @@ it('adds given user only once', function () {
     //Act && Assert
     $this->assertDatabaseCount(User::class, 3);
 });
-

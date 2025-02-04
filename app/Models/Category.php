@@ -11,6 +11,5 @@ class Category extends Model
     /** @use HasFactory<CategoryFactory> */
     use HasFactory;
 
-
     protected $fillable = ['name'];
 }

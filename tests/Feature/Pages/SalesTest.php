@@ -10,4 +10,3 @@ it('returns a successful response for sales page', function () {
     $response = $this->actingAs($user)->get('sales');
     $response->assertStatus(200);
 });
-

@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
             ['name' => 'employee', 'display_name' => 'Member', 'description' => 'User has general access to perform assigned tasks and duties'],
             ['name' => 'customer', 'display_name' => 'Client', 'description' => 'User interacts with the system as a client for purchases or services'],
             ['name' => 'guest', 'display_name' => 'Visitor', 'description' => 'User has limited access for viewing public resources'],
-            ];
+        ];
         foreach ($roles as $role) {
             Role::create($role);
         }

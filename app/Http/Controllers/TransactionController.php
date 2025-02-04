@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Charts\SalesPerHourChart;
 use App\Charts\SalesPerWeekChart;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
@@ -41,24 +38,29 @@ class TransactionController extends Controller
 
         $chartHour = $this->showGraphicHour();
         $chartWeek = $this->showGraphicWeek();
+
         return view('sales', compact('totalAmount', 'totalClients', 'chartHour', 'chartWeek'));
     }
+
     /**
      * Muestra gráficos de ventas por hora.
      */
     public function showGraphicHour()
     {
-        $chartHour = new SalesPerHourChart();
+        $chartHour = new SalesPerHourChart;
         $chartHour->build();
+
         return $chartHour;
     }
+
     /**
      * Muestra gráficos de ventas por semana.
      */
     public function showGraphicWeek()
     {
-        $chartWeek = new SalesPerWeekChart();
+        $chartWeek = new SalesPerWeekChart;
         $chartWeek->build();
+
         return $chartWeek;
     }
 }

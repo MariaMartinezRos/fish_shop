@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
     /**
      * Muestra la lista de productos. Tambien realiza una consulta en la base de datos para filtrarlos
-     *
      */
     public function index(Request $request)
     {
@@ -18,8 +16,8 @@ class ProductController extends Controller
 
         $products = Product::query()
             ->when($filter, function ($query, $filter) {
-                return $query->where('name', 'like', '%' . $filter . '%')
-                    ->orWhere('description', 'like', '%' . $filter . '%');
+                return $query->where('name', 'like', '%'.$filter.'%')
+                    ->orWhere('description', 'like', '%'.$filter.'%');
             })
             ->paginate(10);
 

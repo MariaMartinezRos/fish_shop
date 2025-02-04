@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transaction extends Model
 {
-
     protected $fillable = [
         'tpv',
         'serial_number',
@@ -24,22 +23,16 @@ class Transaction extends Model
 
     /**
      * Get the user that owns the Transaction
-     *
-     * @return BelongsTo
      */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'tpv', 'name');
     }
 
-    /**
-     * @param array $transaction
-     * @return Transaction
-     */
     public static function create(array $transaction): Transaction
     {
 
-        $newTransaction = new self();
+        $newTransaction = new self;
 
         $newTransaction->tpv = $transaction['tpv'];
         $newTransaction->serial_number = $transaction['serial_number'];
@@ -54,6 +47,7 @@ class Transaction extends Model
         $newTransaction->updated_at = $transaction['updated_at'];
 
         $newTransaction->save();
+
         return $newTransaction;
     }
 }

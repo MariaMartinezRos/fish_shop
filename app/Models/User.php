@@ -34,6 +34,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
     /**
      * The attributes that should be cast.
      */
@@ -41,6 +42,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
     /**
      * Get the transactions for the user.
      */

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class ErrorController extends Controller
 {
     public function showError($statusCode)
     {
         $url = "https://http.fish/{$statusCode}";
+
         return view('error', ['url' => $url]);
     }
+
     public function continue()
     {
         return $this->showError(100);
@@ -325,5 +325,4 @@ class ErrorController extends Controller
     {
         return $this->showError(511);
     }
-
 }

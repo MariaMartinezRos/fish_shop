@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RoleFactory extends Factory
@@ -20,6 +19,4 @@ class RoleFactory extends Factory
             'description' => 'User has limited access for viewing public resources',
         ];
     }
-
-
 }
