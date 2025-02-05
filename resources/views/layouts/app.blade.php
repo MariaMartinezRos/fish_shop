@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-{{--        @include('partials.favicon')--}}
+        @include('partials.favicon')
 
         <title>{{ config('app.name', 'Fish Shop') }}</title>
 
@@ -40,7 +40,7 @@
             </main>
         </div>
 
-{{--        @include('partials.footer')--}}
+        @include('partials.footer')
 
     </body>
 </html>

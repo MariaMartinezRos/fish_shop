@@ -6,7 +6,7 @@
 
         <!-- Adjust grid for smaller items and tighter spacing -->
         <div class="mt-6 grid grid-cols-2 gap-x-2 gap-y-4 sm:grid-cols-3 md:grid-cols-5 xl:gap-x-4">
-            @if($products->isEmpty())
+            @if( collect($products)->isEmpty())
                 <p class="mt-6 text-center text-gray-500">{{ __('No products available.') }}</p>
             @else
             @foreach($products as $product)

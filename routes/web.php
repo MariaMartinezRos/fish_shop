@@ -44,6 +44,15 @@ Route::get('/products/{id}', [ProductController::class, 'show'])
     ->middleware(['auth', 'verified'])
     ->name('products.show');
 
+Route::get('/privacy', function () {
+    return view('auth.policy.privacy');
+})->name('privacy');
+
+Route::get('/terms', function () {
+    return view('auth.policy.terms');
+})->name('terms');
+
+
 //errors
 Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
 Route::get('/error/404', [ErrorController::class, 'notFound']);

@@ -22,14 +22,21 @@ class ProductFactory extends Factory
     {
         //        $products = ProductSeeder::$products;
         //        $product = $this->faker->randomElement($products);
-        $product = ProductSeeder::getProduct();
+//        $product = ProductSeeder::getProduct();
 
         return [
-            'name' => $product['name'],
-            'category_id' => $product['category_id'],
-            'price_per_kg' => $product['price_per_kg'],
-            'stock_kg' => $product['stock_kg'],
-            'description' => $product['description'],
+            'name' => fake()->name,
+            'category_id' => fake()->randomElement([1, 2, 3, 4]),
+            'price_per_kg' => fake()->randomFloat(2, 1, 100),
+            'stock_kg' => fake()->randomFloat(2, 1, 100),
+            'description' => fake()->text,
         ];
+//        return [
+//            'name' => $product['name'],
+//            'category_id' => $product['category_id'],
+//            'price_per_kg' => $product['price_per_kg'],
+//            'stock_kg' => $product['stock_kg'],
+//            'description' => $product['description'],
+//        ];
     }
 }
