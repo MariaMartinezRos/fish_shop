@@ -48,9 +48,12 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('home')">
-                            {{ __('Customer') }}
-                        </x-dropdown-link>
+{{--                        this option shall only appear if the user is an admin ($user->role_id->1 --}}
+                        @if(Auth::user()->role_id === 1)
+                            <x-dropdown-link :href="route('dashboard')">
+                                {{ __('Customer') }}
+                            </x-dropdown-link>
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

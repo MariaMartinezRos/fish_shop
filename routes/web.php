@@ -8,12 +8,12 @@ use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {   //ARREGLAR EN EL FUTURO Y CAMBIAR POR HOME
-    return view('home');
-})->name('home');
+    return view('dashboard');
+})->name('dashboard');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('menu');
 
 Route::get('/sales', [TransactionController::class, 'showSales'])
     ->middleware(['auth', 'verified'])
