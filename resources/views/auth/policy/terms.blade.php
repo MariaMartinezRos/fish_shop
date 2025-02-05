@@ -1,12 +1,30 @@
-<x-app-layout>
-    <x-slot name="header">
-        <a href="{{ route('dashboard' ) }}">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Fish Shop') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="font-sans text-gray-900 antialiased bg-gray-100 dark:bg-gray-900">
+<div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
+
+    <div class="text-left mt-10">
+        <a href="{{ route('dashboard') }}">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                <img src="{{ asset('images/go-back.png') }}" alt="{{ __('Go Back')}}" >
+                <img src="{{ asset('images/go-back.png') }}" alt="{{ __('Go Back') }}" class="inline-block mr-2">
                 {{ __('Go Back') }}
             </h2>
         </a>
-    </x-slot>
+    </div>
 
     <div class="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
         <h1 class="text-3xl font-bold text-center text-blue-700">{{ __('Terms of Service') }}</h1>
@@ -36,4 +54,7 @@
         <p class="mt-6 text-center font-semibold">{{ __('If you have any questions, contact us at') }} <span class="font-semibold">pescaderiasbenito@gmail.com</span>.</p>
     </div>
 
-</x-app-layout>
+    @include('partials.footer')
+</div>
+</body>
+</html>
