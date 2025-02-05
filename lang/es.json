@@ -150,5 +150,6 @@
     "No products found in the database.": "No se encontraron productos en la base de datos.",
     "Modify": "Modificar",
     "Delete": "Eliminar",
-    "Amount: ": "Cantidad: "
+    "Amount: ": "Cantidad: ",
+    "No products available.": "No hay productos disponibles."
 }
