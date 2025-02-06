@@ -39,26 +39,33 @@ Route::get('/stock-client', function () {
 
 
 //rutas de administrador
-Route::get('/sales', [TransactionController::class, 'showSales'])
-    ->middleware(['auth', 'verified'])
-    ->name('sales');
+if (Auth::check() && Auth::user()->role_id === 1) {
 
-Route::get('/stock', [ProductController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('stock');
+    Route::get('/sales', [TransactionController::class, 'showSales'])
+        ->middleware(['auth', 'verified'])
+        ->name('sales');
 
-Route::get('/transaction', [TransactionController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('transaction');
+    Route::get('/stock', [ProductController::class, 'index'])
+        ->middleware(['auth', 'verified'])
+        ->name('stock');
 
-Route::get('/category', [CategoryController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('category');
+    Route::get('/transaction', [TransactionController::class, 'index'])
+        ->middleware(['auth', 'verified'])
+        ->name('transaction');
 
-Route::get('/categories/{category}', [CategoryController::class, 'show'])
-    ->middleware(['auth', 'verified'])
-    ->name('categories.show');
+    Route::get('/category', [CategoryController::class, 'index'])
+        ->middleware(['auth', 'verified'])
+        ->name('category');
 
+    Route::get('/categories/{category}', [CategoryController::class, 'show'])
+        ->middleware(['auth', 'verified'])
+        ->name('categories.show');
+}
+
+//else {
+//    //redirect to dashboard
+//    return view('dashboard');
+//}
 
 // ruta para mostrar los productos filtrados
 Route::get('/products', [ProductController::class, 'index'])

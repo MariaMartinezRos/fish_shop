@@ -26,15 +26,23 @@ class ProductFactory extends Factory
         //        $product = $this->faker->randomElement($products);
 //        $product = ProductSeeder::getProduct();
 
-        $category = Category::all()->random();
-        $product = Product::all()->random();
+//        $category = Category::all()->random();
+//        $product = Product::all()->random();
         return [
-            'name' => $product->name->unique,
-            'category_id' => $category->id,
-            'price_per_kg' => $product->price_per_kg,
-            'stock_kg' => $product->stock_kg,
-            'description' => $product->description,
+            'name' => $this->faker->unique()->name,
+            'category_id' => $this->faker->numberBetween(1, 5),
+            'price_per_kg' => $this->faker->randomFloat(2, 1, 100),
+            'stock_kg' => $this->faker->randomFloat(2, 1, 100),
+            'description' => $this->faker->paragraph,
         ];
+
+//        return [
+//            'name' => $product->name->unique,
+//            'category_id' => $category->id,
+//            'price_per_kg' => $product->price_per_kg,
+//            'stock_kg' => $product->stock_kg,
+//            'description' => $product->description,
+//        ];
 
 //        return [
 //            'title' => $title,

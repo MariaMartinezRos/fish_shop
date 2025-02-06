@@ -18,6 +18,7 @@ class CategorySeeder extends Seeder
             ['name' => 'frozen'],
             ['name' => 'cut'],
             ['name' => 'seafood'],
+            ['name' => 'other'],
         ]);
     }
 
@@ -26,6 +27,7 @@ class CategorySeeder extends Seeder
         return Category::where('name', 'fresh')->exists()
             && Category::where('name', 'frozen')->exists()
             && Category::where('name', 'cut')->exists()
-            && Category::where('name', 'seafood')->exists();
+            && Category::where('name', 'seafood')->exists()
+            && Category::where('name', 'other')->exists();
     }
 }

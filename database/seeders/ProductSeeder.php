@@ -15,11 +15,11 @@ class ProductSeeder extends Seeder
             return;
         }
 
-        $categories = Category::all();
-
-        if ($categories->isEmpty()) {
-            throw new \Exception('No categories found in the database.');
-        }
+//        $categories = Category::all();
+//
+//        if ($categories->isEmpty()) {
+//            throw new \Exception('No categories found in the database.');
+//        }
 //        $products = [
 //            ['name' => 'lubina', 'category_id' => $categories[0]->id, 'price_per_kg' => '7.00', 'stock_kg' => '20', 'description' => 'Lubina de crianza en piscifactoría'],
 //            ['name' => 'salmón', 'category_id' => $categories[1]->id, 'price_per_kg' => '16.00', 'stock_kg' => '5.5', 'description' => 'Salmón de crianza en piscifactoría'],
@@ -58,10 +58,13 @@ class ProductSeeder extends Seeder
 //        foreach ($products as $product) {
 //            Product::create($product);
 //        }
+
+            Product::factory()->count(30)->create();
     }
 
     private function isDataAlreadyGiven()
     {
+
 //        return Product::where('name', 'lubina')->exists()
 //            && Product::where('name', 'salmón')->exists()
 //            && Product::where('name', 'bacalao')->exists()
