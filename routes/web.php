@@ -39,7 +39,7 @@ Route::get('/stock-client', function () {
 
 
 //rutas de administrador
-if (Auth::check() && Auth::user()->role_id === 1) {
+//if (Auth::check() && Auth::user()->role_id === 1) {
 
     Route::get('/sales', [TransactionController::class, 'showSales'])
         ->middleware(['auth', 'verified'])
@@ -60,7 +60,7 @@ if (Auth::check() && Auth::user()->role_id === 1) {
     Route::get('/categories/{category}', [CategoryController::class, 'show'])
         ->middleware(['auth', 'verified'])
         ->name('categories.show');
-}
+//}
 
 //else {
 //    //redirect to dashboard
