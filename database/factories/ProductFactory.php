@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\Product;
 use Database\Seeders\ProductSeeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,15 +24,17 @@ class ProductFactory extends Factory
     {
         //        $products = ProductSeeder::$products;
         //        $product = $this->faker->randomElement($products);
-        $product = ProductSeeder::getProduct();
+//        $product = ProductSeeder::getProduct();
 
-//        return [
-//            'name' => $this->faker->name,
-//            'category_id' => $this->faker->randomElement([1, 2, 3, 4]),
-//            'price_per_kg' => $this->faker->randomFloat(2, 1, 100),
-//            'stock_kg' => $this->faker->randomFloat(2, 1, 100),
-//            'description' => Str::substr($this->faker->paragraph(), 0, 50),
-//        ];
+        $category = Category::all()->random();
+        $product = Product::all()->random();
+        return [
+            'name' => $product->name->unique,
+            'category_id' => $category->id,
+            'price_per_kg' => $product->price_per_kg,
+            'stock_kg' => $product->stock_kg,
+            'description' => $product->description,
+        ];
 
 //        return [
 //            'title' => $title,
@@ -44,12 +47,12 @@ class ProductFactory extends Factory
 //            'status' => $options[$num],
 //            'reading_time' => random_int(1, 10),
 //        ];
-        return [
-            'name' => $product['name'],
-            'category_id' => $product['category_id'],
-            'price_per_kg' => $product['price_per_kg'],
-            'stock_kg' => $product['stock_kg'],
-            'description' => $product['description'],
-        ];
+//        return [
+//            'name' => $product['name'],
+//            'category_id' => $product['category_id'],
+//            'price_per_kg' => $product['price_per_kg'],
+//            'stock_kg' => $product['stock_kg'],
+//            'description' => $product['description'],
+//        ];
     }
 }

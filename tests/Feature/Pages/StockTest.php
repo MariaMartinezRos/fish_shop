@@ -24,17 +24,13 @@ it('returns a successful response for stock page', function () {
 });
 
 it('shows stock overview', function () {
-
-
     // Arrange
     $firstProduct = Product::factory()->create();
     $secondProduct = Product::factory()->create();
     $thirdProduct = Product::factory()->create();
 
-//    dd($firstProduct);
-
     // Act
-    get(route('stock.index'))
+    get(route('stock'))
         ->assertSeeText([
             $firstProduct->name,
             $secondProduct->name,
