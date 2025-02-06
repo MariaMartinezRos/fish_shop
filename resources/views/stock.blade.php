@@ -23,7 +23,7 @@
 
                             <div class="flex gap-2">
                                 <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
-                                    {{ __('Upload XLSX') }}
+                                    {{ __('Upload XLSX File') }}
                                 </button>
 
                                 <button type="submit" formaction="{{ route('products.delete-all') }}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">

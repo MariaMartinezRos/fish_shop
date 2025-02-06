@@ -60,6 +60,11 @@ Route::get('/stock-client', function () {
     Route::get('/categories/{category}', [CategoryController::class, 'show'])
         ->middleware(['auth', 'verified'])
         ->name('categories.show');
+
+    // Route to delete all products
+    Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
+        ->middleware(['auth', 'verified'])
+        ->name('products.delete-all');
 //}
 
 //else {

@@ -85,4 +85,18 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
+
+    //DANGER ZONE
+    /**
+     * Elimina todos los productos
+     */
+    public function deleteAll()
+    {
+        //show a wizard to confirm that you want to delete all products
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Product::truncate();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        return redirect()->route('products.index')->with('success', 'All products have been deleted.');
+    }
 }
