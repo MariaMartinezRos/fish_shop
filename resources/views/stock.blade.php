@@ -12,6 +12,13 @@
 
                     <input type="text" id="filter" placeholder="{{ __('Filter products') }}">
 
+{{--                    añadir productos--}}
+                    <form action="{{ route('products.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="file" accept=".xlsx">
+                        <button type="submit">{{ __('Upload XLSX') }}</button>
+                    </form>
+
                     <div id="product-list">
                         @include('components.product-list', ['products' => $products])
                     </div>

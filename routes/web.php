@@ -80,6 +80,13 @@ Route::get('/terms', function () {
 })->name('terms');
 
 
+//ruta para exportar e importar los productos
+Route::get('products/export/', [ProductController::class, 'export'])
+    ->name('products.export');
+Route::post('/products/import', [ProductController::class, 'import'])
+    ->name('products.import');
+
+
 //errors
 Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
 Route::get('/error/404', [ErrorController::class, 'notFound']);
