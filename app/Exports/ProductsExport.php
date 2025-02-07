@@ -8,9 +8,6 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ProductsExport implements FromCollection
 {
-    /**
-    * @return Collection
-    */
     public function collection(): Collection
     {
         return Product::all();

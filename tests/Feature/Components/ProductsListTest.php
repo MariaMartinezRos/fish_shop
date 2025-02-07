@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Models\Product;
 
 it('displays a list of products', function () {

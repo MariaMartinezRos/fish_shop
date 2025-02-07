@@ -1,6 +1,6 @@
 <?php
 
-use \Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
 
 it('finds missing debug statements', function () {
     // Act & Assert

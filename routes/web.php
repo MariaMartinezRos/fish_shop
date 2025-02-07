@@ -35,34 +35,33 @@ Route::get('/shops', function () {
 Route::get('/stock-client', [ProductController::class, 'indexClient'])
     ->name('stock-client');
 
-
 //rutas de administrador
 //if (Auth::check() && Auth::user()->role_id === 1) {
 
-    Route::get('/sales', [TransactionController::class, 'showSales'])
-        ->middleware(['auth', 'verified'])
-        ->name('sales');
+Route::get('/sales', [TransactionController::class, 'showSales'])
+    ->middleware(['auth', 'verified'])
+    ->name('sales');
 
-    Route::get('/stock', [ProductController::class, 'index'])
-        ->middleware(['auth', 'verified'])
-        ->name('stock');
+Route::get('/stock', [ProductController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('stock');
 
-    Route::get('/transaction', [TransactionController::class, 'index'])
-        ->middleware(['auth', 'verified'])
-        ->name('transaction');
+Route::get('/transaction', [TransactionController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('transaction');
 
-    Route::get('/category', [CategoryController::class, 'index'])
-        ->middleware(['auth', 'verified'])
-        ->name('category');
+Route::get('/category', [CategoryController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('category');
 
-    Route::get('/categories/{category}', [CategoryController::class, 'show'])
-        ->middleware(['auth', 'verified'])
-        ->name('categories.show');
+Route::get('/categories/{category}', [CategoryController::class, 'show'])
+    ->middleware(['auth', 'verified'])
+    ->name('categories.show');
 
-    // Route to delete all products
-    Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
-        ->middleware(['auth', 'verified'])
-        ->name('products.delete-all');
+// Route to delete all products
+Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
+    ->middleware(['auth', 'verified'])
+    ->name('products.delete-all');
 //}
 
 //else {
@@ -79,7 +78,6 @@ Route::get('/products/{id}', [ProductController::class, 'show'])
     ->middleware(['auth', 'verified'])
     ->name('products.show');
 
-
 //rutas de politicas
 Route::get('/privacy', function () {
     return view('auth.policy.privacy');
@@ -89,13 +87,11 @@ Route::get('/terms', function () {
     return view('auth.policy.terms');
 })->name('terms');
 
-
 //ruta para exportar e importar los productos
 Route::get('products/export/', [ProductController::class, 'export'])
     ->name('products.export');
 Route::post('/products/import', [ProductController::class, 'import'])
     ->name('products.import');
-
 
 //errors
 Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);

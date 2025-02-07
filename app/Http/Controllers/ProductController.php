@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Exports\ProductsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
@@ -58,6 +58,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+
         return view('products.show', compact('product'));
     }
 
@@ -80,8 +81,7 @@ class ProductController extends Controller
 
         Excel::import(new ProductsImport, $request->file('file'));
 
-
-//        Excel::import(new ProductsImport, 'products.xlsx');
+        //        Excel::import(new ProductsImport, 'products.xlsx');
 
         return redirect('/')->with('success', 'All good!');
     }
@@ -96,7 +96,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $product = new Product();
+        $product = new Product;
         $product->name = $request->input('name');
         $product->category_id = $request->input('category_id');
         $product->price_per_kg = $request->input('price_per_kg');

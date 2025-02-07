@@ -24,10 +24,10 @@ class ProductFactory extends Factory
     {
         //        $products = ProductSeeder::$products;
         //        $product = $this->faker->randomElement($products);
-//        $product = ProductSeeder::getProduct();
+        //        $product = ProductSeeder::getProduct();
 
-//        $category = Category::all()->random();
-//        $product = Product::all()->random();
+        //        $category = Category::all()->random();
+        //        $product = Product::all()->random();
         return [
             'name' => $this->faker->unique()->name,
             'category_id' => $this->faker->numberBetween(1, 5),
@@ -36,31 +36,31 @@ class ProductFactory extends Factory
             'description' => $this->faker->paragraph,
         ];
 
-//        return [
-//            'name' => $product->name->unique,
-//            'category_id' => $category->id,
-//            'price_per_kg' => $product->price_per_kg,
-//            'stock_kg' => $product->stock_kg,
-//            'description' => $product->description,
-//        ];
+        //        return [
+        //            'name' => $product->name->unique,
+        //            'category_id' => $category->id,
+        //            'price_per_kg' => $product->price_per_kg,
+        //            'stock_kg' => $product->stock_kg,
+        //            'description' => $product->description,
+        //        ];
 
-//        return [
-//            'title' => $title,
-//            'slug' => Str::slug($title),
-//            'body' => $this->faker->paragraph() . "\n\n" . $this->faker->paragraph() . "\n\n" . $this->faker->paragraph(),
-//            'summary' => Str::substr($this->faker->paragraph(), 0, 50),
-//            'published_at' => random_int(0, 2)
-//                ? $this->faker->dateTimeBetween('-1 month', '+1 months')
-//                : null,
-//            'status' => $options[$num],
-//            'reading_time' => random_int(1, 10),
-//        ];
-//        return [
-//            'name' => $product['name'],
-//            'category_id' => $product['category_id'],
-//            'price_per_kg' => $product['price_per_kg'],
-//            'stock_kg' => $product['stock_kg'],
-//            'description' => $product['description'],
-//        ];
+        //        return [
+        //            'title' => $title,
+        //            'slug' => Str::slug($title),
+        //            'body' => $this->faker->paragraph() . "\n\n" . $this->faker->paragraph() . "\n\n" . $this->faker->paragraph(),
+        //            'summary' => Str::substr($this->faker->paragraph(), 0, 50),
+        //            'published_at' => random_int(0, 2)
+        //                ? $this->faker->dateTimeBetween('-1 month', '+1 months')
+        //                : null,
+        //            'status' => $options[$num],
+        //            'reading_time' => random_int(1, 10),
+        //        ];
+        //        return [
+        //            'name' => $product['name'],
+        //            'category_id' => $product['category_id'],
+        //            'price_per_kg' => $product['price_per_kg'],
+        //            'stock_kg' => $product['stock_kg'],
+        //            'description' => $product['description'],
+        //        ];
     }
 }
