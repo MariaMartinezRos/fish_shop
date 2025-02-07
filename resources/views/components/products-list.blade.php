@@ -17,13 +17,20 @@
                     <div class="p-2 flex justify-between items-start m-auto m">
                         <div>
                             <h3 class="text-lg font-semibold text-gray-700">
-                                <a href="{{ route('products.show', $product['id']) }}">
-                                    <span aria-hidden="true" class="absolute inset-0"></span>
-                                    {{ $product['name'] }}
-                                </a>
+
+                                @if(Auth::check() && Auth::user()->role_id === 1)
+                                    <a href="{{ route('products.show', $product['id']) }}">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        {{ $product['name'] }}
+                                    </a>
+                                @else
+                                    <a href="{{ route('products.show-client', $product['id']) }}">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        {{ $product['name'] }}
+                                    </a>
+                                @endif
                             </h3>
                             <p class="mt-1 text-md text-gray-500">{{ $product['description'] }}</p>
-{{--                            <p class="mt-1 text-md text-gray-500">{{ $product['category'] }}</p>--}}
                             <a href="{{ route('categories.show', $product['category'])}}">
                                 <img src="{{ $product['category'] }}" alt="Category of the fish" class="h-6 w-6 ml-2">
                             </a>

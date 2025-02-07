@@ -34,7 +34,7 @@ class ProductController extends Controller
     /**
      * Muestra la lista de productos para el cliente
      */
-    public function indexClient(Request $request)
+    public function indexClient(Request $request)   //arreglar
     {
         $filter = $request->input('filter');
 
@@ -60,6 +60,15 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         return view('products.show', compact('product'));
+    }
+    /**
+     * Muestra un producto en particular al cliente
+     */
+    public function showClient($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('products.show-client', compact('product'));
     }
 
     /**

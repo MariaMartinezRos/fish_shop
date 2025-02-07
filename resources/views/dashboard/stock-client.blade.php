@@ -6,7 +6,7 @@
 </div>
 
 <div id="product-list">
-    @include('components.product-list', ['products' => $products])
+    @include('components.product-list-all', ['products' => $products])
 </div>
 
 @include('partials.footer')
