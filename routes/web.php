@@ -32,10 +32,8 @@ Route::get('/shops', function () {
     return view('dashboard.shops');
 })->name('shops');
 
-Route::get('/stock-client', function () {
-    return view('dashboard.stock-client');
-})->name('stock-client');
-
+Route::get('/stock-client', [ProductController::class, 'indexClient'])
+    ->name('stock-client');
 
 
 //rutas de administrador

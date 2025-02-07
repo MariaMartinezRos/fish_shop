@@ -35,8 +35,6 @@
 
 
 
-
-
                     <div id="product-list">
                         @include('components.product-list', ['products' => $products])
                     </div>

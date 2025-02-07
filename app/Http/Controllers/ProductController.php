@@ -32,6 +32,27 @@ class ProductController extends Controller
     }
 
     /**
+     * Muestra la lista de productos para el cliente
+     */
+    public function indexClient(Request $request)
+    {
+        $filter = $request->input('filter');
+
+        $products = Product::query()
+            ->when($filter, function ($query, $filter) {
+                return $query->where('name', 'like', '%'.$filter.'%')
+                    ->orWhere('description', 'like', '%'.$filter.'%');
+            })
+            ->paginate(10);
+
+        if ($request->ajax()) {
+            return view('components.product-list', compact('products'))->render();
+        }
+
+        return view('dashboard.stock-client', compact('products'));
+    }
+
+    /**
      * Muestra un producto en particular
      */
     public function show($id)
