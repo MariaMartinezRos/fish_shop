@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,8 @@ Route::get('/discover', function () {
     return view('dashboard.discover');
 })->name('discover');
 
-Route::get('/recipes', function () {
-    return view('dashboard.recipes');
-})->name('recipes');
+Route::get('/recipes', [RecipeController::class, 'showRecipes'])
+    ->name('recipes');
 
 Route::get('/shops', function () {
     return view('dashboard.shops');

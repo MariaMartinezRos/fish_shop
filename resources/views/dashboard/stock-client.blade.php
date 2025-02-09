@@ -2,7 +2,7 @@
 
 <!-- resources/views/components/product-list-all.blade.php -->
 <div class="mg-10 pd-10">
-.
+
 </div>
 
 <div id="product-list">
