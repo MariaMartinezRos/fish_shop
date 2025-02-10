@@ -15,7 +15,7 @@ it('displays a list of products', function () {
 
     // Assert
     foreach ($products as $product) {
-        $view->assertSee($product->name);
+        $view->assertSee($product['id']);
     }
 });
 
@@ -37,7 +37,7 @@ it('includes product links for the client', function () {
 
     // Assert
     foreach ($products as $product) {
-        $view->assertSee(route('products.show-client', $product->name));
+        $view->assertSee(route('products.show-client', $product['id']));
     }
 });
 
@@ -54,6 +54,6 @@ it('includes product links for the admin', function () {
 
     // Assert
     foreach ($products as $product) {
-        $view->assertSee(route('products.show', $product->name));
+        $view->assertSee(route('products.show', $product['id']));
     }
 });
