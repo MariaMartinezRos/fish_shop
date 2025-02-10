@@ -71,7 +71,6 @@ Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
 
 // ruta para mostrar los productos filtrados
 Route::get('/products', [ProductController::class, 'index'])
-    ->middleware(['auth', 'verified'])
     ->name('products.index');
 //para mostrar un producto concreto
 Route::get('/products/{id}', [ProductController::class, 'show'])
@@ -79,7 +78,6 @@ Route::get('/products/{id}', [ProductController::class, 'show'])
     ->name('products.show');
 //para mostrar un producto concreto al cliente
 Route::get('/products-client/{id}', [ProductController::class, 'showClient'])
-    ->middleware(['auth', 'verified'])
     ->name('products.show-client');
 
 //rutas de politicas
