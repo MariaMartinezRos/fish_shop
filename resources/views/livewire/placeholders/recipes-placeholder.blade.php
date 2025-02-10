@@ -1,17 +1,9 @@
-@include('partials.nav-bar-client')
-
 {{--<div class="container mx-auto p-6">--}}
 {{--    <h1 class="text-3xl font-bold text-center mb-6">{{ __('Recipes') }}</h1>--}}
-{{--    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">--}}
-{{--        <livewide:recipes lazy="on-load" />--}}
-{{--    </div>--}}
-{{--</div>--}}
-
-
-
-<div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold text-center mb-6">{{ __('Recipes') }}</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+{{--    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">--}}
+@if($detailedMeals->isEmpty())
+    <p class="text-center text-gray-500">{{ __('No recipes found.') }}</p>
+    @else
         @foreach ($detailedMeals as $recipe)
             <div class="bg-white shadow-lg rounded-lg overflow-hidden p-4">
                 <img class="w-full h-48 object-cover rounded-md" src="{{ $recipe['strMealThumb'] }}" alt="{{ $recipe['strMeal'] }}" loading="lazy">
@@ -34,6 +26,6 @@
                 </div>
             </div>
         @endforeach
-    </div>
-</div>
-@include('partials.footer')
+    @endif
+{{--    </div>--}}
+{{--</div>--}}

@@ -11,19 +11,8 @@ class RecipeController extends Controller
      */
     public function showRecipes()
     {
-//        $response = Http::get('https://api.spoonacular.com/recipes/findByIngredients', [
-//            'ingredients' => 'fish',
-//            'apiKey' => config('services.spoonacular.api_key'),
-//        ]);
-
         $response = Http::get('www.themealdb.com/api/json/v1/1/filter.php?c=Seafood');
         $recipes = $response->json();
-
-//        $response2 = Http::get('www.themealdb.com/api/json/v1/1/lookup.php?i=52772');
-        // json with the recipes
-//        $recipes = $response->json();
-
-        // convert to array
 
         // Convertir la respuesta en un array y extraer los valores de idMeal
         $meals = $recipes['meals'];
@@ -38,12 +27,10 @@ class RecipeController extends Controller
         foreach ($mealIds as $idMeal) {
             $response2 = Http::get("www.themealdb.com/api/json/v1/1/lookup.php?i={$idMeal}");
             $mealDetails = $response2->json();
-            $detailedMeals[] = $mealDetails['meals'][0]; // Assuming the response has a 'meals' key
-        }
+            $detailedMeals[] = $mealDetails['meals'][0];
+        };
 
-        // Mostrar los valores de detailedMeals
 //        dd($detailedMeals);
-//        $recipes = json_decode($response->getBody()->getContents(), true);
 
         return view('dashboard.recipes', compact('detailedMeals'));
     }
