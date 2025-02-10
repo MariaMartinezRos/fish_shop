@@ -19,19 +19,19 @@
                             <h3 class="text-lg font-semibold text-gray-700">
 
                                 @if(Auth::check() && Auth::user()->role_id === 1)
-                                    <a href="{{ route('products.show', $product['id']) }}">
+                                    <a href="{{ route('products.show', $product->name) }}">
                                         <span aria-hidden="true" class="absolute inset-0"></span>
                                         {{ $product['name'] }}
                                     </a>
                                 @else
-                                    <a href="{{ route('products.show-client', $product['id']) }}">
+                                    <a href="{{ route('products.show-client', $product->name) }}">
                                         <span aria-hidden="true" class="absolute inset-0"></span>
                                         {{ $product['name'] }}
                                     </a>
                                 @endif
                             </h3>
                             <p class="mt-1 text-md text-gray-500">{{ $product['description'] }}</p>
-                            <a href="{{ route('categories.show', $product['category'])}}">
+                            <a href="{{ route('categories.show', $product->category_id)}}">
                                 <img src="{{ $product['category'] }}" alt="Category of the fish" class="h-6 w-6 ml-2">
                             </a>
                         </div>

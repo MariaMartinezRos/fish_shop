@@ -1,9 +1,13 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Role;
+use App\Models\User;
 
 it('displays a list of products', function () {
     // Arrange
+    $categories = Category::factory()->count(5)->create();
     $products = Product::factory()->count(3)->create();
 
     // Act
@@ -23,8 +27,9 @@ it('shows a message when no products are available', function () {
     $view->assertSee('No hay productos disponibles.');
 });
 
-it('includes product links', function () {
+it('includes product links for the client', function () {
     // Arrange
+    $categories = Category::factory()->count(5)->create();
     $products = Product::factory()->count(3)->create();
 
     // Act
@@ -32,6 +37,23 @@ it('includes product links', function () {
 
     // Assert
     foreach ($products as $product) {
-        $view->assertSee(route('products.show', $product));
+        $view->assertSee(route('products.show-client', $product->name));
+    }
+});
+
+it('includes product links for the admin', function () {
+    // Arrange
+    $categories = Category::factory()->count(5)->create();
+    $products = Product::factory()->count(3)->create();
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => $role->id]);
+
+
+    // Act
+    $view = $this->actingAs($admin)->blade('<x-products-list :products="$products" />', ['products' => $products]);
+
+    // Assert
+    foreach ($products as $product) {
+        $view->assertSee(route('products.show', $product->name));
     }
 });
