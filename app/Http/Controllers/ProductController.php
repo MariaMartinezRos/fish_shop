@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use App\Models\Product;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Muestra la lista de productos. Tambien realiza una consulta en la base de datos para filtrarlos
      */
     public function index(Request $request)
     {
+        $this->authorize('view', Product::class);
+        
         $filter = $request->input('filter');
 
         $products = Product::query()
@@ -36,6 +40,8 @@ class ProductController extends Controller
      */
     public function indexClient(Request $request)   //arreglar
     {
+        $this->authorize('viewClient', Product::class);
+
         $filter = $request->input('filter');
 
         $products = Product::query()
@@ -57,6 +63,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', Product::class);
+
         $product = Product::findOrFail($id);
 
         return view('products.show', compact('product'));
@@ -66,6 +74,8 @@ class ProductController extends Controller
      */
     public function showClient($id)
     {
+        $this->authorize('viewClient', Product::class);
+
         $product = Product::findOrFail($id);
 
         return view('products.show-client', compact('product'));
@@ -100,6 +110,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Product::class);
+
         $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|integer|exists:categories,id',
@@ -124,6 +136,9 @@ class ProductController extends Controller
      */
     public function add(Request $request)
     {
+
+        $this->authorize('create', Product::class);
+
         $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|integer|exists:categories,id',
@@ -149,6 +164,8 @@ class ProductController extends Controller
      */
     public function deleteAll()
     {
+        $this->authorize('delete', Product::class);
+
         //show a wizard to confirm that you want to delete all products
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Product::truncate();

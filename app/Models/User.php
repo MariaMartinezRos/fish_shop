@@ -52,6 +52,22 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if the user has a specific permission.
+     *
+     * @param string $string Permission name
+     * @return bool
+     */
+    public function hasPermissionTo(string $string): bool
+    {
+        if($string === 'create product' || $string === 'edit product' || $string === 'delete product' || $string === 'view product') {
+            return $this->role_1 === '1';
+        }else if($string === 'view clients product') {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -63,4 +79,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+//This method defines how certain attributes of the User model
+// should be cast when they are accessed or set.
+
+//email_verified_at is cast to a datetime object.
+//password is cast to a hashed value.
 }
