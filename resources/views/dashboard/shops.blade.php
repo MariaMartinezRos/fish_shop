@@ -9,7 +9,7 @@
                 class="w-full h-80 object-cover rounded-xl"
             />
             <div class="mt-8 text-center">
-                <h2 class="text-3xl font-bold text-blue-800">{{ __('Benito\'s Fish Markets') }} ALHAMA</h2>
+                <h2 class="text-3xl font-bold text-blue-800">{{ __('Benito\'s Fish Markets') }} TIENDA 1</h2>
                 <p class="text-blue-600">123 Seaside Ave, Miami, FL</p>
             </div>
         </div>
@@ -20,7 +20,7 @@
                 class="w-full h-80 object-cover rounded-xl"
             />
             <div class="mt-8 text-center">
-                <h2 class="text-3xl font-bold text-blue-800">{{ __('Benito\'s Fish Markets') }} LIBRILLA</h2>
+                <h2 class="text-3xl font-bold text-blue-800">{{ __('Benito\'s Fish Markets') }} TIENDA 2</h2>
                 <p class="text-blue-600">456 Harbor St, San Diego, CA</p>
             </div>
         </div>

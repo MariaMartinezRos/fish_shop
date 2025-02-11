@@ -58,10 +58,25 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])
     ->middleware(['auth', 'verified'])
     ->name('categories.show');
 
+
+// Route to add a single product
+
+// Route to display the form
+Route::get('/products/add', function () {
+    return view('products.add');
+})->middleware(['auth', 'verified'])->name('products.add-form');
+
+// Route to handle the form submission
+Route::post('/products/add', [ProductController::class, 'add'])
+    ->middleware(['auth', 'verified'])
+    ->name('products.add');
+
+
 // Route to delete all products
 Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
     ->middleware(['auth', 'verified'])
     ->name('products.delete-all');
+
 //}
 
 //else {

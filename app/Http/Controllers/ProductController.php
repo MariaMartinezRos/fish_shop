@@ -95,6 +95,9 @@ class ProductController extends Controller
         return redirect('/')->with('success', 'All good!');
     }
 
+    /**
+     * Muestra el formulario para agregar un producto
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -115,6 +118,30 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
+
+    /**
+     * Agrega un producto
+     */
+    public function add(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|integer|exists:categories,id',
+            'price_per_kg' => 'required|numeric',
+            'stock_kg' => 'required|numeric',
+            'description' => 'nullable|string',
+        ]);
+
+        $product = new Product;
+        $product->name = $request->input('name');
+        $product->category_id = $request->input('category_id');
+        $product->price_per_kg = $request->input('price_per_kg');
+        $product->stock_kg = $request->input('stock_kg');
+        $product->description = $request->input('description');
+        $product->save();
+        return redirect()->route('stock')->with('success', 'Product created successfully.');
+    }
+
 
     //DANGER ZONE
     /**
