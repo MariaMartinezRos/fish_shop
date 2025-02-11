@@ -1,11 +1,4 @@
-<x-slot name="header">
-    <a href="{{ route('products.index' ) }}">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            <img src="{{ asset('images/go-back.png') }}" alt="{{ __('Go Back')}}" >
-            {{ __('Go Back') }}
-        </h2>
-    </a>
-</x-slot>
+
 
 <div class="py-12 flex justify-center">
     <div class="max-w-6xl w-full bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 flex items-center">
