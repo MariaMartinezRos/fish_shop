@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Fish;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
 class FishFactory extends Factory
 {
@@ -16,5 +17,14 @@ class FishFactory extends Factory
             'image' => $this->faker->imageUrl(),
             'description' => $this->faker->text,
         ];
+    }
+    public function released(?Carbon $date = null): self
+    {
+        return $this->state(
+            fn (array $attributes) => [
+                'created_at' => $date ?? Carbon::now(),
+                'updated_at' => $date ?? Carbon::now()
+            ]
+        );
     }
 }

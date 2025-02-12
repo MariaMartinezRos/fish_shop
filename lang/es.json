@@ -210,6 +210,12 @@
     "Delete All Records": "Eliminar Todos los Registros",
     "Add A Product": "Agregar un Producto",
     "Order": "Encargar",
-    "No recipes available.": "No hay recetas disponibles."
+    "No recipes available.": "No hay recetas disponibles.",
+    "No recipes found.": "No se encontraron recetas.",
+    "Image": "Imagen",
+    "Description": "Descripción",
+    "Type": "Tipo",
+    "Options": "Opciones",
+    "Add A Fish": "Agregar un Pescado"
 }
 

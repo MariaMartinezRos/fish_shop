@@ -4,7 +4,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-blue-200 p-12 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
             <img
-                src="{{ asset('images/fishes/image05.jpg') }}"
+                src="{{ asset('images/fishes/image5.jpg') }}"
                 alt="{{ __('Benito\'s Fish Markets') }} TIENDA 1"
                 class="w-full h-80 object-cover rounded-xl"
             />
@@ -15,7 +15,7 @@
         </div>
         <div class="bg-blue-200 p-12 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
             <img
-                src="{{ asset('images/fishes/image07.jpg') }}"
+                src="{{ asset('images/fishes/image7.jpg') }}"
                 alt="{{ __('Benito\'s Fish Markets' ) }} TIENDA 2"
                 class="w-full h-80 object-cover rounded-xl"
             />

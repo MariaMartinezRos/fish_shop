@@ -12,6 +12,8 @@ class TypeWater extends Model
     /** @use HasFactory<TypeWaterFactory> */
     use HasFactory;
 
+    protected $table = 'type_water';
+
     protected $fillable = ['type'];
 
     // Relación N:N con fish

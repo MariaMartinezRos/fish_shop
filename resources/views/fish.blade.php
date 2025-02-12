@@ -34,6 +34,67 @@
                 @endif
 
                 </div>
+
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <table class="table-auto w-full text-left">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 text-xs tracking-widest text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700">
+                                    {{ __('Image') }}
+                                </th>
+                                <th class="px-6 py-3 text-xs tracking-widest text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700">
+                                    {{ __('Name') }}
+                                </th>
+                                <th class="px-6 py-3 text-xs tracking-widest text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700">
+                                    {{ __('Description') }}
+                                </th>
+                                <th class="px-6 py-3 text-xs tracking-widest text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700">
+                                    {{ __('Type') }}
+                                </th>
+                                <th class="px-6 py-3 text-xs tracking-widest text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700">
+                                    {{ __('Options') }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @if(true === true)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap" colspan="5">
+                                    {{ __('No records found') }}
+                                </td>
+                            </tr>
+                        @else
+                        @foreach($fishes as $fish)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <img src="{{ asset('images/fishes/image'. $fish->id.'.jpg') }}" alt="{{ $fish->name }}" class="w-12 h-12 object-cover rounded-md">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ $fish->name }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ $fish->description }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ $fish->type }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+{{--                                    @if(Auth::check() && Auth::user()->role_id === 1)--}}
+{{--                                        <form action="{{ route('fish.destroy', $fish->id) }}" method="POST">--}}
+{{--                                            @csrf--}}
+{{--                                            @method('DELETE')--}}
+{{--                                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">--}}
+{{--                                                {{ __('Delete') }}--}}
+{{--                                            </button>--}}
+{{--                                        </form>--}}
+{{--                                    @endif--}}
+                                </td>
+                            </tr>
+                        @endforeach
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

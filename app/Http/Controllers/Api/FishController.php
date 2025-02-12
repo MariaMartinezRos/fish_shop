@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Imports\FishesImport;
 use App\Models\Fish;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FishController extends Controller
 {
@@ -58,6 +60,21 @@ class FishController extends Controller
         $fish->TypeWater()->sync($request->type_water);
 
         return response()->json($fish);
+    }
+
+    /**
+     * Importa los productos desde un archivo Excel
+     */
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx',
+        ]);
+
+        Excel::import(new FishesImport, $request->file('file'));
+
+
+        return redirect()->route('fish')->with('success', 'Fish list created successfully.');
     }
 
     // Eliminar un pescado

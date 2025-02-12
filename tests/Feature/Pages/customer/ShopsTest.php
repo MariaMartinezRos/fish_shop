@@ -11,8 +11,8 @@ it('shows the image and name of the shops', function () {
 
     $response->assertSee('Pescaderías Benito TIENDA 1');
     $response->assertSee('Pescaderías Benito TIENDA 2');
-    $response->assertSee('image05.jpg');
-    $response->assertSee('image07.jpg');
+    $response->assertSee('image5.jpg');
+    $response->assertSee('image7.jpg');
 });
 
 it('shows the direction of the shops', function () {
