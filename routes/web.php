@@ -89,6 +89,11 @@ Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
 //    return view('dashboard');
 //}
 
+//download all products in PDF
+Route::get('/products/pdf', [ProductController::class, 'downloadProductsPDF'])
+    ->name('products.pdf');
+
+
 // ruta para mostrar los productos filtrados
 Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -159,6 +160,22 @@ class ProductController extends Controller
         return redirect()->route('stock')->with('success', 'Product created successfully.');
     }
 
+//     Método para descargar el PDF con todos los productos
+    public function downloadProductsPDF()
+    {
+        // Obtener todos los productos de la base de datos
+        $products = Product::all();
+
+        // Generar el PDF usando la vista y pasando los productos
+        $pdf = PDF::loadView('pdf.products', compact('products'));
+
+        // Set page numbers in the footer
+        $pdf->setOption('footer-right', 'Page {PAGE_NUM} of {PAGE_COUNT}');
+        $pdf->setOption('footer-font-size', 10);
+
+        // Descargar el PDF
+        return $pdf->download('products.pdf');
+    }
 
     //DANGER ZONE
     /**
