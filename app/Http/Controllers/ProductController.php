@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $this->authorize('view', Product::class);
-        
+
         $filter = $request->input('filter');
 
         $products = Product::query()
@@ -102,7 +102,9 @@ class ProductController extends Controller
 
         //        Excel::import(new ProductsImport, 'products.xlsx');
 
-        return redirect('/')->with('success', 'All good!');
+//        return redirect('/')->with('success', 'All good!');
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+
     }
 
     /**

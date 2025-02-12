@@ -59,12 +59,13 @@ class User extends Authenticatable
      */
     public function hasPermissionTo(string $string): bool
     {
-        if($string === 'create product' || $string === 'edit product' || $string === 'delete product' || $string === 'view product') {
-            return $this->role_1 === '1';
-        }else if($string === 'view clients product') {
-            return true;
-        }
-        return false;
+//        if($string === 'create product' || $string === 'edit product' || $string === 'delete product' || $string === 'view product') {
+//            return $this->role_1 === '1';
+//        }else if($string === 'view clients product') {
+//            return true;
+//        }
+//        return false;
+        return true;
     }
 
     /**

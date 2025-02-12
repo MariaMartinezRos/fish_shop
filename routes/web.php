@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FishController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProductController;
@@ -57,6 +58,10 @@ Route::get('/category', [CategoryController::class, 'index'])
 Route::get('/categories/{category}', [CategoryController::class, 'show'])
     ->middleware(['auth', 'verified'])
     ->name('categories.show');
+
+Route::get('/fish', [FishController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('fish');
 
 
 // Route to add a single product

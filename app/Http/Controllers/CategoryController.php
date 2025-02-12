@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $this->authorize('view', Category::class);
+//        $this->authorize('view', Category::class);
 
         // Consulta en la base de datos para obtener todas las categorías
         $categories = DB::table('categories')->get();

@@ -30,7 +30,7 @@ class ProductFactory extends Factory
             'category_id' => $this->faker->numberBetween(1, 5),
             'price_per_kg' => $this->faker->randomFloat(2, 1, 100),
             'stock_kg' => $this->faker->randomFloat(2, 1, 100),
-            'description' => $this->faker->paragraph,
+            'description' => $this->faker->sentence(10),
         ];
     }
     public function released(?Carbon $date = null): self
