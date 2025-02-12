@@ -15,8 +15,8 @@ class Fish extends Model
     protected $fillable = ['name', 'image', 'description'];
 
     // Relación N:N con tipos_agua
-    public function type_water(): BelongsToMany
+    public function TypeWater(): BelongsToMany
     {
-        return $this->belongsToMany(TipeWater::class, 'fishes_type_water');
+        return $this->belongsToMany(TypeWater::class, 'fish_type_water');
     }
 }

@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\TipeWater;
+use App\Models\TypeWater;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TipeWaterFactory extends Factory
+class TypeWaterFactory extends Factory
 {
-    protected $model = TipeWater::class;
+    protected $model = TypeWater::class;
 
     public function definition(): array
     {
