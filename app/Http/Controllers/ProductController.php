@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('view', Product::class);
+//        $this->authorize('view', Product::class);
 
         $filter = $request->input('filter');
 
@@ -40,7 +40,7 @@ class ProductController extends Controller
      */
     public function indexClient(Request $request)   //arreglar
     {
-        $this->authorize('viewClient', Product::class);
+//        $this->authorize('viewClient', Product::class);
 
         $filter = $request->input('filter');
 
@@ -63,7 +63,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $this->authorize('view', Product::class);
+//        $this->authorize('view', Product::class);
 
         $product = Product::findOrFail($id);
 
@@ -74,7 +74,7 @@ class ProductController extends Controller
      */
     public function showClient($id)
     {
-        $this->authorize('viewClient', Product::class);
+//        $this->authorize('viewClient', Product::class);
 
         $product = Product::findOrFail($id);
 
@@ -112,7 +112,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Product::class);
+//        $this->authorize('create', Product::class);
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -139,7 +139,7 @@ class ProductController extends Controller
     public function add(Request $request)
     {
 
-        $this->authorize('create', Product::class);
+//        $this->authorize('create', Product::class);
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -166,7 +166,7 @@ class ProductController extends Controller
      */
     public function deleteAll()
     {
-        $this->authorize('delete', Product::class);
+//        $this->authorize('delete', Product::class);
 
         //show a wizard to confirm that you want to delete all products
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
