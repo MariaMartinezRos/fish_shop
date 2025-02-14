@@ -1,5 +1,14 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Tests\TestCase;
+
+use function Pest\Laravel\actingAs;
+
+uses(TestCase::class, LazilyRefreshDatabase::class)->in('Feature');
+
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -34,6 +43,17 @@ pest()->extend(Tests\TestCase::class)
 //
 //    return $user;
 //}
+
+
+function loginAsUser(User $user = null)
+{
+    $user ?? $user = User::factory()->create();
+
+    actingAs($user);
+
+    return $user;
+}
+
 
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);

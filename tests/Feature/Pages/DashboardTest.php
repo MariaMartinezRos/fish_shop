@@ -2,6 +2,10 @@
 
 use App\Models\User;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use LaravelIdea\Helper\App\Models\_IH_User_C;
+use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
 it('returns a successful response for home page', function () {
@@ -10,10 +14,13 @@ it('returns a successful response for home page', function () {
     $response->assertStatus(200);
 });
 
+
 it('shows user if logged in', function () {
     // Arrange
     $user = User::factory()->create();
-    $expectedUser = config('app.name');
+//    $expectedUser = config('app.name');
+
+    actingAs($user);
 
     // Act
     $response = $this->actingAs($user)->get('dashboard');
