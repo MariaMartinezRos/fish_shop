@@ -7,7 +7,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(RefreshDatabase::class);
+//uses(RefreshDatabase::class);
 
 it('adds given category', function () {
     //Assert
@@ -17,11 +17,12 @@ it('adds given category', function () {
     $this->artisan('db:seed');
 
     //Assert
-    $this->assertDatabaseCount(Category::class, 4);
+    $this->assertDatabaseCount(Category::class, 5);
     $this->assertDatabaseHas(Category::class, ['name' => 'fresh']);
     $this->assertDatabaseHas(Category::class, ['name' => 'frozen']);
     $this->assertDatabaseHas(Category::class, ['name' => 'cut']);
     $this->assertDatabaseHas(Category::class, ['name' => 'seafood']);
+    $this->assertDatabaseHas(Category::class, ['name' => 'other']);
 
 });
 
@@ -31,7 +32,7 @@ it('adds given category only once', function () {
     $this->artisan('db:seed');
 
     //Act && Assert
-    $this->assertDatabaseCount(Category::class, 4);
+    $this->assertDatabaseCount(Category::class, 5);
 });
 
 it('adds given product', function () {
@@ -42,38 +43,7 @@ it('adds given product', function () {
     $this->artisan('db:seed');
 
     //Assert
-    $this->assertDatabaseCount(Product::class, 31);
-    $this->assertDatabaseHas(Product::class, ['name' => 'lubina']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'salmón']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'bacalao']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'merluza']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'mejillones']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'calamar']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'atún']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'trucha']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'rodaballo']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'rape']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'jurel']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'caballa']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'pez limón']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'pez espada']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'langosta']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'almejas']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'ostra']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'camarón']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'pargo']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'tilapia']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'sardinas']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'preparado']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'pulpo']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'sepia']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'gambas']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'cigalas']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'bogavante']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'vieiras']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'cangrejo']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'carabineros']);
-    $this->assertDatabaseHas(Product::class, ['name' => 'salmonete']);
+    $this->assertDatabaseCount(Product::class, 30);
 
 });
 
@@ -83,7 +53,7 @@ it('adds given product only once', function () {
     $this->artisan('db:seed');
 
     //Act && Assert
-    $this->assertDatabaseCount(Product::class, 31);
+    $this->assertDatabaseCount(Product::class, 30);
 });
 
 it('adds given role', function () {

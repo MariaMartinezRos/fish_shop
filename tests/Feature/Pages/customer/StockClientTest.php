@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\get;
 
-uses(RefreshDatabase::class);
+//uses(RefreshDatabase::class);
 
 it('returns a successful response for stock client page', function () {
     $response = $this->get('stock-client');

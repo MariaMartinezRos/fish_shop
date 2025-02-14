@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use LaravelIdea\Helper\App\Models\_IH_User_C;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
@@ -20,13 +21,18 @@ it('shows user if logged in', function () {
     $user = User::factory()->create();
 //    $expectedUser = config('app.name');
 
-    actingAs($user);
+    loginAsUser($user);
+
+    get(route('dashboard'))
+        ->assertOk()
+        ->assertSee($user->name)
+        ->assertSee(route('logout'));
 
     // Act
-    $response = $this->actingAs($user)->get('dashboard');
-
-    // Assert
-    $response->assertSee($user->name);
+//    $response = $this->actingAs($user)->get('dashboard');
+//
+//    // Assert
+//    $response->assertSee($user->name);
 });
 
 it('includes login if not logged in', function () {

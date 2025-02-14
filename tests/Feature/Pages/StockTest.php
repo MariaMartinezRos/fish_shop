@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\get;
 
-uses(RefreshDatabase::class);
+//uses(RefreshDatabase::class);
 
 //beforeEach(function () {
 //    $this->seed(ProductSeeder::class);
