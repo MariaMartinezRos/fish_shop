@@ -1,9 +1,11 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Fish;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\Transaction;
+use App\Models\TypeWater;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -121,4 +123,41 @@ it('adds given user only once', function () {
 
     //Act && Assert
     $this->assertDatabaseCount(User::class, 3);
+});
+
+it('adds given fish', function () {
+    //Act
+    $this->assertDatabaseCount(Fish::class, 0);
+
+    //Act
+    $this->artisan('db:seed');
+    $this->assertDatabaseCount(Fish::class, 20);
+});
+
+it('adds given fish only once', function () {
+    //Act
+    $this->artisan('db:seed');
+    $this->artisan('db:seed');
+
+    //Act && Assert
+    $this->assertDatabaseCount(Fish::class, 20);
+});
+
+it('adds type of water', function () {
+    //Act
+    $this->assertDatabaseCount(TypeWater::class, 0);
+
+    //Act
+    $this->artisan('db:seed');
+    $this->assertDatabaseHas(TypeWater::class, ['type' => 'Freshwater']);
+    $this->assertDatabaseHas(TypeWater::class, ['type' => 'Saltwater']);
+});
+
+it('adds type of water only once', function () {
+    //Act
+    $this->artisan('db:seed');
+    $this->artisan('db:seed');
+
+    //Act && Assert
+    $this->assertDatabaseCount(TypeWater::class, 2);
 });
