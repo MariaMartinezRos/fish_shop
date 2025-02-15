@@ -37,23 +37,18 @@ Route::get('/shops', function () {
 
 Route::get('/stock-client', [ProductController::class, 'indexClient'])
     ->name('stock-client');
-
-//rutas de administrador
-//if (Auth::check() && Auth::user()->role_id === 1) {
-
-
+//admin
 Route::middleware(['auth', 'verified'])->group(function () {
-    // Aplicar middleware de admin directamente
-    Route::middleware([AdminMiddleware::class])->group(function () {    Route::get('/sales', [TransactionController::class, 'showSales'])->name('sales');
-    Route::get('/stock', [ProductController::class, 'index'])->name('stock');
-    Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
-    Route::get('/category', [CategoryController::class, 'index'])->name('category');
-    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
-    Route::get('/fish', [FishController::class, 'index'])->name('fish');
+    Route::middleware([AdminMiddleware::class])->group(function () {
 
-    // CRUD de usuarios solo para admins
-    Route::resource('users', UserController::class);
-});
+        Route::get('/sales', [TransactionController::class, 'showSales'])->name('sales');
+        Route::get('/stock', [ProductController::class, 'index'])->name('stock');
+        Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
+        Route::get('/category', [CategoryController::class, 'index'])->name('category');
+        Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+        Route::get('/fish', [FishController::class, 'index'])->name('fish');
+        Route::resource('users', UserController::class);
+    });
 });
 
 //Route::get('/sales', [TransactionController::class, 'showSales'])
