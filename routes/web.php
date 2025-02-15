@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,32 +41,47 @@ Route::get('/stock-client', [ProductController::class, 'indexClient'])
 //rutas de administrador
 //if (Auth::check() && Auth::user()->role_id === 1) {
 
-Route::get('/sales', [TransactionController::class, 'showSales'])
-    ->middleware(['auth', 'verified'])
-    ->name('sales');
 
-Route::get('/stock', [ProductController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('stock');
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Aplicar middleware de admin directamente
+    Route::middleware([AdminMiddleware::class])->group(function () {    Route::get('/sales', [TransactionController::class, 'showSales'])->name('sales');
+    Route::get('/stock', [ProductController::class, 'index'])->name('stock');
+    Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+    Route::get('/fish', [FishController::class, 'index'])->name('fish');
 
-Route::get('/transaction', [TransactionController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('transaction');
+    // CRUD de usuarios solo para admins
+    Route::resource('users', UserController::class);
+});
+});
 
-Route::get('/category', [CategoryController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('category');
-
-Route::get('/categories/{category}', [CategoryController::class, 'show'])
-    ->middleware(['auth', 'verified'])
-    ->name('categories.show');
-
-Route::get('/fish', [FishController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('fish');
-
-// CRUD users
-Route::resource('users', UserController::class);
+//Route::get('/sales', [TransactionController::class, 'showSales'])
+//    ->middleware(['auth', 'verified'])
+//    ->name('sales');
+//
+//Route::get('/stock', [ProductController::class, 'index'])
+//    ->middleware(['auth', 'verified'])
+//    ->name('stock');
+//
+//Route::get('/transaction', [TransactionController::class, 'index'])
+//    ->middleware(['auth', 'verified'])
+//    ->name('transaction');
+//
+//Route::get('/category', [CategoryController::class, 'index'])
+//    ->middleware(['auth', 'verified'])
+//    ->name('category');
+//
+//Route::get('/categories/{category}', [CategoryController::class, 'show'])
+//    ->middleware(['auth', 'verified'])
+//    ->name('categories.show');
+//
+//Route::get('/fish', [FishController::class, 'index'])
+//    ->middleware(['auth', 'verified'])
+//    ->name('fish');
+//
+//// CRUD users
+//Route::resource('users', UserController::class);
 
 
 // Route to add a single product

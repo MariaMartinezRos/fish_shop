@@ -9,19 +9,56 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\get;
 
-//uses(RefreshDatabase::class);
-
-//beforeEach(function () {
-//    $this->seed(ProductSeeder::class);
-//});
-
 it('returns a successful response for stock page', function () {
     // Arrange
-    $user = User::factory()->create();
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
 
+    // Act
+    $this->actingAs($admin)
+        ->get(route('stock'))
+        ->assertOk()
+        ->assertStatus(200);
+});
+
+it('cannot be accessed by guest', function () {
     // Act & Assert
-    $response = $this->actingAs($user)->get('stock');
-    $response->assertStatus(200);
+    get(route('stock'))
+        ->assertRedirect(route('login'));
+});
+
+it('cannot be accessed by costumer', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 4]);
+    $costumer = User::factory()->create(['role_id' => 'costumer']);
+
+    // Act
+    $this->actingAs($costumer)
+        ->get(route('stock'))
+        ->assertRedirect(route('login'));
+});
+
+it('cannot be accessed by employee', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 3]);
+    $employee = User::factory()->create(['role_id' => 'employee']);
+
+    // Act
+    $this->actingAs($employee)
+        ->get(route('stock'))
+        ->assertRedirect(route('login'));
+});
+
+it('can be accessed by admin', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
+
+    // Act
+    $this->actingAs($admin)
+        ->get(route('stock'))
+        ->assertOk()
+        ->assertSeeText('Cliente');
 });
 
 it('shows stock overview', function () {
@@ -46,11 +83,12 @@ it('shows stock overview', function () {
 
 it('includes logout if logged in', function () {
     // Arrange
-    $user = User::factory()->create();
-    $this->actingAs($user);
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
 
     // Act
-    get(route('stock'))
+    $this->actingAs($admin)
+        ->get(route('stock'))
         ->assertOk()
         ->assertSee('Finalizar sesión') // Spanish for "Logout" CHECK
         ->assertSee(route('logout'));
