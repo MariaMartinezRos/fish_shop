@@ -28,9 +28,9 @@
                     <x-nav-link :href="route('fish')" :active="request()->routeIs('fish')">
                         {{ __('Fishes') }}
                     </x-nav-link>
-{{--                    <x-nav-link :href="#">--}}
-{{--                        {{ __('Employees') }}--}}
-{{--                    </x-nav-link>--}}
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('fish')">
+                        {{ __('Users') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                         </x-dropdown-link>
 
 {{--                        this option shall only appear if the user is an admin ($user->role_id->1 --}}
-                        @if(Auth::user()->role_id === 1)
+                        @if(Auth::user()->role_id === 'admin')
                             <x-dropdown-link :href="route('dashboard')">
                                 {{ __('Customer') }}
                             </x-dropdown-link>

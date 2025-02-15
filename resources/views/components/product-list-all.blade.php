@@ -53,7 +53,7 @@
                            class="border border-blue-500 text-blue-700 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 w-1/3">
 
                     <!-- Form on the right -->
-                    @if(Auth::check() && Auth::user()->role_id === 1)
+                    @if(Auth::check() && Auth::user()->role_id === 'admin')
                         <button type="button" onclick="window.location='{{ route('products.add-form') }}'" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
                             {{ __('Add A Product') }}
                         </button>

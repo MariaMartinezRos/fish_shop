@@ -21,21 +21,21 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
-            'role_id' => 1,
+            'role_id' => 'admin',
         ]);
         User::factory()->create([
             'name' => 'Employee',
             'email' => 'employee@employee.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
-            'role_id' => 3,
+            'role_id' => 'employee',
         ]);
         User::factory()->create([
             'name' => 'Customer',
             'email' => 'customer@customer.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
-            'role_id' => 2,
+            'role_id' => 'customer',
         ]);
     }
 

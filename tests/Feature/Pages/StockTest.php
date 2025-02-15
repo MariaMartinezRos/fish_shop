@@ -32,7 +32,7 @@ it('shows stock overview', function () {
     $thirdProduct = Product::factory()->create(['category_id' => $category->id]);
 
     $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
 
     // Act
     $this->actingAs($admin)
@@ -64,7 +64,7 @@ it('includes product links', function () {
     $thirdProduct = Product::factory()->create(['category_id' => $category->id]);
 
     $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
 
     // Act
     $this->actingAs($admin)
@@ -80,7 +80,7 @@ it('includes product links', function () {
 it('shows a message when no products are available', function () {
     // Arrange
     $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
 
     // Act
     $this->actingAs($admin)
@@ -94,7 +94,7 @@ it('paginates the stock list', function () {
     $category = Category::factory()->create();
     Product::factory()->count(50)->create(['category_id' => $category->id]);
     $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
 
     // Act
     $this->actingAs($admin)
@@ -109,7 +109,7 @@ it('searches products by name', function () {
     $category = Category::factory()->create();
     $product = Product::factory()->create(['category_id' => $category->id, 'name' => 'UniqueProductName']);
     $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
 
     // Act
     $this->actingAs($admin)

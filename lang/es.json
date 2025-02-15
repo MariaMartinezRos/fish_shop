@@ -216,6 +216,18 @@
     "Description": "Descripción",
     "Type": "Tipo",
     "Options": "Opciones",
-    "Add A Fish": "Agregar un Pescado"
+    "Add A Fish": "Agregar un Pescado",
+    "Role": "Rol",
+    "Actions": "Acciones",
+    "No users found.": "No se encontraron usuarios.",
+    "Edit": "Editar",
+    "Users": "Usuarios",
+    "users": "usuarios",
+    "User": "Usuario",
+    "user": "usuario",
+    "Create User": "Crear Usuario",
+    "Delete All Users": "Eliminar A Todos los Usuarios",
+    "Select Role": "Seleccionar Rol",
+    "Update User": "Actualizar Usuario"
 }
 

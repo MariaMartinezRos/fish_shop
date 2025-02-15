@@ -16,17 +16,17 @@ class ProductPolicy
 
     public function create(User $user): bool
     {
-        return $user->role_id === '1' ||$user->hasPermissionTo('create product');
+        return $user->role_id === 'admin' ||$user->hasPermissionTo('create product');
     }
 
     public function update(User $user): bool
     {
-        return $user->role_id === '1' || $user->hasPermissionTo('edit product');
+        return $user->role_id === 'admin' || $user->hasPermissionTo('edit product');
     }
 
     public function delete(User $user): bool
     {
-        return $user->role_id === '1' || $user->hasPermissionTo('delete product');
+        return $user->role_id === 'admin' || $user->hasPermissionTo('delete product');
     }
 
     public function view(User $user): bool

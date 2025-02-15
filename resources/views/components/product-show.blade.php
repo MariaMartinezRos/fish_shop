@@ -23,7 +23,7 @@
             <!-- Botones de acción -->
             <div class="mt-6 flex justify-center space-x-4">
 
-                @if(Auth::check() && Auth::user()->role_id === 1)
+                @if(Auth::check() && Auth::user()->role_id === 'admin')
                 <button class="bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600">{{ __('Modify') }}</button>
                 <button class="bg-red-500 text-white px-6 py-3 rounded hover:bg-red-600">{{ __('Delete') }}</button>
                 @else

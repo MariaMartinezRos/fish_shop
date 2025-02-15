@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -62,6 +63,9 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])
 Route::get('/fish', [FishController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('fish');
+
+// CRUD users
+Route::resource('users', UserController::class);
 
 
 // Route to add a single product
