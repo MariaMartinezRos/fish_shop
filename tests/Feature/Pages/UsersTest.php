@@ -56,3 +56,51 @@ it('can be accessed by admin', function () {
         ->assertOk()
         ->assertSeeText('Cliente');
 });
+
+it('can create a new user', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
+
+    // Act
+    $this->actingAs($admin)
+        ->post('users', [
+            'name' => 'John Doe',
+            'email' => 'email@example.com',
+            'password' => '1234567890',
+            'role_id' => 4,
+        ])
+        ->assertRedirect('users')
+        ->assertSessionHas('success', 'User created successfully.');
+})->todo();
+
+it('can delete a user', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
+    $user = User::factory()->create();
+
+    // Act
+    $this->actingAs($admin)
+        ->delete("users/{$user->id}")
+        ->assertRedirect('users')
+        ->assertSessionHas('success', 'User deleted successfully');
+});
+
+it('can update a user', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
+    $user = User::factory()->create();
+
+    // Act
+    $this->actingAs($admin)
+        ->put("users/{$user->id}", [
+            'name' => 'Jane Doe',
+            'email' => 'example@example.com',
+            'password' => '1234567890',
+            'role_id' => 4,
+        ])
+        ->assertRedirect('users')
+        ->assertSessionHas('success', 'User updated successfully');
+})->todo();

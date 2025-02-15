@@ -27,15 +27,17 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'role' => 'required|in:user,admin'
+            'password' => 'required|min:8',
+            'role_id' => 'required|in:admin,costumer,employee'
+
+//            'role_id' => 'required|exists:roles,id'
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => $request->role
+            'role_id' => $request->role_id
         ]);
 
         return redirect()->route('users.index')->with('success', 'User created successfully');
@@ -53,13 +55,13 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'role' => 'required|in:user,admin'
+            'role_id' => 'required|in:admin,costumer,employee'
         ]);
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role
+            'role_id' => $request->role_id
         ]);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully');
