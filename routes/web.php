@@ -24,9 +24,8 @@ Route::get('/contact', function () {
     return view('dashboard.contact');
 })->name('contact');
 
-Route::get('/discover', function () {
-    return view('dashboard.discover');
-})->name('discover');
+Route::get('/discover', [FishController::class, 'indexClient'])
+    ->name('discover');
 
 Route::get('/recipes', [RecipeController::class, 'showRecipes'])
     ->name('recipes');

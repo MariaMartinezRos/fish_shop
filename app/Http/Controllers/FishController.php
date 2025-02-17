@@ -7,38 +7,60 @@ use App\Imports\FishesImport;
 use App\Imports\ProductsImport;
 use App\Models\Product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Http;
+
 
 class FishController extends Controller
 {
     use AuthorizesRequests;
+
     /**
-     * Muestra la lista de productos. Tambien realiza una consulta en la base de datos para filtrarlos
+     * Shows the fishes list for the admin
+     * @throws ConnectionException
      */
     public function index(Request $request)
     {
-//        $this->authorize('view', Product::class);
-//
-//        $filter = $request->input('filter');
-//
-//        $products = Product::query()
-//            ->when($filter, function ($query, $filter) {
-//                return $query->where('name', 'like', '%'.$filter.'%')
-//                    ->orWhere('description', 'like', '%'.$filter.'%');
-//            })
-//            ->paginate(10);
-//
-//        if ($request->ajax()) {
-//            return view('components.product-list', compact('products'))->render();
-//        }
+        $fishes = $this->getFishes();
 
-        return view('fish');
+        // Devuelve la vista con los datos de los peces
+        return view('fish', compact('fishes'));
     }
 
-
     /**
-     * Importa los productos desde un archivo Excel
+     * Shows the fishes list for the client
+     * @throws ConnectionException
+     */
+    public function indexClient(Request $request)
+    {
+        $fishes = $this->getFishes();
+
+        // Devuelve la vista con los datos de los peces
+        return view('dashboard.discover', compact('fishes'));
+    }
+
+    private function getFishes()
+    {
+        $token = env('BEARER_TOKEN');
+
+        // Hacer la solicitud GET a la API para obtener todos los peces
+        $response = Http::withToken($token)
+            ->get('http://fish_shop.test/api/v2/fishes');
+
+
+        // Verifica si la solicitud fue exitosa
+        if ($response->successful()) {
+            $fishes = $response->json(); // Decodifica la respuesta JSON
+        } else {
+            $fishes = []; // Si no hay éxito, pasa un array vacío
+        }
+
+        return $fishes;
+    }
+    /**
+     * Import the products from the file excel
      */
     public function import(Request $request)
     {

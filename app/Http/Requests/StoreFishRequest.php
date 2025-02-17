@@ -24,9 +24,28 @@ class StoreFishRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'photo' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:2048'],
             'type' => ['required', 'string', 'in:Saltwater,Freshwater'],
             'description' => ['nullable', 'string'],
         ];
+    }
+
+    /**
+     * Get the validated data from the request.
+     *
+     * @param null $key
+     * @param null $default
+     * @return array
+     */
+    public function validated($key = null, $default = null): array
+    {
+        $validated = parent::validated();
+        if (!isset($validated['type'])) {
+            $validated['type'] = 'Saltwater';
+        }
+        if (!isset($validated['image'])) {
+            $validated['image'] = null;
+        }
+        return $validated;
     }
 }

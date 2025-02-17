@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * @method static where(string $string, string $string1)
  * @method static create(string[] $type)
+ * @method static inRandomOrder()
  */
 class TypeWater extends Model
 {

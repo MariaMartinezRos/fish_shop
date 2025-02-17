@@ -17,15 +17,9 @@ class FishResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'photo' => $this->photo,
+            'image' => $this->image,
             'type' => $this->type,
-            'description' => $this->when($request->is('api/fishes*'), function () use ($request) {
-                if ($request->is('api/fishes')) {
-                    return str($this->description)->limit(20);
-                }
-
-                return $this->description;
-            }),
+            'description' => $this->description,
         ];
     }
 }

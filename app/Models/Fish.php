@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @method static exists()
+ * @method static create(array $data)
+ * @method static where(string $string, string $string1)
  */
 class Fish extends Model
 {
