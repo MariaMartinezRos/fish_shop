@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Fish;
+use App\Observers\FishObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,8 +19,8 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot()
+    public function boot(): void
     {
-        //
+        Fish::observe(FishObserver::class);
     }
 }
