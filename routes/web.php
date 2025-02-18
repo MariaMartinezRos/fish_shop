@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FishController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ErrorController;
@@ -47,61 +48,36 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
         Route::get('/fish', [FishController::class, 'index'])->name('fish');
         Route::resource('users', UserController::class);
-    });
-});
-
-//Route::get('/sales', [TransactionController::class, 'showSales'])
-//    ->middleware(['auth', 'verified'])
-//    ->name('sales');
-//
-//Route::get('/stock', [ProductController::class, 'index'])
-//    ->middleware(['auth', 'verified'])
-//    ->name('stock');
-//
-//Route::get('/transaction', [TransactionController::class, 'index'])
-//    ->middleware(['auth', 'verified'])
-//    ->name('transaction');
-//
-//Route::get('/category', [CategoryController::class, 'index'])
-//    ->middleware(['auth', 'verified'])
-//    ->name('category');
-//
-//Route::get('/categories/{category}', [CategoryController::class, 'show'])
-//    ->middleware(['auth', 'verified'])
-//    ->name('categories.show');
-//
-//Route::get('/fish', [FishController::class, 'index'])
-//    ->middleware(['auth', 'verified'])
-//    ->name('fish');
-//
-//// CRUD users
-//Route::resource('users', UserController::class);
 
 
-// Route to add a single product
-
-// Route to display the form
-Route::get('/products/add', function () {
-    return view('products.add');
-})->middleware(['auth', 'verified'])->name('products.add-form');
+        // Route to display the form
+        Route::get('/products/add', function () {
+            return view('products.add');
+        })->middleware(['auth', 'verified'])->name('products.add-form');
 
 // Route to handle the form submission
-Route::post('/products/add', [ProductController::class, 'add'])
-    ->middleware(['auth', 'verified'])
-    ->name('products.add');
+        Route::post('/products/add', [ProductController::class, 'add'])
+            ->middleware(['auth', 'verified'])
+            ->name('products.add');
 
 
 // Route to delete all products
-Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
-    ->middleware(['auth', 'verified'])
-    ->name('products.delete-all');
+        Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
+            ->middleware(['auth', 'verified'])
+            ->name('products.delete-all');
 
-//}
 
-//else {
-//    //redirect to dashboard
-//    return view('dashboard');
-//}
+    });
+});
+
+
+
+
+
+// Route to send a confirmation email
+Route::post('/contact', [ContactController::class, 'submit'])
+    ->name('contact.submit');
+
 
 //download all products in PDF
 Route::get('/products/pdf', [ProductController::class, 'downloadProductsPDF'])
