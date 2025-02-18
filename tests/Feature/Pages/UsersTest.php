@@ -5,6 +5,9 @@ use App\Models\User;
 
 use function Pest\Laravel\get;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+
 it('returns a successful response for users page', function () {
     // Arrange
     $role = Role::factory()->create(['id' => 1]);
@@ -57,22 +60,29 @@ it('can be accessed by admin', function () {
         ->assertSeeText('Cliente');
 });
 
-it('can create a new user', function () {
+it('can create a user successfully', function () {
     // Arrange
     $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 'admin']);
 
     // Act
     $this->actingAs($admin)
-        ->post('users', [
-            'name' => 'John Doe',
-            'email' => 'email@example.com',
+        ->post("users", [
+            'name' => 'Jane Doe',
+            'email' => 'example@example.com',
             'password' => '1234567890',
-            'role_id' => 4,
+            'role_id' => $role->id,
         ])
         ->assertRedirect('users')
-        ->assertSessionHas('success', 'User created successfully.');
-})->todo();
+        ->assertSessionHas('success', 'User created successfully');
+
+    // Assert
+    $this->assertDatabaseHas('users', [
+        'name' => 'Jane Doe',
+        'email' => 'example@example.com',
+        'role_id' => 'customer',
+    ]);
+});
 
 it('can delete a user', function () {
     // Arrange

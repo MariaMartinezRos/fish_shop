@@ -9,7 +9,7 @@ it('returns a successful response for about page', function () {
 it('redirects to the mailing', function () {
     $response = $this->get('about');
 
-    $response->assertSee('mailto:'.env('APP_MAIL'));
+    $response->assertSee('mailto:'.config('app.mail'));
     $response->assertStatus(200);
 });
 

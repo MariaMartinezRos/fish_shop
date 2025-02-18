@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -24,28 +25,37 @@ class UserController extends Controller
     // Guardar usuario
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
+        // Validación de datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
-            'role_id' => 'required|in:admin,costumer,employee'
-
-//            'role_id' => 'required|exists:roles,id'
+            'role_id' => 'required|in:1,3,4'
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role_id' => $request->role_id
-        ]);
 
-        return redirect()->route('users.index')->with('success', 'User created successfully');
+            $user = User::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'password' => bcrypt($validated['password']),
+            ]);
+
+            // Asignación de rol
+            $user->roles()->attach($validated['role_id']);
+
+            return redirect()
+                ->route('users.index')
+                ->with('success', 'User created successfully');
+
     }
+
 
     // Editar usuario
     public function edit(User $user)
     {
+        if ($user->role_id != 1) {
+            return redirect()->route('users.index')->with('error', 'You cannot edit this user');
+        }
         return view('users.edit', compact('user'));
     }
 
