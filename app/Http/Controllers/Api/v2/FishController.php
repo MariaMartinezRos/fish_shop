@@ -100,18 +100,18 @@ class FishController extends Controller
         return FishResource::collection(Fish::all());
     }
 
-    public function filterByType($type)
-    {
-        $fishes = Fish::where('type', $type)->get();
-        return FishResource::collection($fishes);
-    }
+//    public function filterByType($type)
+//    {
+//        $fishes = Fish::where('type', $type)->get();
+//        return FishResource::collection($fishes);
+//    }
 
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $fishes = Fish::where('name', 'LIKE', "%$query%")
-            ->orWhere('type', 'LIKE', "%$query%")
-            ->get();
-        return FishResource::collection($fishes);
-    }
+//    public function search(Request $request)
+//    {
+//        $query = $request->input('query');
+//        $fishes = Fish::where('name', 'LIKE', "%$query%")
+//            ->orWhere('type', 'LIKE', "%$query%")
+//            ->get();
+//        return FishResource::collection($fishes);
+//    }
 }
