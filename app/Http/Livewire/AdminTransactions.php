@@ -11,8 +11,15 @@ use Livewire\Component;
 class AdminTransactions extends Component
 {
     public $tvp = '';
+    public $transactions;
 
-    public function render(): Application|Factory|View|\Illuminate\View\View
+
+    public function mount()
+    {
+        $this->transactions = Transaction::all();
+    }
+
+    public function filter($tvp): Application|Factory|View|\Illuminate\View\View
     {
         $transactions = Transaction::query()
             ->whereNotNull('tvp')
@@ -20,7 +27,13 @@ class AdminTransactions extends Component
             ->ByTVP($this->tvp)
             ->get();
 
-        dd($transactions);
+        return view('livewire.admin-transactions', compact('transactions'));
+
+    }
+    public function render(): Application|Factory|View|\Illuminate\View\View
+    {
+        $transactions = Transaction::query()
+            ->whereNotNull('tvp')->get();
 
         return view('livewire.admin-transactions', compact('transactions'));
     }

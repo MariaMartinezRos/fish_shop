@@ -1,7 +1,7 @@
 <div>
     <div>
         <label for="tvp">{{ ('Filter by Fish Shop') }}</label>
-        <select wire:model="tvp" id="tvp">
+        <select wire:change="filter(value)" id="tvp">
             <option value="">{{ __('All') }}</option>
             <option value="PESCADERIA BENITO ALHAMA">{{ __('Pescadería Benito')}} ALHAMA</option>
             <option value="PESCADERIA BENITO LIBRILLA">{{ __('Pescadería Benito')}} LIBRILLA</option>
@@ -28,24 +28,26 @@
             @if($transactions->isEmpty())
                 <p>{{ __('No transactions found')}}.</p>
             @else
-            @foreach ($transactions as $transaction)
-                <tr>
-                    <td>{{ $transaction['id'] }}</td>
-                    <td>{{ $transaction['tvp'] }}</td>
-                    <td>{{ $transaction['serial_number'] }}</td>
-                    <td>{{ $transaction['terminal_number'] }}</td>
-                    <td>{{ $transaction['operation'] }}</td>
-                    <td>{{ $transaction['amount'] }}</td>
-                    <td>{{ $transaction['card_number'] }}</td>
-                    <td>{{ $transaction['date_time'] }}</td>
-                    <td>{{ $transaction['transaction_number'] }}</td>
-                    <td>{{ $transaction['sale_id'] }}</td>
-                    <td>{{ $transaction['created_at'] }}</td>
-                    <td>{{ $transaction['updated_at'] }}</td>
-                </tr>
-            @endforeach
-                @endif
+                @foreach ($transactions as $transaction)
+                    <tr>
+                        <td>{{ $transaction->id }}</td>
+                        {{--<td>{{ $transaction->tvp }}</td>--}}
+                        <td>{{ $transaction->serial_number }}</td>
+                        <td>{{ $transaction->terminal_number }}</td>
+                        <td>{{ $transaction->operation }}</td>
+                        <td>{{ $transaction->amount }}</td>
+                        <td>{{ $transaction->card_number }}</td>
+                        <td>{{ $transaction->date_time }}</td>
+                        <td>{{ $transaction->transaction_number }}</td>
+                        <td>{{ $transaction->sale_id }}</td>
+                        <td>{{ $transaction->created_at }}</td>
+                        <td>{{ $transaction->updated_at }}</td>
+
+                    </tr>
+                @endforeach
+            @endif
             </tbody>
         </table>
     </div>
 </div>
+
