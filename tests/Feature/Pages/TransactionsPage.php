@@ -6,9 +6,8 @@ use App\Models\User;
 
 use function Pest\Laravel\get;
 
-
 it('returns a successful response for transactions page', function () {
-// Arrange
+    // Arrange
     $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 'admin']);
 

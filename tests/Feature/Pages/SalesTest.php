@@ -4,6 +4,7 @@ use App\Models\Role;
 use App\Models\User;
 
 use function Pest\Laravel\get;
+
 it('returns a successful response for sales page', function () {
     // Arrange
     $role = Role::factory()->create(['id' => 1]);

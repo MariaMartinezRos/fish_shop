@@ -16,7 +16,7 @@ class RecipeController extends Controller
 
         // Convertir la respuesta en un array y extraer los valores de idMeal
         $meals = $recipes['meals'];
-        $mealIds = array_map(function($meal) {
+        $mealIds = array_map(function ($meal) {
             return $meal['idMeal'];
         }, $meals);
 
@@ -28,9 +28,9 @@ class RecipeController extends Controller
             $response2 = Http::get("www.themealdb.com/api/json/v1/1/lookup.php?i={$idMeal}");
             $mealDetails = $response2->json();
             $detailedMeals[] = $mealDetails['meals'][0];
-        };
+        }
 
-//        dd($detailedMeals);
+        //        dd($detailedMeals);
 
         return view('dashboard.recipes', compact('detailedMeals'));
     }

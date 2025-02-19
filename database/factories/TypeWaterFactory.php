@@ -16,14 +16,14 @@ class TypeWaterFactory extends Factory
             'type' => $this->faker->randomElement(['Freshwater', 'Saltwater']),
         ];
     }
+
     public function released(?Carbon $date = null): self
     {
         return $this->state(
             fn (array $attributes) => [
                 'created_at' => $date ?? Carbon::now(),
-                'updated_at' => $date ?? Carbon::now()
+                'updated_at' => $date ?? Carbon::now(),
             ]
         );
     }
 }
-

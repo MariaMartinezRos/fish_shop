@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -70,17 +69,16 @@ class User extends Authenticatable
     /**
      * Check if the user has a specific permission.
      *
-     * @param string $string Permission name
-     * @return bool
+     * @param  string  $string  Permission name
      */
     public function hasPermissionTo(string $string): bool
     {
-//        if($string === 'create product' || $string === 'edit product' || $string === 'delete product' || $string === 'view product') {
-//            return $this->role_1 === '1';
-//        }else if($string === 'view clients product') {
-//            return true;
-//        }
-//        return false;
+        //        if($string === 'create product' || $string === 'edit product' || $string === 'delete product' || $string === 'view product') {
+        //            return $this->role_1 === '1';
+        //        }else if($string === 'view clients product') {
+        //            return true;
+        //        }
+        //        return false;
         return true;
     }
 
@@ -96,9 +94,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-//This method defines how certain attributes of the User model
-// should be cast when they are accessed or set.
+    //This method defines how certain attributes of the User model
+    // should be cast when they are accessed or set.
 
-//email_verified_at is cast to a datetime object.
-//password is cast to a hashed value.
+    //email_verified_at is cast to a datetime object.
+    //password is cast to a hashed value.
 }

@@ -13,12 +13,13 @@ use Maatwebsite\Excel\Facades\Excel;
 class ProductController extends Controller
 {
     use AuthorizesRequests;
+
     /**
      * Muestra la lista de productos. Tambien realiza una consulta en la base de datos para filtrarlos
      */
     public function index(Request $request)
     {
-//        $this->authorize('view', Product::class);
+        //        $this->authorize('view', Product::class);
 
         $filter = $request->input('filter');
 
@@ -41,7 +42,7 @@ class ProductController extends Controller
      */
     public function indexClient(Request $request)   //arreglar
     {
-//        $this->authorize('viewClient', Product::class);
+        //        $this->authorize('viewClient', Product::class);
 
         $filter = $request->input('filter');
 
@@ -64,7 +65,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-//        $this->authorize('view', Product::class);
+        //        $this->authorize('view', Product::class);
 
         $product = Product::findOrFail($id);
 
@@ -76,7 +77,7 @@ class ProductController extends Controller
      */
     public function showClient($id)
     {
-//        $this->authorize('viewClient', Product::class);
+        //        $this->authorize('viewClient', Product::class);
 
         $product = Product::findOrFail($id);
 
@@ -175,6 +176,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+
         return redirect()->route('stock')->with('success', 'Product deleted successfully');
     }
 
@@ -203,7 +205,7 @@ class ProductController extends Controller
      */
     public function deleteAll()
     {
-//        $this->authorize('delete', Product::class);
+        //        $this->authorize('delete', Product::class);
 
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Product::truncate();

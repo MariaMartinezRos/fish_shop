@@ -2,9 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Role;
 use App\Models\User;
-use Database\Seeders\ProductSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\get;

@@ -1,10 +1,9 @@
 <?php
 
-
 use App\Jobs\SendContactConfirmationEmail;
+use App\Mail\ContactConfirmation;
 use App\Mail\WelcomeMail;
 use App\Models\User;
-use App\Mail\ContactConfirmation;
 
 it('includes login details for the welcome mail', function () {
     // Arrange
@@ -33,7 +32,6 @@ it('sends the confirmation email for the contact page', function () {
         return $mail->hasTo($user->email);
     });
 });
-
 
 it('includes valid data for the contact mail', function () {
     // Arrange

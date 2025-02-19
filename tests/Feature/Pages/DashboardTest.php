@@ -2,11 +2,6 @@
 
 use App\Models\User;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use LaravelIdea\Helper\App\Models\_IH_User_C;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
 it('returns a successful response for home page', function () {

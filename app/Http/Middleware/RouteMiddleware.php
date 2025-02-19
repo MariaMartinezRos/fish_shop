@@ -1,4 +1,5 @@
 <?php
+
 // app/Http/Middleware/RouteMiddleware.php
 
 namespace App\Http\Middleware;
@@ -9,12 +10,9 @@ class RouteMiddleware
 {
     /**
      * Register any route middleware.
-     *
-     * @return void
      */
     public static function register(): void
     {
         Route::middleware('admin', \App\Http\Middleware\AdminMiddleware::class);
     }
 }
-

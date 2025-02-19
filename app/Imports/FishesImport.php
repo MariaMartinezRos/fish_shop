@@ -15,5 +15,4 @@ class FishesImport implements ToModel
             'description' => $row[2],
         ]);
     }
-
 }

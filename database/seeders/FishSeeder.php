@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Fish;
-use App\Models\Product;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 
 class FishSeeder extends Seeder
 {

@@ -2,9 +2,7 @@
 
 use App\Models\Fish;
 use App\Models\Role;
-use App\Models\TypeWater;
 use App\Models\User;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 it('returns a successful response for fetching all fishes', function () {
@@ -73,4 +71,3 @@ it('deletes a fish successfully', function () {
         ->deleteJson("/api/v2/fishes/{$fish->id}")
         ->assertStatus(204);
 });
-

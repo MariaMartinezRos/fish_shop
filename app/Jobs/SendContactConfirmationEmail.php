@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Jobs;
 
 use App\Mail\ContactConfirmation;
@@ -24,6 +25,4 @@ class SendContactConfirmationEmail implements ShouldQueue
     {
         Mail::to($this->user->email)->queue(new ContactConfirmation($this->user));
     }
-
 }
-

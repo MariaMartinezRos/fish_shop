@@ -1,9 +1,9 @@
 <?php
 
+use App\Imports\ProductsImport;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\ProductsImport;
 
 it('imports products from a valid document', function () {
     // Arrange

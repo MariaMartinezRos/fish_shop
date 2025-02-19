@@ -58,8 +58,6 @@ it('adds given product only once', function () {
     $this->assertDatabaseCount(Product::class, 30);
 });
 
-
-
 it('adds given role', function () {
     //Assert
     $this->assertDatabaseCount(Role::class, 0);

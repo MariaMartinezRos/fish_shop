@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\FishController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -60,7 +59,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->middleware(['auth', 'verified'])
             ->name('products.add');
 
-
         // Route to delete all products
         Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
             ->middleware(['auth', 'verified'])
@@ -68,19 +66,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-
-
-
-
 // Route to send a confirmation email
 Route::post('/contact', [ContactController::class, 'submit'])
     ->name('contact.submit');
 
-
 //download all products in PDF
 Route::get('/products/pdf', [ProductController::class, 'downloadProductsPDF'])
     ->name('products.pdf');
-
 
 // ruta para mostrar los productos filtrados
 Route::get('/products', [ProductController::class, 'index'])

@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
-use App\Models\Product;
 use App\Models\TypeWater;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 
 class TypeWaterSeeder extends Seeder
 {
@@ -19,15 +16,16 @@ class TypeWaterSeeder extends Seeder
         TypeWater::factory()->create(['type' => 'Freshwater']);
         TypeWater::factory()->create(['type' => 'Saltwater']);
 
-//        $types = [
-//            ['type' => 'Freshwater'],
-//            ['type' => 'Saltwater'],
-//        ];
-//
-//        foreach ($types as $type) {
-//            TypeWater::create($type);
-//        }
+        //        $types = [
+        //            ['type' => 'Freshwater'],
+        //            ['type' => 'Saltwater'],
+        //        ];
+        //
+        //        foreach ($types as $type) {
+        //            TypeWater::create($type);
+        //        }
     }
+
     private function isDataAlreadyGiven(): bool
     {
         return TypeWater::where('type', 'Freshwater')->exists()

@@ -4,8 +4,6 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
-use Database\Seeders\ProductSeeder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\get;
 
@@ -162,10 +160,9 @@ it('can create a product successfully', function () {
     $admin = User::factory()->create(['role_id' => 'admin']);
     $category = Category::factory()->create();
 
-
     // Act
     $this->actingAs($admin)
-        ->post("products", [
+        ->post('products', [
             'name' => 'Salmon noruego',
             'category_id' => $category->id,
             'price_per_kg' => 10.5,

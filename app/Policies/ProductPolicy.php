@@ -16,7 +16,7 @@ class ProductPolicy
 
     public function create(User $user): bool
     {
-        return $user->role_id === 'admin' ||$user->hasPermissionTo('create product');
+        return $user->role_id === 'admin' || $user->hasPermissionTo('create product');
     }
 
     public function update(User $user): bool

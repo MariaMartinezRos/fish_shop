@@ -24,8 +24,6 @@ it('displays a list of products paginated for the admin', function () {
         ->assertSee('30');
 });
 
-
-
 it('displays a list of products paginated for the client', function () {
     // Arrange
     $categories = Category::factory()->count(5)->create();

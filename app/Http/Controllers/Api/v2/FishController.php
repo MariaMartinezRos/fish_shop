@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Http\Controllers\Api\v2;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFishRequest;
 use App\Http\Resources\FishResource;
 use App\Models\Fish;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
@@ -42,6 +40,21 @@ class FishController extends Controller
         }));
     }
 
+    /**
+     * @OA\Get (
+     *     path="/fishes/{fish}",
+     *     tags={"Fishes"},
+     *     summary="Get a specific fish",
+     *     description="Get a specific fish",
+     *
+     *     @OA\Parameter( name="fish", in="path", required=true, description="ID of the fish", @OA\Schema(type="integer")),
+     *
+     *     @OA\Response( response="200", description="Successful operation"),
+     *     @OA\Response( response="401", description="Unauthenticated"),
+     *     @OA\Response( response="403", description="Forbidden"),
+     *     @OA\Response( response="404", description="Not Found")
+     * )
+     */
     public function show(Fish $fish)
     {
         //abort_if(!auth()->user()->tokenCan('fishes-show'), 403);
@@ -64,7 +77,7 @@ class FishController extends Controller
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $name = Str::uuid() . '.' . $file->extension();
+            $name = Str::uuid().'.'.$file->extension();
             $file->storeAs('fishes', $name, 'public');
             $data['photo'] = $name;
         }
@@ -74,6 +87,9 @@ class FishController extends Controller
         return new FishResource($fish);
     }
 
+    /**
+     * @return FishResource
+     */
     public function update(Fish $fish, StoreFishRequest $request)
     {
         $request->validate([
@@ -88,6 +104,17 @@ class FishController extends Controller
         return new FishResource($fish);
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     *
+     * @throws \Exception
+     *
+     * @OA\Delete ( path="/fishes/{fish}", tags={"Fishes"}, summary="Delete a specific fish", description="Delete a specific fish", @OA\Parameter( name="fish", in="path", required=true, description="ID of the fish", @OA\Schema(type="integer")), @OA\Response( response="204", description="Successful operation"), @OA\Response( response="401", description="Unauthenticated"), @OA\Response( response="403", description="Forbidden"), @OA\Response( response="404", description="Not Found") )
+     *
+     * @ORM\Entity(repositoryClass=FishRepository::class)
+     *
+     * @ORM\Table(name="fish")
+     */
     public function destroy(Fish $fish)
     {
         $fish->delete();
@@ -95,23 +122,19 @@ class FishController extends Controller
         return response()->noContent();
     }
 
+    /**
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
+     * @OA\Get ( path="/fishes", tags={"Fishes"}, summary="List all fishes", description="List all fishes", @OA\Response( response="200", description="Successful operation"), @OA\Response( response="401", description="Unauthenticated"), @OA\Response( response="403", description="Forbidden") )
+     *
+     * @ORM\Entity(repositoryClass=FishRepository::class)
+     *
+     * @ORM\Table(name="fish")
+     *
+     * @ORM\Entity(repositoryClass=FishRepository::class)
+     */
     public function list()
     {
         return FishResource::collection(Fish::all());
     }
-
-//    public function filterByType($type)
-//    {
-//        $fishes = Fish::where('type', $type)->get();
-//        return FishResource::collection($fishes);
-//    }
-
-//    public function search(Request $request)
-//    {
-//        $query = $request->input('query');
-//        $fishes = Fish::where('name', 'LIKE', "%$query%")
-//            ->orWhere('type', 'LIKE', "%$query%")
-//            ->get();
-//        return FishResource::collection($fishes);
-//    }
 }

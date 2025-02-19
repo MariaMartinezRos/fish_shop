@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Transaction;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Livewire\Component;
-use App\Models\Transaction;
 
 class AdminTransactions extends Component
 {
@@ -25,14 +25,12 @@ class AdminTransactions extends Component
         return view('livewire.admin-transactions', compact('transactions'));
     }
 
-
-
-//    public function render()
-//    {
-//        $transactions = Transaction::scopeByTVP($this->tvp)->get();
-//
-//        return view('livewire.admin-transactions', [
-//            'transactions' => $transactions // 👈 Aquí nos aseguramos de pasar la variable a la vista
-//        ]);
-//    }
+    //    public function render()
+    //    {
+    //        $transactions = Transaction::scopeByTVP($this->tvp)->get();
+    //
+    //        return view('livewire.admin-transactions', [
+    //            'transactions' => $transactions // 👈 Aquí nos aseguramos de pasar la variable a la vista
+    //        ]);
+    //    }
 }

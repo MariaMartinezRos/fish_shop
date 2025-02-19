@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
@@ -36,7 +35,7 @@ class FishController extends Controller
      */
     public function index()
     {
-        abort_if(!auth()->user()->tokenCan('fishes-list'), 403);
+        abort_if(! auth()->user()->tokenCan('fishes-list'), 403);
 
         return FishResource::collection(Cache::rememberForever('fishes', function () {
             return Fish::all();
@@ -45,7 +44,7 @@ class FishController extends Controller
 
     public function show(Fish $fish)
     {
-        abort_if(!auth()->user()->tokenCan('fishes-show'), 403);
+        abort_if(! auth()->user()->tokenCan('fishes-show'), 403);
 
         return new FishResource($fish);
     }
@@ -65,7 +64,7 @@ class FishController extends Controller
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $name = Str::uuid() . '.' . $file->extension();
+            $name = Str::uuid().'.'.$file->extension();
             $file->storeAs('fishes', $name, 'public');
             $data['photo'] = $name;
         }
@@ -97,6 +96,7 @@ class FishController extends Controller
     public function filterByType($type)
     {
         $fishes = Fish::where('type', $type)->get();
+
         return FishResource::collection($fishes);
     }
 
@@ -106,7 +106,7 @@ class FishController extends Controller
         $fishes = Fish::where('name', 'LIKE', "%$query%")
             ->orWhere('type', 'LIKE', "%$query%")
             ->get();
+
         return FishResource::collection($fishes);
     }
 }
-

@@ -32,8 +32,6 @@ it('includes the nav bar client partial', function () {
     $response->assertSee('Recetas');
     $response->assertSee('Contacto');
 
-
-
 });
 
 it('shows a list of detailed meals', function () {

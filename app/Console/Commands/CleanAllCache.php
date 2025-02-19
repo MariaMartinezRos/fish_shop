@@ -43,4 +43,3 @@ class CleanAllCache extends Command
         $this->info('All caches cleared successfully!');
     }
 }
-

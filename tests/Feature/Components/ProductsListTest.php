@@ -48,7 +48,6 @@ it('includes product links for the admin', function () {
     $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 'admin']);
 
-
     // Act
     $view = $this->actingAs($admin)->blade('<x-products-list :products="$products" />', ['products' => $products]);
 

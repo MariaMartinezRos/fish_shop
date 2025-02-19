@@ -60,7 +60,7 @@ class Transaction extends Model
         if ($tvp) {
             return $query->where('tvp', $tvp);
         }
+
         return $query;
     }
-
 }

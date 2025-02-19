@@ -33,19 +33,19 @@ class StoreFishRequest extends FormRequest
     /**
      * Get the validated data from the request.
      *
-     * @param null $key
-     * @param null $default
-     * @return array
+     * @param  null  $key
+     * @param  null  $default
      */
     public function validated($key = null, $default = null): array
     {
         $validated = parent::validated();
-        if (!isset($validated['type'])) {
+        if (! isset($validated['type'])) {
             $validated['type'] = 'Saltwater';
         }
-        if (!isset($validated['image'])) {
+        if (! isset($validated['image'])) {
             $validated['image'] = null;
         }
+
         return $validated;
     }
 }

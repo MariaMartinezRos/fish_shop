@@ -2,12 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use App\Models\Product;
-use Database\Seeders\ProductSeeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Product>
@@ -21,9 +18,9 @@ class ProductFactory extends Factory
      *
      * @throws \Exception
      */
-        protected $model = Product::class;
+    protected $model = Product::class;
 
-        public function definition(): array
+    public function definition(): array
     {
         return [
             'name' => $this->faker->unique()->name,
@@ -33,14 +30,14 @@ class ProductFactory extends Factory
             'description' => $this->faker->sentence(10),
         ];
     }
+
     public function released(?Carbon $date = null): self
     {
         return $this->state(
             fn (array $attributes) => [
                 'created_at' => $date ?? Carbon::now(),
-                'updated_at' => $date ?? Carbon::now()
+                'updated_at' => $date ?? Carbon::now(),
             ]
         );
     }
-
 }

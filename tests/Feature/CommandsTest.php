@@ -1,8 +1,6 @@
 <?php
+
 use App\Console\Commands\CleanAllCache;
-use App\Console\Commands\CleanProductsTable;
-use App\Models\Category;
-use App\Models\Product;
 use Illuminate\Support\Facades\Artisan;
 
 it('cleans all cache', function () {

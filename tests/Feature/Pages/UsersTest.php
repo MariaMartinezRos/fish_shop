@@ -5,9 +5,6 @@ use App\Models\User;
 
 use function Pest\Laravel\get;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-
 it('returns a successful response for users page', function () {
     // Arrange
     $role = Role::factory()->create(['id' => 1]);
@@ -67,7 +64,7 @@ it('can create a user successfully', function () {
 
     // Act
     $this->actingAs($admin)
-        ->post("users", [
+        ->post('users', [
             'name' => 'Jane Doe',
             'email' => 'example@example.com',
             'password' => '1234567890',
