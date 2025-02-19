@@ -62,4 +62,5 @@ class Transaction extends Model
         }
         return $query;
     }
+
 }

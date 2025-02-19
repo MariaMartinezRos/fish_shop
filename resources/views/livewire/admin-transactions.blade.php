@@ -25,7 +25,6 @@
             </tr>
             </thead>
             <tbody>
-            {{ dd($transactions) }}
             @if($transactions->isEmpty())
                 <p>{{ __('No transactions found')}}.</p>
             @else

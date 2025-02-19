@@ -11,6 +11,7 @@
                 </div>
 
                 <!-- Navigation Links -->
+                @if(Auth::user()->role_id === 'admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('sales')" :active="request()->routeIs('sales')">
                         {{ __('Sales') }}
@@ -28,6 +29,7 @@
                         {{ __('Users') }}
                     </x-nav-link>
                 </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
@@ -85,6 +87,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        @if(Auth::user()->role_id === 'admin')
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('sales')" :active="request()->routeIs('sales')">
                 {{ __('Sales') }}
@@ -98,7 +101,11 @@
             <x-responsive-nav-link :href="route('category')" :active="request()->routeIs('category')">
                 {{ __('Categories') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                {{ __('Users') }}
+            </x-responsive-nav-link>
         </div>
+        @endif
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

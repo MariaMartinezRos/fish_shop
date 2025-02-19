@@ -20,8 +20,11 @@ class AdminTransactions extends Component
             ->ByTVP($this->tvp)
             ->get();
 
+        dd($transactions);
+
         return view('livewire.admin-transactions', compact('transactions'));
     }
+
 
 
 //    public function render()
