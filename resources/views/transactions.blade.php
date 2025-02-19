@@ -19,7 +19,7 @@
                     <div>
                         <div>
                             <label for="tvp">{{ __('Filter by Fish Shop') }}</label>
-                            <select wire:change="filter(value)" id="tvp">
+                            <select wire:model="filtro" id="tvp">
                                 <option value="">{{ __('All') }}</option>
                                 <option value="PESCADERIA BENITO ALHAMA">{{ __('Pescadería Benito')}} ALHAMA</option>
                                 <option value="PESCADERIA BENITO LIBRILLA">{{ __('Pescadería Benito')}} LIBRILLA</option>
