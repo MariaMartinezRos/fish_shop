@@ -53,26 +53,35 @@ class UserController extends Controller
     // Editar usuario
     public function edit(User $user)
     {
-        if ($user->role_id != 1) {
-            return redirect()->route('users.index')->with('error', 'You cannot edit this user');
-        }
+//        if ($user->role_id != 1) {
+//            return redirect()->route('users.index')->with('error', 'You cannot edit this user');
+//        }
         return view('users.edit', compact('user'));
     }
 
     // Actualizar usuario
     public function update(Request $request, User $user)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'role_id' => 'required|in:admin,costumer,employee'
+            'role_id' => 'required|in:1,3,4'
         ]);
+
+        if($validated['role_id'] == 1){
+            $role = 'admin';
+        }elseif($validated['role_id'] == 3){
+            $role = 'employee';
+        }else{
+            $role = 'customer';
+        }
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'role_id' => $request->role_id
+            'role_id' => $role
         ]);
+
 
         return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
@@ -83,13 +92,5 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index')->with('success', 'User deleted successfully');
     }
-
-    // Eliminar TODOS los usuarios
-
-//    public function deleteAll()
-//    {
-//        User::truncate();
-//        return redirect()->route('users.index')->with('success', 'All users deleted successfully');
-//    }
 
 }

@@ -156,6 +156,80 @@ it('searches products by name', function () {
         ->assertSee($product->name);
 });
 
+it('can create a product successfully', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
+    $category = Category::factory()->create();
+
+
+    // Act
+    $this->actingAs($admin)
+        ->post("products", [
+            'name' => 'Salmon noruego',
+            'category_id' => $category->id,
+            'price_per_kg' => 10.5,
+            'stock_kg' => 100,
+            'description' => 'Salmon noruego de la mejor calidad',
+        ])
+        ->assertRedirect('products/1')
+        ->assertSessionHas('success', 'Product created successfully.');
+
+    // Assert
+    $this->assertDatabaseHas('products', [
+        'name' => 'Salmon noruego',
+        'category_id' => $category->id,
+        'price_per_kg' => 10.5,
+        'stock_kg' => 100,
+        'description' => 'Salmon noruego de la mejor calidad',
+    ]);
+});
+
+it('can edit a product successfully', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
+    $category = Category::factory()->create();
+
+    $product = Product::factory()->create(['name' => 'Salmon noruego', 'category_id' => $category->id]);
+
+    //Act
+    $this->actingAs($admin)
+        ->put(route('products.update', $product), [
+            'name' => 'Salmon noruego REBAJADO',
+            'category_id' => $category->id,
+            'price_per_kg' => 10.5,
+            'stock_kg' => 100,
+            'description' => 'Salmon noruego de la mejor calidad',
+        ])
+        ->assertRedirect('products/1')
+        ->assertSessionHas('success', 'Product updated successfully');
+
+    // Assert
+    $this->assertDatabaseHas('products', [
+        'name' => 'Salmon noruego REBAJADO',
+        'category_id' => $category->id,
+        'price_per_kg' => 10.5,
+        'stock_kg' => 100,
+        'description' => 'Salmon noruego de la mejor calidad',
+    ]);
+});
+
+it('can delete a product successfully', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
+    $category = Category::factory()->create();
+
+    $product = Product::factory()->create(['name' => 'Salmon noruego', 'category_id' => $category->id]);
+
+    // Act && Assert
+    $this->actingAs($admin)
+        ->delete("products/{$product->id}")
+        ->assertRedirect('stock')
+        ->assertSessionHas('success', 'Product deleted successfully');
+});
+
 it('sorts products by name', function () {
     // Arrange
     $productA = Product::factory()->create(['name' => 'Apple']);

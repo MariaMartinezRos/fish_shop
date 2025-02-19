@@ -104,45 +104,55 @@ class ProductController extends Controller
         //        Excel::import(new ProductsImport, 'products.xlsx');
 
 //        return redirect('/')->with('success', 'All good!');
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('stock')->with('success', 'Product created successfully.');
 
-    }
-
-    /**
-     * Muestra el formulario para agregar un producto
-     */
-    public function store(Request $request)
-    {
-//        $this->authorize('create', Product::class);
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'category_id' => 'required|integer|exists:categories,id',
-            'price_per_kg' => 'required|numeric',
-            'stock_kg' => 'required|numeric',
-            'description' => 'nullable|string',
-        ]);
-
-        $product = new Product;
-        $product->name = $request->input('name');
-        $product->category_id = $request->input('category_id');
-        $product->price_per_kg = $request->input('price_per_kg');
-        $product->stock_kg = $request->input('stock_kg');
-        $product->description = $request->input('description');
-        $product->save();
-
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
     /**
      * Agrega un producto
      */
-    public function add(Request $request)
+
+
+    public function create()
     {
+        return view('products.create');
+    }
 
-//        $this->authorize('create', Product::class);
+    public function store(Request $request)
+    {
+        // Validación de datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:products',
+            'category_id' => 'required|integer|exists:categories,id',
+            'price_per_kg' => 'required|numeric',
+            'stock_kg' => 'required|numeric',
+            'description' => 'nullable|string',
+        ]);
 
-        $request->validate([
+        // Crear el producto (venta)
+        $product = new Product;
+        $product->name = $validated['name'];
+        $product->category_id = $validated['category_id'];
+        $product->price_per_kg = $validated['price_per_kg'];
+        $product->stock_kg = $validated['stock_kg'];
+        $product->description = $validated['description'];
+
+        // Guardar en base de datos
+        $product->save();
+
+        // Redirigir con mensaje de éxito
+        return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product created successfully.');
+    }
+
+
+    public function edit(Product $product)
+    {
+        return view('products.edit', compact('product'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|integer|exists:categories,id',
             'price_per_kg' => 'required|numeric',
@@ -150,15 +160,46 @@ class ProductController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $product = new Product;
-        $product->name = $request->input('name');
-        $product->category_id = $request->input('category_id');
-        $product->price_per_kg = $request->input('price_per_kg');
-        $product->stock_kg = $request->input('stock_kg');
-        $product->description = $request->input('description');
-        $product->save();
-        return redirect()->route('stock')->with('success', 'Product created successfully.');
+        $product->update([
+            'name' => $validated['name'],
+            'category_id' => $validated['category_id'],
+            'price_per_kg' => $validated['price_per_kg'],
+            'stock_kg' => $validated['stock_kg'],
+            'description' => $validated['description'],
+        ]);
+
+        return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product updated successfully');
     }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return redirect()->route('stock')->with('success', 'Product deleted successfully');
+    }
+
+
+//    public function add(Request $request)
+//    {
+//
+////        $this->authorize('create', Product::class);
+//
+//        $request->validate([
+//            'name' => 'required|string|max:255',
+//            'category_id' => 'required|integer|exists:categories,id',
+//            'price_per_kg' => 'required|numeric',
+//            'stock_kg' => 'required|numeric',
+//            'description' => 'nullable|string',
+//        ]);
+//
+//        $product = new Product;
+//        $product->name = $request->input('name');
+//        $product->category_id = $request->input('category_id' );
+//        $product->price_per_kg = $request->input('price_per_kg');
+//        $product->stock_kg = $request->input('stock_kg');
+//        $product->description = $request->input('description');
+//        $product->save();
+//        return redirect()->route('stock')->with('success', 'Product created successfully.');
+//    }
 
 //     Método para descargar el PDF con todos los productos
     public function downloadProductsPDF()

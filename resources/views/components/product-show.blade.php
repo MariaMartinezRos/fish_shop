@@ -24,8 +24,18 @@
             <div class="mt-6 flex justify-center space-x-4">
 
                 @if(Auth::check() && Auth::user()->role_id === 'admin')
-                <button class="bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600">{{ __('Modify') }}</button>
-                <button class="bg-red-500 text-white px-6 py-3 rounded hover:bg-red-600">{{ __('Delete') }}</button>
+{{--                    <button type="submit" formaction="{{ route('products.edit', ['product' => $product->id]) }}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">--}}
+{{--                        {{ __('Edit') }}--}}
+{{--                    </button>--}}
+{{--                    <button type="submit" formaction="{{ route('products.destroy', ['product' => $product->id]) }}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">--}}
+{{--                        {{ __('Delete') }}--}}
+{{--                    </button>--}}
+                    <a href="{{ route('products.edit', $product) }}" class="text-blue-600 dark:text-blue-400">{{ __('Edit') }}</a>
+                    <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 dark:text-red-400 ml-2">{{ __('Delete') }}</button>
+                    </form>
                 @endif
             </div>
         </div>

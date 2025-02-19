@@ -56,10 +56,11 @@
                     <button type="button" onclick="window.location='{{ route('products.pdf') }}'" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
                         {{ __('Download All Products') }}
                     </button>
-                    <button type="button" onclick="window.location='{{ route('products.add-form') }}'" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
-                        {{ __('Add A Product') }}
-                    </button>
+
                     @if(Auth::check() && Auth::user()->role_id === 'admin')
+                        <button type="button" onclick="window.location='{{ route('products.create') }}'" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                            {{ __('Add A Product') }}
+                        </button>
                     <form action="{{ route('products.import') }}" method="POST" enctype="multipart/form-data" class="flex flex-col items-end gap-4">
                         @csrf
 

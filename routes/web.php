@@ -49,19 +49,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/fish', [FishController::class, 'index'])->name('fish');
         Route::resource('users', UserController::class);
 
+        Route::resource('products', ProductController::class);
+
+        Route::put('/products/{product}', [ProductController::class, 'update'])
+            ->name('products.update');
 
         // Route to display the form
         Route::get('/products/add', function () {
-            return view('products.add');
+            return view('products.create');
         })->middleware(['auth', 'verified'])->name('products.add-form');
 
-// Route to handle the form submission
+        // Route to handle the form submission
         Route::post('/products/add', [ProductController::class, 'add'])
             ->middleware(['auth', 'verified'])
             ->name('products.add');
 
 
-// Route to delete all products
+        // Route to delete all products
         Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
             ->middleware(['auth', 'verified'])
             ->name('products.delete-all');

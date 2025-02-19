@@ -101,7 +101,7 @@ it('can update a user', function () {
     // Arrange
     $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 'admin']);
-    $user = User::factory()->create();
+    $user = User::factory()->create(['name' => 'John Doe', 'email' => 'example@example.com']);
 
     // Act
     $this->actingAs($admin)
@@ -113,4 +113,4 @@ it('can update a user', function () {
         ])
         ->assertRedirect('users')
         ->assertSessionHas('success', 'User updated successfully');
-})->todo();
+});

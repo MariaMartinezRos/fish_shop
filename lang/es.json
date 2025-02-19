@@ -269,9 +269,13 @@
     "To return to our website, click on the following link:": "Para volver a nuestro sitio web, haz clic en el siguiente enlace:",
     "If you need any further assistance, please don't hesitate to contact us.": "Si necesitas más ayuda, no dudes en contactarnos.",
     "Contact details": "Detalles de contacto",
-    "User created successfully": "Usuario creado con éxito"
-
-
-
+    "User created successfully": "Usuario creado con éxito",
+    "Stock (Kg)": "Existencias (Kg)",
+    "Price (€/Kg)": "Precio (€/Kg)",
+    "Add Product": "Agregar Producto",
+    "Product Name": "Nombre del Producto",
+    "Edit User": "Editar Usuario",
+    "Product deleted successfully": "Producto eliminado con éxito",
+    "Update Product": "Actualizar Producto"
 }
 

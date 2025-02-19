@@ -64,10 +64,9 @@
                             <label for="role_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Role') }}</label>
                             <select name="role_id" id="role_id" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
                                 <option value="">{{ __('Select Role') }}</option>
-                                <!-- Add your roles here -->
-                                <option value="1" {{ $user->role_id == 'admin' ? 'selected' : '' }}>{{ __('Admin') }}</option>
-                                <option value="2" {{ $user->role_id == 'employee' ? 'selected' : '' }}>{{ __('Employee') }}</option>
-                                <option value="2" {{ $user->role_id == 'customer' ? 'selected' : '' }}>{{ __('Customer') }}</option>
+                                <option value="1">{{ __('Admin') }}</option>
+                                <option value="3">{{ __('Employee') }}</option>
+                                <option value="4">{{ __('Customer') }}</option>
                             </select>
                         </div>
 
