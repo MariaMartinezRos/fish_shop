@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ProductsExport;
 use App\Imports\FishesImport;
 use App\Imports\ProductsImport;
+use App\Models\Fish;
 use App\Models\Product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Client\ConnectionException;
@@ -74,4 +75,19 @@ class FishController extends Controller
         return redirect()->route('fish')->with('success', 'Fish list created successfully.');
     }
 
+    /**
+     * show the view create
+     */
+    public function create(){
+        return view('fishes.create');
+    }
+
+    /**
+     * show the view edit
+     */
+    public function edit($id)
+    {
+        $fish = Fish::find($id);
+        return view('fishes.edit', compact('fish'));
+    }
 }

@@ -276,6 +276,12 @@
     "Product Name": "Nombre del Producto",
     "Edit User": "Editar Usuario",
     "Product deleted successfully": "Producto eliminado con éxito",
-    "Update Product": "Actualizar Producto"
+    "Update Product": "Actualizar Producto",
+    "Edit Fish": "Editar Pescado",
+    "Update Fish": "Actualizar Pescado",
+    "Fish Name": "Nombre del Pescado",
+    "Fish Type": "Tipo de Pescado",
+    "Fish Image": "Imagen del Pescado",
+    "Create Fish": "Crear Pescado"
 }
 

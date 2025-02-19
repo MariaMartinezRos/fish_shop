@@ -70,6 +70,7 @@ class ProductController extends Controller
 
         return view('products.show', compact('product'));
     }
+
     /**
      * Muestra un producto en particular al cliente
      */
@@ -101,9 +102,6 @@ class ProductController extends Controller
 
         Excel::import(new ProductsImport, $request->file('file'));
 
-        //        Excel::import(new ProductsImport, 'products.xlsx');
-
-//        return redirect('/')->with('success', 'All good!');
         return redirect()->route('stock')->with('success', 'Product created successfully.');
 
     }
@@ -111,8 +109,6 @@ class ProductController extends Controller
     /**
      * Agrega un producto
      */
-
-
     public function create()
     {
         return view('products.create');
@@ -144,7 +140,9 @@ class ProductController extends Controller
         return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product created successfully.');
     }
 
-
+    /**
+     * Edita un producto
+     */
     public function edit(Product $product)
     {
         return view('products.edit', compact('product'));
@@ -171,37 +169,18 @@ class ProductController extends Controller
         return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product updated successfully');
     }
 
+    /**
+     * Elimina un producto
+     */
     public function destroy(Product $product)
     {
         $product->delete();
         return redirect()->route('stock')->with('success', 'Product deleted successfully');
     }
 
-
-//    public function add(Request $request)
-//    {
-//
-////        $this->authorize('create', Product::class);
-//
-//        $request->validate([
-//            'name' => 'required|string|max:255',
-//            'category_id' => 'required|integer|exists:categories,id',
-//            'price_per_kg' => 'required|numeric',
-//            'stock_kg' => 'required|numeric',
-//            'description' => 'nullable|string',
-//        ]);
-//
-//        $product = new Product;
-//        $product->name = $request->input('name');
-//        $product->category_id = $request->input('category_id' );
-//        $product->price_per_kg = $request->input('price_per_kg');
-//        $product->stock_kg = $request->input('stock_kg');
-//        $product->description = $request->input('description');
-//        $product->save();
-//        return redirect()->route('stock')->with('success', 'Product created successfully.');
-//    }
-
-//     Método para descargar el PDF con todos los productos
+    /**
+     * Descarga todos los productos en un archivo PDF
+     */
     public function downloadProductsPDF()
     {
         // Obtener todos los productos de la base de datos
@@ -226,7 +205,6 @@ class ProductController extends Controller
     {
 //        $this->authorize('delete', Product::class);
 
-        //show a wizard to confirm that you want to delete all products
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Product::truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');

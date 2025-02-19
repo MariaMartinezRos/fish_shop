@@ -76,6 +76,13 @@ class FishController extends Controller
 
     public function update(Fish $fish, StoreFishRequest $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'type' => 'required|string',
+            'image' => 'nullable',
+        ]);
+
         $fish->update($request->all());
 
         return new FishResource($fish);

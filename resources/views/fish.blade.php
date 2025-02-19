@@ -10,27 +10,12 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                 @if(Auth::check() && Auth::user()->role_id === 'admin')
-
-                    <form action="#" method="POST" enctype="multipart/form-data" class="flex flex-col items-end gap-4">
-                        @csrf
-                        <input type="file" name="file" accept=".xlsx"
-                               class="file:border file:border-green-500 file:bg-green-100 file:text-green-700 file:rounded-lg file:px-4 file:py-2">
-
-                        <div class="flex gap-2">
-
-                            <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
-                                {{ __('Add A Fish') }}
-                            </button>
-
-                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
-                                {{ __('Upload XLSX File') }}
-                            </button>
-
-                            <button type="submit" formaction="{{ route('products.delete-all') }}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                                {{ __('Delete All Records') }}
-                            </button>
-                        </div>
-                    </form>
+                        <button type="button" onclick="window.location='{{ route('fishes.create') }}'" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                            {{ __('Add A Fish') }}
+                        </button>
+{{--                        <button type="submit" formaction="{{ route('fishes.delete-all') }}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">--}}
+{{--                            {{ __('Delete All Records') }}--}}
+{{--                        </button>--}}
                 @endif
 
                 </div>
@@ -65,15 +50,22 @@
                             </tr>
                         @else
                             @foreach($fishes['data'] as $fish)
-{{--                                {{dd($fishes)}}--}}
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <img src="{{ $fish['image'] ?? asset('images/default.png') }}" alt="{{ $fish['name'] }}" class="w-12 h-12 object-cover rounded-md">
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $fish['name'] }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $fish['description'] }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ \Str::words($fish['description'], 5, '...') }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $fish['type'] }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex justify-between">
+                                            <a href="{{ route('fishes.edit', ['fish' => $fish['id']]) }}" class="text-blue-600 dark:text-blue-400">{{ __('Edit') }}</a>
+                                            <form action="{{ url('api_v2/fishes/' . $fish['id']) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 dark:text-red-400 ml-2">{{ __('Delete') }}</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

@@ -70,6 +70,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->middleware(['auth', 'verified'])
             ->name('products.delete-all');
 
+        //Route to access the fishes.create view
+        Route::get('/fishes/create', [FishController::class, 'create'])
+            ->name('fishes.create');
+
+        //Route to acces the fishes.edit view
+        Route::get('/fishes/{fish}/edit', [FishController::class, 'edit'])
+            ->name('fishes.edit');
+
 
     });
 });

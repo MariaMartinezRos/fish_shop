@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <a href="{{ route('fishes.index' ) }}">
+            <a href="{{ route('fish' ) }}">
                 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                     <img src="{{ asset('images/go-back.png') }}" alt="{{ __('Go Back') }}" >
                     {{ __('Go Back') }}
@@ -19,7 +19,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1 class="text-2xl font-bold mb-4">{{ __('Create Fish') }}</h1>
 
-                    <form action="{{ route('fishes.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('api_v2/fishes') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4">
