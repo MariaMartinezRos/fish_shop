@@ -13,29 +13,23 @@
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    @if(isset($transactions) && count($transactions) > 0)
-{{--                        <div class="mt-4">--}}
-{{--                            <x-tertiary-button>--}}
-{{--                                {{ __('ALHAMA') }}--}}
-{{--                            </x-tertiary-button>--}}
-{{--                            <x-tertiary-button>--}}
-{{--                                {{ __('LIBRILLA') }}--}}
-{{--                            </x-tertiary-button>--}}
-{{--                        </div>--}}
-                        @foreach($transactions as $transaction)
-                            <h2>{{ __("TPV: ") }}{{ $transaction->tpv }}</h2><br/>
-                            <h2>{{ __("Serial Number: ") }}{{ $transaction->serial_number }}</h2><br/>
-                            <h2>{{ __("Terminal Number: ") }}{{ $transaction->terminal_number }}</h2><br/>
-                            <h2>{{ __("Operation: ") }}{{ $transaction->operation }}</h2><br/>
-                            <h2>{{ __("Amount (€): ") }}{{ $transaction->amount }}</h2><br/>
-                            <h2>{{ __("Card Number: ") }}{{ $transaction->card_number }}</h2><br/>
-                            <h2>{{ __("Date/Time: ") }}{{ $transaction->date_time }}</h2><br/>
-                            <h2>{{ __("Transaction Number: ") }}{{ $transaction->transaction_number }}</h2><br/>
-                            <h2>{{ __("Sale ID: ") }}{{ $transaction->sale_id }}</h2><br/><br/>
-                        @endforeach
-                    @else
-                        <p>{{ __("No products found.") }}</p>
-                    @endif
+                    @livewire('admin-transactions')
+
+                    {{--                    @if(isset($transactions) && count($transactions) > 0)--}}
+{{--                        @foreach($transactions as $transaction)--}}
+{{--                            <h2>{{ __("TPV: ") }}{{ $transaction->tpv }}</h2><br/>--}}
+{{--                            <h2>{{ __("Serial Number: ") }}{{ $transaction->serial_number }}</h2><br/>--}}
+{{--                            <h2>{{ __("Terminal Number: ") }}{{ $transaction->terminal_number }}</h2><br/>--}}
+{{--                            <h2>{{ __("Operation: ") }}{{ $transaction->operation }}</h2><br/>--}}
+{{--                            <h2>{{ __("Amount (€): ") }}{{ $transaction->amount }}</h2><br/>--}}
+{{--                            <h2>{{ __("Card Number: ") }}{{ $transaction->card_number }}</h2><br/>--}}
+{{--                            <h2>{{ __("Date/Time: ") }}{{ $transaction->date_time }}</h2><br/>--}}
+{{--                            <h2>{{ __("Transaction Number: ") }}{{ $transaction->transaction_number }}</h2><br/>--}}
+{{--                            <h2>{{ __("Sale ID: ") }}{{ $transaction->sale_id }}</h2><br/><br/>--}}
+{{--                        @endforeach--}}
+{{--                    @else--}}
+{{--                        <p>{{ __("No products found.") }}</p>--}}
+{{--                    @endif--}}
                 </div>
             </div>
         </div>

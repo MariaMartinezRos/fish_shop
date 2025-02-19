@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -49,5 +50,16 @@ class Transaction extends Model
         $newTransaction->save();
 
         return $newTransaction;
+    }
+
+    /**
+     * Scope a query to filter by TVP.
+     */
+    public function scopeByTVP(Builder $query, $tvp): Builder
+    {
+        if ($tvp) {
+            return $query->where('tvp', $tvp);
+        }
+        return $query;
     }
 }

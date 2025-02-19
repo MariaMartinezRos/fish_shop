@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Role;
+use App\Models\Transaction;
 use App\Models\User;
 
 use function Pest\Laravel\get;
@@ -57,3 +58,24 @@ it('can be accessed by admin', function () {
         ->assertOk()
         ->assertSeeText('Cliente');
 });
+
+it('only returns transactions filtered by tvp', function () {
+    // Arrange
+    Transaction::factory(['tvp' => 'PESCADERIA BENITO ALHAMA'])->create();
+    $role = Role::factory()->create(['id' => 1]);
+    $admin = User::factory()->create(['role_id' => 'admin']);
+
+    // Act
+    $this->actingAs($admin)
+        ->get(route('transaction'))
+        ->assertOk()
+        ->assertSeeText('PESCADERIA BENITO ALHAMA');
+
+    //Act
+    $this->assertDatabaseCount(Transaction::class, 0);
+
+    //Act
+    $this->artisan('db:seed');
+    $this->assertDatabaseCount(Transaction::class, 40);
+
+})->todo();
