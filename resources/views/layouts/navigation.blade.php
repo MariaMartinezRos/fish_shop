@@ -6,7 +6,6 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('sales') }}">
-{{--                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />--}}
                         <img src="{{ asset('images/android-chrome-192x192.png') }}" alt="Pescaderias Benito" width="50" height="50">
                     </a>
                 </div>
@@ -24,9 +23,6 @@
                     </x-nav-link>
                     <x-nav-link :href="route('category')" :active="request()->routeIs('category')">
                         {{ __('Categories') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('fish')" :active="request()->routeIs('fish')">
-                        {{ __('Fishes') }}
                     </x-nav-link>
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Users') }}
@@ -101,9 +97,6 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('category')" :active="request()->routeIs('category')">
                 {{ __('Categories') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('fish')" :active="request()->routeIs('fish')">
-                {{ __('Fishes') }}
             </x-responsive-nav-link>
         </div>
 

@@ -25,9 +25,6 @@ Route::get('/contact', function () {
     return view('dashboard.contact');
 })->name('contact');
 
-Route::get('/discover', [FishController::class, 'indexClient'])
-    ->name('discover');
-
 Route::get('/recipes', [RecipeController::class, 'showRecipes'])
     ->name('recipes');
 
@@ -46,7 +43,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
         Route::get('/category', [CategoryController::class, 'index'])->name('category');
         Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
-        Route::get('/fish', [FishController::class, 'index'])->name('fish');
         Route::resource('users', UserController::class);
 
         Route::resource('products', ProductController::class);
@@ -69,16 +65,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
             ->middleware(['auth', 'verified'])
             ->name('products.delete-all');
-
-        //Route to access the fishes.create view
-        Route::get('/fishes/create', [FishController::class, 'create'])
-            ->name('fishes.create');
-
-        //Route to acces the fishes.edit view
-        Route::get('/fishes/{fish}/edit', [FishController::class, 'edit'])
-            ->name('fishes.edit');
-
-
     });
 });
 

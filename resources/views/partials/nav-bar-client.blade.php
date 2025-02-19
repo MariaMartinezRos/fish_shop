@@ -47,11 +47,6 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('discover') }}" class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                    {{ __('Discover') }}
-                </a>
-            </li>
-            <li>
                 <a href="{{ route('contact') }}" class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                     {{ __('Contact') }}
                 </a>
@@ -59,12 +54,6 @@
             @if (Route::has('login'))
                 <nav class="-mx-3 flex flex-1 justify-end">
                     @auth
-                        {{--                            <a--}}
-                        {{--                                href="{{ url('/') }}"--}}
-                        {{--                                class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"--}}
-                        {{--                            >--}}
-                        {{--                                {{__('Home')}}--}}
-                        {{--                            </a>--}}
                         <!-- Settings Dropdown -->
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <x-dropdown align="right" width="48">
@@ -126,6 +115,4 @@
         </ul>
     </div>
 </nav>
-{{--</div>--}}
-{{--</body>--}}
-{{--</html>--}}
+
