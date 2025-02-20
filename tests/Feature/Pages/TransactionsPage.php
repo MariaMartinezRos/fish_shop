@@ -1,9 +1,6 @@
 <?php
 
-use App\Livewire\TransactionSearcher;
-use Livewire\Livewire;
 use App\Models\Role;
-use App\Models\Transaction;
 use App\Models\User;
 
 use function Pest\Laravel\get;

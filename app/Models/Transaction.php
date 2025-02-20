@@ -52,7 +52,6 @@ class Transaction extends Model
         return $newTransaction;
     }
 
-
     /**
      * Scope a query to filter by TVP.
      */
@@ -60,5 +59,4 @@ class Transaction extends Model
     {
         return $query->where('tpv', 'like', "%{$tpv}%");
     }
-
 }

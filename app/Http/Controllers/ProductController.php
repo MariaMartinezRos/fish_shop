@@ -85,14 +85,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Exporta los productos a un archivo Excel
-     */
-    public function export()
-    {
-        return Excel::download(new ProductsExport, 'products.xlsx');
-    }
-
-    /**
      * Importa los productos desde un archivo Excel
      */
     public function import(Request $request)

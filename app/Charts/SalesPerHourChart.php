@@ -50,8 +50,5 @@ class SalesPerHourChart extends Chart
                 'borderWidth' => 1,
             ]);
 
-        // Añadir un título y un título para el eje y
-        //        $this->title('Sales per Hour');
-
     }
 }

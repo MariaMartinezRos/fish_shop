@@ -30,8 +30,6 @@ class RecipeController extends Controller
             $detailedMeals[] = $mealDetails['meals'][0];
         }
 
-        //        dd($detailedMeals);
-
         return view('dashboard.recipes', compact('detailedMeals'));
     }
 }

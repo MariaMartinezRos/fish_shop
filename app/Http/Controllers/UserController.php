@@ -10,7 +10,6 @@ class UserController extends Controller
 {
     use AuthorizesRequests;
 
-
     // Listar usuarios
     public function index()
     {
