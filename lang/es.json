@@ -284,6 +284,17 @@
     "Fish Image": "Imagen del Pescado",
     "Create Fish": "Crear Pescado",
     "Filter by Fish Shop": "Filtrar por Pescadería",
-    "All": "Todos"
+    "All": "Todos",
+    "TPV": "TPV",
+    "Serial Number": "Número de Serie",
+    "Terminal Number": "Número de Terminal",
+    "Operation": "Operación",
+    "Amount (€)": "Cantidad (€)",
+    "Card Number": "Número de Tarjeta",
+    "Date Time": "Fecha/Hora",
+    "Transaction Number": "Número de Transacción",
+    "Sale ID": "ID de Venta",
+    "Created At": "Creado...",
+    "Updated At": "Actualizado..."
 }
 

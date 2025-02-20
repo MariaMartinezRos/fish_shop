@@ -293,7 +293,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Transaction Handler
+    | TransactionSearcher Handler
     |--------------------------------------------------------------------------
     |
     | By default the import is wrapped in a transaction. This is useful

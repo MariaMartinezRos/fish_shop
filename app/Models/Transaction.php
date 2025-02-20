@@ -23,7 +23,7 @@ class Transaction extends Model
     ];
 
     /**
-     * Get the user that owns the Transaction
+     * Get the user that owns the TransactionSearcher
      */
     public function user(): BelongsTo
     {
@@ -56,12 +56,9 @@ class Transaction extends Model
     /**
      * Scope a query to filter by TVP.
      */
-    public function scopeByTVP(Builder $query, $tvp): Builder
+    public function scopeSearch(Builder $query, $tpv): Builder
     {
-        if ($tvp) {
-            return $query->where('tvp', $tvp);
-        }
-
-        return $query;
+        return $query->where('tpv', 'like', "%{$tpv}%");
     }
+
 }

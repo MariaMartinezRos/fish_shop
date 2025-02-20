@@ -8,7 +8,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\AdminTransactions;
 use App\Http\Middleware\AdminMiddleware;
+use App\Livewire\TransactionSearcher;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,7 +41,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/sales', [TransactionController::class, 'showSales'])->name('sales');
         Route::get('/stock', [ProductController::class, 'index'])->name('stock');
-        Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
+        Route::get('/transaction', TransactionSearcher::class)->name('transaction');
+//        Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
         Route::get('/category', [CategoryController::class, 'index'])->name('category');
         Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
         Route::resource('users', UserController::class);
