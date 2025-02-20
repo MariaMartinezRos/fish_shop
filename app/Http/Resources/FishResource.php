@@ -18,7 +18,7 @@ class FishResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => $this->image,
-            'type' => $this->type,
+            'type' => $this->typeWater->pluck('type'),
             'description' => $this->description,
         ];
     }

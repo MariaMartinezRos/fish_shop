@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFishRequest;
 use App\Http\Resources\FishResource;
 use App\Models\Fish;
+use App\Models\TypeWater;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
@@ -83,6 +84,16 @@ class FishController extends Controller
         }
 
         $fish = Fish::create($data);
+
+        // Find the corresponding ID in the type_water table
+        $typeWater = TypeWater::firstOrCreate(['type' => $request->input('type')]);
+
+
+        if ($typeWater) {
+            // Attach the type ID to the pivot table
+            $fish->typeWater()->attach($typeWater->id);
+        }
+//        $fish->typeWater()->sync($request->input('type'));
 
         return new FishResource($fish);
     }
