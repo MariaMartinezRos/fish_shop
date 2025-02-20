@@ -2,13 +2,11 @@
     <div class="p-6 bg-white shadow-lg rounded-lg">
         <div class="mb-4">
             <label for="tpv" class="block text-lg font-semibold text-gray-700">{{ __('Filter by Fish Shop') }}</label>
-            <input type="text" wire:model.live="tpv" id="tpv" placeholder="{{ __('Search by TPV') }}">
-            <p>VALOR: {{ $tpv }}</p>
-            {{--        <select wire:model="tpv" id="tpv" class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">--}}
-            {{--            <option value="">{{ __('All') }}</option>--}}
-            {{--            <option value="PESCADERIA BENITO ALHAMA">{{ __('Pescadería Benito')}} ALHAMA</option>--}}
-            {{--            <option value="PESCADERIA BENITO LIBRILLA">{{ __('Pescadería Benito')}} LIBRILLA</option>--}}
-            {{--        </select>--}}
+                    <select wire:model.live="tpv" id="tpv" class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">{{ __('All') }}</option>
+                        <option value="PESCADERIA BENITO ALHAMA">{{ __('Pescadería Benito')}} ALHAMA</option>
+                        <option value="PESCADERIA BENITO LIBRILLA">{{ __('Pescadería Benito')}} LIBRILLA</option>
+                    </select>
         </div>
 
         <div class="overflow-x-auto">
@@ -24,8 +22,7 @@
                     <th class="px-4 py-2 text-left">{{ __('Card Number') }}</th>
                     <th class="px-4 py-2 text-left">{{ __('Date Time') }}</th>
                     <th class="px-4 py-2 text-left">{{ __('Transaction Number') }}</th>
-                    <th class="px-4 py-2 text-left">{{ __('Sale ID') }}</th>
-                    <th class="px-4 py-2 text-left">{{ __('Created At') }}</th>
+{{--                    <th class="px-4 py-2 text-left">{{ __('Created At') }}</th>--}}
                     <th class="px-4 py-2 text-left">{{ __('Updated At') }}</th>
                 </tr>
                 </thead>
@@ -46,8 +43,7 @@
                             <td class="px-4 py-2">**** **** **** {{ substr($transaction->card_number, -4) }}</td>
                             <td class="px-4 py-2">{{ $transaction->date_time }}</td>
                             <td class="px-4 py-2">{{ $transaction->transaction_number }}</td>
-                            <td class="px-4 py-2">{{ $transaction->sale_id }}</td>
-                            <td class="px-4 py-2 text-gray-500">{{ $transaction->created_at->format('d M Y, H:i') }}</td>
+{{--                            <td class="px-4 py-2 text-gray-500">{{ $transaction->created_at->format('d M Y, H:i') }}</td>--}}
                             <td class="px-4 py-2 text-gray-500">{{ $transaction->updated_at->format('d M Y, H:i') }}</td>
                         </tr>
                     @endforeach

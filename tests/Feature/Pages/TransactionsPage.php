@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\TransactionSearcher;
+use Livewire\Livewire;
 use App\Models\Role;
 use App\Models\Transaction;
 use App\Models\User;
@@ -58,23 +60,17 @@ it('can be accessed by admin', function () {
         ->assertSeeText('Cliente');
 });
 
-it('only returns transactions filtered by tvp', function () {
+it('displays transactions correctly', function () {
+    // Act
+    $this->artisan('db:seed');
+
     // Arrange
-    Transaction::factory(['tvp' => 'PESCADERIA BENITO ALHAMA'])->create();
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 'admin']);
 
-    // Act
+    // Assert
     $this->actingAs($admin)
         ->get(route('transaction'))
         ->assertOk()
-        ->assertSeeText('PESCADERIA BENITO ALHAMA');
-
-    //Act
-    $this->assertDatabaseCount(Transaction::class, 0);
-
-    //Act
-    $this->artisan('db:seed');
-    $this->assertDatabaseCount(Transaction::class, 40);
-
-})->todo();
+        ->assertSeeText('PESCADERIA BENITO ALHAMA')
+        ->assertSeeText('PESCADERIA BENITO LIBRILLA');
+});
