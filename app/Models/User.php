@@ -67,22 +67,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Check if the user has a specific permission.
-     *
-     * @param  string  $string  Permission name
-     */
-    public function hasPermissionTo(string $string): bool
-    {
-        //        if($string === 'create product' || $string === 'edit product' || $string === 'delete product' || $string === 'view product') {
-        //            return $this->role_1 === '1';
-        //        }else if($string === 'view clients product') {
-        //            return true;
-        //        }
-        //        return false;
-        return true;
-    }
-
-    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>

@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    use AuthorizesRequests;
+
+
     // Listar usuarios
     public function index()
     {
+
+        $this->authorize('view', User::class);
+
         $users = User::all();
 
         return view('users.index', compact('users'));
@@ -18,12 +25,16 @@ class UserController extends Controller
     // Crear usuario
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return view('users.create');
     }
 
     // Guardar usuario
     public function store(Request $request)
     {
+        $this->authorize('create', User::class);
+
         // Validación de datos
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -50,15 +61,16 @@ class UserController extends Controller
     // Editar usuario
     public function edit(User $user)
     {
-        //        if ($user->role_id != 1) {
-        //            return redirect()->route('users.index')->with('error', 'You cannot edit this user');
-        //        }
+        $this->authorize('update', User::class);
+
         return view('users.edit', compact('user'));
     }
 
     // Actualizar usuario
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', User::class);
+
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,
@@ -85,6 +97,8 @@ class UserController extends Controller
     // Eliminar UN usuario
     public function destroy(User $user)
     {
+        $this->authorize('delete', User::class);
+
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully');
