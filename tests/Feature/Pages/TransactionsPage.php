@@ -71,3 +71,15 @@ it('displays transactions correctly', function () {
         ->assertSeeText('PESCADERIA BENITO ALHAMA')
         ->assertSeeText('PESCADERIA BENITO LIBRILLA');
 });
+
+it('renders the transaction component correctly', function () {
+    // Arrange
+    $admin = User::factory()->create(['role_id' => 'admin']);
+
+    // Act
+    $response = $this->actingAs($admin)
+        ->get(route('transaction'));
+
+    // Assert
+    $response->assertSeeLivewire('transaction-searcher');
+});

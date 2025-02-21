@@ -174,7 +174,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-//        $this->authorize('view', User::class);
+        $this->authorize('view', User::class);
 
         $search = $request->input('search');
 
@@ -202,7 +202,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-//        $this->authorize('view', User::class);
+        $this->authorize('view', User::class);
 
         $product = Product::findOrFail($id);
 
@@ -226,7 +226,7 @@ class ProductController extends Controller
      */
     public function import(Request $request)
     {
-//        $this->authorize('create', User::class);
+        $this->authorize('create', User::class);
 
         $request->validate([
             'file' => 'required|mimes:xlsx',
@@ -243,14 +243,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-//        $this->authorize('create', User::class);
+        $this->authorize('create', User::class);
 
         return view('products.create');
     }
 
     public function store(ProductRequest $request)
     {
-//        $this->authorize('create', User::class);
+        $this->authorize('create', User::class);
 
         $validated = $request->validated();
 
@@ -274,16 +274,15 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-//        $this->authorize('update', User::class);
+        $this->authorize('update', User::class);
 
         return view('products.edit', compact('product'));
     }
 
     public function update(ProductRequest $request, Product $product)
     {
-//        $this->authorize('update', User::class);
+        $this->authorize('update', User::class);
 
-        // No need for explicit validation, it's handled by ProductRequest
         $validated = $request->validated();
 
         $product->update([
@@ -302,47 +301,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-//        $this->authorize('delete', User::class);
+        $this->authorize('delete', User::class);
 
         $product->delete();
 
         return redirect()->route('stock')->with('success', 'Product deleted successfully');
     }
-//
-//    /**
-//     * Descarga todos los productos en un archivo PDF
-//     */
-//    public function downloadProductsPDF()
-//    {
-//
-//        // Obtener todos los productos de la base de datos
-//        $products = Product::all();
-//
-//        // Generar el PDF usando la vista y pasando los productos
-//        $pdf = PDF::loadView('pdf.products', compact('products'));
-//
-//        // Set page numbers in the footer
-//        $pdf->setOption('footer-right', 'Page {PAGE_NUM} of {PAGE_COUNT}');
-//        $pdf->setOption('footer-font-size', 10);
-//
-//        // Descargar el PDF
-//        return $pdf->download('products.pdf');
-//    }
-
-//    /**
-//     * Descarga todos los productos en un archivo PDF
-//     */
-//    public function downloadProductsPDF2()
-//    {
-//
-//        $products = Product::all();
-//
-//        // Carga la vista y pasa los datos de los productos
-//        $pdf = PDF::loadView('pdf.products', compact('products'));
-//
-//        // Descargar el archivo PDF con el nombre 'products.pdf'
-//        return $pdf->download('products.pdf');
-//    }
 
     //DANGER ZONE
     /**
