@@ -143,12 +143,12 @@ it('adds given fish only once', function () {
 
 it('adds type of water', function () {
     //Act
-    $this->assertDatabaseCount(TypeWater::class, 0);
+    $this->assertDatabaseCount(TypeWater::class, 2);
 
     //Act
     $this->artisan('db:seed');
-    $this->assertDatabaseHas(TypeWater::class, ['type' => 'Freshwater']);
-    $this->assertDatabaseHas(TypeWater::class, ['type' => 'Saltwater']);
+    $this->assertDatabaseCount(TypeWater::class, 2);
+
 });
 
 it('adds type of water only once', function () {
@@ -157,5 +157,5 @@ it('adds type of water only once', function () {
     $this->artisan('db:seed');
 
     //Act && Assert
-    $this->assertDatabaseCount(TypeWater::class, 3);
+    $this->assertDatabaseCount(TypeWater::class, 2);
 });

@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('type');
             $table->timestamps();
         });
+
+        DB::table('type_water')->insert([
+            ['type' => 'Freshwater'],
+            ['type' => 'Saltwater'],
+        ]);
     }
 
     /**
