@@ -22,12 +22,20 @@ class UserRequest extends FormRequest
         // Verificamos si es una actualización o una creación de usuario
         $userId = $this->route('user') ? $this->route('user')->id : null;
 
-        return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,'.$userId,
-            'password' => $this->isMethod('post') ? 'required|min:8' : 'nullable|min:8',
-            'role_id' => 'required|in:1,3,4',
-        ];
+            return [
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email,'.$userId,
+                'password' => $this->isMethod('post') ? 'required|min:8' : 'nullable|min:8',
+                'password2' => $this->isMethod('post') ? 'required|same:password' : 'nullable|same:password',
+                'role_id' => 'required|in:1,3,4',
+            ];
+
+//        return [
+//            'name' => 'required|string|max:255',
+//            'email' => 'required|email|unique:users,email,'.$userId,
+//            'password' => $this->isMethod('post') ? 'required|min:8' : 'nullable|min:8',
+//            'role_id' => 'required|in:1,3,4',
+//        ];
     }
 
     /**
@@ -42,6 +50,8 @@ class UserRequest extends FormRequest
             'email.unique' => 'Este correo ya está en uso.',
             'password.required' => 'La contraseña es obligatoria para nuevos usuarios.',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password2.required' => 'Debe confirmar la contraseña.',
+            'password2.same' => 'Las contraseñas no coinciden.',
             'role_id.required' => 'Debes seleccionar un rol válido.',
             'role_id.in' => 'El rol seleccionado no es válido.',
         ];

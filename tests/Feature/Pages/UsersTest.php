@@ -68,6 +68,7 @@ it('can create a user successfully', function () {
             'name' => 'Jane Doe',
             'email' => 'example@example.com',
             'password' => '1234567890',
+            'password2' => '1234567890',
             'role_id' => $role->id,
         ])
         ->assertRedirect('users')
@@ -105,9 +106,9 @@ it('can update a user', function () {
         ->put("users/{$user->id}", [
             'name' => 'Jane Doe',
             'email' => 'example@example.com',
-            'password' => '1234567890',
             'role_id' => 4,
         ])
         ->assertRedirect('users')
         ->assertSessionHas('success', 'Usuario actualizado correctamente');
 });
+

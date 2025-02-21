@@ -68,6 +68,18 @@
                         @enderror
 
                         <div class="mb-4">
+                            <label for="password2" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Password Again') }}</label>
+                            <input type="password" name="password2" id="password2" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                        </div>
+
+                        @error('password2')
+                        <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
+                            <p>{{ $message }}</p>
+                        </div>
+                        @enderror
+
+
+                        <div class="mb-4">
                             <label for="role_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Role') }}</label>
                             <select name="role_id" id="role_id" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
                                 <option value="">{{ __('Select Role') }}</option>

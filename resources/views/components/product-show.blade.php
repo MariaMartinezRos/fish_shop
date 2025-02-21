@@ -12,7 +12,7 @@
             <!-- Nombre centrado y grande -->
             <div class="flex items-center justify-center">
                 <h1 class="text-4xl font-bold">{{ $product['name'] }}</h1>
-                <img src="{{ asset('images/'.$category->id.'.png') }}" alt="{{ __('Category of the fish') }}"
+                <img src="{{ asset('images/'.$product['category_id'].'.png') }}" alt="{{ __('Category of the fish') }}"
                      class="h-6 w-6 ml-2"
                      onerror="this.onerror=null; this.src='{{ asset('images/0.png') }}';">
             </div>

@@ -30,9 +30,9 @@ it('updates existing products', function () {
     // Assert
     $this->assertDatabaseHas(Product::class, [
         'name' => 'Existing Product',
-        'category_id' => 1, // Assuming the new category_id is 2
-        'price_per_kg' => 100, // Assuming the new price_per_kg is 100
-        'stock_kg' => 50, // Assuming the new stock_kg is 50
-        'description' => 'Updated description', // Assuming the new description
+        'category_id' => 1,
+        'price_per_kg' => 100,
+        'stock_kg' => 50,
+        'description' => 'Updated description',
     ]);
 })->todo();
