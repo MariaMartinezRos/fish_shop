@@ -93,7 +93,6 @@ class FishController extends Controller
             // Attach the type ID to the pivot table
             $fish->typeWater()->attach($typeWater->id);
         }
-//        $fish->typeWater()->sync($request->input('type'));
 
         return new FishResource($fish);
     }

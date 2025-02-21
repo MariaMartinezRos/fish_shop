@@ -21,21 +21,5 @@ class ProductSeeder extends Seeder
         return Product::exists();
     }
 
-    //    public static function getProduct(): Product
-    //    {
-    //        //get all products
-    //
-    //        $products = Product::all();
-    //
-    //        // get one product in random
-    //        $product = $products->random();
-    //
-    //        //        $product = $products->first();
-    //
-    //        if (! $product) {
-    //            throw new \Exception(__('No products found.'));
-    //        }
-    //
-    //        return $product;
-    //    }
+
 }
