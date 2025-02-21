@@ -27,7 +27,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data": [{"id": 1, "name": "Salmon", "type": "Freshwater"}]}'
+        content: '{"data": [{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}]}'
         headers: []
         description: ''
         custom: []
@@ -58,7 +58,7 @@ endpoints:
         name: fish_id
         description: 'The ID of the fish.'
         required: true
-        example: 1
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -75,7 +75,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      fish_id: 1
+      fish_id: 2
       fish: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -85,7 +85,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"id": 1, "name": "Salmon", "type": "Freshwater"}'
+        content: '{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}'
         headers: []
         description: ''
         custom: []
@@ -176,7 +176,7 @@ endpoints:
     responses:
       -
         status: 201
-        content: '{"id": 2, "name": "Trout", "type": "Freshwater"}'
+        content: '{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}'
         headers: []
         description: ''
         custom: []
@@ -207,7 +207,7 @@ endpoints:
         name: fish_id
         description: 'The ID of the fish.'
         required: true
-        example: 1
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -224,7 +224,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      fish_id: 1
+      fish_id: 2
       fish: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -277,7 +277,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"id": 1, "name": "Updated Salmon", "type": "Freshwater"}'
+        content: '{"id": 1, "name": "Updated Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}'
         headers: []
         description: ''
         custom: []
@@ -308,7 +308,7 @@ endpoints:
         name: fish_id
         description: 'The ID of the fish.'
         required: true
-        example: 1
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -325,7 +325,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      fish_id: 1
+      fish_id: 2
       fish: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -335,7 +335,7 @@ endpoints:
     responses:
       -
         status: 204
-        content: '{}'
+        content: '{"message": "Fish deleted successfully"}'
         headers: []
         description: ''
         custom: []

@@ -168,7 +168,11 @@ fetch(url, {
         {
             &quot;id&quot;: 1,
             &quot;name&quot;: &quot;Salmon&quot;,
-            &quot;type&quot;: &quot;Freshwater&quot;
+            &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+            &quot;type&quot;: [
+                &quot;Freshwater&quot;
+            ],
+            &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
         }
     ]
 }</code>
@@ -258,14 +262,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://fish_shop.test/api/v2/fishes/1" \
+    --get "http://fish_shop.test/api/v2/fishes/2" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://fish_shop.test/api/v2/fishes/1"
+    "http://fish_shop.test/api/v2/fishes/2"
 );
 
 const headers = {
@@ -289,7 +293,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;id&quot;: 1,
     &quot;name&quot;: &quot;Salmon&quot;,
-    &quot;type&quot;: &quot;Freshwater&quot;
+    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+    &quot;type&quot;: [
+        &quot;Freshwater&quot;
+    ],
+    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
 }</code>
  </pre>
     </span>
@@ -369,10 +377,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="fish_id"                data-endpoint="GETapi-v2-fishes--fish_id-"
-               value="1"
+               value="2"
                data-component="url">
     <br>
-<p>The ID of the fish. Example: <code>1</code></p>
+<p>The ID of the fish. Example: <code>2</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>fish</code></b>&nbsp;&nbsp;
@@ -407,7 +415,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "type=Freshwater"\
     --form "description=Eius et animi quos velit et."\
     --form "price=10.5"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\php26E8.tmp" </code></pre></div>
+    --form "image=@C:\Users\gines\AppData\Local\Temp\phpE4EB.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -442,9 +450,13 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 2,
-    &quot;name&quot;: &quot;Trout&quot;,
-    &quot;type&quot;: &quot;Freshwater&quot;
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Salmon&quot;,
+    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+    &quot;type&quot;: [
+        &quot;Freshwater&quot;
+    ],
+    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
 }</code>
  </pre>
     </span>
@@ -538,7 +550,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\php26E8.tmp</code></p>
+<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\phpE4EB.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -588,7 +600,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://fish_shop.test/api/v2/fishes/1" \
+    "http://fish_shop.test/api/v2/fishes/2" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -601,7 +613,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://fish_shop.test/api/v2/fishes/1"
+    "http://fish_shop.test/api/v2/fishes/2"
 );
 
 const headers = {
@@ -632,7 +644,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;id&quot;: 1,
     &quot;name&quot;: &quot;Updated Salmon&quot;,
-    &quot;type&quot;: &quot;Freshwater&quot;
+    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+    &quot;type&quot;: [
+        &quot;Freshwater&quot;
+    ],
+    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
 }</code>
  </pre>
     </span>
@@ -712,10 +728,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="fish_id"                data-endpoint="PUTapi-v2-fishes--fish_id-"
-               value="1"
+               value="2"
                data-component="url">
     <br>
-<p>The ID of the fish. Example: <code>1</code></p>
+<p>The ID of the fish. Example: <code>2</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>fish</code></b>&nbsp;&nbsp;
@@ -788,14 +804,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://fish_shop.test/api/v2/fishes/1" \
+    "http://fish_shop.test/api/v2/fishes/2" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://fish_shop.test/api/v2/fishes/1"
+    "http://fish_shop.test/api/v2/fishes/2"
 );
 
 const headers = {
@@ -894,10 +910,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="fish_id"                data-endpoint="DELETEapi-v2-fishes--fish_id-"
-               value="1"
+               value="2"
                data-component="url">
     <br>
-<p>The ID of the fish. Example: <code>1</code></p>
+<p>The ID of the fish. Example: <code>2</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>fish</code></b>&nbsp;&nbsp;

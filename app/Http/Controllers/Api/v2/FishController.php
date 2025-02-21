@@ -16,7 +16,7 @@ class FishController extends Controller
      * Get a list of all fishes.
      *
      * @group Fishes
-     * @response 200 {"data": [{"id": 1, "name": "Salmon", "type": "Freshwater"}]}
+     * @response 200 {"data": [{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}]}
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class FishController extends Controller
      *
      * @group Fishes
      * @urlParam fish int required The ID of the fish. Example: 1
-     * @response 200 {"id": 1, "name": "Salmon", "type": "Freshwater"}
+     * @response 200 {"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}
      */
     public function show(Fish $fish)
     {
@@ -44,7 +44,7 @@ class FishController extends Controller
      * @bodyParam name string required The name of the fish. Example: Salmon
      * @bodyParam type string required The type of the fish. Example: Freshwater
      * @bodyParam price number required The price of the fish. Example: 10.5
-     * @response 201 {"id": 2, "name": "Trout", "type": "Freshwater"}
+     * @response 201 {"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}
      */
     public function store(StoreFishRequest $request)
     {
@@ -74,7 +74,7 @@ class FishController extends Controller
      * @urlParam fish int required The ID of the fish. Example: 1
      * @bodyParam name string required The name of the fish. Example: Salmon
      * @bodyParam type string required The type of the fish. Example: Freshwater
-     * @response 200 {"id": 1, "name": "Updated Salmon", "type": "Freshwater"}
+     * @response 200 {"id": 1, "name": "Updated Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}
      */
     public function update(Fish $fish, StoreFishRequest $request)
     {
@@ -95,13 +95,14 @@ class FishController extends Controller
      *
      * @group Fishes
      * @urlParam fish int required The ID of the fish. Example: 1
-     * @response 204 {}
+     * @response 204 {"message": "Fish deleted successfully"}
      */
     public function destroy(Fish $fish)
     {
         $fish->delete();
-        return response()->noContent();
+        return response()->json(['message' => 'Fish deleted successfully'], 200);
     }
+
 }
 
 
