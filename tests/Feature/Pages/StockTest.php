@@ -227,3 +227,17 @@ it('can delete a product successfully', function () {
         ->assertSessionHas('success', 'Product deleted successfully');
 });
 
+it('can be downloaded as a PDF file', function () {
+    // Arrange
+    $category = Category::factory()->create();
+    $product = Product::factory()->create(['category_id' => $category->id]);
+
+    // Act
+    $response = get(route('products.pdf'));
+
+    // Assert
+    $response->assertOk()
+        ->assertHeader('Content-Type', 'application/pdf')
+        ->assertHeader('Content-Disposition', 'attachment; filename=products.pdf');
+});
+

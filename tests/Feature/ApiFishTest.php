@@ -69,5 +69,6 @@ it('deletes a fish successfully', function () {
 
     $this->actingAs($admin)
         ->deleteJson("/api/v2/fishes/{$fish->id}")
-        ->assertStatus(204);
+        ->assertStatus(200)
+        ->assertJson(['message' => 'Fish deleted successfully']);
 });

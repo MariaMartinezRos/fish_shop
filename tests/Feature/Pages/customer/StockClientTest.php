@@ -95,18 +95,14 @@ it('can be downloaded as a PDF file', function () {
     // Arrange
     $category = Category::factory()->create();
     $product = Product::factory()->create(['category_id' => $category->id]);
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 'admin']);
-
-    // Create a user and simulate the user being logged in
 
     // Act
-    $response = $this->actingAs($admin)->get(route('products.pdf'));
+    $response = get(route('products.pdf'));
 
     // Assert
     $response->assertOk()
         ->assertHeader('Content-Type', 'application/pdf')
-        ->assertHeader('Content-Disposition', 'inline; filename="productos.pdf"');
+        ->assertHeader('Content-Disposition', 'attachment; filename=products.pdf');
 });
 
 

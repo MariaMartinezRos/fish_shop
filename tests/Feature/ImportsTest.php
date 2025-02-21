@@ -15,7 +15,7 @@ it('imports products from a valid document', function () {
 
     // Assert
     $this->assertDatabaseCount(Product::class, 41);
-})->todo();
+});
 
 it('updates existing products', function () {
     // Arrange
