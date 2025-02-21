@@ -12,7 +12,9 @@
             <!-- Nombre centrado y grande -->
             <div class="flex items-center justify-center">
                 <h1 class="text-4xl font-bold">{{ $product['name'] }}</h1>
-                <img src="{{ asset('images/'.$product->category_id.'.png') }}" alt="{{ __('Category of the fish')}}" class="h-6 w-6 ml-2">
+                <img src="{{ asset('images/'.$category->id.'.png') }}" alt="{{ __('Category of the fish') }}"
+                     class="h-6 w-6 ml-2"
+                     onerror="this.onerror=null; this.src='{{ asset('images/0.png') }}';">
             </div>
 
             <!-- Información del producto -->
@@ -22,14 +24,7 @@
 
             <!-- Botones de acción -->
             <div class="mt-6 flex justify-center space-x-4">
-
                 @if(Auth::check() && Auth::user()->role_id === 'admin')
-{{--                    <button type="submit" formaction="{{ route('products.edit', ['product' => $product->id]) }}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">--}}
-{{--                        {{ __('Edit') }}--}}
-{{--                    </button>--}}
-{{--                    <button type="submit" formaction="{{ route('products.destroy', ['product' => $product->id]) }}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">--}}
-{{--                        {{ __('Delete') }}--}}
-{{--                    </button>--}}
                     <a href="{{ route('products.edit', $product) }}" class="text-blue-600 dark:text-blue-400">{{ __('Edit') }}</a>
                     <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
                         @csrf

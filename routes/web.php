@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
@@ -34,6 +35,10 @@ Route::get('/shops', function () {
 
 Route::get('/stock-client', [ProductController::class, 'indexClient'])
     ->name('stock-client');
+
+//download all products in PDF
+Route::get('/products/pdf', [PdfController::class, 'generatePdf'])
+    ->name('products.pdf');
 //admin
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware([AdminMiddleware::class])->group(function () {
@@ -64,6 +69,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])
             ->middleware(['auth', 'verified'])
             ->name('products.delete-all');
+
+        // ruta para mostrar los productos filtrados
+        Route::get('/products', [ProductController::class, 'index'])
+            ->name('products.index');
+
+        //para mostrar un producto concreto
+        Route::get('/products/{id}', [ProductController::class, 'show'])
+            ->middleware(['auth', 'verified'])
+            ->name('products.show');
     });
 });
 
@@ -71,20 +85,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::post('/contact', [ContactController::class, 'submit'])
     ->name('contact.submit');
 
-//download all products in PDF
-Route::get('/products/pdf', [ProductController::class, 'downloadProductsPDF'])
-    ->name('products.pdf');
 
-// ruta para mostrar los productos filtrados
-Route::get('/products', [ProductController::class, 'index'])
-    ->name('products.index');
-// ruta para mostrar los productos filtrados al cliente
-//Route::get('/products-client', [ProductController::class, 'indexClient'])
-//    ->name('products.index-client');
-//para mostrar un producto concreto
-Route::get('/products/{id}', [ProductController::class, 'show'])
-    ->middleware(['auth', 'verified'])
-    ->name('products.show');
+
 //para mostrar un producto concreto al cliente
 Route::get('/products-client/{id}', [ProductController::class, 'showClient'])
     ->name('products.show-client');
@@ -98,16 +100,10 @@ Route::get('/terms', function () {
     return view('auth.policy.terms');
 })->name('terms');
 
-//ruta para exportar e importar los productos
-Route::get('products/export/', [ProductController::class, 'export'])
-    ->name('products.export');
+//ruta para importar los productos
 Route::post('/products/import', [ProductController::class, 'import'])
     ->name('products.import');
 
-//errors
-Route::get('/error/{statusCode}', [ErrorController::class, 'showError']);
-Route::get('/error/404', [ErrorController::class, 'notFound']);
-Route::get('/error/500', [ErrorController::class, 'internalServerError']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ __('Product List') }}</title>
     <style>
-        /* Tailwind-inspired custom styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f7fafc;
@@ -34,10 +33,6 @@
         .header .title {
             font-size: 24px;
             font-weight: bold;
-        }
-
-        .header .logo {
-            max-width: 100px;
         }
 
         h1 {
@@ -78,26 +73,14 @@
             font-size: 12px;
             color: #4a5568;
         }
-
-        .footer p {
-            margin: 0;
-        }
-
-        /* Prevent page break inside the table rows */
-        table td, table th {
-            word-wrap: break-word;
-            hyphens: auto;
-        }
     </style>
 </head>
 <body>
-<!-- Header -->
+
 <div class="header">
-{{--    <img class="{{ __('Benito\'s Fish Markets') }}" src="{{ asset('images/favicon-32x32.png') }}" alt="{{ __('Benito\'s Fish Markets') }}">--}}
     <div class="title">{{ __('Benito\'s Fish Markets') }}</div>
 </div>
 
-<!-- Content Container -->
 <div class="container">
     <h1>{{ __('Products') }}</h1>
     <table>
@@ -126,11 +109,10 @@
     </table>
 </div>
 
-<!-- Footer -->
 <div class="footer">
     <p>{{ __('Benito\'s Fish Markets') }}</p>
 </div>
+
 </body>
 </html>
-
 

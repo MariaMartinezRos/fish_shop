@@ -174,25 +174,11 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('view', User::class);
+//        $this->authorize('view', User::class);
 
         $search = $request->input('search');
 
-//        $products = Product::query()
-//            ->when($filter, function ($query, $filter) {
-//                return $query->where('name', 'like', '%'.$filter.'%')
-//                    ->orWhere('description', 'like', '%'.$filter.'%');
-//            })
-//            ->paginate(10);
-
         $products = Product::search($search)->paginate(10);
-
-//        $products = Product::search($this->search)->get();
-
-//        $products = Product::query()->select('id', 'name', 'category_id', 'price_per_kg', 'stock_kg', 'description', 'created_at', 'updated_at')->paginate(10);
-//        if ($request->ajax()) {
-//            return view('components.product-list', compact('products'))->render();
-//        }
 
         return view('stock', compact('products'));
     }
@@ -200,27 +186,14 @@ class ProductController extends Controller
     /**
      * Muestra la lista de productos para el cliente
      */
-    public function indexClient(Request $request)   //arreglar
+    public function indexClient(Request $request)
     {
-        $this->authorize('viewClient', User::class);
+//        $this->authorize('viewClient');
 
         $search = $request->input('search');
-//
-//        $products = Product::query()
-//            ->when($filter, function ($query, $filter) {
-//                return $query->where('name', 'like', '%'.$filter.'%')
-//                    ->orWhere('description', 'like', '%'.$filter.'%');
-//            })
-//            ->paginate(10);
-//
-//        if ($request->ajax()) {
-//            return view('components.product-list', compact('products'))->render();
-//        }
-//        $products = Product::query()->select('id', 'name', 'category_id', 'price_per_kg', 'stock_kg', 'description', 'created_at', 'updated_at')->paginate(10);
 
-        $products = Product::search($this->$search)->paginate(10);
+        $products = Product::search($search)->paginate(10);
 
-//        $products = Product::search($this->search)->get();
         return view('dashboard.stock-client', compact('products'));
     }
 
@@ -229,7 +202,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $this->authorize('view', User::class);
+//        $this->authorize('view', User::class);
 
         $product = Product::findOrFail($id);
 
@@ -241,7 +214,7 @@ class ProductController extends Controller
      */
     public function showClient($id)
     {
-        $this->authorize('viewClient', User::class);
+//        $this->authorize('viewClient', User::class);
 
         $product = Product::findOrFail($id);
 
@@ -253,7 +226,7 @@ class ProductController extends Controller
      */
     public function import(Request $request)
     {
-        $this->authorize('create', User::class);
+//        $this->authorize('create', User::class);
 
         $request->validate([
             'file' => 'required|mimes:xlsx',
@@ -270,14 +243,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', User::class);
+//        $this->authorize('create', User::class);
 
         return view('products.create');
     }
 
     public function store(ProductRequest $request)
     {
-        $this->authorize('create', User::class);
+//        $this->authorize('create', User::class);
 
         $validated = $request->validated();
 
@@ -301,14 +274,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $this->authorize('update', User::class);
+//        $this->authorize('update', User::class);
 
         return view('products.edit', compact('product'));
     }
 
     public function update(ProductRequest $request, Product $product)
     {
-        $this->authorize('update', User::class);
+//        $this->authorize('update', User::class);
 
         // No need for explicit validation, it's handled by ProductRequest
         $validated = $request->validated();
@@ -329,33 +302,47 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $this->authorize('delete', User::class);
+//        $this->authorize('delete', User::class);
 
         $product->delete();
 
         return redirect()->route('stock')->with('success', 'Product deleted successfully');
     }
+//
+//    /**
+//     * Descarga todos los productos en un archivo PDF
+//     */
+//    public function downloadProductsPDF()
+//    {
+//
+//        // Obtener todos los productos de la base de datos
+//        $products = Product::all();
+//
+//        // Generar el PDF usando la vista y pasando los productos
+//        $pdf = PDF::loadView('pdf.products', compact('products'));
+//
+//        // Set page numbers in the footer
+//        $pdf->setOption('footer-right', 'Page {PAGE_NUM} of {PAGE_COUNT}');
+//        $pdf->setOption('footer-font-size', 10);
+//
+//        // Descargar el PDF
+//        return $pdf->download('products.pdf');
+//    }
 
-    /**
-     * Descarga todos los productos en un archivo PDF
-     */
-    public function downloadProductsPDF()
-    {
-        $this->authorize('viewClient', User::class);
-
-        // Obtener todos los productos de la base de datos
-        $products = Product::all();
-
-        // Generar el PDF usando la vista y pasando los productos
-        $pdf = PDF::loadView('pdf.products', compact('products'));
-
-        // Set page numbers in the footer
-        $pdf->setOption('footer-right', 'Page {PAGE_NUM} of {PAGE_COUNT}');
-        $pdf->setOption('footer-font-size', 10);
-
-        // Descargar el PDF
-        return $pdf->download('products.pdf');
-    }
+//    /**
+//     * Descarga todos los productos en un archivo PDF
+//     */
+//    public function downloadProductsPDF2()
+//    {
+//
+//        $products = Product::all();
+//
+//        // Carga la vista y pasa los datos de los productos
+//        $pdf = PDF::loadView('pdf.products', compact('products'));
+//
+//        // Descargar el archivo PDF con el nombre 'products.pdf'
+//        return $pdf->download('products.pdf');
+//    }
 
     //DANGER ZONE
     /**

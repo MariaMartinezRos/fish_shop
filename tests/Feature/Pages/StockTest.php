@@ -227,24 +227,3 @@ it('can delete a product successfully', function () {
         ->assertSessionHas('success', 'Product deleted successfully');
 });
 
-it('sorts products by name', function () {
-    // Arrange
-    $productA = Product::factory()->create(['name' => 'Apple']);
-    $productB = Product::factory()->create(['name' => 'Banana']);
-
-    // Act
-    get(route('stock.index', ['sort' => 'name']))
-        ->assertOk()
-        ->assertSeeInOrder([$productA->name, $productB->name]);
-})->todo();
-
-it('filters products by category', function () {
-    // Arrange
-    $category = Category::factory()->create();
-    $product = Product::factory()->create(['category_id' => $category->id]);
-
-    // Act
-    get(route('stock.index', ['category' => $category->id]))
-        ->assertOk()
-        ->assertSee($product->name);
-})->todo();

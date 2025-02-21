@@ -22,7 +22,7 @@
                     <th class="px-4 py-2 text-left">{{ __('Card Number') }}</th>
                     <th class="px-4 py-2 text-left">{{ __('Date Time') }}</th>
                     <th class="px-4 py-2 text-left">{{ __('Transaction Number') }}</th>
-{{--                    <th class="px-4 py-2 text-left">{{ __('Created At') }}</th>--}}
+                    <th class="px-4 py-2 text-left">{{ __('Created At') }}</th>
                     <th class="px-4 py-2 text-left">{{ __('Updated At') }}</th>
                 </tr>
                 </thead>
@@ -43,7 +43,7 @@
                             <td class="px-4 py-2">**** **** **** {{ substr($transaction->card_number, -4) }}</td>
                             <td class="px-4 py-2">{{ $transaction->date_time }}</td>
                             <td class="px-4 py-2">{{ $transaction->transaction_number }}</td>
-{{--                            <td class="px-4 py-2 text-gray-500">{{ $transaction->created_at->format('d M Y, H:i') }}</td>--}}
+                            <td class="px-4 py-2 text-gray-500">{{ $transaction->created_at->format('d M Y, H:i') }}</td>
                             <td class="px-4 py-2 text-gray-500">{{ $transaction->updated_at->format('d M Y, H:i') }}</td>
                         </tr>
                     @endforeach

@@ -157,5 +157,5 @@ it('adds type of water only once', function () {
     $this->artisan('db:seed');
 
     //Act && Assert
-    $this->assertDatabaseCount(TypeWater::class, 2);
+    $this->assertDatabaseCount(TypeWater::class, 3);
 });

@@ -1,11 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <a href="{{ route('products.show', ['id' => $product->id]) }}">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                <img src="{{ asset('images/go-back.png') }}" alt="{{ __('Go Back')}}" >
-                {{ __('Go Back') }}
-            </h2>
-        </a>
+        @include('components.go-back')
+
 
         <div class="container mx-auto p-6">
             <h1 class="text-3xl font-bold text-center mb-6">{{ __('Update Product') }}</h1>

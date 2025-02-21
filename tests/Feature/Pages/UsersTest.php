@@ -71,7 +71,7 @@ it('can create a user successfully', function () {
             'role_id' => $role->id,
         ])
         ->assertRedirect('users')
-        ->assertSessionHas('success', 'User created successfully');
+        ->assertSessionHas('success', 'Usuario creado correctamente');
 
     // Assert
     $this->assertDatabaseHas('users', [
@@ -91,7 +91,7 @@ it('can delete a user', function () {
     $this->actingAs($admin)
         ->delete("users/{$user->id}")
         ->assertRedirect('users')
-        ->assertSessionHas('success', 'User deleted successfully');
+        ->assertSessionHas('success', 'Usuario eliminado correctamente');
 });
 
 it('can update a user', function () {
@@ -109,5 +109,5 @@ it('can update a user', function () {
             'role_id' => 4,
         ])
         ->assertRedirect('users')
-        ->assertSessionHas('success', 'User updated successfully');
+        ->assertSessionHas('success', 'Usuario actualizado correctamente');
 });
