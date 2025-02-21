@@ -13,26 +13,6 @@ use Illuminate\Support\Str;
 
 class FishController extends Controller
 {
-    /**
-     * @OA\Get (
-     *     path="/fishes",
-     *     tags={"Fishes"},
-     *     summary="Get List all fishes",
-     *
-     *     @OA\Response(
-     *          response="200",
-     *          description="Successful operation",
-     *     ),
-     *     @OA\Response(
-     *         response="401",
-     *         description="Unauthenticated",
-     *     ),
-     *     @OA\Response(
-     *         response="403",
-     *         description="Forbidden",
-     *     )
-     * )
-     */
     public function index()
     {
         abort_if(! auth()->user()->tokenCan('fishes-list'), 403);
@@ -49,15 +29,6 @@ class FishController extends Controller
         return new FishResource($fish);
     }
 
-    /**
-     * Store a new fish
-     *
-     * Creating a new fish
-     *
-     * @bodyParam name string required The name of the fish. Example: Salmon
-     * @bodyParam type string required The type of the fish. Example: Freshwater
-     * @bodyParam price number required The price of the fish. Example: 10.5
-     */
     public function store(StoreFishRequest $request)
     {
         $data = $request->all();

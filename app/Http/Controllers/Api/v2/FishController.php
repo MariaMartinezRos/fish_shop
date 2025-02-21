@@ -13,64 +13,38 @@ use Illuminate\Support\Str;
 class FishController extends Controller
 {
     /**
-     * @OA\Get (
-     *     path="/fishes",
-     *     tags={"Fishes"},
-     *     summary="Get List all fishes",
+     * Get a list of all fishes.
      *
-     *     @OA\Response(
-     *          response="200",
-     *          description="Successful operation",
-     *     ),
-     *     @OA\Response(
-     *         response="401",
-     *         description="Unauthenticated",
-     *     ),
-     *     @OA\Response(
-     *         response="403",
-     *         description="Forbidden",
-     *     )
-     * )
+     * @group Fishes
+     * @response 200 {"data": [{"id": 1, "name": "Salmon", "type": "Freshwater"}]}
      */
     public function index()
     {
-        //abort_if(!auth()->user()->tokenCan('fishes-list'), 403);
-
         return FishResource::collection(Cache::rememberForever('fishes', function () {
             return Fish::all();
         }));
     }
 
     /**
-     * @OA\Get (
-     *     path="/fishes/{fish}",
-     *     tags={"Fishes"},
-     *     summary="Get a specific fish",
-     *     description="Get a specific fish",
+     * Get a specific fish.
      *
-     *     @OA\Parameter( name="fish", in="path", required=true, description="ID of the fish", @OA\Schema(type="integer")),
-     *
-     *     @OA\Response( response="200", description="Successful operation"),
-     *     @OA\Response( response="401", description="Unauthenticated"),
-     *     @OA\Response( response="403", description="Forbidden"),
-     *     @OA\Response( response="404", description="Not Found")
-     * )
+     * @group Fishes
+     * @urlParam fish int required The ID of the fish. Example: 1
+     * @response 200 {"id": 1, "name": "Salmon", "type": "Freshwater"}
      */
     public function show(Fish $fish)
     {
-        //abort_if(!auth()->user()->tokenCan('fishes-show'), 403);
-
         return new FishResource($fish);
     }
 
     /**
-     * Store a new fish
+     * Store a new fish.
      *
-     * Creating a new fish
-     *
+     * @group Fishes
      * @bodyParam name string required The name of the fish. Example: Salmon
      * @bodyParam type string required The type of the fish. Example: Freshwater
      * @bodyParam price number required The price of the fish. Example: 10.5
+     * @response 201 {"id": 2, "name": "Trout", "type": "Freshwater"}
      */
     public function store(StoreFishRequest $request)
     {
@@ -84,13 +58,9 @@ class FishController extends Controller
         }
 
         $fish = Fish::create($data);
-
-        // Find the corresponding ID in the type_water table
         $typeWater = TypeWater::firstOrCreate(['type' => $request->input('type')]);
 
-
         if ($typeWater) {
-            // Attach the type ID to the pivot table
             $fish->typeWater()->attach($typeWater->id);
         }
 
@@ -98,7 +68,13 @@ class FishController extends Controller
     }
 
     /**
-     * @return FishResource
+     * Update an existing fish.
+     *
+     * @group Fishes
+     * @urlParam fish int required The ID of the fish. Example: 1
+     * @bodyParam name string required The name of the fish. Example: Salmon
+     * @bodyParam type string required The type of the fish. Example: Freshwater
+     * @response 200 {"id": 1, "name": "Updated Salmon", "type": "Freshwater"}
      */
     public function update(Fish $fish, StoreFishRequest $request)
     {
@@ -115,36 +91,19 @@ class FishController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\Response
+     * Delete a specific fish.
      *
-     * @throws \Exception
-     *
-     * @OA\Delete ( path="/fishes/{fish}", tags={"Fishes"}, summary="Delete a specific fish", description="Delete a specific fish", @OA\Parameter( name="fish", in="path", required=true, description="ID of the fish", @OA\Schema(type="integer")), @OA\Response( response="204", description="Successful operation"), @OA\Response( response="401", description="Unauthenticated"), @OA\Response( response="403", description="Forbidden"), @OA\Response( response="404", description="Not Found") )
-     *
-     * @ORM\Entity(repositoryClass=FishRepository::class)
-     *
-     * @ORM\Table(name="fish")
+     * @group Fishes
+     * @urlParam fish int required The ID of the fish. Example: 1
+     * @response 204 {}
      */
     public function destroy(Fish $fish)
     {
         $fish->delete();
-
         return response()->noContent();
     }
-
-    /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     *
-     * @OA\Get ( path="/fishes", tags={"Fishes"}, summary="List all fishes", description="List all fishes", @OA\Response( response="200", description="Successful operation"), @OA\Response( response="401", description="Unauthenticated"), @OA\Response( response="403", description="Forbidden") )
-     *
-     * @ORM\Entity(repositoryClass=FishRepository::class)
-     *
-     * @ORM\Table(name="fish")
-     *
-     * @ORM\Entity(repositoryClass=FishRepository::class)
-     */
-    public function list()
-    {
-        return FishResource::collection(Fish::all());
-    }
 }
+
+
+
+
