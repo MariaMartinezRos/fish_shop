@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     use AuthorizesRequests;
 
-    // Listar usuarios
+    /**
+     * List users
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     public function index()
     {
-
         $this->authorize('view', User::class);
 
         $users = User::all();
@@ -21,7 +23,10 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-    // Crear usuario
+    /**
+     * Create user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     public function create()
     {
         $this->authorize('create', User::class);
@@ -29,35 +34,35 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    // Guardar usuario
-    public function store(Request $request)
+    /**
+     * Save user
+     * @param UserRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(UserRequest $request)
     {
         $this->authorize('create', User::class);
 
-        // Validación de datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
-            'role_id' => 'required|in:1,3,4',
-        ]);
-
+        // Crear usuario
         $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
         ]);
 
         // Asignación de rol
-        $user->roles()->attach($validated['role_id']);
+        $user->roles()->attach($request->role_id);
 
         return redirect()
             ->route('users.index')
-            ->with('success', 'User created successfully');
-
+            ->with('success', 'Usuario creado correctamente');
     }
 
-    // Editar usuario
+    /**
+     * Edit user
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     public function edit(User $user)
     {
         $this->authorize('update', User::class);
@@ -65,41 +70,36 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    // Actualizar usuario
-    public function update(Request $request, User $user)
+    /**
+     * Update user
+     * @param UserRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(UserRequest $request, User $user)
     {
         $this->authorize('update', User::class);
-
-        $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'role_id' => 'required|in:1,3,4',
-        ]);
-
-        if ($validated['role_id'] == 1) {
-            $role = 'admin';
-        } elseif ($validated['role_id'] == 3) {
-            $role = 'employee';
-        } else {
-            $role = 'customer';
-        }
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'role_id' => $role,
+            'role_id' => $request->role_id,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
     }
 
-    // Eliminar UN usuario
+    /**
+     * Delete user
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(User $user)
     {
         $this->authorize('delete', User::class);
 
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente');
     }
 }

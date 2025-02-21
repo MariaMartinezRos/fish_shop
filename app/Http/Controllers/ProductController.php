@@ -1,10 +1,163 @@
 <?php
 
+//
+//namespace App\Http\Controllers;
+//
+//use App\Http\Requests\ProductRequest;
+//use App\Imports\ProductsImport;
+//use App\Models\Product;
+//use Barryvdh\DomPDF\Facade\Pdf;
+//use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+//use Illuminate\Http\Request;
+//use Maatwebsite\Excel\Facades\Excel;
+//
+//class ProductController extends Controller
+//{
+//    use AuthorizesRequests;
+//
+//    /**
+//     * Shows the list of products. Also performs a database query to filter them. (for the admin)
+//     */
+//    public function index(Request $request)
+//    {
+//        $filter = $request->input('filter');
+//
+//        $products = Product::query()
+//            ->when($filter, fn($query, $filter) => $query->where('name', 'like', "%$filter%")
+//                ->orWhere('description', 'like', "%$filter%"))
+//            ->paginate(10);
+//
+//        if ($request->ajax()) {
+//            return view('components.product-list', compact('products'))->render();
+//        }
+//
+//        return view('stock', compact('products'));
+//    }
+//
+//    /**
+//     * Shows the list of products. Also performs a database query to filter them. (for the client)
+//     */
+//    public function indexClient(Request $request)
+//    {
+//        $filter = $request->input('filter');
+//
+//        $products = Product::query()
+//            ->when($filter, fn($query, $filter) => $query->where('name', 'like', "%$filter%")
+//                ->orWhere('description', 'like', "%$filter%"))
+//            ->paginate(10);
+//
+//        if ($request->ajax()) {
+//            return view('components.product-list', compact('products'))->render();
+//        }
+//
+//        return view('dashboard.stock-client', compact('products'));
+//    }
+//
+//    /**
+//     * Shows a particular product. (for the admin)
+//     * @param Product $product
+//     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+//     */
+//    public function show(Product $product)
+//    {
+//        return view('products.show', compact('product'));
+//    }
+//
+//    /**
+//     * Shows a particular product. (for the client)
+//     * @param Product $product
+//     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+//     */
+//    public function showClient(Product $product)
+//    {
+//        return view('products.show-client', compact('product'));
+//    }
+//
+//    /**
+//     * Imports products from an Excel file.
+//     */
+//    public function import(Request $request)
+//    {
+//        $request->validate(['file' => 'required|mimes:xlsx']);
+//        Excel::import(new ProductsImport, $request->file('file'));
+//        return redirect()->route('stock')->with('success', 'Producto importado correctamente.');
+//    }
+//
+//    /**
+//     * Downloads all products in a PDF file.
+//     */
+//    public function downloadProductsPDF()
+//    {
+//        $products = Product::all();
+//        $pdf = PDF::loadView('pdf.products', compact('products'));
+//        return $pdf->download('productos.pdf');
+//    }
+//
+//    /**
+//     * Adds a product.
+//     */
+//    public function create()
+//    {
+//        return view('products.create');
+//    }
+//
+//    /**
+//     * Stores a product.
+//     */
+//    public function store(ProductRequest $request)
+//    {
+//        $product = Product::create($request->validated());
+//        return redirect()->route('products.show', $product)->with('success', 'Producto creado correctamente.');
+//    }
+//
+//    /**
+//     * Edits a product.
+//     */
+//    public function edit(Product $product)
+//    {
+//        return view('products.edit', compact('product'));
+//    }
+//
+//    /**
+//     * Updates a product.
+//     */
+//    public function update(ProductRequest $request, Product $product)
+//    {
+//        $product->update($request->validated());
+//        return redirect()->route('products.show', $product)->with('success', 'Producto actualizado correctamente.');
+//    }
+//
+//    /**
+//     * Deletes a product.
+//     */
+//    public function destroy(Product $product)
+//    {
+//        $product->delete();
+//        return redirect()->route('stock')->with('success', 'Producto eliminado correctamente.');
+//    }
+//
+//    /**
+//     * Deletes all products.
+//     */
+//    public function deleteAll()
+//    {
+//        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+//        Product::truncate();
+//        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+//        return redirect()->route('products.index')->with('success', 'Todos los productos han sido eliminados.');
+//    }
+//}
+
+
+
+
+
 namespace App\Http\Controllers;
 
-use App\Exports\ProductsExport;
+use App\Http\Requests\ProductRequest;
 use App\Imports\ProductsImport;
 use App\Models\Product;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
@@ -14,25 +167,32 @@ class ProductController extends Controller
 {
     use AuthorizesRequests;
 
+    public string $search = '';
+
     /**
      * Muestra la lista de productos. Tambien realiza una consulta en la base de datos para filtrarlos
      */
     public function index(Request $request)
     {
-        //        $this->authorize('view', Product::class);
+        $this->authorize('view', User::class);
 
-        $filter = $request->input('filter');
+        $search = $request->input('search');
 
-        $products = Product::query()
-            ->when($filter, function ($query, $filter) {
-                return $query->where('name', 'like', '%'.$filter.'%')
-                    ->orWhere('description', 'like', '%'.$filter.'%');
-            })
-            ->paginate(10);
+//        $products = Product::query()
+//            ->when($filter, function ($query, $filter) {
+//                return $query->where('name', 'like', '%'.$filter.'%')
+//                    ->orWhere('description', 'like', '%'.$filter.'%');
+//            })
+//            ->paginate(10);
 
-        if ($request->ajax()) {
-            return view('components.product-list', compact('products'))->render();
-        }
+        $products = Product::search($search)->paginate(10);
+
+//        $products = Product::search($this->search)->get();
+
+//        $products = Product::query()->select('id', 'name', 'category_id', 'price_per_kg', 'stock_kg', 'description', 'created_at', 'updated_at')->paginate(10);
+//        if ($request->ajax()) {
+//            return view('components.product-list', compact('products'))->render();
+//        }
 
         return view('stock', compact('products'));
     }
@@ -42,21 +202,25 @@ class ProductController extends Controller
      */
     public function indexClient(Request $request)   //arreglar
     {
-        //        $this->authorize('viewClient', Product::class);
+        $this->authorize('viewClient', User::class);
 
-        $filter = $request->input('filter');
+        $search = $request->input('search');
+//
+//        $products = Product::query()
+//            ->when($filter, function ($query, $filter) {
+//                return $query->where('name', 'like', '%'.$filter.'%')
+//                    ->orWhere('description', 'like', '%'.$filter.'%');
+//            })
+//            ->paginate(10);
+//
+//        if ($request->ajax()) {
+//            return view('components.product-list', compact('products'))->render();
+//        }
+//        $products = Product::query()->select('id', 'name', 'category_id', 'price_per_kg', 'stock_kg', 'description', 'created_at', 'updated_at')->paginate(10);
 
-        $products = Product::query()
-            ->when($filter, function ($query, $filter) {
-                return $query->where('name', 'like', '%'.$filter.'%')
-                    ->orWhere('description', 'like', '%'.$filter.'%');
-            })
-            ->paginate(10);
+        $products = Product::search($this->$search)->paginate(10);
 
-        if ($request->ajax()) {
-            return view('components.product-list', compact('products'))->render();
-        }
-
+//        $products = Product::search($this->search)->get();
         return view('dashboard.stock-client', compact('products'));
     }
 
@@ -65,7 +229,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //        $this->authorize('view', Product::class);
+        $this->authorize('view', User::class);
 
         $product = Product::findOrFail($id);
 
@@ -77,7 +241,7 @@ class ProductController extends Controller
      */
     public function showClient($id)
     {
-        //        $this->authorize('viewClient', Product::class);
+        $this->authorize('viewClient', User::class);
 
         $product = Product::findOrFail($id);
 
@@ -89,6 +253,8 @@ class ProductController extends Controller
      */
     public function import(Request $request)
     {
+        $this->authorize('create', User::class);
+
         $request->validate([
             'file' => 'required|mimes:xlsx',
         ]);
@@ -104,19 +270,16 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return view('products.create');
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        // Validación de datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:products',
-            'category_id' => 'required|integer|exists:categories,id',
-            'price_per_kg' => 'required|numeric',
-            'stock_kg' => 'required|numeric',
-            'description' => 'nullable|string',
-        ]);
+        $this->authorize('create', User::class);
+
+        $validated = $request->validated();
 
         // Crear el producto (venta)
         $product = new Product;
@@ -138,18 +301,17 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $this->authorize('update', User::class);
+
         return view('products.edit', compact('product'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'category_id' => 'required|integer|exists:categories,id',
-            'price_per_kg' => 'required|numeric',
-            'stock_kg' => 'required|numeric',
-            'description' => 'nullable|string',
-        ]);
+        $this->authorize('update', User::class);
+
+        // No need for explicit validation, it's handled by ProductRequest
+        $validated = $request->validated();
 
         $product->update([
             'name' => $validated['name'],
@@ -167,6 +329,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->authorize('delete', User::class);
+
         $product->delete();
 
         return redirect()->route('stock')->with('success', 'Product deleted successfully');
@@ -177,6 +341,8 @@ class ProductController extends Controller
      */
     public function downloadProductsPDF()
     {
+        $this->authorize('viewClient', User::class);
+
         // Obtener todos los productos de la base de datos
         $products = Product::all();
 
@@ -197,7 +363,7 @@ class ProductController extends Controller
      */
     public function deleteAll()
     {
-        //        $this->authorize('delete', Product::class);
+        $this->authorize('delete', Product::class);
 
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Product::truncate();

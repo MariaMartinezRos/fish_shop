@@ -49,9 +49,15 @@
 
                 <div class="flex justify-between items-center gap-4 p-4">
                     <!-- Filter input on the left -->
-                    <input type="text" id="filter" placeholder="{{ __('Filter products') }}"
-                           class="border border-blue-500 text-blue-700 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 w-1/3">
-
+{{--                    @if(Auth::check() && Auth::user()->role_id === 'admin')--}}
+{{--                    <input type="text" id="search" placeholder="{{ __('Filter products') }}"--}}
+{{--                           class="border border-blue-500 text-blue-700 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 w-1/3">--}}
+{{--                    @endif--}}
+                    <form method="GET" action="{{ route('products.index') }}">
+                        <input type="text" name="search" id="search" placeholder="{{ __('Filter products') }}"
+                               class="border border-blue-500 text-blue-700 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 w-1/3"
+                               value="{{ request()->query('filter') }}">
+                    </form>
                     <!-- Form on the right -->
                     <button type="button" onclick="window.location='{{ route('products.pdf') }}'" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
                         {{ __('Download All Products') }}

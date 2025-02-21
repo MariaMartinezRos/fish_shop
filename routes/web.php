@@ -41,7 +41,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/sales', [TransactionController::class, 'showSales'])->name('sales');
         Route::get('/stock', [ProductController::class, 'index'])->name('stock');
         Route::get('/transaction', TransactionSearcher::class)->name('transaction');
-        //        Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
         Route::get('/category', [CategoryController::class, 'index'])->name('category');
         Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
         Route::resource('users', UserController::class);
@@ -79,6 +78,9 @@ Route::get('/products/pdf', [ProductController::class, 'downloadProductsPDF'])
 // ruta para mostrar los productos filtrados
 Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index');
+// ruta para mostrar los productos filtrados al cliente
+//Route::get('/products-client', [ProductController::class, 'indexClient'])
+//    ->name('products.index-client');
 //para mostrar un producto concreto
 Route::get('/products/{id}', [ProductController::class, 'show'])
     ->middleware(['auth', 'verified'])
