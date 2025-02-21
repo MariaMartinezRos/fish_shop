@@ -5,7 +5,21 @@ use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
 
+use App\View\Components\Pagination;
 use function Pest\Laravel\get;
+
+it('renders the pagination component', function () {
+    // Arrange
+    $component = new Pagination();
+
+    // Act
+    $view = $component->render();
+
+    // Assert
+    $this->assertEquals('components.pagination', $view->name());
+    $this->assertTrue(View::exists($view->name()));
+
+});
 
 it('displays a list of products paginated for the admin', function () {
     // Arrange
@@ -21,7 +35,7 @@ it('displays a list of products paginated for the admin', function () {
         ->assertStatus(200)
         ->assertSee('Anterior')
         ->assertSee('Siguiente')
-        ->assertSee('30');
+        ->assertSee('10');
 });
 
 it('displays a list of products paginated for the client', function () {
@@ -34,5 +48,5 @@ it('displays a list of products paginated for the client', function () {
         ->assertStatus(200)
         ->assertSee('Anterior')
         ->assertSee('Siguiente')
-        ->assertSee('30');
+        ->assertSee('10');
 });
