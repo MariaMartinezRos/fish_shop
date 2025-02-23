@@ -28,7 +28,7 @@ it('sends a welcome email when a user is created', function () {
     $event = new UserCreated($user);
 
     // Act
-    $listener = new SendWelcomeEmail();
+    $listener = new SendWelcomeEmail;
     $listener->handle($event);
 
     // Assert
@@ -62,4 +62,3 @@ it('includes valid data for the contact mail', function () {
     // Act && Assert
     $response->assertSessionHasErrors(['name', 'email', 'message']);
 });
-

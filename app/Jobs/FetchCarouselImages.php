@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
@@ -21,7 +22,7 @@ class FetchCarouselImages implements ShouldQueue
     public function handle(): void
     {
         $files = File::files($this->imagePath);
-        $images = collect($files)->map(fn($file) => asset('images/fishes/' . $file->getFilename()))->toArray();
+        $images = collect($files)->map(fn ($file) => asset('images/fishes/'.$file->getFilename()))->toArray();
 
         Cache::put('carousel_images', $images, now()->addMinutes(10));
     }

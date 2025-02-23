@@ -4,13 +4,13 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
-
 use App\View\Components\Pagination;
+
 use function Pest\Laravel\get;
 
 it('renders the pagination component', function () {
     // Arrange
-    $component = new Pagination();
+    $component = new Pagination;
 
     // Act
     $view = $component->render();

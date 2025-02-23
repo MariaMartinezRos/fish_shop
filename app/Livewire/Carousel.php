@@ -2,14 +2,15 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Jobs\FetchCarouselImages;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
+use Livewire\Component;
 
 class Carousel extends Component
 {
     public $images = [];
+
     public $currentIndex = 0;
 
     private $imagePath = 'C:\\Users\\gines\\Herd\\fish_shop\\public\\images\\fishes';
@@ -44,7 +45,8 @@ class Carousel extends Component
     private function getImagesFromDirectory(): array
     {
         $files = File::files($this->imagePath);
-        return collect($files)->map(fn($file) => asset('images/fishes/' . $file->getFilename()))->toArray();
+
+        return collect($files)->map(fn ($file) => asset('images/fishes/'.$file->getFilename()))->toArray();
     }
 
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\View\View

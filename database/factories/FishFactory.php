@@ -18,7 +18,7 @@ class FishFactory extends Factory
             'name' => $this->faker->name,
             'image' => $this->faker->imageUrl(),
             'description' => $this->faker->text,
-//            'type_water_id' => TypeWater::factory(),
+            //            'type_water_id' => TypeWater::factory(),
         ];
     }
 
@@ -26,7 +26,7 @@ class FishFactory extends Factory
     {
         return $this->afterCreating(function (Fish $fish) {
             // Obtiene un tipo de agua aleatorio o lo crea
-//            $typeWater = TypeWater::inRandomOrder()->first() ?? TypeWater::factory()->create();
+            //            $typeWater = TypeWater::inRandomOrder()->first() ?? TypeWater::factory()->create();
 
             if (TypeWater::count() > 0) {
                 // Si existen, elige uno aleatorio
@@ -41,13 +41,13 @@ class FishFactory extends Factory
         });
     }
 
-//    public function configure(): FishFactory
-//    {
-//        return $this->afterCreating(function (Fish $fish) {
-//            $typeWater = TypeWater::inRandomOrder()->first();
-//            $fish->typeWater()->attach($typeWater);
-//        });
-//    }
+    //    public function configure(): FishFactory
+    //    {
+    //        return $this->afterCreating(function (Fish $fish) {
+    //            $typeWater = TypeWater::inRandomOrder()->first();
+    //            $fish->typeWater()->attach($typeWater);
+    //        });
+    //    }
 
     public function released(?Carbon $date = null): self
     {

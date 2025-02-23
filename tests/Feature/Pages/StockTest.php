@@ -190,7 +190,7 @@ it('can edit a product successfully', function () {
 
     $product = Product::factory()->create(['name' => 'Salmon noruego', 'category_id' => $category->id]);
 
-    //Act
+    // Act
     $this->actingAs($admin)
         ->put(route('products.update', $product), [
             'name' => 'Salmon noruego REBAJADO',
@@ -240,4 +240,3 @@ it('can be downloaded as a PDF file', function () {
         ->assertHeader('Content-Type', 'application/pdf')
         ->assertHeader('Content-Disposition', 'attachment; filename=products.pdf');
 });
-

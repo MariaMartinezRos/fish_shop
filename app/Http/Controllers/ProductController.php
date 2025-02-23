@@ -1,18 +1,18 @@
 <?php
 
 //
-//namespace App\Http\Controllers;
+// namespace App\Http\Controllers;
 //
-//use App\Http\Requests\ProductRequest;
-//use App\Imports\ProductsImport;
-//use App\Models\Product;
-//use Barryvdh\DomPDF\Facade\Pdf;
-//use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-//use Illuminate\Http\Request;
-//use Maatwebsite\Excel\Facades\Excel;
+// use App\Http\Requests\ProductRequest;
+// use App\Imports\ProductsImport;
+// use App\Models\Product;
+// use Barryvdh\DomPDF\Facade\Pdf;
+// use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+// use Illuminate\Http\Request;
+// use Maatwebsite\Excel\Facades\Excel;
 //
-//class ProductController extends Controller
-//{
+// class ProductController extends Controller
+// {
 //    use AuthorizesRequests;
 //
 //    /**
@@ -146,11 +146,7 @@
 //        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 //        return redirect()->route('products.index')->with('success', 'Todos los productos han sido eliminados.');
 //    }
-//}
-
-
-
-
+// }
 
 namespace App\Http\Controllers;
 
@@ -158,7 +154,6 @@ use App\Http\Requests\ProductRequest;
 use App\Imports\ProductsImport;
 use App\Models\Product;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -188,7 +183,7 @@ class ProductController extends Controller
      */
     public function indexClient(Request $request)
     {
-//        $this->authorize('viewClient');
+        //        $this->authorize('viewClient');
 
         $search = $request->input('search');
 
@@ -214,7 +209,7 @@ class ProductController extends Controller
      */
     public function showClient($id)
     {
-//        $this->authorize('viewClient', User::class);
+        //        $this->authorize('viewClient', User::class);
 
         $product = Product::findOrFail($id);
 
@@ -308,7 +303,7 @@ class ProductController extends Controller
         return redirect()->route('stock')->with('success', 'Product deleted successfully');
     }
 
-    //DANGER ZONE
+    // DANGER ZONE
     /**
      * Elimina todos los productos
      */

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,7 +22,7 @@ class ProductRequest extends FormRequest
         $productId = $this->route('product') ? $this->route('product')->id : null;
 
         return [
-            'name' => 'required|string|max:255|unique:products,name,' . $productId,
+            'name' => 'required|string|max:255|unique:products,name,'.$productId,
             'category_id' => 'required|integer|exists:categories,id',
             'price_per_kg' => 'required|numeric',
             'stock_kg' => 'required|numeric',
@@ -51,12 +50,12 @@ class ProductRequest extends FormRequest
 }
 
 //
-//namespace App\Http\Requests;
+// namespace App\Http\Requests;
 //
-//use Illuminate\Foundation\Http\FormRequest;
+// use Illuminate\Foundation\Http\FormRequest;
 //
-//class ProductRequest extends FormRequest
-//{
+// class ProductRequest extends FormRequest
+// {
 //    /**
 //     * Determine if the user is authorized to make this request.
 //     *
@@ -96,4 +95,4 @@ class ProductRequest extends FormRequest
 //            'stock_kg.min' => 'Stock must be at least 0.',
 //        ];
 //    }
-//}
+// }

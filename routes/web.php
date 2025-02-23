@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -17,7 +16,7 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-//rutas de usuario
+// rutas de usuario
 Route::get('/about', function () {
     return view('dashboard.about');
 })->name('about');
@@ -36,10 +35,10 @@ Route::get('/shops', function () {
 Route::get('/stock-client', [ProductController::class, 'indexClient'])
     ->name('stock-client');
 
-//download all products in PDF
+// download all products in PDF
 Route::get('/products/pdf', [PdfController::class, 'generatePdf'])
     ->name('products.pdf');
-//admin
+// admin
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware([AdminMiddleware::class])->group(function () {
 
@@ -74,7 +73,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/products', [ProductController::class, 'index'])
             ->name('products.index');
 
-        //para mostrar un producto concreto
+        // para mostrar un producto concreto
         Route::get('/products/{id}', [ProductController::class, 'show'])
             ->middleware(['auth', 'verified'])
             ->name('products.show');
@@ -85,13 +84,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::post('/contact', [ContactController::class, 'submit'])
     ->name('contact.submit');
 
-
-
-//para mostrar un producto concreto al cliente
+// para mostrar un producto concreto al cliente
 Route::get('/products-client/{id}', [ProductController::class, 'showClient'])
     ->name('products.show-client');
 
-//rutas de politicas
+// rutas de politicas
 Route::get('/privacy', function () {
     return view('auth.policy.privacy');
 })->name('privacy');
@@ -100,10 +97,9 @@ Route::get('/terms', function () {
     return view('auth.policy.terms');
 })->name('terms');
 
-//ruta para importar los productos
+// ruta para importar los productos
 Route::post('/products/import', [ProductController::class, 'import'])
     ->name('products.import');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

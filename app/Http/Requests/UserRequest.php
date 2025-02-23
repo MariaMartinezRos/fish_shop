@@ -22,20 +22,20 @@ class UserRequest extends FormRequest
         // Verificamos si es una actualización o una creación de usuario
         $userId = $this->route('user') ? $this->route('user')->id : null;
 
-            return [
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email,'.$userId,
-                'password' => $this->isMethod('post') ? 'required|min:8' : 'nullable|min:8',
-                'password2' => $this->isMethod('post') ? 'required|same:password' : 'nullable|same:password',
-                'role_id' => 'required|in:1,3,4',
-            ];
+        return [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,'.$userId,
+            'password' => $this->isMethod('post') ? 'required|min:8' : 'nullable|min:8',
+            'password2' => $this->isMethod('post') ? 'required|same:password' : 'nullable|same:password',
+            'role_id' => 'required|in:1,3,4',
+        ];
 
-//        return [
-//            'name' => 'required|string|max:255',
-//            'email' => 'required|email|unique:users,email,'.$userId,
-//            'password' => $this->isMethod('post') ? 'required|min:8' : 'nullable|min:8',
-//            'role_id' => 'required|in:1,3,4',
-//        ];
+        //        return [
+        //            'name' => 'required|string|max:255',
+        //            'email' => 'required|email|unique:users,email,'.$userId,
+        //            'password' => $this->isMethod('post') ? 'required|min:8' : 'nullable|min:8',
+        //            'role_id' => 'required|in:1,3,4',
+        //        ];
     }
 
     /**

@@ -2,13 +2,12 @@
 
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\get;
 
-//uses(RefreshDatabase::class);
+// uses(RefreshDatabase::class);
 
 it('returns a successful response for stock client page', function () {
     $response = $this->get('stock-client');
@@ -104,5 +103,3 @@ it('can be downloaded as a PDF file', function () {
         ->assertHeader('Content-Type', 'application/pdf')
         ->assertHeader('Content-Disposition', 'attachment; filename=products.pdf');
 });
-
-

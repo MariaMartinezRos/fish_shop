@@ -9,16 +9,16 @@ use App\Models\TypeWater;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-//uses(RefreshDatabase::class);
+// uses(RefreshDatabase::class);
 
 it('adds given category', function () {
-    //Assert
+    // Assert
     $this->assertDatabaseCount(Category::class, 0);
 
-    //Act
+    // Act
     $this->artisan('db:seed');
 
-    //Assert
+    // Assert
     $this->assertDatabaseCount(Category::class, 5);
     $this->assertDatabaseHas(Category::class, ['name' => 'fresh']);
     $this->assertDatabaseHas(Category::class, ['name' => 'frozen']);
@@ -29,43 +29,43 @@ it('adds given category', function () {
 });
 
 it('adds given category only once', function () {
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->artisan('db:seed');
 
-    //Act && Assert
+    // Act && Assert
     $this->assertDatabaseCount(Category::class, 5);
 });
 
 it('adds given product', function () {
-    //Assert
+    // Assert
     $this->assertDatabaseCount(Product::class, 0);
 
-    //Act
+    // Act
     $this->artisan('db:seed');
 
-    //Assert
+    // Assert
     $this->assertDatabaseCount(Product::class, 30);
 
 });
 
 it('adds given product only once', function () {
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->artisan('db:seed');
 
-    //Act && Assert
+    // Act && Assert
     $this->assertDatabaseCount(Product::class, 30);
 });
 
 it('adds given role', function () {
-    //Assert
+    // Assert
     $this->assertDatabaseCount(Role::class, 0);
 
-    //Act
+    // Act
     $this->artisan('db:seed');
 
-    //Assert
+    // Assert
     $this->assertDatabaseCount(Role::class, 5);
     $this->assertDatabaseHas(Role::class, ['name' => 'admin']);
     $this->assertDatabaseHas(Role::class, ['name' => 'tpv']);
@@ -75,87 +75,87 @@ it('adds given role', function () {
 });
 
 it('adds given role only once', function () {
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->artisan('db:seed');
 
-    //Act && Assert
+    // Act && Assert
     $this->assertDatabaseCount(Role::class, 5);
 });
 
 it('adds given transaction', function () {
-    //Act
+    // Act
     $this->assertDatabaseCount(Transaction::class, 0);
 
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->assertDatabaseCount(Transaction::class, 40);
     $this->assertDatabaseHas(Transaction::class, ['sale_id' => '101']);
 });
 
 it('adds given transaction only once', function () {
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->artisan('db:seed');
 
-    //Act && Assert
+    // Act && Assert
     $this->assertDatabaseCount(Transaction::class, 40);
 });
 
 it('adds given user', function () {
-    //Assert
+    // Assert
     $this->assertDatabaseCount(User::class, 0);
 
-    //Act
+    // Act
     $this->artisan('db:seed');
 
-    //Assert
+    // Assert
     $this->assertDatabaseCount(User::class, 3);
     $this->assertDatabaseHas(User::class, ['email' => 'admin@admin.com']);
 });
 
 it('adds given user only once', function () {
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->artisan('db:seed');
 
-    //Act && Assert
+    // Act && Assert
     $this->assertDatabaseCount(User::class, 3);
 });
 
 it('adds given fish', function () {
-    //Act
+    // Act
     $this->assertDatabaseCount(Fish::class, 0);
 
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->assertDatabaseCount(Fish::class, 20);
 });
 
 it('adds given fish only once', function () {
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->artisan('db:seed');
 
-    //Act && Assert
+    // Act && Assert
     $this->assertDatabaseCount(Fish::class, 20);
 });
 
 it('adds type of water', function () {
-    //Act
+    // Act
     $this->assertDatabaseCount(TypeWater::class, 2);
 
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->assertDatabaseCount(TypeWater::class, 2);
 
 });
 
 it('adds type of water only once', function () {
-    //Act
+    // Act
     $this->artisan('db:seed');
     $this->artisan('db:seed');
 
-    //Act && Assert
+    // Act && Assert
     $this->assertDatabaseCount(TypeWater::class, 2);
 });

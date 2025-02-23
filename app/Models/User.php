@@ -78,9 +78,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    //This method defines how certain attributes of the User model
+    // This method defines how certain attributes of the User model
     // should be cast when they are accessed or set.
 
-    //email_verified_at is cast to a datetime object.
-    //password is cast to a hashed value.
+    // email_verified_at is cast to a datetime object.
+    // password is cast to a hashed value.
 }

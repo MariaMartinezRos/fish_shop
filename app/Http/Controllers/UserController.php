@@ -12,6 +12,7 @@ class UserController extends Controller
 
     /**
      * List users
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function index()
@@ -25,6 +26,7 @@ class UserController extends Controller
 
     /**
      * Create user
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function create()
@@ -36,7 +38,7 @@ class UserController extends Controller
 
     /**
      * Save user
-     * @param UserRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserRequest $request)
@@ -60,7 +62,7 @@ class UserController extends Controller
 
     /**
      * Edit user
-     * @param User $user
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function edit(User $user)
@@ -72,8 +74,7 @@ class UserController extends Controller
 
     /**
      * Update user
-     * @param UserRequest $request
-     * @param User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UserRequest $request, User $user)
@@ -91,7 +92,7 @@ class UserController extends Controller
 
     /**
      * Delete user
-     * @param User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user)

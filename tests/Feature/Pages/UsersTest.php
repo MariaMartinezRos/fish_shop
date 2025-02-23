@@ -111,4 +111,3 @@ it('can update a user', function () {
         ->assertRedirect('users')
         ->assertSessionHas('success', 'Usuario actualizado correctamente');
 });
-

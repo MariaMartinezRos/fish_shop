@@ -54,7 +54,7 @@ it('includes logout if logged in', function () {
 it('can switch images using the navigation buttons', function () {
     // Arrange
     $images = ['image1.jpg', 'image2.jpg', 'image3.jpg'];
-    $carousel = new Carousel();
+    $carousel = new Carousel;
     $carousel->images = $images;
 
     // Act && Assert

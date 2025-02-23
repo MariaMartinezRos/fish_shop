@@ -2,7 +2,6 @@
 
 use App\Console\Commands\CleanAllCache;
 use App\Console\Commands\CreateCategories;
-use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 

@@ -36,14 +36,12 @@ class CreateCategories extends Command
         ];
 
         foreach ($categories as $categoryData) {
-            if (!Category::where('name', $categoryData['name'])->exists()) {
+            if (! Category::where('name', $categoryData['name'])->exists()) {
                 Category::create($categoryData);
-                $this->info('Category "' . $categoryData['name'] . '" created successfully!');
+                $this->info('Category "'.$categoryData['name'].'" created successfully!');
             } else {
-                $this->error('Category "' . $categoryData['name'] . '" already exists.');
+                $this->error('Category "'.$categoryData['name'].'" already exists.');
             }
         }
     }
 }
-
-

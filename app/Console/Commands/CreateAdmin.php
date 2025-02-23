@@ -34,14 +34,16 @@ class CreateAdmin extends Command
         $password2 = $this->secret('Enter the admin password (again): ');
 
         // Validate email format (basic check)
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->error('Invalid email address.');
+
             return;
         }
 
-        //Validate password confirmation
+        // Validate password confirmation
         if ($password !== $password2) {
             $this->error('Passwords do not match.');
+
             return;
         }
 
@@ -56,7 +58,7 @@ class CreateAdmin extends Command
 
             $this->info('Admin user created successfully!');
         } catch (\Exception $e) {
-            $this->error('Failed to create admin user: ' . $e->getMessage());
+            $this->error('Failed to create admin user: '.$e->getMessage());
         }
     }
 }

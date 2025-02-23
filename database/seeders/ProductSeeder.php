@@ -20,6 +20,4 @@ class ProductSeeder extends Seeder
     {
         return Product::exists();
     }
-
-
 }
