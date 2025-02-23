@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Carousel;
 use App\Models\User;
 
 use function Pest\Laravel\get;
@@ -48,4 +49,18 @@ it('includes logout if logged in', function () {
         ->assertSeeText('Finalizar sesión')
         ->assertSee(route('dashboard'));
 
+});
+
+it('can switch images using the navigation buttons', function () {
+    // Arrange
+    $images = ['image1.jpg', 'image2.jpg', 'image3.jpg'];
+    $carousel = new Carousel();
+    $carousel->images = $images;
+
+    // Act && Assert
+    $carousel->next();
+    $this->assertEquals(1, $carousel->currentIndex);
+
+    $carousel->previous();
+    $this->assertEquals(0, $carousel->currentIndex);
 });
