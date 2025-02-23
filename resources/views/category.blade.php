@@ -16,8 +16,8 @@
                     @if(isset($categories) && count($categories) > 0)
                         <div class="space-y-4">
                             @foreach($categories as $category)
-                                <div class="flex items-center justify-center p-4 bg-gradient-to-r from-indigo-300 to-purple-300 text-black rounded-lg shadow-lg
-                    hover:bg-opacity-80 hover:text-white hover:shadow-xl hover:bg-gradient-to-r hover:from-indigo-400 hover:to-purple-400 transition-all ">
+                                <div class="flex items-center justify-center p-4 bg-white-200 text-black rounded-lg shadow-lg
+                    hover:bg-opacity-80 hover:text-white hover:shadow-xl hover:bg-blue-500 transition-all ">
                                     <h2 class="text-xl font-semibold">{{ $category->name }}</h2>
                                     <img src="{{ asset('images/'.$category->id.'.png') }}" alt="{{ __('Category of the fish') }}"
                                          class="h-6 w-6 ml-2"

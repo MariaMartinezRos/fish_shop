@@ -24,16 +24,19 @@ class SalesPerHourChart extends Chart
          * por lo que se usa strftime('%H', date_time) para extraer la hora
          */
         $connection = DB::connection()->getDriverName();
+        $today = now()->format('Y-m-d');
 
         if ($connection === 'sqlite') {
             $salesData = DB::table('transactions')
                 ->select(DB::raw('strftime(\'%H\', date_time) as hour'), DB::raw('SUM(amount) as total'))
+                ->whereDate('date_time', $today)
                 ->groupBy('hour')
                 ->orderBy('hour')
                 ->get();
         } else {
             $salesData = DB::table('transactions')
                 ->select(DB::raw('HOUR(date_time) as hour'), DB::raw('SUM(amount) as total'))
+                ->whereDate('date_time', $today)
                 ->groupBy('hour')
                 ->orderBy('hour')
                 ->get();

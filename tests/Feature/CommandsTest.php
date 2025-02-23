@@ -1,6 +1,8 @@
 <?php
 
 use App\Console\Commands\CleanAllCache;
+use App\Console\Commands\CreateCategories;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 
@@ -49,4 +51,16 @@ it('creates a new admin user successfully', function () {
     $this->assertNotNull($user);
     $this->assertTrue(Hash::check($password, $user->password));
     $this->assertTrue($user->role_id === 'admin');
+});
+
+it('creates predefined categories successfully', function () {
+    // Act
+    $this->artisan(CreateCategories::class)->assertExitCode(0);
+
+    // Assert
+    $this->assertDatabaseHas('categories', ['name' => 'fresh']);
+    $this->assertDatabaseHas('categories', ['name' => 'frozen']);
+    $this->assertDatabaseHas('categories', ['name' => 'cut']);
+    $this->assertDatabaseHas('categories', ['name' => 'seafood']);
+    $this->assertDatabaseHas('categories', ['name' => 'other']);
 });
