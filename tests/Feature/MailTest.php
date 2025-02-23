@@ -1,6 +1,8 @@
 <?php
 
+use App\Events\UserCreated;
 use App\Jobs\SendContactConfirmationEmail;
+use App\Listeners\SendWelcomeEmail;
 use App\Mail\ContactConfirmation;
 use App\Mail\WelcomeMail;
 use App\Models\User;
@@ -17,6 +19,22 @@ it('includes login details for the welcome mail', function () {
     $mail->AssertSeeInText('Login');
     $mail->AssertSeeInHtml(route('login'));
 
+});
+
+it('sends a welcome email when a user is created', function () {
+    // Arrange
+    Mail::fake();
+    $user = User::factory()->create();
+    $event = new UserCreated($user);
+
+    // Act
+    $listener = new SendWelcomeEmail();
+    $listener->handle($event);
+
+    // Assert
+    Mail::assertSent(WelcomeMail::class, function ($mail) use ($user) {
+        return $mail->hasTo($user->email);
+    });
 });
 
 it('sends the confirmation email for the contact page', function () {
@@ -44,3 +62,4 @@ it('includes valid data for the contact mail', function () {
     // Act && Assert
     $response->assertSessionHasErrors(['name', 'email', 'message']);
 });
+

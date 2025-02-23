@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\TransactionSearcher;
 use App\Models\Role;
 use App\Models\User;
 
@@ -82,4 +83,18 @@ it('renders the transaction component correctly', function () {
 
     // Assert
     $response->assertSeeLivewire('transaction-searcher');
+});
+
+it('searches transactions correctly', function () {
+    // Arrange: Create transactions with different tpv values
+    $this->artisan('db:seed');
+
+    // Act: Render the component with a specific tpv value
+    $component = Livewire::test(TransactionSearcher::class)
+        ->set('tpv', 'PESCADERIA BENITO ALHAMA');
+
+    // Assert: Check if the component filters transactions correctly
+    $component->assertViewHas('transactions', function ($transactions) {
+        return $transactions->count() === 20;
+    });
 });
