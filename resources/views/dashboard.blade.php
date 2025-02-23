@@ -6,11 +6,12 @@
         <h2 class="text-4xl font-bold"> {{ __('Freshness from the sea to your table') }}</h2>
         <p class="mt-4 text-lg"> {{ __('The best seafood and fish selected for you.') }}</p>
     </header>
+    <div class="mt-10"></div>
 
     <!-- Secciones -->
-    <div class="w-full sm:max-w-4xl mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md sm:rounded-lg">
-
-    </div>
+{{--    <div class="w-full sm:max-w-4xl mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md sm:rounded-lg">--}}
+        <livewire:carousel />
+{{--    </div>--}}
 
     <!-- Footer -->
     @include('partials.footer')

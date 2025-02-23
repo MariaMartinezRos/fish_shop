@@ -13,8 +13,12 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
+
 </head>
 <body class="font-sans text-gray-900 antialiased bg-gray-100 dark:bg-gray-900">
+@livewireScripts
+
 <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
 
 <nav class="bg-blue-600 text-white p-4 shadow-lg w-full">
