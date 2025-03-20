@@ -24,6 +24,7 @@ class Fish extends Model
     // Relación N:N con tipos_agua
     public function TypeWater(): BelongsToMany
     {
-        return $this->belongsToMany(TypeWater::class, 'fish_type_water');
+        return $this->belongsToMany(TypeWater::class, 'fish_type_water')
+            ->withPivot('state');
     }
 }

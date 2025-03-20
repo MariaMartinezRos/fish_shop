@@ -14,14 +14,14 @@ class FetchCarouselImages implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private string $imagePath = 'C:\\Users\\gines\\Herd\\fish_shop\\public\\images\\fishes';
+//    private string $imagePath = 'C:\\Users\\gines\\Herd\\fish_shop\\public\\images\\fishes';
 
     /**
      * Execute the job.
      */
     public function handle(): void
     {
-        $files = File::files($this->imagePath);
+        $files = File::files(public_path('images/fishes/'));
         $images = collect($files)->map(fn ($file) => asset('images/fishes/'.$file->getFilename()))->toArray();
 
         Cache::put('carousel_images', $images, now()->addMinutes(10));

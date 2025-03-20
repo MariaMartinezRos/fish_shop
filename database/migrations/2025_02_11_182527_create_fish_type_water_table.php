@@ -15,6 +15,15 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('fish_id');
             $table->unsignedBigInteger('type_water_id');
+
+            $table->enum('state', ['allowed', 'forbidden'])->default('allowed');
+
+            $table->string('temperature_range'); // Ej: "22-28°C"
+            $table->string('ph_range'); // Ej: "6.5-7.5"
+            $table->decimal('salinity', 5, 2)->nullable(); // Ej: "1.025"
+            $table->decimal('oxygen_level', 5, 2)->nullable(); // Ej: "5.0 mg/L"
+            $table->text('notes')->nullable();
+
             $table->timestamps();
 
             $table->foreign('fish_id')->references('id')->on('fishes')->onDelete('cascade');

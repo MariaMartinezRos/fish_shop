@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserCreated;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -54,6 +55,8 @@ class UserController extends Controller
 
         // Asignación de rol
         $user->roles()->attach($request->role_id);
+
+        event(new UserCreated($user));
 
         return redirect()
             ->route('users.index')

@@ -13,7 +13,7 @@ class FishSeeder extends Seeder
         if ($this->isDataAlreadyGiven()) {
             return;
         }
-        Fish::factory()->count(20)->released()->create();
+        Fish::factory()->count(20)->create();
     }
 
     private function isDataAlreadyGiven(): bool

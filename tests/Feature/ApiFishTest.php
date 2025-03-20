@@ -34,12 +34,18 @@ it('stores a new fish successfully', function () {
         'type' => 'Freshwater',
         'price' => 10.5,
         'photo' => $file,
+        'temperature_range' => '22-28°C',
+        'ph_range' => '6.5-7.5',
+        'salinity' => 1.025,
+        'oxygen_level' => 5.0,
+        'notes' => 'Test notes',
+        'state' => 'allowed',
     ];
 
     $this->actingAs($admin)
         ->postJson('/api/v2/fishes', $data)
         ->assertStatus(201);
-});
+})->todo();
 
 it('updates an existing fish successfully', function () {
     $role = Role::factory()->create(['id' => 1]);

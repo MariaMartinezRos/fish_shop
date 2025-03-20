@@ -40,6 +40,15 @@ class CreateAdmin extends Command
             return;
         }
 
+        // validate that the email is unique
+        if (User::where('email', $email)->exists()) {
+            $this->error('Email already exists.');
+
+            return;
+        }
+
+        // Create the admin user
+
         // Validate password confirmation
         if ($password !== $password2) {
             $this->error('Passwords do not match.');

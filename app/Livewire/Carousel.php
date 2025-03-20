@@ -13,7 +13,7 @@ class Carousel extends Component
 
     public $currentIndex = 0;
 
-    private $imagePath = 'C:\\Users\\gines\\Herd\\fish_shop\\public\\images\\fishes';
+//    private $imagePath = 'C:\\Users\\gines\\Herd\\fish_shop\\public\\images\\fishes';
 
     public function mount(): void
     {
@@ -44,7 +44,7 @@ class Carousel extends Component
 
     private function getImagesFromDirectory(): array
     {
-        $files = File::files($this->imagePath);
+        $files = File::files(public_path('images/fishes/'));
 
         return collect($files)->map(fn ($file) => asset('images/fishes/'.$file->getFilename()))->toArray();
     }
