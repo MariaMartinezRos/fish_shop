@@ -18,12 +18,6 @@ class FishFactory extends Factory
             'name' => $this->faker->name,
             'image' => $this->faker->imageUrl(),
             'description' => $this->faker->text,
-//            'state' => $this->faker->randomElement(['allowed', 'forbidden']),
-//            'temperature_range' => $this->faker->randomElement(['22-28°C', '24-30°C', '20-25°C']),
-//            'ph_range' => $this->faker->randomElement(['6.5-7.5', '7.0-8.0', '6.0-7.0']),
-//            'salinity' => $this->faker->randomFloat(2, 1.020, 1.030),
-//            'oxygen_level' => $this->faker->randomFloat(2, 4.0, 8.0),
-//            'notes' => $this->faker->paragraph,
         ];
     }
 
@@ -43,11 +37,6 @@ class FishFactory extends Factory
                 'salinity' => $this->faker->randomFloat(2, 1.020, 1.030),
                 'oxygen_level' => $this->faker->randomFloat(2, 4.0, 8.0),
                 'notes' => $this->faker->paragraph,
-//                'temperature_range' => $fish->temperature_range,
-//                'ph_range' => $fish->ph_range,
-//                'salinity' => $fish->salinity,
-//                'oxygen_level' => $fish->oxygen_level,
-//                'notes' => $fish->notes,
             ]);
         });
     }
