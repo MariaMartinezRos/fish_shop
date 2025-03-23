@@ -15,7 +15,7 @@ class FishController extends Controller
     /**
      * Get a list of all fishes.
      *
-     * @group Fishes
+     * @group Fishes V1
      *
      * @response 200 {"data": [{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}]}
      */
@@ -29,7 +29,7 @@ class FishController extends Controller
     /**
      * Get a specific fish.
      *
-     * @group Fishes
+     * @group Fishes V1
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
@@ -43,7 +43,7 @@ class FishController extends Controller
     /**
      * Store a new fish.
      *
-     * @group Fishes
+     * @group Fishes V1
      *
      * @bodyParam name string required The name of the fish. Example: Salmon
      * @bodyParam type string required The type of the fish. Example: Freshwater
@@ -75,7 +75,7 @@ class FishController extends Controller
     /**
      * Update an existing fish.
      *
-     * @group Fishes
+     * @group Fishes V1
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
@@ -101,7 +101,7 @@ class FishController extends Controller
     /**
      * Delete a specific fish.
      *
-     * @group Fishes
+     * @group Fishes V1
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>fish_shop API Documentation</title>
+    <title>Pescaderias Benito API Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -66,25 +66,47 @@
                     <a href="#authenticating-requests">Authenticating requests</a>
                 </li>
                             </ul>
-                    <ul id="tocify-header-fishes" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="fishes">
-                    <a href="#fishes">Fishes</a>
+                    <ul id="tocify-header-fishes-v1" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="fishes-v1">
+                    <a href="#fishes-v1">Fishes V1</a>
                 </li>
-                                    <ul id="tocify-subheader-fishes" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="fishes-GETapi-v2-fishes">
-                                <a href="#fishes-GETapi-v2-fishes">Get a list of all fishes.</a>
+                                    <ul id="tocify-subheader-fishes-v1" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="fishes-v1-GETapi-v1-fishes">
+                                <a href="#fishes-v1-GETapi-v1-fishes">Get a list of all fishes.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="fishes-GETapi-v2-fishes--fish_id-">
-                                <a href="#fishes-GETapi-v2-fishes--fish_id-">Get a specific fish.</a>
+                                                                                <li class="tocify-item level-2" data-unique="fishes-v1-GETapi-v1-fishes--fish_id-">
+                                <a href="#fishes-v1-GETapi-v1-fishes--fish_id-">Get a specific fish.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="fishes-POSTapi-v2-fishes">
-                                <a href="#fishes-POSTapi-v2-fishes">Store a new fish.</a>
+                                                                                <li class="tocify-item level-2" data-unique="fishes-v1-POSTapi-v1-fishes">
+                                <a href="#fishes-v1-POSTapi-v1-fishes">Store a new fish.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="fishes-PUTapi-v2-fishes--fish_id-">
-                                <a href="#fishes-PUTapi-v2-fishes--fish_id-">Update an existing fish.</a>
+                                                                                <li class="tocify-item level-2" data-unique="fishes-v1-PUTapi-v1-fishes--fish_id-">
+                                <a href="#fishes-v1-PUTapi-v1-fishes--fish_id-">Update an existing fish.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="fishes-DELETEapi-v2-fishes--fish_id-">
-                                <a href="#fishes-DELETEapi-v2-fishes--fish_id-">Delete a specific fish.</a>
+                                                                                <li class="tocify-item level-2" data-unique="fishes-v1-DELETEapi-v1-fishes--fish_id-">
+                                <a href="#fishes-v1-DELETEapi-v1-fishes--fish_id-">Delete a specific fish.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-fishes-v2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="fishes-v2">
+                    <a href="#fishes-v2">Fishes V2</a>
+                </li>
+                                    <ul id="tocify-subheader-fishes-v2" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="fishes-v2-GETapi-v2-fishes">
+                                <a href="#fishes-v2-GETapi-v2-fishes">Get a list of all fishes.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="fishes-v2-GETapi-v2-fishes--fish_id-">
+                                <a href="#fishes-v2-GETapi-v2-fishes--fish_id-">Get a specific fish.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="fishes-v2-POSTapi-v2-fishes">
+                                <a href="#fishes-v2-POSTapi-v2-fishes">Store a new fish.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="fishes-v2-PUTapi-v2-fishes--fish_id-">
+                                <a href="#fishes-v2-PUTapi-v2-fishes--fish_id-">Update an existing fish.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="fishes-v2-DELETEapi-v2-fishes--fish_id-">
+                                <a href="#fishes-v2-DELETEapi-v2-fishes--fish_id-">Delete a specific fish.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -97,7 +119,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: February 21, 2025</li>
+        <li>Last updated: March 23, 2025</li>
     </ul>
 </div>
 
@@ -118,11 +140,821 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
-        <h1 id="fishes">Fishes</h1>
+        <h1 id="fishes-v1">Fishes V1</h1>
 
     
 
-                                <h2 id="fishes-GETapi-v2-fishes">Get a list of all fishes.</h2>
+                                <h2 id="fishes-v1-GETapi-v1-fishes">Get a list of all fishes.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-fishes">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://fish_shop.test/api/v1/fishes" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://fish_shop.test/api/v1/fishes"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-fishes">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Salmon&quot;,
+            &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+            &quot;type&quot;: [
+                &quot;Freshwater&quot;
+            ],
+            &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-fishes" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-fishes"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-fishes"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-fishes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-fishes">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-fishes" data-method="GET"
+      data-path="api/v1/fishes"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-fishes', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-fishes"
+                    onclick="tryItOut('GETapi-v1-fishes');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-fishes"
+                    onclick="cancelTryOut('GETapi-v1-fishes');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-fishes"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/fishes</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-fishes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-fishes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="fishes-v1-GETapi-v1-fishes--fish_id-">Get a specific fish.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-fishes--fish_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://fish_shop.test/api/v1/fishes/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://fish_shop.test/api/v1/fishes/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-fishes--fish_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Salmon&quot;,
+    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+    &quot;type&quot;: [
+        &quot;Freshwater&quot;
+    ],
+    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-fishes--fish_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-fishes--fish_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-fishes--fish_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-fishes--fish_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-fishes--fish_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-fishes--fish_id-" data-method="GET"
+      data-path="api/v1/fishes/{fish_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-fishes--fish_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-fishes--fish_id-"
+                    onclick="tryItOut('GETapi-v1-fishes--fish_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-fishes--fish_id-"
+                    onclick="cancelTryOut('GETapi-v1-fishes--fish_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-fishes--fish_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/fishes/{fish_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-fishes--fish_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-fishes--fish_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>fish_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="fish_id"                data-endpoint="GETapi-v1-fishes--fish_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the fish. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>fish</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="fish"                data-endpoint="GETapi-v1-fishes--fish_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the fish. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="fishes-v1-POSTapi-v1-fishes">Store a new fish.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-fishes">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://fish_shop.test/api/v1/fishes" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "name=Salmon"\
+    --form "type=Freshwater"\
+    --form "description=Eius et animi quos velit et."\
+    --form "price=10.5"\
+    --form "image=@C:\Users\gines\AppData\Local\Temp\phpA854.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://fish_shop.test/api/v1/fishes"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('name', 'Salmon');
+body.append('type', 'Freshwater');
+body.append('description', 'Eius et animi quos velit et.');
+body.append('price', '10.5');
+body.append('image', document.querySelector('input[name="image"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-fishes">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Salmon&quot;,
+    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+    &quot;type&quot;: [
+        &quot;Freshwater&quot;
+    ],
+    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-fishes" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-fishes"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-fishes"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-fishes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-fishes">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-fishes" data-method="POST"
+      data-path="api/v1/fishes"
+      data-authed="0"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-fishes', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-fishes"
+                    onclick="tryItOut('POSTapi-v1-fishes');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-fishes"
+                    onclick="cancelTryOut('POSTapi-v1-fishes');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-fishes"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/fishes</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-fishes"
+               value="multipart/form-data"
+               data-component="header">
+    <br>
+<p>Example: <code>multipart/form-data</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-fishes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-v1-fishes"
+               value="Salmon"
+               data-component="body">
+    <br>
+<p>The name of the fish. Example: <code>Salmon</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="file" style="display: none"
+                              name="image"                data-endpoint="POSTapi-v1-fishes"
+               value=""
+               data-component="body">
+    <br>
+<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\phpA854.tmp</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="POSTapi-v1-fishes"
+               value="Freshwater"
+               data-component="body">
+    <br>
+<p>The type of the fish. Example: <code>Freshwater</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi-v1-fishes"
+               value="Eius et animi quos velit et."
+               data-component="body">
+    <br>
+<p>Example: <code>Eius et animi quos velit et.</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="price"                data-endpoint="POSTapi-v1-fishes"
+               value="10.5"
+               data-component="body">
+    <br>
+<p>The price of the fish. Example: <code>10.5</code></p>
+        </div>
+        </form>
+
+                    <h2 id="fishes-v1-PUTapi-v1-fishes--fish_id-">Update an existing fish.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-v1-fishes--fish_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://fish_shop.test/api/v1/fishes/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"Salmon\",
+    \"type\": \"Freshwater\",
+    \"description\": \"Eius et animi quos velit et.\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://fish_shop.test/api/v1/fishes/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "Salmon",
+    "type": "Freshwater",
+    "description": "Eius et animi quos velit et."
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-fishes--fish_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Updated Salmon&quot;,
+    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+    &quot;type&quot;: [
+        &quot;Freshwater&quot;
+    ],
+    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-fishes--fish_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-fishes--fish_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-fishes--fish_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-fishes--fish_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-fishes--fish_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-fishes--fish_id-" data-method="PUT"
+      data-path="api/v1/fishes/{fish_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-fishes--fish_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-fishes--fish_id-"
+                    onclick="tryItOut('PUTapi-v1-fishes--fish_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-fishes--fish_id-"
+                    onclick="cancelTryOut('PUTapi-v1-fishes--fish_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-fishes--fish_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/fishes/{fish_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>fish_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="fish_id"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the fish. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>fish</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="fish"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the fish. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="Salmon"
+               data-component="body">
+    <br>
+<p>The name of the fish. Example: <code>Salmon</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="image"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="Freshwater"
+               data-component="body">
+    <br>
+<p>The type of the fish. Example: <code>Freshwater</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="Eius et animi quos velit et."
+               data-component="body">
+    <br>
+<p>Example: <code>Eius et animi quos velit et.</code></p>
+        </div>
+        </form>
+
+                    <h2 id="fishes-v1-DELETEapi-v1-fishes--fish_id-">Delete a specific fish.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-v1-fishes--fish_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://fish_shop.test/api/v1/fishes/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://fish_shop.test/api/v1/fishes/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-fishes--fish_id-">
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <pre>
+<code>Empty response</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-v1-fishes--fish_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-fishes--fish_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-fishes--fish_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-fishes--fish_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-fishes--fish_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v1-fishes--fish_id-" data-method="DELETE"
+      data-path="api/v1/fishes/{fish_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-fishes--fish_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-fishes--fish_id-"
+                    onclick="tryItOut('DELETEapi-v1-fishes--fish_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-fishes--fish_id-"
+                    onclick="cancelTryOut('DELETEapi-v1-fishes--fish_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-fishes--fish_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/fishes/{fish_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-fishes--fish_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v1-fishes--fish_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>fish_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="fish_id"                data-endpoint="DELETEapi-v1-fishes--fish_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the fish. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>fish</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="fish"                data-endpoint="DELETEapi-v1-fishes--fish_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the fish. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                <h1 id="fishes-v2">Fishes V2</h1>
+
+    
+
+                                <h2 id="fishes-v2-GETapi-v2-fishes">Get a list of all fishes.</h2>
 
 <p>
 </p>
@@ -164,18 +996,35 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;Salmon&quot;,
-            &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-            &quot;type&quot;: [
-                &quot;Freshwater&quot;
-            ],
-            &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
-        }
-    ]
-}</code>
+   &quot;data&quot;: [
+     {
+       &quot;id&quot;: 1,
+       &quot;name&quot;: &quot;Salmon&quot;,
+       &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+       &quot;type&quot;: [&quot;Freshwater&quot;],
+       &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+       &quot;state&quot;: &quot;forbidden&quot;,
+       &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
+       &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
+       &quot;salinity&quot;: &quot;1.03&quot;,
+       &quot;oxygen_level&quot;: &quot;5.94&quot;,
+       &quot;notes&quot;: &quot;Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui.&quot;
+     },
+     {
+        &quot;id&quot;: 2,
+        &quot;name&quot;: &quot;Trucha&quot;,
+        &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+        &quot;type&quot;: [&quot;Saltwater&quot;],
+        &quot;description&quot;: &quot;Et eum iste impedit consequatur atque natus. Neque asperiores cum sunt nulla adipisci qui ad. Aut qui maiores quia velit facilis sint ut. Incidunt quod ducimus eos id.&quot;,
+        &quot;state&quot;: &quot;allowed&quot;,
+        &quot;temperature_range&quot;: &quot;24-30&deg;C&quot;,
+        &quot;ph_range&quot;: &quot;6.5-7.5&quot;,
+        &quot;salinity&quot;: &quot;1.02&quot;,
+        &quot;oxygen_level&quot;: &quot;5.26&quot;,
+        &quot;notes&quot;: &quot;Placeat delectus facere dolor dolorem. Repudiandae veniam ex neque et.&quot;
+      }
+   ]
+ }</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-v2-fishes" hidden>
@@ -249,7 +1098,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="fishes-GETapi-v2-fishes--fish_id-">Get a specific fish.</h2>
+                    <h2 id="fishes-v2-GETapi-v2-fishes--fish_id-">Get a specific fish.</h2>
 
 <p>
 </p>
@@ -262,14 +1111,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://fish_shop.test/api/v2/fishes/2" \
+    --get "http://fish_shop.test/api/v2/fishes/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://fish_shop.test/api/v2/fishes/2"
+    "http://fish_shop.test/api/v2/fishes/1"
 );
 
 const headers = {
@@ -291,13 +1140,21 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;Salmon&quot;,
-    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-    &quot;type&quot;: [
-        &quot;Freshwater&quot;
-    ],
-    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+    &quot;data&quot;: [
+      {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Salmon&quot;,
+        &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+        &quot;type&quot;: [&quot;Freshwater&quot;],
+        &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+        &quot;state&quot;: &quot;forbidden&quot;,
+        &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
+        &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
+        &quot;salinity&quot;: &quot;1.03&quot;,
+        &quot;oxygen_level&quot;: &quot;5.94&quot;,
+        &quot;notes&quot;: &quot;Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui.&quot;
+      }
+   ]
 }</code>
  </pre>
     </span>
@@ -377,10 +1234,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="fish_id"                data-endpoint="GETapi-v2-fishes--fish_id-"
-               value="2"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the fish. Example: <code>2</code></p>
+<p>The ID of the fish. Example: <code>1</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>fish</code></b>&nbsp;&nbsp;
@@ -395,7 +1252,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="fishes-POSTapi-v2-fishes">Store a new fish.</h2>
+                    <h2 id="fishes-v2-POSTapi-v2-fishes">Store a new fish.</h2>
 
 <p>
 </p>
@@ -415,7 +1272,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "type=Freshwater"\
     --form "description=Eius et animi quos velit et."\
     --form "price=10.5"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\phpE4EB.tmp" </code></pre></div>
+    --form "image=@C:\Users\gines\AppData\Local\Temp\phpA8A4.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -450,13 +1307,21 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;Salmon&quot;,
-    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-    &quot;type&quot;: [
-        &quot;Freshwater&quot;
-    ],
-    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+     &quot;data&quot;: [
+       {
+         &quot;id&quot;: 1,
+         &quot;name&quot;: &quot;Salmon&quot;,
+         &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+         &quot;type&quot;: [&quot;Freshwater&quot;],
+         &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+         &quot;state&quot;: &quot;forbidden&quot;,
+         &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
+         &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
+         &quot;salinity&quot;: &quot;1.03&quot;,
+         &quot;oxygen_level&quot;: &quot;5.94&quot;,
+         &quot;notes&quot;: &quot;Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui.&quot;
+       }
+    ]
 }</code>
  </pre>
     </span>
@@ -550,7 +1415,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\phpE4EB.tmp</code></p>
+<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\phpA8A4.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -587,7 +1452,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="fishes-PUTapi-v2-fishes--fish_id-">Update an existing fish.</h2>
+                    <h2 id="fishes-v2-PUTapi-v2-fishes--fish_id-">Update an existing fish.</h2>
 
 <p>
 </p>
@@ -600,7 +1465,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://fish_shop.test/api/v2/fishes/2" \
+    "http://fish_shop.test/api/v2/fishes/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -613,7 +1478,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://fish_shop.test/api/v2/fishes/2"
+    "http://fish_shop.test/api/v2/fishes/1"
 );
 
 const headers = {
@@ -637,18 +1502,26 @@ fetch(url, {
 
 <span id="example-responses-PUTapi-v2-fishes--fish_id-">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (201):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;Updated Salmon&quot;,
-    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-    &quot;type&quot;: [
-        &quot;Freshwater&quot;
-    ],
-    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+     &quot;data&quot;: [
+       {
+         &quot;id&quot;: 1,
+         &quot;name&quot;: &quot;Updated Salmon&quot;,
+         &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+         &quot;type&quot;: [&quot;Freshwater&quot;],
+         &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+         &quot;state&quot;: &quot;forbidden&quot;,
+         &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
+         &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
+         &quot;salinity&quot;: &quot;1.03&quot;,
+         &quot;oxygen_level&quot;: &quot;5.94&quot;,
+         &quot;notes&quot;: &quot;Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui.&quot;
+       }
+    ]
 }</code>
  </pre>
     </span>
@@ -728,10 +1601,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="fish_id"                data-endpoint="PUTapi-v2-fishes--fish_id-"
-               value="2"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the fish. Example: <code>2</code></p>
+<p>The ID of the fish. Example: <code>1</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>fish</code></b>&nbsp;&nbsp;
@@ -791,7 +1664,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="fishes-DELETEapi-v2-fishes--fish_id-">Delete a specific fish.</h2>
+                    <h2 id="fishes-v2-DELETEapi-v2-fishes--fish_id-">Delete a specific fish.</h2>
 
 <p>
 </p>
@@ -804,14 +1677,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://fish_shop.test/api/v2/fishes/2" \
+    "http://fish_shop.test/api/v2/fishes/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://fish_shop.test/api/v2/fishes/2"
+    "http://fish_shop.test/api/v2/fishes/1"
 );
 
 const headers = {
@@ -910,10 +1783,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="fish_id"                data-endpoint="DELETEapi-v2-fishes--fish_id-"
-               value="2"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the fish. Example: <code>2</code></p>
+<p>The ID of the fish. Example: <code>1</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>fish</code></b>&nbsp;&nbsp;

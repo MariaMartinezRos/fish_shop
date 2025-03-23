@@ -25,6 +25,13 @@ class Fish extends Model
     public function TypeWater(): BelongsToMany
     {
         return $this->belongsToMany(TypeWater::class, 'fish_type_water')
-            ->withPivot('state');
+            ->withPivot([
+                'state',
+                'temperature_range',
+                'ph_range',
+                'salinity',
+                'oxygen_level',
+                'notes'
+            ]);
     }
 }

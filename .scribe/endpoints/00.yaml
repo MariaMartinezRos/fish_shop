@@ -1,12 +1,12 @@
-name: Fishes
+name: 'Fishes V1'
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v2/fishes
+    uri: api/v1/fishes
     metadata:
-      groupName: Fishes
+      groupName: 'Fishes V1'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -40,9 +40,9 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v2/fishes/{fish_id}'
+    uri: 'api/v1/fishes/{fish_id}'
     metadata:
-      groupName: Fishes
+      groupName: 'Fishes V1'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -58,7 +58,7 @@ endpoints:
         name: fish_id
         description: 'The ID of the fish.'
         required: true
-        example: 2
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -75,7 +75,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      fish_id: 2
+      fish_id: 1
       fish: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -98,9 +98,9 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v2/fishes
+    uri: api/v1/fishes
     metadata:
-      groupName: Fishes
+      groupName: 'Fishes V1'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -189,9 +189,9 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/v2/fishes/{fish_id}'
+    uri: 'api/v1/fishes/{fish_id}'
     metadata:
-      groupName: Fishes
+      groupName: 'Fishes V1'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -207,7 +207,7 @@ endpoints:
         name: fish_id
         description: 'The ID of the fish.'
         required: true
-        example: 2
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -224,7 +224,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      fish_id: 2
+      fish_id: 1
       fish: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -290,9 +290,9 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v2/fishes/{fish_id}'
+    uri: 'api/v1/fishes/{fish_id}'
     metadata:
-      groupName: Fishes
+      groupName: 'Fishes V1'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -308,7 +308,7 @@ endpoints:
         name: fish_id
         description: 'The ID of the fish.'
         required: true
-        example: 2
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -325,7 +325,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      fish_id: 2
+      fish_id: 1
       fish: 1
     queryParameters: []
     cleanQueryParameters: []

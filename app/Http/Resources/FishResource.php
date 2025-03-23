@@ -20,6 +20,19 @@ class FishResource extends JsonResource
             'image' => $this->image,
             'type' => $this->typeWater->pluck('type'),
             'description' => $this->description,
+            'state' => $this->typeWater->pluck('pivot.state')->first(),
+            'temperature_range' => $this->typeWater->pluck('pivot.temperature_range')->first(),
+            'ph_range' => $this->typeWater->pluck('pivot.ph_range')->first(),
+            'salinity' => $this->typeWater->pluck('pivot.salinity')->first(),
+            'oxygen_level' => $this->typeWater->pluck('pivot.oxygen_level')->first(),
+            'notes' => $this->typeWater->pluck('pivot.notes')->first(),
         ];
     }
 }
+
+//$table->enum('state', ['allowed', 'forbidden'])->default('allowed');
+//$table->string('temperature_range'); // Ej: "22-28°C"
+//$table->string('ph_range'); // Ej: "6.5-7.5"
+//$table->decimal('salinity', 5, 2)->nullable(); // Ej: "1.025"
+//$table->decimal('oxygen_level', 5, 2)->nullable(); // Ej: "5.0 mg/L"
+//$table->text('notes')->nullable();
