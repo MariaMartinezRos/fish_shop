@@ -40,11 +40,6 @@ return new class extends Migration
                 'region' => 'Oceans, Seas'
             ]
         ]);
-
-//        DB::table('type_water')->insert([
-//            ['type' => 'Freshwater'],
-//            ['type' => 'Saltwater'],
-//        ]);
     }
 
     /**

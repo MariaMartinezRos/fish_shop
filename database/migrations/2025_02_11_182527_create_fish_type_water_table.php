@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('fish_type_water', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('fish_id');
-            $table->unsignedBigInteger('type_water_id');
-
+            $table->foreignId('fish_id')->constrained('fishes')->onDelete('cascade');
+            $table->foreignId('type_water_id')->constrained('type_water')->onDelete('cascade');
             $table->enum('state', ['Allowed', 'Forbidden', 'Biological rest'])->default('Allowed');
             $table->string('temperature_range'); // Ej: "22-28°C"
             $table->string('ph_range'); // Ej: "6.5-7.5"
@@ -24,11 +23,7 @@ return new class extends Migration
             $table->enum('migration_pattern', ['Non-migratory', 'Anadromous', 'Catadromous '])->default('Non-migratory');
             $table->year('recorded_since')->nullable(); // Ej: 1990
             $table->text('notes')->nullable();
-
             $table->timestamps();
-
-            $table->foreign('fish_id')->references('id')->on('fishes')->onDelete('cascade');
-            $table->foreign('type_water_id')->references('id')->on('type_water')->onDelete('cascade');
         });
     }
 

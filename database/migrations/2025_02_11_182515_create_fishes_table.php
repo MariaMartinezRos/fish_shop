@@ -13,17 +13,15 @@ return new class extends Migration
     {
         Schema::create('fishes', function (Blueprint $table) {
             $table->id();
-
             $table->string('name');
             $table->string('scientific_name')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->decimal('average_size_cm', 5, 2)->nullable();
-            $table->string('diet')->nullable();
+            $table->enum('diet', ['Carnivore', 'Herbivore', 'Omnivore'])->default('Omnivore');
             $table->integer('lifespan_years')->nullable();
             $table->string('habitat')->nullable();
             $table->string('conservation_status')->nullable();
-
             $table->timestamps();
         });
     }

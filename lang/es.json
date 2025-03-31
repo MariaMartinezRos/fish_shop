@@ -323,6 +323,9 @@
     "Anadromous": "Anádromo",
     "Catadromous": "Catádromo",
     "recorded_since": "Registrado desde",
-    "notes": "Notas"
+    "notes": "Notas",
+    "Carnivore": "Carnívoro",
+    "Herbivore": "Herbívoro",
+    "Omnivore": "Omnívoro"
 }
 
