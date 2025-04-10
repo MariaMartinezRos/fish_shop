@@ -35,7 +35,7 @@
 
                 <div class="p-6 bg-white rounded-lg">
 
-                    @if(Auth::check() && Auth::user()->role_id === 'admin')
+                    @if(Auth::check() && Auth::user()->role_id === 1)
                         <form method="GET" action="{{ route('products.index') }}" class="mb-4">
                             <input
                                 type="text"

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
@@ -47,8 +48,6 @@ class CreateAdmin extends Command
             return;
         }
 
-        // Create the admin user
-
         // Validate password confirmation
         if ($password !== $password2) {
             $this->error('Passwords do not match.');
@@ -56,13 +55,22 @@ class CreateAdmin extends Command
             return;
         }
 
+        //check if the role admin its created. if not, create it
+        if (!(Role::where('name', 'admin')->exists())) {
+            Role::create([
+                'name' => 'admin',
+                'display_name' => 'Administrator',
+                'description' => 'User has full access to manage the system, including user roles and permissions',
+            ]);
+        }
+
         // Create the admin user
         try {
-            $user = User::create([
+            User::create([
                 'name' => $name,
                 'email' => $email,
                 'password' => Hash::make($password),
-                'role_id' => 'admin',
+                'role_id' => 1,
             ]);
 
             $this->info('Admin user created successfully!');

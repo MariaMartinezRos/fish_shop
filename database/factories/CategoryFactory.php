@@ -17,11 +17,15 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        static $categories = ['fresh', 'frozen', 'cut', 'seafood', 'other'];
-        $name = array_shift($categories) ?? 'other';
+//        static $categories = ['fresh', 'frozen', 'cut', 'seafood', 'other'];
+//        $name = array_shift($categories) ?? 'other';
 
+//        return [
+//            'name' => $name,
+//        ];
         return [
-            'name' => $name,
+            'name' => fake()->name(),
         ];
+
     }
 }

@@ -8,7 +8,7 @@ use App\Models\User;
 it('displays a list of products', function () {
     // Arrange
     $categories = Category::factory()->count(5)->create();
-    $products = Product::factory()->count(3)->create();
+    $products = Product::factory()->count(30)->create();
 
     // Act
     $view = $this->blade('<x-products-list :products="$products" />', ['products' => $products]);
@@ -20,6 +20,9 @@ it('displays a list of products', function () {
 });
 
 it('shows a message when no products are available', function () {
+    $categories = Category::factory()->count(5)->create();
+    $products = Product::factory()->count(30)->create();
+
     // Act
     $view = $this->blade('<x-products-list :products="collect()" />');
 
@@ -28,9 +31,8 @@ it('shows a message when no products are available', function () {
 });
 
 it('includes product links for the client', function () {
-    // Arrange
     $categories = Category::factory()->count(5)->create();
-    $products = Product::factory()->count(3)->create();
+    $products = Product::factory()->count(30)->create();
 
     // Act
     $view = $this->blade('<x-products-list :products="$products" />', ['products' => $products]);
@@ -42,11 +44,12 @@ it('includes product links for the client', function () {
 });
 
 it('includes product links for the admin', function () {
-    // Arrange
     $categories = Category::factory()->count(5)->create();
-    $products = Product::factory()->count(3)->create();
+    $products = Product::factory()->count(30)->create();
+
+    // Arrange
     $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 'admin']);
+    $admin = User::factory()->create(['role_id' => 1]);
 
     // Act
     $view = $this->actingAs($admin)->blade('<x-products-list :products="$products" />', ['products' => $products]);

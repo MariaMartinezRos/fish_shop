@@ -49,7 +49,7 @@ it('creates a new admin user successfully', function () {
     $user = User::where('email', $email)->first();
     $this->assertNotNull($user);
     $this->assertTrue(Hash::check($password, $user->password));
-    $this->assertTrue($user->role_id === 'admin');
+    $this->assertTrue($user->role_id === 1);
 });
 
 it('creates predefined categories successfully', function () {

@@ -24,8 +24,7 @@ it('returns a successful response for fetching a single fish', function () {
 });
 
 it('stores a new fish successfully', function () {
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 'admin']);
+    loginAsAdmin();
     Storage::fake('public');
     $file = asset('images/fishes/image1.jpg');
 
@@ -42,14 +41,12 @@ it('stores a new fish successfully', function () {
         'state' => 'allowed',
     ];
 
-    $this->actingAs($admin)
-        ->postJson('/api/v2/fishes', $data)
+    $this->postJson('/api/v2/fishes', $data)
         ->assertStatus(201);
 })->todo();
 
 it('updates an existing fish successfully', function () {
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 'admin']);
+    loginAsAdmin();
     Storage::fake('public');
     $file = asset('images/fishes/image1.jpg');
     $fish = Fish::factory()->create();
@@ -60,21 +57,18 @@ it('updates an existing fish successfully', function () {
         'type' => 'Saltwater',
     ];
 
-    $this->actingAs($admin)
-        ->putJson("/api/v2/fishes/{$fish->id}", $updateData)
+    $this->putJson("/api/v2/fishes/{$fish->id}", $updateData)
         ->assertStatus(200)
         ->assertJson(['data' => ['name' => 'Updated Fish']]);
 });
 
 it('deletes a fish successfully', function () {
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 'admin']);
+    loginAsAdmin();
     Storage::fake('public');
     $file = asset('images/fishes/image1.jpg');
     $fish = Fish::factory()->create();
 
-    $this->actingAs($admin)
-        ->deleteJson("/api/v2/fishes/{$fish->id}")
+    $this->deleteJson("/api/v2/fishes/{$fish->id}")
         ->assertStatus(200)
         ->assertJson(['message' => 'Fish deleted successfully']);
 });

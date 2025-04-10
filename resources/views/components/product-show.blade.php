@@ -24,7 +24,7 @@
 
             <!-- Botones de acción -->
             <div class="mt-6 flex justify-center space-x-4">
-                @if(Auth::check() && Auth::user()->role_id === 'admin')
+                @if(Auth::check() && Auth::user()->role_id === 1)
                     <a href="{{ route('products.edit', $product) }}" class="text-blue-600 dark:text-blue-400">{{ __('Edit') }}</a>
                     <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
                         @csrf

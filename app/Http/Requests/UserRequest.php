@@ -53,7 +53,7 @@ class UserRequest extends FormRequest
             'password2.required' => 'Debe confirmar la contraseña.',
             'password2.same' => 'Las contraseñas no coinciden.',
             'role_id.required' => 'Debes seleccionar un rol válido.',
-            'role_id.in' => 'El rol seleccionado no es válido.',
+//            'role_id.in' => 'El rol seleccionado no es válido.',
         ];
     }
 }

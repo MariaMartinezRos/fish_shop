@@ -11,7 +11,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                @if(Auth::user()->role_id === 'admin')
+                @if(Auth::user()->role_id === 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('sales')" :active="request()->routeIs('sales')">
                         {{ __('Sales') }}
@@ -53,7 +53,7 @@
                         </x-dropdown-link>
 
 {{--                        this option shall only appear if the user is an admin ($user->role_id->1 --}}
-                        @if(Auth::user()->role_id === 'admin')
+                        @if(Auth::user()->role_id === 1)
                             <x-dropdown-link :href="route('dashboard')">
                                 {{ __('Customer') }}
                             </x-dropdown-link>
@@ -87,7 +87,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        @if(Auth::user()->role_id === 'admin')
+        @if(Auth::user()->role_id === 1)
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('sales')" :active="request()->routeIs('sales')">
                 {{ __('Sales') }}

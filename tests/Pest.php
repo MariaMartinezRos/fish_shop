@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
@@ -33,6 +34,16 @@ uses(TestCase::class, LazilyRefreshDatabase::class)->in('Feature');
 function loginAsUser(?User $user = null)
 {
     $user = $user ?? User::factory()->create();
+
+    actingAs($user);
+
+    return $user;
+}
+
+function loginAsAdmin(?User $user = null)
+{
+    $role = Role::factory()->create(['id' => 1]);
+    $user = $user ?? User::factory()->create(['role_id' => $role->id]);
 
     actingAs($user);
 

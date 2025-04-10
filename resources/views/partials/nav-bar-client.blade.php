@@ -78,7 +78,7 @@
                                         {{ __('Profile') }}
                                     </x-dropdown-link>
 
-                                    @if(Auth::user()->role_id === 'admin')
+                                    @if(Auth::user()->role_id === 1)
                                         <x-dropdown-link :href="route('sales')">
                                             {{ __('Sales') }}
                                         </x-dropdown-link>

@@ -18,7 +18,7 @@
                         <div>
                             <h3 class="text-lg font-semibold text-gray-700">
 
-                                @if(Auth::check() && Auth::user()->role_id === 'admin')
+                                @if(Auth::check() && Auth::user()->role_id === 1)
                                     <a href="{{ route('products.show', $product['id']) }}">
                                         <span aria-hidden="true" class="absolute inset-0"></span>
                                         {{ $product['name'] }}
