@@ -30,12 +30,6 @@ class UserRequest extends FormRequest
             'role_id' => 'required|in:1,3,4',
         ];
 
-        //        return [
-        //            'name' => 'required|string|max:255',
-        //            'email' => 'required|email|unique:users,email,'.$userId,
-        //            'password' => $this->isMethod('post') ? 'required|min:8' : 'nullable|min:8',
-        //            'role_id' => 'required|in:1,3,4',
-        //        ];
     }
 
     /**

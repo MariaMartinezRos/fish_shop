@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            //poner datos notnull?
             $table->string('tpv');
             $table->string('serial_number');
             $table->string('terminal_number');
