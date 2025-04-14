@@ -71,7 +71,6 @@ Route::middleware('auth')->group(function () {
 // RUTAS PARA ADMINISTRADORES (AUTENTICADO + ADMIN)
 // =====================================================
 
-Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware([AdminMiddleware::class])->group(function () {
 
         Route::get('/sales', [TransactionController::class, 'showSales'])->name('sales');
@@ -99,10 +98,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::resource('users', UserController::class);
     });
-});
 
 // =====================================================
 // INCLUSIÓN DE ARCHIVO DE AUTENTICACIÓN
 // =====================================================
-require __DIR__.'/auth.php';
+require __DIR__ . '/../auth.php';
 
