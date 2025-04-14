@@ -9,9 +9,54 @@
     <div class="mt-10"></div>
 
     <!-- Secciones -->
-{{--    <div class="w-full sm:max-w-4xl mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md sm:rounded-lg">--}}
-        <livewire:carousel />
-{{--    </div>--}}
+    <livewire:carousel />
+
+
+{{--    <x-checkbox--}}
+{{--        name="terminos"--}}
+{{--        label="Acepto los términos y condiciones"--}}
+{{--        :checked="old('terminos')"--}}
+{{--        :error="$errors->first('terminos')"--}}
+{{--    />--}}
+
+{{--    <x-date--}}
+{{--        name="fecha_nacimiento"--}}
+{{--        value="{{ old('fecha_nacimiento') }}"--}}
+{{--        placeholder="Selecciona una fecha"--}}
+{{--        required="true"--}}
+{{--        :error="$errors->first('fecha_nacimiento')"--}}
+{{--    />--}}
+
+{{--    <x-input--}}
+{{--        name="nombre"--}}
+{{--        placeholder="Introduce tu nombre"--}}
+{{--        required="true"--}}
+{{--        value="{{ old('nombre') }}"--}}
+{{--        :error="$errors->first('nombre')"--}}
+{{--    />--}}
+
+{{--    <x-label for="email" required>--}}
+{{--        Correo electrónico--}}
+{{--    </x-label>--}}
+
+{{--    <x-input--}}
+{{--        name="email"--}}
+{{--        type="email"--}}
+{{--        id="email"--}}
+{{--        placeholder="ejemplo@correo.com"--}}
+{{--        required--}}
+{{--        :error="$errors->first('email')"--}}
+{{--    />--}}
+
+{{--    <x-label for="pais" required>País</x-label>--}}
+{{--    <x-select--}}
+{{--        name="pais"--}}
+{{--        :options="['es' => 'España', 'mx' => 'México', 'ar' => 'Argentina']"--}}
+{{--        :selected="old('pais')"--}}
+{{--        :error="$errors->first('pais')"--}}
+{{--    />--}}
+
+
 
     <!-- Footer -->
     @include('partials.footer')
