@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('habitat')->nullable();
             $table->string('conservation_status')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -6,6 +6,7 @@ use Database\Factories\TypeWaterFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static where(string $string, string $string1)
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class TypeWater extends Model
 {
     /** @use HasFactory<TypeWaterFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'type_water';
 

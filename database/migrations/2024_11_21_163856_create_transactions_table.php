@@ -22,8 +22,8 @@ return new class extends Migration
             $table->dateTime('date_time');
             $table->string('transaction_number');
             $table->unsignedBigInteger('sale_id')->index();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
 
         });
     }

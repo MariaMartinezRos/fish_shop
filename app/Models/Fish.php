@@ -6,6 +6,7 @@ use Database\Factories\FishFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static exists()
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Fish extends Model
 {
     /** @use HasFactory<FishFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'fishes';
 

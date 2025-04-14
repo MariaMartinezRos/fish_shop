@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('salinity_level', 5, 2)->nullable();
             $table->string('region')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         DB::table('type_water')->insert([
