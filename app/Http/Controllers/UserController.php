@@ -46,15 +46,12 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        // Crear usuario
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'role_id' => $request->role_id,
         ]);
-
-        // Asignación de rol
-        $user->roles()->attach($request->role_id);
 
         event(new UserCreated($user));
 

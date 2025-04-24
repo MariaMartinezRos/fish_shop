@@ -9,9 +9,11 @@ use function Pest\Laravel\get;
 
 
 it('returns a successful response for stock page', function () {
-    // Act
+    // Arrange
     loginAsAdmin();
-        get(route('stock'))
+
+    // Act
+    $this->get(route('stock'))
         ->assertOk();
 });
 
@@ -23,19 +25,23 @@ it('cannot be accessed by guest', function () {
 
 it('cannot be accessed by costumer', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 4]);
-    $costumer = User::factory()->create(['role_id' => 4]);
+    $customerRole = Role::factory()->create(['name' => 'customer']);
+    $customer = User::factory()->create();
+    $customer->role_id = $customerRole->id;
+    $customer->save();
 
     // Act
-    $this->actingAs($costumer)
+    $this->actingAs($customer)
         ->get(route('stock'))
         ->assertRedirect(route('login'));
 });
 
 it('cannot be accessed by employee', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 3]);
-    $employee = User::factory()->create(['role_id' => 3]);
+    $employeeRole = Role::factory()->create(['name' => 'employee']);
+    $employee = User::factory()->create();
+    $employee->role_id = $employeeRole->id;
+    $employee->save();
 
     // Act
     $this->actingAs($employee)
@@ -45,8 +51,10 @@ it('cannot be accessed by employee', function () {
 
 it('can be accessed by admin', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
     $this->actingAs($admin)
@@ -62,8 +70,10 @@ it('shows stock overview', function () {
     $secondProduct = Product::factory()->create(['category_id' => $category->id]);
     $thirdProduct = Product::factory()->create(['category_id' => $category->id]);
 
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
     $this->actingAs($admin)
@@ -77,14 +87,16 @@ it('shows stock overview', function () {
 
 it('includes logout if logged in', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
     $this->actingAs($admin)
         ->get(route('stock'))
         ->assertOk()
-        ->assertSee('Finalizar sesión') // Spanish for "Logout" CHECK
+        ->assertSee('Finalizar sesión')
         ->assertSee(route('logout'));
 });
 
@@ -95,8 +107,10 @@ it('includes product links', function () {
     $secondProduct = Product::factory()->create(['category_id' => $category->id]);
     $thirdProduct = Product::factory()->create(['category_id' => $category->id]);
 
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
     $this->actingAs($admin)
@@ -111,8 +125,10 @@ it('includes product links', function () {
 
 it('shows a message when no products are available', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
     $this->actingAs($admin)
@@ -125,8 +141,10 @@ it('paginates the stock list', function () {
     // Arrange
     $category = Category::factory()->create();
     Product::factory()->count(50)->create(['category_id' => $category->id]);
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
     $this->actingAs($admin)
@@ -140,8 +158,10 @@ it('searches products by name', function () {
     // Arrange
     $category = Category::factory()->create();
     $product = Product::factory()->create(['category_id' => $category->id, 'name' => 'UniqueProductName']);
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
     $this->actingAs($admin)
@@ -152,8 +172,10 @@ it('searches products by name', function () {
 
 it('can create a product successfully', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
     $category = Category::factory()->create();
 
     // Act
@@ -180,8 +202,10 @@ it('can create a product successfully', function () {
 
 it('can edit a product successfully', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
     $category = Category::factory()->create();
 
     $product = Product::factory()->create(['name' => 'Salmon noruego', 'category_id' => $category->id]);
@@ -210,8 +234,10 @@ it('can edit a product successfully', function () {
 
 it('can delete a product successfully', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
-    $admin = User::factory()->create(['role_id' => 1]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
     $category = Category::factory()->create();
 
     $product = Product::factory()->create(['name' => 'Salmon noruego', 'category_id' => $category->id]);
@@ -227,9 +253,14 @@ it('can be downloaded as a PDF file', function () {
     // Arrange
     $category = Category::factory()->create();
     $product = Product::factory()->create(['category_id' => $category->id]);
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
-    $response = get(route('products.pdf'));
+    $response = $this->actingAs($admin)
+        ->get(route('products.pdf'));
 
     // Assert
     $response->assertOk()

@@ -7,12 +7,15 @@ use function Pest\Laravel\get;
 
 it('returns a successful response for users page', function () {
     // Arrange
-    loginAsAdmin();
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
-    $this->get('users')
-        ->assertOk()
-        ->assertStatus(200);
+    $this->actingAs($admin)
+        ->get('users')
+        ->assertOk();
 });
 
 it('cannot be accessed by guest', function () {
@@ -23,19 +26,23 @@ it('cannot be accessed by guest', function () {
 
 it('cannot be accessed by costumer', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 4]);
-    $costumer = User::factory()->create(['role_id' => 4]);
+    $customerRole = Role::factory()->create(['name' => 'customer']);
+    $customer = User::factory()->create();
+    $customer->role_id = $customerRole->id;
+    $customer->save();
 
     // Act
-    $this->actingAs($costumer)
+    $this->actingAs($customer)
         ->get('users')
         ->assertRedirect(route('login'));
 });
 
 it('cannot be accessed by employee', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 3]);
-    $employee = User::factory()->create(['role_id' => 3]);
+    $employeeRole = Role::factory()->create(['name' => 'employee']);
+    $employee = User::factory()->create();
+    $employee->role_id = $employeeRole->id;
+    $employee->save();
 
     // Act
     $this->actingAs($employee)
@@ -45,60 +52,85 @@ it('cannot be accessed by employee', function () {
 
 it('can be accessed by admin', function () {
     // Arrange
-    loginAsAdmin();
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
 
     // Act
-    $this->get('users')
+    $this->actingAs($admin)
+        ->get('users')
         ->assertOk()
         ->assertSeeText('Cliente');
 });
 
 it('can create a user successfully', function () {
     // Arrange
-//    $role = Role::factory()->create(['id' => 4]);
-    loginAsAdmin();
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
+
+    $customerRole = Role::factory()->create(['name' => 'customer']);
 
     // Act
-    $this->post('users', [
+    $this->actingAs($admin)
+        ->post('users', [
             'name' => 'Jane Doe',
             'email' => 'example@example.com',
             'password' => '1234567890',
             'password2' => '1234567890',
-            'role_id' => 4,
+            'role_id' => $customerRole->id,
         ])
         ->assertRedirect('users')
         ->assertSessionHas('success', 'Usuario creado correctamente');
 
     // Assert
-//    $this->assertDatabaseHas('users', [
-//        'name' => 'Jane Doe',
-//        'email' => 'example@example.com',
-//        'role_id' => 4,
-//    ]);
-})->todo(' Integrity constraint violation: 19 NOT NULL constraint failed: users.role_id in');
+    $this->assertDatabaseHas('users', [
+        'name' => 'Jane Doe',
+        'email' => 'example@example.com',
+        'role_id' => $customerRole->id,
+    ]);
+});
 
 it('can delete a user', function () {
     // Arrange
-    loginAsAdmin();
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
+
+    $customerRole = Role::factory()->create(['name' => 'customer']);
     $user = User::factory()->create();
+    $user->role_id = $customerRole->id;
+    $user->save();
 
     // Act
-    $this->delete("users/{$user->id}")
+    $this->actingAs($admin)
+        ->delete("users/{$user->id}")
         ->assertRedirect('users')
         ->assertSessionHas('success', 'Usuario eliminado correctamente');
-})->todo();
+});
 
 it('can update a user', function () {
     // Arrange
-    loginAsAdmin();
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create();
+    $admin->role_id = $adminRole->id;
+    $admin->save();
+
+    $customerRole = Role::factory()->create(['name' => 'customer']);
     $user = User::factory()->create(['name' => 'John Doe', 'email' => 'example@example.com']);
+    $user->role_id = $customerRole->id;
+    $user->save();
 
     // Act
-    $this->put("users/{$user->id}", [
+    $this->actingAs($admin)
+        ->put("users/{$user->id}", [
             'name' => 'Jane Doe',
             'email' => 'example@example.com',
-            'role_id' => 4,
+            'role_id' => $customerRole->id,
         ])
         ->assertRedirect('users')
         ->assertSessionHas('success', 'Usuario actualizado correctamente');
-})->todo();
+});

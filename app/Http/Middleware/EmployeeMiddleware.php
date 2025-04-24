@@ -6,11 +6,11 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class EmployeeMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('employee')) {
             return redirect(route('login'));
         }
 

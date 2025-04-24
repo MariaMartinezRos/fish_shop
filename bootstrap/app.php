@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Middleware\AlwaysAcceptJsonMiddleware;
+use App\Http\Middleware\CustomerMiddleware;
+use App\Http\Middleware\EmployeeMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -17,7 +19,19 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware('api')
                 ->prefix('api/v2')
                 ->group(base_path('routes/api/api_v2.php'));
-        }
+
+            Route::middleware('web')
+                ->group(base_path('routes/web/web.php'));
+
+            Route::middleware(['web', 'admin'])
+                ->group(base_path('routes/web/admin.php'));
+
+            Route::middleware(['web', CustomerMiddleware::class])
+                ->group(base_path('routes/web/customer.php'));
+
+            Route::middleware(['web', EmployeeMiddleware::class])
+                ->group(base_path('routes/web/employee.php'));
+        },
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->statefulApi();

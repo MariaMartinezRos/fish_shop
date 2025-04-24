@@ -7,12 +7,13 @@ use function Pest\Laravel\get;
 
 it('returns a successful response for sales page', function () {
     // Arrange
-    loginAsAdmin();
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create(['role_id' => $adminRole->id]);
 
     // Act
-    $this->get('sales')
-        ->assertOk()
-        ->assertStatus(200);
+    $this->actingAs($admin)
+        ->get('sales')
+        ->assertOk();
 });
 
 it('cannot be accessed by guest', function () {
@@ -23,19 +24,19 @@ it('cannot be accessed by guest', function () {
 
 it('cannot be accessed by costumer', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 4]);
-    $costumer = User::factory()->create(['role_id' => 4]);
+    $customerRole = Role::factory()->create(['name' => 'customer']);
+    $customer = User::factory()->create(['role_id' => $customerRole->id]);
 
     // Act
-    $this->actingAs($costumer)
+    $this->actingAs($customer)
         ->get('sales')
         ->assertRedirect(route('login'));
 });
 
 it('cannot be accessed by employee', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 3]);
-    $employee = User::factory()->create(['role_id' => 3]);
+    $employeeRole = Role::factory()->create(['name' => 'employee']);
+    $employee = User::factory()->create(['role_id' => $employeeRole->id]);
 
     // Act
     $this->actingAs($employee)
@@ -45,10 +46,12 @@ it('cannot be accessed by employee', function () {
 
 it('can be accessed by admin', function () {
     // Arrange
-    loginAsAdmin();
+    $adminRole = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create(['role_id' => $adminRole->id]);
 
     // Act
-    $this->get('sales')
+    $this->actingAs($admin)
+        ->get('sales')
         ->assertOk()
         ->assertSeeText('Cliente');
 });
