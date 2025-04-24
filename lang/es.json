@@ -326,6 +326,16 @@
     "notes": "Notas",
     "Carnivore": "Carnívoro",
     "Herbivore": "Herbívoro",
-    "Omnivore": "Omnívoro"
+    "Omnivore": "Omnívoro",
+    "Soft Deletes Report": "Informe de Eliminaciones",
+    "Soft Deletes": "Eliminaciones",
+    "Soft Deleted": "Eliminado",
+    "Soft Deleted At": "Eliminado en",
+    "From:": "Desde:",
+    "No records deleted in table": "No se eliminaron registros en la tabla",
+    "No records have been deleted in this period.": "No se han eliminado registros en este período.",
+    "Date range not specified.": "Rango de fechas no especificado.",
+    "Page ": "Página "
+
 }
 

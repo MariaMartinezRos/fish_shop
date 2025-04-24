@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\{
+use App\Http\Controllers\{Admin\SoftDeletesReportController,
     CategoryController,
     ContactController,
-    PdfController,
+    SoftDeletesController,
     ProductController,
     ProfileController,
     RecipeController,
     TransactionController,
-    UserController
-};
+    UserController};
 use App\Http\Middleware\AdminMiddleware;
 use App\Livewire\TransactionSearcher;
 use Illuminate\Support\Facades\Route;
@@ -55,7 +54,7 @@ Route::get('/stock-client', [ProductController::class, 'indexClient'])
 Route::get('/products-client/{id}', [ProductController::class, 'showClient'])
     ->name('products.show-client');
 
-Route::get('/products/pdf', [PdfController::class, 'generatePdf'])
+Route::get('/products/pdf', [SoftDeletesController::class, 'generatePdf'])
     ->name('products.pdf');
 // =====================================================
 // RUTAS DE PERFIL (AUTENTICADO)
@@ -97,6 +96,10 @@ Route::middleware('auth')->group(function () {
 //        Route::get('/products/pdf', [PdfController::class, 'generatePdf'])->name('products.pdf');
 
         Route::resource('users', UserController::class);
+
+        Route::post('/pdf/soft-deletes', [SoftDeletesController::class, 'generate'])
+        ->name('soft-deletes');
+
     });
 
 // =====================================================

@@ -15,6 +15,14 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Today's clients: ") }}{{ $totalClients }}
                 </div>
+                <form action="{{ route('soft-deletes') }}" method="POST" class="inline">
+                    @csrf
+                    <button
+                        type="submit"
+                        class="px-4 py-2 bg-lime-500 text-white rounded-md hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                        {{ __('Soft Deletes Report') }}
+                    </button>
+                </form>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 {{--                    renderiza el grafico--}}
                     {!! $chartHour->container() !!}
