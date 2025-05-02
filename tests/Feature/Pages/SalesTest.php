@@ -1,7 +1,11 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
+use Smalot\PdfParser\Parser;
+
 
 use function Pest\Laravel\get;
 
@@ -52,3 +56,26 @@ it('can be accessed by admin', function () {
         ->assertOk()
         ->assertSeeText('Cliente');
 });
+
+it('can download a soft deleted document', function () {
+    // Arrange
+    loginAsAdmin();
+    $category = Category::factory()->create(['id' => 1]);
+    $product = Product::factory()->create(['category_id' => $category->id]);
+    $product->delete();
+
+    // Act
+    $response = $this->post(route('soft-deletes'))
+        ->assertOk()
+        ->assertHeader('Content-Type', 'application/pdf');
+
+    $parser = new Parser();
+    $pdf = $parser->parseContent($response->getContent());
+    $text = $pdf->getText();
+
+    // Assert
+    expect($text)->toContain('Informe de Eliminaciones');
+    expect($text)->toContain('Products');
+    expect($text)->toContain($product->name);
+});
+

@@ -2,7 +2,9 @@
 
 use App\Console\Commands\CleanAllCache;
 use App\Console\Commands\CreateCategories;
+use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 
 it('cleans all cache', function () {
@@ -63,3 +65,23 @@ it('creates predefined categories successfully', function () {
     $this->assertDatabaseHas('categories', ['name' => 'seafood']);
     $this->assertDatabaseHas('categories', ['name' => 'other']);
 });
+
+it('loads soft deleted records from tables', function () {
+    // Arrange
+    $role = Role::factory()->create(['id' => 3]);
+    $user = User::factory()->create(['role_id' => $role->id]);
+    $user->delete();
+
+    // Act & Assert
+    $this->assertDatabaseHas('users', ['deleted_at' => Carbon::now()]);
+
+    $this->artisan('app:soft-deletes')
+        ->expectsOutput('No deleted records found in the categories table.')
+        ->expectsOutput('No deleted records found in the products table.')
+        ->expectsOutput('No deleted records found in the roles table.')
+        ->expectsOutput('No deleted records found in the transactions table.');
+
+});
+
+
+

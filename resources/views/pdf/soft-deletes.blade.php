@@ -72,7 +72,14 @@
     </style>
 </head>
 <body>
-<img src="{{ public_path('images/logo.jpg') }}" style="width: 150px;" alt="Logo">
+<div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+    <img src="{{ public_path('images/logo.jpg') }}" style="width: 150px;" alt="Logo">
+
+    <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::format('svg')->size(60)->generate('http://fish_shop.test/')) }}"
+         alt="QR"
+         style="width: 60px; margin-left: 49em;">
+</div>
+
 <h1>{{ __('Soft Deletes Report')}}</h1>
 <div class="date-range">
     @if(isset($startDate) && isset($endDate))

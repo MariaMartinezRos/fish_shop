@@ -54,7 +54,7 @@ Route::get('/stock-client', [ProductController::class, 'indexClient'])
 Route::get('/products-client/{id}', [ProductController::class, 'showClient'])
     ->name('products.show-client');
 
-Route::get('/products/pdf', [SoftDeletesController::class, 'generatePdf'])
+Route::get('/products/pdf', [\App\Http\Controllers\PdfController::class, 'generatePdf'])
     ->name('products.pdf');
 // =====================================================
 // RUTAS DE PERFIL (AUTENTICADO)
