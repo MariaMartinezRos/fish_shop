@@ -61,7 +61,7 @@ it('can download a soft deleted document', function () {
     // Arrange
     loginAsAdmin();
     $category = Category::factory()->create(['id' => 1]);
-    $product = Product::factory()->create(['category_id' => $category->id]);
+    $product = Product::factory()->create(['name'=> 'Producto Prueba', 'category_id' => $category->id]);
     $product->delete();
 
     // Act

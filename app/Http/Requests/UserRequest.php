@@ -6,13 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
 {
-    /**
-     * Determina si el usuario está autorizado para hacer esta solicitud.
-     */
-    public function authorize(): bool
-    {
-        return true;
-    }
 
     /**
      * Obtiene las reglas de validación para la solicitud.

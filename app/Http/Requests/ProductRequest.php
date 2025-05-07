@@ -11,7 +11,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; // Allow all users to make this request, you can change it if needed
+        return true;
     }
 
     /**
