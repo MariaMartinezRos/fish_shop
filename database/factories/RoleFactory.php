@@ -14,9 +14,9 @@ class RoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'guest',
-            'display_name' => 'Visitor',
-            'description' => 'User has limited access for viewing public resources',
+            'name' => fake()->unique()->word(),
+            'display_name' => fake()->jobTitle(),
+            'description' => fake()->sentence(),
         ];
     }
 }

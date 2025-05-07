@@ -55,7 +55,7 @@ it('can be accessed by admin', function () {
 
 it('can create a user successfully', function () {
     // Arrange
-//    $role = Role::factory()->create(['id' => 4]);
+    $role = Role::factory()->create(['id' => 4]);
     loginAsAdmin();
 
     // Act
@@ -70,12 +70,12 @@ it('can create a user successfully', function () {
         ->assertSessionHas('success', 'Usuario creado correctamente');
 
     // Assert
-//    $this->assertDatabaseHas('users', [
-//        'name' => 'Jane Doe',
-//        'email' => 'example@example.com',
-//        'role_id' => 4,
-//    ]);
-})->todo(' Integrity constraint violation: 19 NOT NULL constraint failed: users.role_id in');
+    $this->assertDatabaseHas('users', [
+        'name' => 'Jane Doe',
+        'email' => 'example@example.com',
+        'role_id' => 4,
+    ]);
+});
 
 it('can delete a user', function () {
     // Arrange
@@ -86,10 +86,11 @@ it('can delete a user', function () {
     $this->delete("users/{$user->id}")
         ->assertRedirect('users')
         ->assertSessionHas('success', 'Usuario eliminado correctamente');
-})->todo();
+});
 
 it('can update a user', function () {
     // Arrange
+    $role = Role::factory()->create(['id' => 4]);
     loginAsAdmin();
     $user = User::factory()->create(['name' => 'John Doe', 'email' => 'example@example.com']);
 
@@ -101,4 +102,4 @@ it('can update a user', function () {
         ])
         ->assertRedirect('users')
         ->assertSessionHas('success', 'Usuario actualizado correctamente');
-})->todo();
+});

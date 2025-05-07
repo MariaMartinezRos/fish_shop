@@ -34,7 +34,8 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        return view('users.create');
+        $roles = \App\Models\Role::all(); // Fetch all roles
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -46,15 +47,13 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        // Crear usuario
+        // Create user with role_id included
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'role_id' => $request->role_id,
         ]);
-
-        // Asignación de rol
-        $user->roles()->attach($request->role_id);
 
         event(new UserCreated($user));
 

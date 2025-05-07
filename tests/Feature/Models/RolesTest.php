@@ -2,12 +2,12 @@
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Schema;
 
-it('has a belongsToMany relation with users', function () {
+it('has a HasMany relation with users', function () {
     $role = new Role();
-    expect($role->users())->toBeInstanceOf(BelongsToMany::class);
+    expect($role->users())->toBeInstanceOf(HasMany::class);
 });
 
 it('can be created with fillable fields', function () {

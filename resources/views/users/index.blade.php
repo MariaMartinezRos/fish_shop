@@ -25,7 +25,6 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a href="{{ route('users.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">{{ __('Create User') }}</a>
-{{--                    <a href="{{ route('users.deleteAll') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">{{ __('Delete All Users') }}</a>--}}
 
                     <table class="table-auto w-full text-left">
                         <thead>
@@ -49,7 +48,7 @@
                             <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
                                 <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">{{ $user->name }}</td>
                                 <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">{{ $user->email }}</td>
-                                <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">{{ $user->role_id }}</td>
+                                <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">{{ $user->role->display_name ?? __('No Role') }}</td>
                                 <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">
                                     <div class="flex justify-between">
                                         <a href="{{ route('users.edit', $user) }}" class="text-blue-600 dark:text-blue-400">{{ __('Edit') }}</a>

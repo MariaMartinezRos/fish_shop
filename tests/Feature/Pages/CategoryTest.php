@@ -15,7 +15,7 @@ it('returns a successful response for category page', function () {
         ->get('category')
         ->assertOk()
         ->assertStatus(200);
-})->todo('El id choca con otro id de admin');
+});
 
 it('cannot be accessed by guest', function () {
     // Act & Assert
@@ -55,4 +55,4 @@ it('can be accessed by admin', function () {
         ->get('category')
         ->assertOk()
         ->assertSeeText('Cliente');
-})->todo('El id choca con otro id de admin');
+});

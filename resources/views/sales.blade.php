@@ -15,7 +15,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Today's clients: ") }}{{ $totalClients }}
                 </div>
-                <form action="{{ route('soft-deletes') }}" method="POST" class="inline">
+                <form action="{{ route('soft-deletes') }}" method="POST" class="p-6 inline">
                     @csrf
                     <button
                         type="submit"
@@ -24,18 +24,17 @@
                     </button>
                 </form>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-{{--                    renderiza el grafico--}}
+                    {{-- renderiza el grafico --}}
                     {!! $chartHour->container() !!}
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{--                    renderiza el grafico--}}
+                    {{-- renderiza el grafico --}}
                     {!! $chartWeek->container() !!}
                 </div>
             </div>
         </div>
     </div>
     {{-- llama a la libreria del grafico --}}
-{{--    <script src="{{ $chart->cdn() }}"></script>--}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     {{ $chartHour->script() }}
     {{ $chartWeek->script() }}
