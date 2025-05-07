@@ -22,7 +22,7 @@ class CategoryPolicy
     /**
      * Determine whether the user can view the category.
      */
-    public function view(User $user, Category $category): bool
+    public function view(User $user): bool
     {
         // Anyone can view individual categories
         return true;

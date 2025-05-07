@@ -40,7 +40,7 @@ class TransactionPolicy
     /**
      * Determine whether the user can update the transaction.
      */
-    public function update(User $user, Transaction $transaction): bool
+    public function update(User $user): bool
     {
         // Only admins can update transactions
         return $user->role_id === 1;
@@ -49,7 +49,7 @@ class TransactionPolicy
     /**
      * Determine whether the user can delete the transaction.
      */
-    public function delete(User $user, Transaction $transaction): bool
+    public function delete(User $user): bool
     {
         // Only admins can delete transactions
         return $user->role_id === 1;

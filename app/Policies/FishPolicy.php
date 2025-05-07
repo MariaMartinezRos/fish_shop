@@ -22,7 +22,7 @@ class FishPolicy
     /**
      * Determine whether the user can view the fish.
      */
-    public function view(User $user, Fish $fish): bool
+    public function view(User $user): bool
     {
         // Anyone can view individual fish
         return true;
@@ -40,7 +40,7 @@ class FishPolicy
     /**
      * Determine whether the user can update the fish.
      */
-    public function update(User $user, Fish $fish): bool
+    public function update(User $user): bool
     {
         // Only admins can update fish entries
         return $user->role_id === 1;
@@ -49,7 +49,7 @@ class FishPolicy
     /**
      * Determine whether the user can delete the fish.
      */
-    public function delete(User $user, Fish $fish): bool
+    public function delete(User $user): bool
     {
         // Only admins can delete fish entries
         return $user->role_id === 1;
@@ -58,7 +58,7 @@ class FishPolicy
     /**
      * Determine whether the user can restore the fish.
      */
-    public function restore(User $user, Fish $fish): bool
+    public function restore(User $user): bool
     {
         // Only admins can restore soft-deleted fish entries
         return $user->role_id === 1;
@@ -67,7 +67,7 @@ class FishPolicy
     /**
      * Determine whether the user can permanently delete the fish.
      */
-    public function forceDelete(User $user, Fish $fish): bool
+    public function forceDelete(User $user): bool
     {
         // Only admins can permanently delete fish entries
         return $user->role_id === 1;
