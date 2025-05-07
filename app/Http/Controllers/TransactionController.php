@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Charts\SalesPerHourChart;
 use App\Charts\SalesPerWeekChart;
+use App\Models\Transaction;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Muestra la lista de transacciones.
      */
     public function index()
     {
+        $this->authorize('view', Transaction::class);
+
         $transactions = DB::table('transactions')->get();
 
         if ($transactions->isEmpty()) {
@@ -28,6 +33,8 @@ class TransactionController extends Controller
      */
     public function showSales()
     {
+        $this->authorize('view', Transaction::class);
+
         $totalAmount = DB::table('transactions')
             ->whereDate('date_time', Carbon::today())
             ->sum('amount');
@@ -47,6 +54,8 @@ class TransactionController extends Controller
      */
     public function showGraphicHour()
     {
+        $this->authorize('view', Transaction::class);
+
         $chartHour = new SalesPerHourChart;
         $chartHour->build();
 
@@ -58,6 +67,8 @@ class TransactionController extends Controller
      */
     public function showGraphicWeek()
     {
+        $this->authorize('view', Transaction::class);
+
         $chartWeek = new SalesPerWeekChart;
         $chartWeek->build();
 

@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendContactConfirmationEmail;
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    use AuthorizesRequests;
+
     public function submit(Request $request)
     {
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',

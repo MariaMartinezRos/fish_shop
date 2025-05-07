@@ -45,29 +45,29 @@ class StoreFishRequest extends FormRequest
         ];
     }
 
-    /**
-     * Get the validated data from the request.
-     *
-     * @param  null  $key
-     * @param  null  $default
-     */
-    public function validated($key = null, $default = null): array
-    {
-        $validated = parent::validated();
-        
-        // Ensure default values for required fields
-        if (!isset($validated['diet'])) {
-            $validated['diet'] = 'Omnivore';
-        }
-        
-        if (!isset($validated['characteristics']['state'])) {
-            $validated['characteristics']['state'] = 'Allowed';
-        }
-        
-        if (!isset($validated['characteristics']['migration_pattern'])) {
-            $validated['characteristics']['migration_pattern'] = 'Non-migratory';
-        }
-
-        return $validated;
-    }
+//    /**
+//     * Get the validated data from the request.
+//     *
+//     * @param  null  $key
+//     * @param  null  $default
+//     */
+//    public function validated($key = null, $default = null): array
+//    {
+//        $validated = parent::validated();
+//
+//        // Ensure default values for required fields
+//        if (!isset($validated['diet'])) {
+//            $validated['diet'] = 'Omnivore';
+//        }
+//
+//        if (!isset($validated['characteristics']['state'])) {
+//            $validated['characteristics']['state'] = 'Allowed';
+//        }
+//
+//        if (!isset($validated['characteristics']['migration_pattern'])) {
+//            $validated['characteristics']['migration_pattern'] = 'Non-migratory';
+//        }
+//
+//        return $validated;
+//    }
 }

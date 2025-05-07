@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -61,8 +63,18 @@ class CategoryManager extends Component
     {
         $this->authorize('update', Category::class);
 
-        $this->rules['name'] = 'required|min:3|unique:categories,name,' . $this->categoryId;
-        $this->validate();
+        $request = new UpdateCategoryRequest();
+        $request->setContainer(app())
+            ->setRouteResolver(function () {
+                return ['category' => $this->categoryId];
+            });
+
+        $request->merge([
+            'name' => $this->name,
+            'description' => $this->description,
+        ]);
+
+        $this->validate($request->rules(), $request->messages());
 
         $category = Category::find($this->categoryId);
         $category->update([
@@ -78,7 +90,14 @@ class CategoryManager extends Component
     public function store()
     {
         $this->authorize('create', Category::class);
-        $this->validate();
+
+        $request = new StoreCategoryRequest();
+        $request->merge([
+            'name' => $this->name,
+            'description' => $this->description,
+        ]);
+
+        $this->validate($request->rules(), $request->messages());
 
         Category::create([
             'name' => $this->name,

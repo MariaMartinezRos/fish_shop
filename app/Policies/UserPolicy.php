@@ -14,8 +14,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        // Only admins can view the user list
-        return $user->role_id === 1;
+        return true;
     }
 
     /**
@@ -45,7 +44,7 @@ class UserPolicy
     {
         // Users can update their own profile, admins can update any profile
         // return $user->id === $model->id || $user->role_id === 1;
-        return $user->role_id === 1;    
+        return $user->role_id === 1;
     }
 
     /**

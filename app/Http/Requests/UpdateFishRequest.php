@@ -61,6 +61,7 @@ class UpdateFishRequest extends FormRequest
         ];
     }
 
+
 //    /**
 //     * Get the validated data from the request.
 //     *

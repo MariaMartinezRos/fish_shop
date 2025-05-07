@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 
@@ -11,13 +12,12 @@ class CategoryController extends Controller
     use AuthorizesRequests;
 
     /**
-     * Muestra la lista de categorías.
+     * Shows the categories page.
      */
     public function index()
     {
-        //        $this->authorize('view', Category::class);
+//        $this->authorize('view', User::class);
 
-        // Consulta en la base de datos para obtener todas las categorías
         $categories = DB::table('categories')->get();
 
         if ($categories->isEmpty()) {

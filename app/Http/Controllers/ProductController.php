@@ -183,7 +183,6 @@ class ProductController extends Controller
      */
     public function indexClient(Request $request)
     {
-        //        $this->authorize('viewClient');
 
         $search = $request->input('search');
 
@@ -209,8 +208,6 @@ class ProductController extends Controller
      */
     public function showClient($id)
     {
-        //        $this->authorize('viewClient', User::class);
-
         $product = Product::findOrFail($id);
 
         return view('products.show-client', compact('product'));
@@ -249,16 +246,7 @@ class ProductController extends Controller
 
         $validated = $request->validated();
 
-        // Crear el producto (venta)
-        $product = new Product;
-        $product->name = $validated['name'];
-        $product->category_id = $validated['category_id'];
-        $product->price_per_kg = $validated['price_per_kg'];
-        $product->stock_kg = $validated['stock_kg'];
-        $product->description = $validated['description'];
-
-        // Guardar en base de datos
-        $product->save();
+        $product = Product::create($validated);
 
         // Redirigir con mensaje de éxito
         return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product created successfully.');
@@ -280,13 +268,7 @@ class ProductController extends Controller
 
         $validated = $request->validated();
 
-        $product->update([
-            'name' => $validated['name'],
-            'category_id' => $validated['category_id'],
-            'price_per_kg' => $validated['price_per_kg'],
-            'stock_kg' => $validated['stock_kg'],
-            'description' => $validated['description'],
-        ]);
+        $product->update($validated);
 
         return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product updated successfully');
     }
@@ -311,6 +293,11 @@ class ProductController extends Controller
     {
         $this->authorize('delete', Product::class);
 
+        // desactiva temporalmente las restricciones de claves foráneas en la base de datos
+
+        //esto es necesario ya qeu si la tabla products tiene una relación con otra tabla
+        // (como categories), no se puede eliminar o truncar la tabla products si hay registros
+        // en categorias que dependan de ella
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Product::truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');

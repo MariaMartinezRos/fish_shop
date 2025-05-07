@@ -17,11 +17,10 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => [
-                'sometimes',
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('categories', 'name')->ignore($this->category),
+                'unique:categories,name'
             ],
             'description' => ['nullable', 'string'],
         ];
@@ -40,4 +39,4 @@ class UpdateCategoryRequest extends FormRequest
             'name.unique' => 'This category name is already in use.',
         ];
     }
-} 
+}
