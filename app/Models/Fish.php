@@ -20,7 +20,22 @@ class Fish extends Model
 
     protected $table = 'fishes';
 
-    protected $fillable = ['name', 'image', 'description'];
+    protected $fillable = [
+        'name',
+        'scientific_name',
+        'image',
+        'description',
+        'average_size_cm',
+        'diet',
+        'lifespan_years',
+        'habitat',
+        'conservation_status'
+    ];
+
+    protected $casts = [
+        'average_size_cm' => 'decimal:2',
+        'lifespan_years' => 'integer',
+    ];
 
     // Relación N:N con tipos_agua
     public function TypeWater(): BelongsToMany
@@ -32,6 +47,8 @@ class Fish extends Model
                 'ph_range',
                 'salinity',
                 'oxygen_level',
+                'migration_pattern',
+                'recorded_since',
                 'notes'
             ]);
     }

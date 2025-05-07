@@ -12,11 +12,6 @@ use Illuminate\Support\Str;
 
 class FishController extends Controller
 {
-    /***
-     *
-     *
-     *
-     */
     /**
      * Get a list of all fishes.
      *
@@ -27,38 +22,43 @@ class FishController extends Controller
      *      {
      *        "id": 1,
      *        "name": "Salmon",
+     *        "scientific_name": "Salmo salar",
      *        "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-     *        "type": ["Freshwater"],
-     *        "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."
-     *        "state": "forbidden",
-     *        "temperature_range": "20-25°C",
-     *        "ph_range": "7.0-8.0",
-     *        "salinity": "1.03",
-     *        "oxygen_level": "5.94",
-     *        "notes": "Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui."
-     *      },
-     *      {
-     *         "id": 2,
-     *         "name": "Trucha",
-     *         "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-     *         "type": ["Saltwater"],
-     *         "description": "Et eum iste impedit consequatur atque natus. Neque asperiores cum sunt nulla adipisci qui ad. Aut qui maiores quia velit facilis sint ut. Incidunt quod ducimus eos id.",
-     *         "state": "allowed",
-     *         "temperature_range": "24-30°C",
-     *         "ph_range": "6.5-7.5",
-     *         "salinity": "1.02",
-     *         "oxygen_level": "5.26",
-     *         "notes": "Placeat delectus facere dolor dolorem. Repudiandae veniam ex neque et."
-     *       }
+     *        "description": "Et consectetur nisi excepturi esse aut.",
+     *        "average_size_cm": 75.5,
+     *        "diet": "Carnivore",
+     *        "lifespan_years": 7,
+     *        "habitat": "Rivers and Oceans",
+     *        "conservation_status": "Least Concern",
+     *        "type": ["Freshwater", "Saltwater"],
+     *        "characteristics": {
+     *          "state": "Allowed",
+     *          "temperature_range": "20-25°C",
+     *          "ph_range": "7.0-8.0",
+     *          "salinity": 1.03,
+     *          "oxygen_level": 5.94,
+     *          "migration_pattern": "Anadromous",
+     *          "recorded_since": 1990,
+     *          "notes": "Quo illo facere odio et sed."
+     *        },
+     *        "water_type_details": {
+     *          "type": "Freshwater",
+     *          "ph_level": 7.2,
+     *          "temperature_range": "10-25°C",
+     *          "salinity_level": 0.05,
+     *          "region": "Rivers, Lakes, Ponds",
+     *          "description": "Water with low salt concentration"
+     *        },
+     *        "created_at": "2024-02-11T18:24:59.000000Z",
+     *        "updated_at": "2024-02-11T18:24:59.000000Z"
+     *      }
      *    ]
      *  }
-     *
      */
-
     public function index()
     {
         return FishResource::collection(Cache::rememberForever('fishes', function () {
-            return Fish::all();
+            return Fish::with('typeWater')->get();
         }));
     }
 
@@ -70,26 +70,44 @@ class FishController extends Controller
      * @urlParam fish int required The ID of the fish. Example: 1
      *
      * @response 200 {
-     *     "data": [
-     *       {
-     *         "id": 1,
-     *         "name": "Salmon",
-     *         "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-     *         "type": ["Freshwater"],
-     *         "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."
-     *         "state": "forbidden",
+     *     "data": {
+     *       "id": 1,
+     *       "name": "Salmon",
+     *       "scientific_name": "Salmo salar",
+     *       "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+     *       "description": "Et consectetur nisi excepturi esse aut.",
+     *       "average_size_cm": 75.5,
+     *       "diet": "Carnivore",
+     *       "lifespan_years": 7,
+     *       "habitat": "Rivers and Oceans",
+     *       "conservation_status": "Least Concern",
+     *       "type": ["Freshwater", "Saltwater"],
+     *       "characteristics": {
+     *         "state": "Allowed",
      *         "temperature_range": "20-25°C",
      *         "ph_range": "7.0-8.0",
-     *         "salinity": "1.03",
-     *         "oxygen_level": "5.94",
-     *         "notes": "Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui."
-     *       }
-     *    ]
-     *}
+     *         "salinity": 1.03,
+     *         "oxygen_level": 5.94,
+     *         "migration_pattern": "Anadromous",
+     *         "recorded_since": 1990,
+     *         "notes": "Quo illo facere odio et sed."
+     *       },
+     *       "water_type_details": {
+     *         "type": "Freshwater",
+     *         "ph_level": 7.2,
+     *         "temperature_range": "10-25°C",
+     *         "salinity_level": 0.05,
+     *         "region": "Rivers, Lakes, Ponds",
+     *         "description": "Water with low salt concentration"
+     *       },
+     *       "created_at": "2024-02-11T18:24:59.000000Z",
+     *       "updated_at": "2024-02-11T18:24:59.000000Z"
+     *     }
+     * }
      */
     public function show(Fish $fish)
     {
-        return new FishResource($fish);
+        return new FishResource($fish->load('typeWater'));
     }
 
     /**
@@ -98,47 +116,84 @@ class FishController extends Controller
      * @group Fishes V2
      *
      * @bodyParam name string required The name of the fish. Example: Salmon
-     * @bodyParam type string required The type of the fish. Example: Freshwater
-     * @bodyParam price number required The price of the fish. Example: 10.5
+     * @bodyParam scientific_name string The scientific name of the fish. Example: Salmo salar
+     * @bodyParam image file The image of the fish.
+     * @bodyParam description string A description of the fish.
+     * @bodyParam average_size_cm numeric The average size in centimeters.
+     * @bodyParam diet string required The diet type (Carnivore, Herbivore, Omnivore).
+     * @bodyParam lifespan_years integer The lifespan in years.
+     * @bodyParam habitat string The natural habitat.
+     * @bodyParam conservation_status string The conservation status.
+     * @bodyParam type string required The type of water (Saltwater, Freshwater).
+     * @bodyParam characteristics array required The water characteristics.
+     * @bodyParam characteristics.state string required The state (Allowed, Forbidden, Biological rest).
+     * @bodyParam characteristics.temperature_range string required The temperature range.
+     * @bodyParam characteristics.ph_range string required The pH range.
+     * @bodyParam characteristics.salinity numeric The salinity level.
+     * @bodyParam characteristics.oxygen_level numeric The oxygen level.
+     * @bodyParam characteristics.migration_pattern string required The migration pattern.
+     * @bodyParam characteristics.recorded_since integer The year recorded since.
+     * @bodyParam characteristics.notes string Additional notes.
      *
      * @response 201 {
-     *      "data": [
-     *        {
-     *          "id": 1,
-     *          "name": "Salmon",
-     *          "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-     *          "type": ["Freshwater"],
-     *          "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."
-     *          "state": "forbidden",
-     *          "temperature_range": "20-25°C",
-     *          "ph_range": "7.0-8.0",
-     *          "salinity": "1.03",
-     *          "oxygen_level": "5.94",
-     *          "notes": "Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui."
-     *        }
-     *     ]
+     *     "data": {
+     *       "id": 1,
+     *       "name": "Salmon",
+     *       "scientific_name": "Salmo salar",
+     *       "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+     *       "description": "Et consectetur nisi excepturi esse aut.",
+     *       "average_size_cm": 75.5,
+     *       "diet": "Carnivore",
+     *       "lifespan_years": 7,
+     *       "habitat": "Rivers and Oceans",
+     *       "conservation_status": "Least Concern",
+     *       "type": ["Freshwater", "Saltwater"],
+     *       "characteristics": {
+     *         "state": "Allowed",
+     *         "temperature_range": "20-25°C",
+     *         "ph_range": "7.0-8.0",
+     *         "salinity": 1.03,
+     *         "oxygen_level": 5.94,
+     *         "migration_pattern": "Anadromous",
+     *         "recorded_since": 1990,
+     *         "notes": "Quo illo facere odio et sed."
+     *       },
+     *       "water_type_details": {
+     *         "type": "Freshwater",
+     *         "ph_level": 7.2,
+     *         "temperature_range": "10-25°C",
+     *         "salinity_level": 0.05,
+     *         "region": "Rivers, Lakes, Ponds",
+     *         "description": "Water with low salt concentration"
+     *       },
+     *       "created_at": "2024-02-11T18:24:59.000000Z",
+     *       "updated_at": "2024-02-11T18:24:59.000000Z"
+     *     }
      * }
-     *
      */
     public function store(StoreFishRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
+        $characteristics = $data['characteristics'];
+        unset($data['characteristics']);
 
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
             $name = Str::uuid().'.'.$file->extension();
             $file->storeAs('fishes', $name, 'public');
-            $data['photo'] = $name;
+            $data['image'] = $name;
         }
 
         $fish = Fish::create($data);
         $typeWater = TypeWater::firstOrCreate(['type' => $request->input('type')]);
 
         if ($typeWater) {
-            $fish->typeWater()->attach($typeWater->id);
+            $fish->typeWater()->attach($typeWater->id, $characteristics);
         }
 
-        return new FishResource($fish);
+        Cache::forget('fishes');
+
+        return new FishResource($fish->load('typeWater'));
     }
 
     /**
@@ -149,39 +204,84 @@ class FishController extends Controller
      * @urlParam fish int required The ID of the fish. Example: 1
      *
      * @bodyParam name string required The name of the fish. Example: Salmon
-     * @bodyParam type string required The type of the fish. Example: Freshwater
+     * @bodyParam scientific_name string The scientific name of the fish. Example: Salmo salar
+     * @bodyParam image file The image of the fish.
+     * @bodyParam description string A description of the fish.
+     * @bodyParam average_size_cm numeric The average size in centimeters.
+     * @bodyParam diet string required The diet type (Carnivore, Herbivore, Omnivore).
+     * @bodyParam lifespan_years integer The lifespan in years.
+     * @bodyParam habitat string The natural habitat.
+     * @bodyParam conservation_status string The conservation status.
+     * @bodyParam type string required The type of water (Saltwater, Freshwater).
+     * @bodyParam characteristics array required The water characteristics.
+     * @bodyParam characteristics.state string required The state (Allowed, Forbidden, Biological rest).
+     * @bodyParam characteristics.temperature_range string required The temperature range.
+     * @bodyParam characteristics.ph_range string required The pH range.
+     * @bodyParam characteristics.salinity numeric The salinity level.
+     * @bodyParam characteristics.oxygen_level numeric The oxygen level.
+     * @bodyParam characteristics.migration_pattern string required The migration pattern.
+     * @bodyParam characteristics.recorded_since integer The year recorded since.
+     * @bodyParam characteristics.notes string Additional notes.
      *
-     * @response 201 {
-     *      "data": [
-     *        {
-     *          "id": 1,
-     *          "name": "Updated Salmon",
-     *          "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-     *          "type": ["Freshwater"],
-     *          "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."
-     *          "state": "forbidden",
-     *          "temperature_range": "20-25°C",
-     *          "ph_range": "7.0-8.0",
-     *          "salinity": "1.03",
-     *          "oxygen_level": "5.94",
-     *          "notes": "Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui."
-     *        }
-     *     ]
+     * @response 200 {
+     *     "data": {
+     *       "id": 1,
+     *       "name": "Updated Salmon",
+     *       "scientific_name": "Salmo salar",
+     *       "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+     *       "description": "Updated description",
+     *       "average_size_cm": 80.0,
+     *       "diet": "Carnivore",
+     *       "lifespan_years": 8,
+     *       "habitat": "Updated habitat",
+     *       "conservation_status": "Least Concern",
+     *       "type": ["Freshwater", "Saltwater"],
+     *       "characteristics": {
+     *         "state": "Allowed",
+     *         "temperature_range": "22-28°C",
+     *         "ph_range": "7.2-8.0",
+     *         "salinity": 1.02,
+     *         "oxygen_level": 6.0,
+     *         "migration_pattern": "Anadromous",
+     *         "recorded_since": 1990,
+     *         "notes": "Updated notes"
+     *       },
+     *       "water_type_details": {
+     *         "type": "Freshwater",
+     *         "ph_level": 7.2,
+     *         "temperature_range": "10-25°C",
+     *         "salinity_level": 0.05,
+     *         "region": "Rivers, Lakes, Ponds",
+     *         "description": "Water with low salt concentration"
+     *       },
+     *       "created_at": "2024-02-11T18:24:59.000000Z",
+     *       "updated_at": "2024-02-11T18:24:59.000000Z"
+     *     }
      * }
-     *
      */
     public function update(Fish $fish, StoreFishRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'type' => 'required|string',
-            'image' => 'nullable',
-        ]);
+        $data = $request->validated();
+        $characteristics = $data['characteristics'];
+        unset($data['characteristics']);
 
-        $fish->update($request->all());
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = Str::uuid().'.'.$file->extension();
+            $file->storeAs('fishes', $name, 'public');
+            $data['image'] = $name;
+        }
 
-        return new FishResource($fish);
+        $fish->update($data);
+        $typeWater = TypeWater::firstOrCreate(['type' => $request->input('type')]);
+
+        if ($typeWater) {
+            $fish->typeWater()->sync([$typeWater->id => $characteristics]);
+        }
+
+        Cache::forget('fishes');
+
+        return new FishResource($fish->load('typeWater'));
     }
 
     /**
@@ -196,6 +296,7 @@ class FishController extends Controller
     public function destroy(Fish $fish)
     {
         $fish->delete();
+        Cache::forget('fishes');
 
         return response()->json(['message' => 'Fish deleted successfully'], 200);
     }

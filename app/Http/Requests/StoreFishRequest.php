@@ -24,9 +24,24 @@ class StoreFishRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'scientific_name' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'max:2048'],
-            'type' => ['required', 'string', 'in:Saltwater,Freshwater'],
             'description' => ['nullable', 'string'],
+            'average_size_cm' => ['nullable', 'numeric', 'between:0,1000'],
+            'diet' => ['required', 'string', 'in:Carnivore,Herbivore,Omnivore'],
+            'lifespan_years' => ['nullable', 'integer', 'min:0'],
+            'habitat' => ['nullable', 'string', 'max:255'],
+            'conservation_status' => ['nullable', 'string', 'max:255'],
+            'type' => ['required', 'string', 'in:Saltwater,Freshwater'],
+            'characteristics' => ['required', 'array'],
+            'characteristics.state' => ['required', 'string', 'in:Allowed,Forbidden,Biological rest'],
+            'characteristics.temperature_range' => ['required', 'string', 'max:255'],
+            'characteristics.ph_range' => ['required', 'string', 'max:255'],
+            'characteristics.salinity' => ['nullable', 'numeric', 'between:0,100'],
+            'characteristics.oxygen_level' => ['nullable', 'numeric', 'between:0,100'],
+            'characteristics.migration_pattern' => ['required', 'string', 'in:Non-migratory,Anadromous,Catadromous'],
+            'characteristics.recorded_since' => ['nullable', 'integer', 'min:1900', 'max:' . date('Y')],
+            'characteristics.notes' => ['nullable', 'string'],
         ];
     }
 
@@ -39,11 +54,18 @@ class StoreFishRequest extends FormRequest
     public function validated($key = null, $default = null): array
     {
         $validated = parent::validated();
-        if (! isset($validated['type'])) {
-            $validated['type'] = 'Saltwater';
+        
+        // Ensure default values for required fields
+        if (!isset($validated['diet'])) {
+            $validated['diet'] = 'Omnivore';
         }
-        if (! isset($validated['image'])) {
-            $validated['image'] = null;
+        
+        if (!isset($validated['characteristics']['state'])) {
+            $validated['characteristics']['state'] = 'Allowed';
+        }
+        
+        if (!isset($validated['characteristics']['migration_pattern'])) {
+            $validated['characteristics']['migration_pattern'] = 'Non-migratory';
         }
 
         return $validated;
