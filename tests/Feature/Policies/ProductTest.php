@@ -33,9 +33,9 @@ it('allows only admin to authorize product actions', function () {
         ->and($this->productPolicy->authorize($this->client))->toBeFalse();
 });
 
-it('allows only admin to view products', function () {
+it('allows anyone to view products', function () {
     expect($this->productPolicy->view($this->admin))->toBeTrue()
-        ->and($this->productPolicy->view($this->client))->toBeFalse();
+        ->and($this->productPolicy->view($this->client))->toBeTrue();
 });
 
 it('allows anyone to view client products', function () {
