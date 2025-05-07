@@ -14,11 +14,11 @@ class CategorySeeder extends Seeder
         }
 
         $categories = Category::factory()->createMany([
-            ['name' => 'fresh'],
-            ['name' => 'frozen'],
-            ['name' => 'cut'],
-            ['name' => 'seafood'],
-            ['name' => 'other'],
+            ['name' => 'fresh', 'display_name' => 'Fresh', 'description' => 'Fresh fish, straight from the sea'],
+            ['name' => 'frozen', 'display_name' => 'Frozen', 'description' => 'Frozen fish, mostly already prepared meals'],
+            ['name' => 'cut', 'display_name' => 'Cut', 'description' => 'Cut fish, big fishes that need to be cut'],
+            ['name' => 'seafood', 'display_name' => 'Seafood', 'description' => 'Seafood, food with a hard shell'],
+            ['name' => 'other', 'display_name' => 'Other', 'description' => 'Other fish'],
         ]);
     }
 

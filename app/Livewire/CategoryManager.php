@@ -60,7 +60,7 @@ class CategoryManager extends Component
     public function update()
     {
         $this->authorize('update', Category::class);
-
+        
         $this->rules['name'] = 'required|min:3|unique:categories,name,' . $this->categoryId;
         $this->validate();
 
@@ -72,7 +72,7 @@ class CategoryManager extends Component
         ]);
 
         $this->reset(['name', 'display_name', 'description', 'editing', 'categoryId', 'creating']);
-        session()->flash('message', 'Category updated successfully.');
+        session()->flash('message', __('Category updated successfully.'));
     }
 
     public function store()
@@ -87,7 +87,7 @@ class CategoryManager extends Component
         ]);
 
         $this->reset(['name', 'display_name', 'description', 'creating']);
-        session()->flash('message', 'Category created successfully.');
+        session()->flash('message', __('Category created successfully.'));
     }
 
     public function delete($id)
@@ -99,17 +99,17 @@ class CategoryManager extends Component
             
             try {
                 $category->delete();
-                session()->flash('message', 'Category deleted successfully.');
+                session()->flash('message', __('Category deleted successfully.'));
             } catch (\Illuminate\Database\QueryException $e) {
                 // Check if the error is due to foreign key constraint
                 if ($e->getCode() == 23000) {
-                    session()->flash('error', 'This category cannot be deleted because it is being used by one or more products. Please remove the category from all products first.');
+                    session()->flash('error', __('The category cannot be deleted because it is being used by one or more products. Please remove the category from all products or delete the products first.'));
                 } else {
-                    session()->flash('error', 'An error occurred while deleting the category.');
+                    session()->flash('error', __('An error occurred while deleting the category.'));
                 }
             }
         } catch (\Illuminate\Auth\Access\AuthorizationException $e) {
-            session()->flash('error', 'The category cannot be deleted because it is being used by one or more products. Please remove the category from all products or delete the products first.');
+            session()->flash('error', __('The category cannot be deleted because it is being used by one or more products. Please remove the category from all products or delete the products first.'));
         }
     }
 

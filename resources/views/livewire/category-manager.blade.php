@@ -5,13 +5,13 @@
             <x-input 
                 name="search"
                 type="text" 
-                placeholder="Search categories..." 
+                placeholder="{{ __('Search categories...') }}" 
                 class="w-full"
                 wire:model.live="search"
             />
         </div>
         <button wire:click="create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Add Category
+            {{ __('Add Category') }}
         </button>
     </div>
 
@@ -42,12 +42,12 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-4">
             <div class="p-6">
                 <h2 class="text-xl font-semibold mb-4">
-                    {{ $editing ? 'Edit Category' : 'Create New Category' }}
+                    {{ $editing ? __('Edit Category') : __('Create New Category') }}
                 </h2>
                 <form wire:submit="{{ $editing ? 'update' : 'store' }}">
                     <div class="grid grid-cols-1 gap-6">
                         <div>
-                            <x-label for="name" value="Name" />
+                            <x-label for="name" value="{{ __('Name') }}" />
                             <x-input 
                                 name="name"
                                 type="text" 
@@ -56,12 +56,12 @@
                                 wire:model="name"
                                 placeholder="e.g., fresh-fish"
                             />
-                            <p class="mt-1 text-sm text-gray-500">The unique identifier for the category (e.g., fresh-fish, frozen-fish)</p>
+                            <p class="mt-1 text-sm text-gray-500">{{ __('The unique identifier for the category (e.g., fresh-fish, frozen-fish)') }}</p>
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
 
                         <div>
-                            <x-label for="display_name" value="Display Name" />
+                            <x-label for="display_name" value="{{ __('Display Name') }}" />
                             <x-input 
                                 name="display_name"
                                 type="text" 
@@ -69,12 +69,12 @@
                                 wire:model="display_name"
                                 placeholder="e.g., Fresh Fish"
                             />
-                            <p class="mt-1 text-sm text-gray-500">The name that will be shown to customers</p>
+                            <p class="mt-1 text-sm text-gray-500">{{ __('The name that will be shown to customers') }}</p>
                             <x-input-error :messages="$errors->get('display_name')" class="mt-2" />
                         </div>
 
                         <div>
-                            <x-label for="description" value="Description" />
+                            <x-label for="description" value="{{ __('Description') }}" />
                             <x-input 
                                 name="description"
                                 type="text" 
@@ -82,16 +82,16 @@
                                 wire:model="description"
                                 placeholder="e.g., Fresh fish caught daily"
                             />
-                            <p class="mt-1 text-sm text-gray-500">A brief description of the category</p>
+                            <p class="mt-1 text-sm text-gray-500">{{ __('A brief description of the category') }}</p>
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
 
                         <div class="flex justify-end space-x-2 pt-4 border-t">
                             <button type="button" wire:click="cancel" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                                Cancel
+                                {{ __('Cancel') }}
                             </button>
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                {{ $editing ? 'Update Category' : 'Create Category' }}
+                                {{ $editing ? __('Update Category') : __('Create Category') }}
                             </button>
                         </div>
                     </div>
@@ -117,16 +117,16 @@
                         </div>
                         <div class="flex space-x-2">
                             <button wire:click="edit({{ $category->id }})" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                Edit
+                                {{ __('Edit') }}
                             </button>
                             <button wire:click="delete({{ $category->id }})" wire:confirm="Are you sure you want to delete this category?" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                Delete
+                                {{ __('Delete') }}
                             </button>
                         </div>
                     </div>
                 @empty
                     <div class="text-center text-gray-500 dark:text-gray-400">
-                        No categories found.
+                        {{ __('No categories found.') }}
                     </div>
                 @endforelse
             </div>
