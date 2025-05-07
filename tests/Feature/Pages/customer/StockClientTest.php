@@ -39,7 +39,7 @@ it('includes logout if logged in', function () {
     // Act
     get(route('stock-client'))
         ->assertOk()
-        ->assertSee('Finalizar sesión')
+        ->assertSee('Cerrar Sesión')
         ->assertSee(route('logout'));
 });
 

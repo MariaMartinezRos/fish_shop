@@ -60,7 +60,7 @@ class CategoryManager extends Component
     public function update()
     {
         $this->authorize('update', Category::class);
-        
+
         $this->rules['name'] = 'required|min:3|unique:categories,name,' . $this->categoryId;
         $this->validate();
 
@@ -93,12 +93,12 @@ class CategoryManager extends Component
     public function delete($id)
     {
         $category = Category::findOrFail($id);
-        
+
         try {
             $this->authorize('delete', $category);
-            
+
             try {
-                $category->delete();
+                $category->forceDelete();
                 session()->flash('message', __('Category deleted successfully.'));
             } catch (\Illuminate\Database\QueryException $e) {
                 // Check if the error is due to foreign key constraint

@@ -84,7 +84,7 @@ it('includes logout if logged in', function () {
     $this->actingAs($admin)
         ->get(route('stock'))
         ->assertOk()
-        ->assertSee('Finalizar sesión') // Spanish for "Logout" CHECK
+        ->assertSee('Cerrar Sesión')
         ->assertSee(route('logout'));
 });
 
