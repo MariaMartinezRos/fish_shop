@@ -16,8 +16,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-//        $this->authorize('view', User::class);
-
         $categories = DB::table('categories')->get();
 
         if ($categories->isEmpty()) {

@@ -68,10 +68,8 @@ it('adds given role', function () {
     // Assert
     $this->assertDatabaseCount(Role::class, 3);
     $this->assertDatabaseHas(Role::class, ['name' => 'admin']);
-//    $this->assertDatabaseHas(Role::class, ['name' => 'tpv']);
     $this->assertDatabaseHas(Role::class, ['name' => 'employee']);
     $this->assertDatabaseHas(Role::class, ['name' => 'customer']);
-//    $this->assertDatabaseHas(Role::class, ['name' => 'supplier']);
 });
 
 it('adds given role only once', function () {

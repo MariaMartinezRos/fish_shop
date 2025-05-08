@@ -26,6 +26,8 @@ class RunWeeklyReport extends Command
      */
     public function handle()
     {
+        Artisan::call('app:clean-all-cache');
+
         dispatch(new \App\Jobs\GenerateWeeklyTransactionsReportJob);
     }
 }

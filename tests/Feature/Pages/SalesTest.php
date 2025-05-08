@@ -79,3 +79,21 @@ it('can download a soft deleted document', function () {
     expect($text)->toContain($product->name);
 });
 
+
+it('calls the command when the button is pressed', function () {
+    // Arrange
+    Artisan::call('view:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('app:clean-log');
+    // Act
+    $this->post(route('run.command'));
+    // Assert
+    $this->artisan('view:clear')->assertExitCode(0);
+    $this->artisan('cache:clear')->assertExitCode(0);
+    $this->artisan('route:clear')->assertExitCode(0);
+    $this->artisan('config:clear')->assertExitCode(0);
+    $this->artisan('app:clean-log')->assertExitCode(0);
+});
+

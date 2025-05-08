@@ -1,16 +1,10 @@
 <?php
 
 use App\Http\Controllers\{Admin\SoftDeletesReportController,
-    CategoryController,
     ContactController,
-    SoftDeletesController,
     ProductController,
     ProfileController,
-    RecipeController,
-    TransactionController,
-    UserController};
-use App\Http\Middleware\AdminMiddleware;
-use App\Livewire\TransactionSearcher;
+    RecipeController};
 use Illuminate\Support\Facades\Route;
 
 // Página principal

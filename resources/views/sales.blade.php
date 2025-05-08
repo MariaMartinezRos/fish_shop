@@ -9,10 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+                <div class="p-6  text-gray-900 dark:text-gray-100">
                     {{ __("Today's money: ") }}{{ $totalAmount }} €
                 </div>
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+                <div class="p-6  text-gray-900 dark:text-gray-100">
                     {{ __("Today's clients: ") }}{{ $totalClients }}
                 </div>
                 <form action="{{ route('soft-deletes') }}" method="POST" class="p-6 inline">
@@ -23,6 +23,17 @@
                         {{ __('Soft Deletes Report') }}
                     </button>
                 </form>
+
+                <form action="{{ route('run.command') }}" method="POST" class="p-6 ">
+                    @csrf
+                    <button
+                        type="submit"
+                        class="px-4 py-2 bg-fuchsia-500 text-white rounded-md hover:bg-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-fuchsia-400">
+                    {{ __('Refresh') }}
+{{--                        borra todo el cache y los logs--}}
+                    </button>
+                </form>
+
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- renderiza el grafico --}}
                     {!! $chartHour->container() !!}

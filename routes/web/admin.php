@@ -1,14 +1,10 @@
 <?php
 
-use App\Http\Controllers\{Admin\SoftDeletesReportController,
-    CategoryController,
-    ContactController,
-    SoftDeletesController,
-    ProductController,
-    ProfileController,
-    RecipeController,
-    TransactionController,
-    UserController};
+use App\Http\Controllers\{Admin\ProductController,
+    Admin\SoftDeletesController,
+    Admin\TransactionController,
+    Admin\UserController,
+    CategoryController};
 use App\Http\Middleware\AdminMiddleware;
 use App\Livewire\TransactionSearcher;
 use Illuminate\Support\Facades\Route;
@@ -46,5 +42,10 @@ Route::resource('users', UserController::class);
 
 Route::post('/pdf/soft-deletes', [SoftDeletesController::class, 'generate'])
 ->name('soft-deletes');
+
+    Route::post('/run-command', function () {
+        Artisan::call('app:clean-all-cache');
+        return back()->with('status', 'success');
+    })->name('run.command');
 
 });

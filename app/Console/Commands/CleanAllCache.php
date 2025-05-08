@@ -40,6 +40,9 @@ class CleanAllCache extends Command
         Artisan::call('config:clear');
         $this->info('Config cache cleared.');
 
+        Artisan::call('app:clean-log');
+        $this->info('Log cache cleared.');
+
         $this->info('All caches cleared successfully!');
     }
 }

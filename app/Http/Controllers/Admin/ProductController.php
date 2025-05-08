@@ -148,9 +148,10 @@
 //    }
 // }
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Events\ProductAdded;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Imports\ProductsImport;
 use App\Models\Product;
@@ -166,25 +167,123 @@ class ProductController extends Controller
     public string $search = '';
 
     /**
-     * Muestra la lista de productos para el cliente
+     * Muestra la lista de productos. Tambien realiza una consulta en la base de datos para filtrarlos
      */
-    public function indexClient(Request $request)
+    public function index(Request $request)
     {
+        $this->authorize('view', User::class);
 
         $search = $request->input('search');
 
         $products = Product::search($search)->paginate(10);
 
-        return view('dashboard.stock-client', compact('products'));
+        return view('stock', compact('products'));
     }
 
     /**
-     * Muestra un producto en particular al cliente
+     * Muestra un producto en particular
      */
-    public function showClient($id)
+    public function show($id)
     {
+        $this->authorize('view', User::class);
+
         $product = Product::findOrFail($id);
 
-        return view('products.show-client', compact('product'));
+        return view('products.show', compact('product'));
+    }
+
+    /**
+     * Importa los productos desde un archivo Excel
+     */
+    public function import(Request $request)
+    {
+        $this->authorize('create', User::class);
+
+        $request->validate([
+            'file' => 'required|mimes:xlsx',
+        ]);
+
+        Excel::import(new ProductsImport, $request->file('file'));
+
+        return redirect()->route('stock')->with('success', 'Product created successfully.');
+
+    }
+
+    /**
+     * Agrega un producto
+     */
+    public function create()
+    {
+        $this->authorize('create', User::class);
+
+        return view('products.create');
+    }
+
+    public function store(ProductRequest $request)
+    {
+        $this->authorize('create', User::class);
+
+        $validated = $request->validated();
+
+        $product = Product::create($validated);
+
+        event(new ProductAdded($product));
+
+
+        // Redirigir con mensaje de éxito
+        return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product created successfully.');
+    }
+
+    /**
+     * Edita un producto
+     */
+    public function edit(Product $product)
+    {
+        $this->authorize('update', User::class);
+
+        return view('products.edit', compact('product'));
+    }
+
+    public function update(ProductRequest $request, Product $product)
+    {
+        $this->authorize('update', User::class);
+
+        $validated = $request->validated();
+
+        $product->update($validated);
+
+        return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product updated successfully');
+    }
+
+    /**
+     * Elimina un producto
+     */
+    public function destroy(Product $product)
+    {
+        $this->authorize('delete', User::class);
+
+        $product->delete();
+
+        return redirect()->route('stock')->with('success', 'Product deleted successfully');
+    }
+
+    // DANGER ZONE
+    /**
+     * Elimina todos los productos
+     */
+    public function deleteAll()
+    {
+        $this->authorize('delete', Product::class);
+
+        // desactiva temporalmente las restricciones de claves foráneas en la base de datos
+
+        //esto es necesario ya qeu si la tabla products tiene una relación con otra tabla
+        // (como categories), no se puede eliminar o truncar la tabla products si hay registros
+        // en categorias que dependan de ella
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Product::truncate();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        return redirect()->route('products.index')->with('success', 'All products have been deleted.');
     }
 }

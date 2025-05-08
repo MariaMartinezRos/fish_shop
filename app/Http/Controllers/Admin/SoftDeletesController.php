@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Console\Commands\LoadSoftDeletes;
-use App\Models\Product;
+use App\Http\Controllers\Controller;
 use App\Models\User;
-use Artisan;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

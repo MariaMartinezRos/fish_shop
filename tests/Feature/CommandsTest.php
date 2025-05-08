@@ -14,6 +14,7 @@ it('cleans all cache', function () {
     Artisan::call('cache:clear');
     Artisan::call('route:clear');
     Artisan::call('config:clear');
+    Artisan::call('app:clean-log');
     // Act
     $this->artisan(CleanAllCache::class);
     // Assert
@@ -21,6 +22,7 @@ it('cleans all cache', function () {
     $this->artisan('cache:clear')->assertExitCode(0);
     $this->artisan('route:clear')->assertExitCode(0);
     $this->artisan('config:clear')->assertExitCode(0);
+    $this->artisan('app:clean-log')->assertExitCode(0);
 });
 
 it('cleans the laravel.logs file', function () {
@@ -93,4 +95,19 @@ it('dispatches the GenerateWeeklyTransactionsReportJob when the command is run',
     Bus::assertDispatched(GenerateWeeklyTransactionsReportJob::class);
 });
 
+it('runs the clean:test command and calls subcommands', function () {
+    // Arrange
+    Artisan::call('app:clean-all-cache');
+    // Act
+    $this->artisan(CleanAllCache::class);
+    // Assert
+    $this->artisan('app:clean-all-cache')->assertExitCode(0);
+
+    $this->artisan('clean:test')
+        ->expectsOutput('Clearing caches...')
+        ->expectsOutput('All caches cleared successfully!')
+        ->expectsOutput('Running tests...')
+        ->expectsOutput('All tests ejecuted successfully!')
+        ->assertExitCode(0);
+})->todo('Tarda demasiado en ejecutarse (ejecuta correctamente siempre que todos los tests esten correctos)');
 
