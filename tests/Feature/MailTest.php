@@ -1,11 +1,15 @@
 <?php
 
 use App\Events\UserCreated;
+use App\Jobs\GenerateWeeklyTransactionsReportJob;
 use App\Jobs\SendContactConfirmationEmail;
 use App\Listeners\SendWelcomeEmail;
 use App\Mail\ContactConfirmation;
+use App\Mail\WeeklyTransactionsReportEmail;
 use App\Mail\WelcomeMail;
+use App\Models\Transaction;
 use App\Models\User;
+use Carbon\Carbon;
 
 it('includes login details for the welcome mail', function () {
     // Arrange
@@ -61,4 +65,35 @@ it('includes valid data for the contact mail', function () {
 
     // Act && Assert
     $response->assertSessionHasErrors(['name', 'email', 'message']);
+});
+
+it('sends a weekly report email with the correct summary', function () {
+    // Arrange
+    Mail::fake();
+
+    $startOfWeek = Carbon::now()->startOfWeek();
+    $withinWeek = $startOfWeek->copy()->addDays(5);
+
+    // Act
+    Transaction::factory()->create([
+        'amount' => 50,
+        'date_time' => $withinWeek,
+        'tpv' => 'TPV-001',
+        'terminal_number' => 'TERM-01',
+        'operation' => 'sale',
+        'card_number' => '1234567812345678',
+        'transaction_number' => 'TXN-001',
+    ]);
+
+    (new GenerateWeeklyTransactionsReportJob())->handle();
+
+    // Assert
+    Mail::assertSent(WeeklyTransactionsReportEmail::class, function ($mail) use ($startOfWeek) {
+        expect($mail->summary)->toBeArray();
+        expect($mail->summary['transaction_count'])->toBe(1);
+        expect($mail->summary['total_sales'])->toBe(50);
+        expect($mail->summary['start'])->toBe($startOfWeek->toDateString());
+
+        return true;
+    });
 });

@@ -2,6 +2,7 @@
 
 use App\Console\Commands\CleanAllCache;
 use App\Console\Commands\CreateCategories;
+use App\Jobs\GenerateWeeklyTransactionsReportJob;
 use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
@@ -83,5 +84,13 @@ it('loads soft deleted records from tables', function () {
 
 });
 
+it('dispatches the GenerateWeeklyTransactionsReportJob when the command is run', function () {
+    Bus::fake();
+
+    $this->artisan('app:run-weekly-report')
+        ->assertExitCode(0);
+
+    Bus::assertDispatched(GenerateWeeklyTransactionsReportJob::class);
+});
 
 
