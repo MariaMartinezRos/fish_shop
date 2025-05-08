@@ -29,11 +29,7 @@ class CategoryManager extends Component
 
     public function render()
     {
-        $categories = Category::when($this->search, function ($query) {
-            $query->where('name', 'like', '%' . $this->search . '%')
-                ->orWhere('display_name', 'like', '%' . $this->search . '%')
-                ->orWhere('description', 'like', '%' . $this->search . '%');
-        })->paginate(10);
+        $categories = Category::search($this->search)->paginate(10);
 
         return view('livewire.category-manager', [
             'categories' => $categories,
