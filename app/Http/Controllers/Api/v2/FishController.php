@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v2;
 
+use App\Events\FishAdded;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFishRequest;
 use App\Http\Resources\FishResource;
@@ -191,7 +192,9 @@ class FishController extends Controller
             $fish->typeWater()->attach($typeWater->id, $characteristics);
         }
 
-        Cache::forget('fishes');
+//        Cache::forget('fishes');
+
+        event(new FishAdded($fish));
 
         return new FishResource($fish->load('typeWater'));
     }

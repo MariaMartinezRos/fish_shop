@@ -28,22 +28,25 @@
             </div>
         </div>
     </div>
-{{-- emplea la petición AJAX para filtrar resultados en tiempo real --}}
-{{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
-{{--    <script>--}}
-{{--        $(document).ready(function() {--}}
-{{--            $('#filter').on('keyup', function() {--}}
-{{--                var filter = $(this).val();--}}
-{{--                $.ajax({--}}
-{{--                    url: '{{ route('products.index') }}',--}}
-{{--                    type: 'GET',--}}
-{{--                    data: { filter: filter },--}}
-{{--                    success: function(data) {--}}
-{{--                        $('#product-list').html(data);--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('toast'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: "{{ session('toast')['type'] }}",
+                    title: "{{ session('toast')['message'] }}",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                });
+            });
+        </script>
+    @endif
+
 </x-app-layout>
 

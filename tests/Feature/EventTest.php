@@ -1,6 +1,9 @@
 <?php
 
+use App\Events\FishAdded;
 use App\Events\UserCreated;
+use App\Listeners\SendNotificationOnFishAdded;
+use App\Models\Fish;
 use App\Models\User;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Support\Facades\Event;
@@ -37,4 +40,28 @@ it('broadcasts on the correct channel', function () {
 
     // Act && Assert
     expect($event->broadcastOn())->toContainOnlyInstancesOf(PrivateChannel::class);
+})->todo('no es necesario');
+
+
+it('creates a FishAdded event with a fish instance', function () {
+    $fish = new Fish(['name' => 'Salmón']);
+    $event = new FishAdded($fish);
+
+    expect($event->fish)->toBeInstanceOf(Fish::class)
+        ->and($event->fish->name)->toBe('Salmón');
+});
+
+it('flashes a success message to the session when a fish is added', function () {
+    Session::start();
+
+    $fish = new Fish(['name' => 'Trucha']);
+    $event = new FishAdded($fish);
+    $listener = new SendNotificationOnFishAdded();
+
+    $listener->handle($event);
+
+    expect(Session::get('toast'))->toBe([
+        'type' => 'success',
+        'message' => '¡Pez agregado exitosamente: Trucha!'
+    ]);
 });
