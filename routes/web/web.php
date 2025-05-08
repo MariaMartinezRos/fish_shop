@@ -56,6 +56,7 @@ Route::get('/products-client/{id}', [ProductController::class, 'showClient'])
 
 Route::get('/products/pdf', [\App\Http\Controllers\PdfController::class, 'generatePdf'])
     ->name('products.pdf');
+
 // =====================================================
 // RUTAS DE PERFIL (AUTENTICADO)
 // =====================================================
@@ -67,43 +68,11 @@ Route::middleware('auth')->group(function () {
 });
 
 // =====================================================
-// RUTAS PARA ADMINISTRADORES (AUTENTICADO + ADMIN)
-// =====================================================
-
-    Route::middleware([AdminMiddleware::class])->group(function () {
-
-        Route::get('/sales', [TransactionController::class, 'showSales'])->name('sales');
-        Route::get('/transaction', TransactionSearcher::class)->name('transaction');
-
-        Route::get('/category', [CategoryController::class, 'index'])->name('category');
-        Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
-
-        Route::resource('products', ProductController::class);
-        Route::get('/stock', [ProductController::class, 'index'])->name('stock');
-
-        Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
-        Route::get('/products/{id}', [ProductController::class, 'show'])->middleware(['auth', 'verified'])->name('products.show');
-
-        Route::get('/products/add', function () {
-            return view('products.create');
-        })->name('products.add-form');
-
-        Route::post('/products/add', [ProductController::class, 'add'])->name('products.add');
-
-        Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])->name('products.delete-all');
-
-        Route::post('/products/import', [ProductController::class, 'import'])->name('products.import');
-//        Route::get('/products/pdf', [PdfController::class, 'generatePdf'])->name('products.pdf');
-
-        Route::resource('users', UserController::class);
-
-        Route::post('/pdf/soft-deletes', [SoftDeletesController::class, 'generate'])
-        ->name('soft-deletes');
-
-    });
-
-// =====================================================
-// INCLUSIÓN DE ARCHIVO DE AUTENTICACIÓN
+// INCLUSIÓN DE ARCHIVOS DE RUTAS Y AUTENTICACIÓN
 // =====================================================
 require __DIR__ . '/../auth.php';
+
+require __DIR__ . '/admin.php';
+require __DIR__ . '/customer.php';
+require __DIR__ . '/employee.php';
 

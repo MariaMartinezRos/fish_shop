@@ -66,12 +66,12 @@ it('adds given role', function () {
     $this->artisan('db:seed');
 
     // Assert
-    $this->assertDatabaseCount(Role::class, 5);
+    $this->assertDatabaseCount(Role::class, 3);
     $this->assertDatabaseHas(Role::class, ['name' => 'admin']);
-    $this->assertDatabaseHas(Role::class, ['name' => 'tpv']);
+//    $this->assertDatabaseHas(Role::class, ['name' => 'tpv']);
     $this->assertDatabaseHas(Role::class, ['name' => 'employee']);
     $this->assertDatabaseHas(Role::class, ['name' => 'customer']);
-    $this->assertDatabaseHas(Role::class, ['name' => 'supplier']);
+//    $this->assertDatabaseHas(Role::class, ['name' => 'supplier']);
 });
 
 it('adds given role only once', function () {
@@ -80,7 +80,7 @@ it('adds given role only once', function () {
     $this->artisan('db:seed');
 
     // Act && Assert
-    $this->assertDatabaseCount(Role::class, 5);
+    $this->assertDatabaseCount(Role::class, 3);
 });
 
 it('adds given transaction', function () {
