@@ -23,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\ProductAdded::class => [
             \App\Listeners\SendNotificationOnProductAdded::class,
         ],
+        \App\Events\PageAccessed::class => [
+            \App\Listeners\ShowSweetAlertOnPageAccess::class,
+        ],
     ];
 
     /**

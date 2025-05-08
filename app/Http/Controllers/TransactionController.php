@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Charts\SalesPerHourChart;
 use App\Charts\SalesPerWeekChart;
+use App\Events\PageAccessed;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -25,6 +26,7 @@ class TransactionController extends Controller
             return view('transactions', ['transactions' => []]);
         }
 
+        event(new PageAccessed('Has accedido a la página correctamente.'));
         return view('transactions', compact('transactions'));
     }
 
@@ -46,6 +48,7 @@ class TransactionController extends Controller
         $chartHour = $this->showGraphicHour();
         $chartWeek = $this->showGraphicWeek();
 
+        event(new PageAccessed('Has accedido a la página correctamente.'));
         return view('sales', compact('totalAmount', 'totalClients', 'chartHour', 'chartWeek'));
     }
 

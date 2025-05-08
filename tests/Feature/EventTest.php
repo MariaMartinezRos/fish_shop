@@ -1,10 +1,12 @@
 <?php
 
 use App\Events\FishAdded;
+use App\Events\PageAccessed;
 use App\Events\ProductAdded;
 use App\Events\UserCreated;
 use App\Listeners\SendNotificationOnFishAdded;
 use App\Listeners\SendNotificationOnProductAdded;
+use App\Listeners\ShowSweetAlertOnPageAccess;
 use App\Models\Fish;
 use App\Models\Product;
 use App\Models\User;
@@ -91,5 +93,21 @@ it('flashes a success message to the session when a product is added', function 
         'message' => '¡Producto agregado exitosamente: Trucha!'
     ]);
 });
+
+
+it('flashes a success message to the session when a page is accessed', function () {
+    Session::start();
+
+    $event = new PageAccessed('Test message');
+    $listener = new ShowSweetAlertOnPageAccess();
+
+    $listener->handle($event);
+
+    expect(Session::get('toast'))->toBe([
+        'type' => 'success',
+        'message' => '¡ Test message !'
+    ]);
+});
+
 
 
