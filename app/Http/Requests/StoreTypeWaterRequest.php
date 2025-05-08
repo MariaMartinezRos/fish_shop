@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreTypeWaterRequest extends FormRequest
 {
@@ -15,8 +16,12 @@ class StoreTypeWaterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => ['required', 'string', 'in:Saltwater,Freshwater', 'unique:type_waters,type'],
-            'ph_level' => ['required', 'numeric', 'between:0,14'],
+            'type' => ['required', 'array'],
+            'type.*' => [
+                'string',
+                Rule::in(['Saltwater', 'Freshwater']),
+                Rule::unique('type_water', 'type'),
+            ],            'ph_level' => ['required', 'numeric', 'between:0,14'],
             'temperature_range' => ['required', 'string'],
             'salinity_level' => ['required', 'numeric', 'min:0'],
             'region' => ['required', 'string'],
@@ -33,8 +38,9 @@ class StoreTypeWaterRequest extends FormRequest
     {
         return [
             'type.required' => 'The water type is required.',
-            'type.in' => 'The water type must be either Saltwater or Freshwater.',
-            'type.unique' => 'This water type already exists.',
+            'type.array' => 'The water type must be an array.',
+            'type.*.in' => 'Each water type must be either Saltwater or Freshwater.',
+            'type.*.unique' => 'This water type already exists in the database.',
             'ph_level.required' => 'The pH level is required.',
             'ph_level.numeric' => 'The pH level must be a number.',
             'ph_level.between' => 'The pH level must be between 0 and 14.',
@@ -45,4 +51,4 @@ class StoreTypeWaterRequest extends FormRequest
             'region.required' => 'The region is required.',
         ];
     }
-} 
+}

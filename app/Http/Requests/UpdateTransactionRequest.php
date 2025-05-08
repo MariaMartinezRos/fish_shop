@@ -23,7 +23,7 @@ class UpdateTransactionRequest extends FormRequest
             'card_number' => ['sometimes', 'required', 'string', 'size:16'],
             'date_time' => ['sometimes', 'required', 'date'],
             'transaction_number' => ['sometimes', 'required', 'string'],
-            'sale_id' => ['sometimes', 'required', 'exists:sales,id'],
+            'sale_id' => ['sometimes', 'required', 'numeric'],
         ];
     }
 
@@ -49,7 +49,6 @@ class UpdateTransactionRequest extends FormRequest
             'date_time.date' => 'The date and time must be a valid date.',
             'transaction_number.required' => 'The transaction number is required.',
             'sale_id.required' => 'The sale reference is required.',
-            'sale_id.exists' => 'The referenced sale does not exist.',
         ];
     }
-} 
+}

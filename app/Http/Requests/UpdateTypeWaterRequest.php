@@ -16,12 +16,11 @@ class UpdateTypeWaterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => [
-                'sometimes',
-                'required',
+            'type' => ['sometimes', 'required', 'array'],
+            'type.*' => [
                 'string',
-                'in:Saltwater,Freshwater',
-                Rule::unique('type_waters', 'type')->ignore($this->typeWater),
+                Rule::in(['Saltwater', 'Freshwater']),
+                Rule::unique('type_water', 'type')->ignore($this->typeWater),
             ],
             'ph_level' => ['sometimes', 'required', 'numeric', 'between:0,14'],
             'temperature_range' => ['sometimes', 'required', 'string'],
@@ -39,9 +38,10 @@ class UpdateTypeWaterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'type.required' => 'The water type is required.',
-            'type.in' => 'The water type must be either Saltwater or Freshwater.',
-            'type.unique' => 'This water type already exists.',
+            'type.required' => 'At least one water type is required.',
+            'type.array' => 'The water type must be an array.',
+            'type.*.in' => 'Each water type must be either Saltwater or Freshwater.',
+            'type.*.unique' => 'One or more water types already exist.',
             'ph_level.required' => 'The pH level is required.',
             'ph_level.numeric' => 'The pH level must be a number.',
             'ph_level.between' => 'The pH level must be between 0 and 14.',
@@ -52,4 +52,4 @@ class UpdateTypeWaterRequest extends FormRequest
             'region.required' => 'The region is required.',
         ];
     }
-} 
+}
