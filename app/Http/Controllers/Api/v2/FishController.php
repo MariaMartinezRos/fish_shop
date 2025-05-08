@@ -192,7 +192,7 @@ class FishController extends Controller
             $fish->typeWater()->attach($typeWater->id, $characteristics);
         }
 
-//        Cache::forget('fishes');
+       Cache::forget('fishes');
 
         event(new FishAdded($fish));
 

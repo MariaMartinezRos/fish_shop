@@ -1,9 +1,12 @@
 <?php
 
 use App\Events\FishAdded;
+use App\Events\ProductAdded;
 use App\Events\UserCreated;
 use App\Listeners\SendNotificationOnFishAdded;
+use App\Listeners\SendNotificationOnProductAdded;
 use App\Models\Fish;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Support\Facades\Event;
@@ -65,3 +68,28 @@ it('flashes a success message to the session when a fish is added', function () 
         'message' => '¡Pez agregado exitosamente: Trucha!'
     ]);
 });
+
+it('creates a ProductAdded event with a product instance', function () {
+    $product = new Product(['name' => 'Salmón']);
+    $event = new ProductAdded($product);
+
+    expect($event->product)->toBeInstanceOf(Product::class)
+        ->and($event->product->name)->toBe('Salmón');
+});
+
+it('flashes a success message to the session when a product is added', function () {
+    Session::start();
+
+    $product = new Product(['name' => 'Trucha']);
+    $event = new ProductAdded($product);
+    $listener = new SendNotificationOnProductAdded();
+
+    $listener->handle($event);
+
+    expect(Session::get('toast'))->toBe([
+        'type' => 'success',
+        'message' => '¡Producto agregado exitosamente: Trucha!'
+    ]);
+});
+
+

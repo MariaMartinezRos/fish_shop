@@ -20,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\FishAdded::class => [
             \App\Listeners\SendNotificationOnFishAdded::class,
         ],
+        \App\Events\ProductAdded::class => [
+            \App\Listeners\SendNotificationOnProductAdded::class,
+        ],
     ];
 
     /**

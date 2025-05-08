@@ -150,6 +150,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductAdded;
 use App\Http\Requests\ProductRequest;
 use App\Imports\ProductsImport;
 use App\Models\Product;
@@ -247,6 +248,9 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         $product = Product::create($validated);
+
+        event(new ProductAdded($product));
+
 
         // Redirigir con mensaje de éxito
         return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product created successfully.');
