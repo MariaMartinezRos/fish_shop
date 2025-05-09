@@ -35,29 +35,36 @@ endpoints:
                {
                  "id": 1,
                  "name": "Salmon",
+                 "scientific_name": "Salmo salar",
                  "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-                 "type": ["Freshwater"],
-                 "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."
-                 "state": "forbidden",
-                 "temperature_range": "20-25°C",
-                 "ph_range": "7.0-8.0",
-                 "salinity": "1.03",
-                 "oxygen_level": "5.94",
-                 "notes": "Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui."
-               },
-               {
-                  "id": 2,
-                  "name": "Trucha",
-                  "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-                  "type": ["Saltwater"],
-                  "description": "Et eum iste impedit consequatur atque natus. Neque asperiores cum sunt nulla adipisci qui ad. Aut qui maiores quia velit facilis sint ut. Incidunt quod ducimus eos id.",
-                  "state": "allowed",
-                  "temperature_range": "24-30°C",
-                  "ph_range": "6.5-7.5",
-                  "salinity": "1.02",
-                  "oxygen_level": "5.26",
-                  "notes": "Placeat delectus facere dolor dolorem. Repudiandae veniam ex neque et."
-                }
+                 "description": "Et consectetur nisi excepturi esse aut.",
+                 "average_size_cm": 75.5,
+                 "diet": "Carnivore",
+                 "lifespan_years": 7,
+                 "habitat": "Rivers and Oceans",
+                 "conservation_status": "Least Concern",
+                 "type": ["Freshwater", "Saltwater"],
+                 "characteristics": {
+                   "state": "Allowed",
+                   "temperature_range": "20-25°C",
+                   "ph_range": "7.0-8.0",
+                   "salinity": 1.03,
+                   "oxygen_level": 5.94,
+                   "migration_pattern": "Anadromous",
+                   "recorded_since": 1990,
+                   "notes": "Quo illo facere odio et sed."
+                 },
+                 "water_type_details": {
+                   "type": "Freshwater",
+                   "ph_level": 7.2,
+                   "temperature_range": "10-25°C",
+                   "salinity_level": 0.05,
+                   "region": "Rivers, Lakes, Ponds",
+                   "description": "Water with low salt concentration"
+                 },
+                 "created_at": "2024-02-11T18:24:59.000000Z",
+                 "updated_at": "2024-02-11T18:24:59.000000Z"
+               }
              ]
            }
         headers: []
@@ -119,21 +126,39 @@ endpoints:
         status: 200
         content: |-
           {
-              "data": [
-                {
-                  "id": 1,
-                  "name": "Salmon",
-                  "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-                  "type": ["Freshwater"],
-                  "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."
-                  "state": "forbidden",
+              "data": {
+                "id": 1,
+                "name": "Salmon",
+                "scientific_name": "Salmo salar",
+                "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+                "description": "Et consectetur nisi excepturi esse aut.",
+                "average_size_cm": 75.5,
+                "diet": "Carnivore",
+                "lifespan_years": 7,
+                "habitat": "Rivers and Oceans",
+                "conservation_status": "Least Concern",
+                "type": ["Freshwater", "Saltwater"],
+                "characteristics": {
+                  "state": "Allowed",
                   "temperature_range": "20-25°C",
                   "ph_range": "7.0-8.0",
-                  "salinity": "1.03",
-                  "oxygen_level": "5.94",
-                  "notes": "Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui."
-                }
-             ]
+                  "salinity": 1.03,
+                  "oxygen_level": 5.94,
+                  "migration_pattern": "Anadromous",
+                  "recorded_since": 1990,
+                  "notes": "Quo illo facere odio et sed."
+                },
+                "water_type_details": {
+                  "type": "Freshwater",
+                  "ph_level": 7.2,
+                  "temperature_range": "10-25°C",
+                  "salinity_level": 0.05,
+                  "region": "Rivers, Lakes, Ponds",
+                  "description": "Water with low salt concentration"
+                },
+                "created_at": "2024-02-11T18:24:59.000000Z",
+                "updated_at": "2024-02-11T18:24:59.000000Z"
+              }
           }
         headers: []
         description: ''
@@ -175,9 +200,19 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
+      scientific_name:
+        name: scientific_name
+        description: 'The scientific name of the fish.'
+        required: false
+        example: 'Salmo salar'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
       image:
         name: image
-        description: 'El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes.'
+        description: 'The image of the fish.'
         required: false
         example: null
         type: file
@@ -185,19 +220,9 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         custom: []
-      type:
-        name: type
-        description: 'The type of the fish.'
-        required: true
-        example: Freshwater
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
       description:
         name: description
-        description: ''
+        description: 'A description of the fish.'
         required: false
         example: 'Eius et animi quos velit et.'
         type: string
@@ -205,21 +230,169 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         custom: []
-      price:
-        name: price
-        description: 'The price of the fish.'
-        required: true
-        example: 10.5
-        type: number
+      average_size_cm:
+        name: average_size_cm
+        description: 'The average size in centimeters.'
+        required: false
+        example: architecto
+        type: numeric
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      diet:
+        name: diet
+        description: 'The diet type (Carnivore, Herbivore, Omnivore).'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
         nullable: false
+        custom: []
+      lifespan_years:
+        name: lifespan_years
+        description: 'The lifespan in years.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      habitat:
+        name: habitat
+        description: 'The natural habitat.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      conservation_status:
+        name: conservation_status
+        description: 'The conservation status.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      type:
+        name: type
+        description: 'The type of water (Saltwater, Freshwater).'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics:
+        name: characteristics
+        description: 'The water characteristics.'
+        required: true
+        example:
+          - architecto
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.state:
+        name: characteristics.state
+        description: 'The state (Allowed, Forbidden, Biological rest).'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.temperature_range:
+        name: characteristics.temperature_range
+        description: 'The temperature range.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.ph_range:
+        name: characteristics.ph_range
+        description: 'The pH range.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.salinity:
+        name: characteristics.salinity
+        description: 'The salinity level.'
+        required: false
+        example: architecto
+        type: numeric
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.oxygen_level:
+        name: characteristics.oxygen_level
+        description: 'The oxygen level.'
+        required: false
+        example: architecto
+        type: numeric
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.migration_pattern:
+        name: characteristics.migration_pattern
+        description: 'The migration pattern.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.recorded_since:
+        name: characteristics.recorded_since
+        description: 'The year recorded since.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.notes:
+        name: characteristics.notes
+        description: 'Additional notes.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
         custom: []
     cleanBodyParameters:
       name: Salmon
-      type: Freshwater
+      scientific_name: 'Salmo salar'
       description: 'Eius et animi quos velit et.'
-      price: 10.5
+      average_size_cm: architecto
+      diet: architecto
+      lifespan_years: 16
+      habitat: architecto
+      conservation_status: architecto
+      type: architecto
+      characteristics:
+        - architecto
     fileParameters:
       image: null
     responses:
@@ -227,21 +400,39 @@ endpoints:
         status: 201
         content: |-
           {
-               "data": [
-                 {
-                   "id": 1,
-                   "name": "Salmon",
-                   "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-                   "type": ["Freshwater"],
-                   "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."
-                   "state": "forbidden",
-                   "temperature_range": "20-25°C",
-                   "ph_range": "7.0-8.0",
-                   "salinity": "1.03",
-                   "oxygen_level": "5.94",
-                   "notes": "Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui."
-                 }
-              ]
+              "data": {
+                "id": 1,
+                "name": "Salmon",
+                "scientific_name": "Salmo salar",
+                "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+                "description": "Et consectetur nisi excepturi esse aut.",
+                "average_size_cm": 75.5,
+                "diet": "Carnivore",
+                "lifespan_years": 7,
+                "habitat": "Rivers and Oceans",
+                "conservation_status": "Least Concern",
+                "type": ["Freshwater", "Saltwater"],
+                "characteristics": {
+                  "state": "Allowed",
+                  "temperature_range": "20-25°C",
+                  "ph_range": "7.0-8.0",
+                  "salinity": 1.03,
+                  "oxygen_level": 5.94,
+                  "migration_pattern": "Anadromous",
+                  "recorded_since": 1990,
+                  "notes": "Quo illo facere odio et sed."
+                },
+                "water_type_details": {
+                  "type": "Freshwater",
+                  "ph_level": 7.2,
+                  "temperature_range": "10-25°C",
+                  "salinity_level": 0.05,
+                  "region": "Rivers, Lakes, Ponds",
+                  "description": "Water with low salt concentration"
+                },
+                "created_at": "2024-02-11T18:24:59.000000Z",
+                "updated_at": "2024-02-11T18:24:59.000000Z"
+              }
           }
         headers: []
         description: ''
@@ -266,7 +457,7 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
       fish_id:
@@ -305,11 +496,81 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
+      scientific_name:
+        name: scientific_name
+        description: 'The scientific name of the fish.'
+        required: false
+        example: 'Salmo salar'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
       image:
         name: image
-        description: ''
+        description: 'The image of the fish.'
         required: false
         example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      description:
+        name: description
+        description: 'A description of the fish.'
+        required: false
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      average_size_cm:
+        name: average_size_cm
+        description: 'The average size in centimeters.'
+        required: false
+        example: architecto
+        type: numeric
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      diet:
+        name: diet
+        description: 'The diet type (Carnivore, Herbivore, Omnivore).'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      lifespan_years:
+        name: lifespan_years
+        description: 'The lifespan in years.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      habitat:
+        name: habitat
+        description: 'The natural habitat.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      conservation_status:
+        name: conservation_status
+        description: 'The conservation status.'
+        required: false
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -317,49 +578,157 @@ endpoints:
         custom: []
       type:
         name: type
-        description: 'The type of the fish.'
+        description: 'The type of water (Saltwater, Freshwater).'
         required: true
-        example: Freshwater
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      description:
-        name: description
-        description: ''
-        required: true
-        example: 'Eius et animi quos velit et.'
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
+      characteristics:
+        name: characteristics
+        description: 'The water characteristics.'
+        required: true
+        example:
+          - architecto
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.state:
+        name: characteristics.state
+        description: 'The state (Allowed, Forbidden, Biological rest).'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.temperature_range:
+        name: characteristics.temperature_range
+        description: 'The temperature range.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.ph_range:
+        name: characteristics.ph_range
+        description: 'The pH range.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.salinity:
+        name: characteristics.salinity
+        description: 'The salinity level.'
+        required: false
+        example: architecto
+        type: numeric
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.oxygen_level:
+        name: characteristics.oxygen_level
+        description: 'The oxygen level.'
+        required: false
+        example: architecto
+        type: numeric
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.migration_pattern:
+        name: characteristics.migration_pattern
+        description: 'The migration pattern.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.recorded_since:
+        name: characteristics.recorded_since
+        description: 'The year recorded since.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.notes:
+        name: characteristics.notes
+        description: 'Additional notes.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
     cleanBodyParameters:
       name: Salmon
-      type: Freshwater
+      scientific_name: 'Salmo salar'
       description: 'Eius et animi quos velit et.'
-    fileParameters: []
+      average_size_cm: architecto
+      diet: architecto
+      lifespan_years: 16
+      habitat: architecto
+      conservation_status: architecto
+      type: architecto
+      characteristics:
+        - architecto
+    fileParameters:
+      image: null
     responses:
       -
-        status: 201
+        status: 200
         content: |-
           {
-               "data": [
-                 {
-                   "id": 1,
-                   "name": "Updated Salmon",
-                   "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
-                   "type": ["Freshwater"],
-                   "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."
-                   "state": "forbidden",
-                   "temperature_range": "20-25°C",
-                   "ph_range": "7.0-8.0",
-                   "salinity": "1.03",
-                   "oxygen_level": "5.94",
-                   "notes": "Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui."
-                 }
-              ]
+              "data": {
+                "id": 1,
+                "name": "Updated Salmon",
+                "scientific_name": "Salmo salar",
+                "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+                "description": "Updated description",
+                "average_size_cm": 80.0,
+                "diet": "Carnivore",
+                "lifespan_years": 8,
+                "habitat": "Updated habitat",
+                "conservation_status": "Least Concern",
+                "type": ["Freshwater", "Saltwater"],
+                "characteristics": {
+                  "state": "Allowed",
+                  "temperature_range": "22-28°C",
+                  "ph_range": "7.2-8.0",
+                  "salinity": 1.02,
+                  "oxygen_level": 6.0,
+                  "migration_pattern": "Anadromous",
+                  "recorded_since": 1990,
+                  "notes": "Updated notes"
+                },
+                "water_type_details": {
+                  "type": "Freshwater",
+                  "ph_level": 7.2,
+                  "temperature_range": "10-25°C",
+                  "salinity_level": 0.05,
+                  "region": "Rivers, Lakes, Ponds",
+                  "description": "Water with low salt concentration"
+                },
+                "created_at": "2024-02-11T18:24:59.000000Z",
+                "updated_at": "2024-02-11T18:24:59.000000Z"
+              }
           }
         headers: []
         description: ''

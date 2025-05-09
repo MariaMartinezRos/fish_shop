@@ -126,12 +126,85 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
+      scientific_name:
+        name: scientific_name
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
       image:
         name: image
         description: 'El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes.'
         required: false
         example: null
         type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: false
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      average_size_cm:
+        name: average_size_cm
+        description: 'El campo value tiene que estar entre 0 - 1000.'
+        required: false
+        example: 1
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      diet:
+        name: diet
+        description: ''
+        required: true
+        example: Herbivore
+        type: string
+        enumValues:
+          - Carnivore
+          - Herbivore
+          - Omnivore
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      lifespan_years:
+        name: lifespan_years
+        description: 'El tamaño de value debe ser de al menos 0.'
+        required: false
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      habitat:
+        name: habitat
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: false
+        example: l
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      conservation_status:
+        name: conservation_status
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: false
+        example: j
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
@@ -146,11 +219,97 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
-      description:
-        name: description
+      characteristics:
+        name: characteristics
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.state:
+        name: characteristics.state
+        description: ''
+        required: true
+        example: Forbidden
+        type: string
+        enumValues:
+          - Allowed
+          - Forbidden
+          - 'Biological rest'
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.temperature_range:
+        name: characteristics.temperature_range
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.ph_range:
+        name: characteristics.ph_range
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.salinity:
+        name: characteristics.salinity
+        description: 'El campo value tiene que estar entre 0 - 100.'
+        required: false
+        example: 0
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.oxygen_level:
+        name: characteristics.oxygen_level
+        description: 'El campo value tiene que estar entre 0 - 100.'
+        required: false
+        example: 1
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.migration_pattern:
+        name: characteristics.migration_pattern
+        description: ''
+        required: true
+        example: Non-migratory
+        type: string
+        enumValues:
+          - Non-migratory
+          - Anadromous
+          - Catadromous
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.recorded_since:
+        name: characteristics.recorded_since
+        description: 'El tamaño de value debe ser de al menos 1900. El campo value no debe ser mayor que 2025.'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.notes:
+        name: characteristics.notes
         description: ''
         required: false
-        example: 'Eius et animi quos velit et.'
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -168,8 +327,23 @@ endpoints:
         custom: []
     cleanBodyParameters:
       name: Salmon
-      type: Freshwater
+      scientific_name: 'n'
       description: 'Eius et animi quos velit et.'
+      average_size_cm: 1
+      diet: Herbivore
+      lifespan_years: 42
+      habitat: l
+      conservation_status: j
+      type: Freshwater
+      characteristics:
+        state: Forbidden
+        temperature_range: b
+        ph_range: 'n'
+        salinity: 0
+        oxygen_level: 1
+        migration_pattern: Non-migratory
+        recorded_since: 17
+        notes: architecto
       price: 10.5
     fileParameters:
       image: null
@@ -239,11 +413,84 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
+      scientific_name:
+        name: scientific_name
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
       image:
         name: image
         description: ''
         required: false
         example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      average_size_cm:
+        name: average_size_cm
+        description: 'El campo value tiene que estar entre 0 - 1000.'
+        required: false
+        example: 1
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      diet:
+        name: diet
+        description: ''
+        required: true
+        example: Omnivore
+        type: string
+        enumValues:
+          - Carnivore
+          - Herbivore
+          - Omnivore
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      lifespan_years:
+        name: lifespan_years
+        description: 'El tamaño de value debe ser de al menos 0.'
+        required: false
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      habitat:
+        name: habitat
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: false
+        example: l
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      conservation_status:
+        name: conservation_status
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: false
+        example: j
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -259,20 +506,121 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
-      description:
-        name: description
+      characteristics:
+        name: characteristics
         description: ''
         required: true
-        example: 'Eius et animi quos velit et.'
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.state:
+        name: characteristics.state
+        description: ''
+        required: true
+        example: Forbidden
+        type: string
+        enumValues:
+          - Allowed
+          - Forbidden
+          - 'Biological rest'
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.temperature_range:
+        name: characteristics.temperature_range
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: true
+        example: b
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
+      characteristics.ph_range:
+        name: characteristics.ph_range
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.salinity:
+        name: characteristics.salinity
+        description: 'El campo value tiene que estar entre 0 - 100.'
+        required: false
+        example: 0
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.oxygen_level:
+        name: characteristics.oxygen_level
+        description: 'El campo value tiene que estar entre 0 - 100.'
+        required: false
+        example: 1
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.migration_pattern:
+        name: characteristics.migration_pattern
+        description: ''
+        required: true
+        example: Catadromous
+        type: string
+        enumValues:
+          - Non-migratory
+          - Anadromous
+          - Catadromous
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      characteristics.recorded_since:
+        name: characteristics.recorded_since
+        description: 'El tamaño de value debe ser de al menos 1900. El campo value no debe ser mayor que 2025.'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      characteristics.notes:
+        name: characteristics.notes
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
     cleanBodyParameters:
       name: Salmon
-      type: Freshwater
+      scientific_name: 'n'
       description: 'Eius et animi quos velit et.'
+      average_size_cm: 1
+      diet: Omnivore
+      lifespan_years: 42
+      habitat: l
+      conservation_status: j
+      type: Freshwater
+      characteristics:
+        state: Forbidden
+        temperature_range: b
+        ph_range: 'n'
+        salinity: 0
+        oxygen_level: 1
+        migration_pattern: Catadromous
+        recorded_since: 17
+        notes: architecto
     fileParameters: []
     responses:
       -

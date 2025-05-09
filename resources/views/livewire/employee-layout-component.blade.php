@@ -24,7 +24,7 @@
 
         <section class="dashboard">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="#" class="panel-link">{{ __('Calendar')}}</a>
+                <a href="#" class="panel-link">{{ __('Schedule')}}</a>
                 <a href="#" class="panel-link text-red-600">{{ __('Schedule')}}</a>
                 <a href="#" class="panel-link">{{ __('Download Paycheck')}}</a>
                 <a href="#" class="panel-link">{{ __('Assignements')}}</a>

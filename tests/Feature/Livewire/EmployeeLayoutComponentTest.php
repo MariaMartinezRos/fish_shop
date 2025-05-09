@@ -14,7 +14,7 @@ it('renders the employee layout correctly', function () {
     $this->actingAs($employee)
         ->get('employee/home')
         ->assertSee('Employee Layout')
-        ->assertSee('Calendar')
+        ->assertSee('Schedule')
         ->assertSee('Schedule')
         ->assertSee('Download Paycheck')
         ->assertSee('Assignements')

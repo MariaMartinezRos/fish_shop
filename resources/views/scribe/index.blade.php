@@ -119,7 +119,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 23, 2025</li>
+        <li>Last updated: May 9, 2025</li>
     </ul>
 </div>
 
@@ -434,10 +434,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "name=Salmon"\
-    --form "type=Freshwater"\
+    --form "scientific_name=n"\
     --form "description=Eius et animi quos velit et."\
+    --form "average_size_cm=1"\
+    --form "diet=Herbivore"\
+    --form "lifespan_years=42"\
+    --form "habitat=l"\
+    --form "conservation_status=j"\
+    --form "type=Freshwater"\
+    --form "characteristics[state]=Forbidden"\
+    --form "characteristics[temperature_range]=b"\
+    --form "characteristics[ph_range]=n"\
+    --form "characteristics[salinity]=0"\
+    --form "characteristics[oxygen_level]=1"\
+    --form "characteristics[migration_pattern]=Non-migratory"\
+    --form "characteristics[recorded_since]=17"\
+    --form "characteristics[notes]=architecto"\
     --form "price=10.5"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\phpA854.tmp" </code></pre></div>
+    --form "image=@C:\Users\gines\AppData\Local\Temp\php9CB9.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -452,8 +466,22 @@ const headers = {
 
 const body = new FormData();
 body.append('name', 'Salmon');
-body.append('type', 'Freshwater');
+body.append('scientific_name', 'n');
 body.append('description', 'Eius et animi quos velit et.');
+body.append('average_size_cm', '1');
+body.append('diet', 'Herbivore');
+body.append('lifespan_years', '42');
+body.append('habitat', 'l');
+body.append('conservation_status', 'j');
+body.append('type', 'Freshwater');
+body.append('characteristics[state]', 'Forbidden');
+body.append('characteristics[temperature_range]', 'b');
+body.append('characteristics[ph_range]', 'n');
+body.append('characteristics[salinity]', '0');
+body.append('characteristics[oxygen_level]', '1');
+body.append('characteristics[migration_pattern]', 'Non-migratory');
+body.append('characteristics[recorded_since]', '17');
+body.append('characteristics[notes]', 'architecto');
 body.append('price', '10.5');
 body.append('image', document.querySelector('input[name="image"]').files[0]);
 
@@ -564,6 +592,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The name of the fish. Example: <code>Salmon</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>scientific_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="scientific_name"                data-endpoint="POSTapi-v1-fishes"
+               value="n"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
 <small>file</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -572,7 +611,75 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\phpA854.tmp</code></p>
+<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\php9CB9.tmp</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi-v1-fishes"
+               value="Eius et animi quos velit et."
+               data-component="body">
+    <br>
+<p>Example: <code>Eius et animi quos velit et.</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>average_size_cm</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="average_size_cm"                data-endpoint="POSTapi-v1-fishes"
+               value="1"
+               data-component="body">
+    <br>
+<p>El campo value tiene que estar entre 0 - 1000. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>diet</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="diet"                data-endpoint="POSTapi-v1-fishes"
+               value="Herbivore"
+               data-component="body">
+    <br>
+<p>Example: <code>Herbivore</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>Carnivore</code></li> <li><code>Herbivore</code></li> <li><code>Omnivore</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>lifespan_years</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="lifespan_years"                data-endpoint="POSTapi-v1-fishes"
+               value="42"
+               data-component="body">
+    <br>
+<p>El tamaño de value debe ser de al menos 0. Example: <code>42</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>habitat</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="habitat"                data-endpoint="POSTapi-v1-fishes"
+               value="l"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>l</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>conservation_status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="conservation_status"                data-endpoint="POSTapi-v1-fishes"
+               value="j"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>j</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -586,15 +693,107 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The type of the fish. Example: <code>Freshwater</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>characteristics</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.state"                data-endpoint="POSTapi-v1-fishes"
+               value="Forbidden"
+               data-component="body">
+    <br>
+<p>Example: <code>Forbidden</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>Allowed</code></li> <li><code>Forbidden</code></li> <li><code>Biological rest</code></li></ul>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>temperature_range</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.temperature_range"                data-endpoint="POSTapi-v1-fishes"
+               value="b"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>b</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>ph_range</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.ph_range"                data-endpoint="POSTapi-v1-fishes"
+               value="n"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>salinity</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="characteristics.salinity"                data-endpoint="POSTapi-v1-fishes"
+               value="0"
+               data-component="body">
+    <br>
+<p>El campo value tiene que estar entre 0 - 100. Example: <code>0</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>oxygen_level</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="characteristics.oxygen_level"                data-endpoint="POSTapi-v1-fishes"
+               value="1"
+               data-component="body">
+    <br>
+<p>El campo value tiene que estar entre 0 - 100. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>migration_pattern</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.migration_pattern"                data-endpoint="POSTapi-v1-fishes"
+               value="Non-migratory"
+               data-component="body">
+    <br>
+<p>Example: <code>Non-migratory</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>Non-migratory</code></li> <li><code>Anadromous</code></li> <li><code>Catadromous</code></li></ul>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>recorded_since</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="characteristics.recorded_since"                data-endpoint="POSTapi-v1-fishes"
+               value="17"
+               data-component="body">
+    <br>
+<p>El tamaño de value debe ser de al menos 1900. El campo value no debe ser mayor que 2025. Example: <code>17</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="POSTapi-v1-fishes"
-               value="Eius et animi quos velit et."
+                              name="characteristics.notes"                data-endpoint="POSTapi-v1-fishes"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
+<p>Example: <code>architecto</code></p>
+                    </div>
+                                    </details>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -627,8 +826,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"name\": \"Salmon\",
+    \"scientific_name\": \"n\",
+    \"description\": \"Eius et animi quos velit et.\",
+    \"average_size_cm\": 1,
+    \"diet\": \"Omnivore\",
+    \"lifespan_years\": 42,
+    \"habitat\": \"l\",
+    \"conservation_status\": \"j\",
     \"type\": \"Freshwater\",
-    \"description\": \"Eius et animi quos velit et.\"
+    \"characteristics\": {
+        \"state\": \"Forbidden\",
+        \"temperature_range\": \"b\",
+        \"ph_range\": \"n\",
+        \"salinity\": 0,
+        \"oxygen_level\": 1,
+        \"migration_pattern\": \"Catadromous\",
+        \"recorded_since\": 17,
+        \"notes\": \"architecto\"
+    }
 }"
 </code></pre></div>
 
@@ -645,8 +860,24 @@ const headers = {
 
 let body = {
     "name": "Salmon",
+    "scientific_name": "n",
+    "description": "Eius et animi quos velit et.",
+    "average_size_cm": 1,
+    "diet": "Omnivore",
+    "lifespan_years": 42,
+    "habitat": "l",
+    "conservation_status": "j",
     "type": "Freshwater",
-    "description": "Eius et animi quos velit et."
+    "characteristics": {
+        "state": "Forbidden",
+        "temperature_range": "b",
+        "ph_range": "n",
+        "salinity": 0,
+        "oxygen_level": 1,
+        "migration_pattern": "Catadromous",
+        "recorded_since": 17,
+        "notes": "architecto"
+    }
 };
 
 fetch(url, {
@@ -779,6 +1010,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The name of the fish. Example: <code>Salmon</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>scientific_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="scientific_name"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="n"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -788,6 +1030,74 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="Eius et animi quos velit et."
+               data-component="body">
+    <br>
+<p>Example: <code>Eius et animi quos velit et.</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>average_size_cm</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="average_size_cm"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>El campo value tiene que estar entre 0 - 1000. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>diet</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="diet"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="Omnivore"
+               data-component="body">
+    <br>
+<p>Example: <code>Omnivore</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>Carnivore</code></li> <li><code>Herbivore</code></li> <li><code>Omnivore</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>lifespan_years</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="lifespan_years"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="42"
+               data-component="body">
+    <br>
+<p>El tamaño de value debe ser de al menos 0. Example: <code>42</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>habitat</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="habitat"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="l"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>l</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>conservation_status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="conservation_status"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="j"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>j</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -801,15 +1111,107 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The type of the fish. Example: <code>Freshwater</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>characteristics</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="PUTapi-v1-fishes--fish_id-"
-               value="Eius et animi quos velit et."
+                              name="characteristics.state"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="Forbidden"
                data-component="body">
     <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
+<p>Example: <code>Forbidden</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>Allowed</code></li> <li><code>Forbidden</code></li> <li><code>Biological rest</code></li></ul>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>temperature_range</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.temperature_range"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="b"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>b</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>ph_range</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.ph_range"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="n"
+               data-component="body">
+    <br>
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>salinity</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="characteristics.salinity"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="0"
+               data-component="body">
+    <br>
+<p>El campo value tiene que estar entre 0 - 100. Example: <code>0</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>oxygen_level</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="characteristics.oxygen_level"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>El campo value tiene que estar entre 0 - 100. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>migration_pattern</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.migration_pattern"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="Catadromous"
+               data-component="body">
+    <br>
+<p>Example: <code>Catadromous</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>Non-migratory</code></li> <li><code>Anadromous</code></li> <li><code>Catadromous</code></li></ul>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>recorded_since</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="characteristics.recorded_since"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="17"
+               data-component="body">
+    <br>
+<p>El tamaño de value debe ser de al menos 1900. El campo value no debe ser mayor que 2025. Example: <code>17</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.notes"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+                    </div>
+                                    </details>
         </div>
         </form>
 
@@ -996,35 +1398,45 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-   &quot;data&quot;: [
-     {
-       &quot;id&quot;: 1,
-       &quot;name&quot;: &quot;Salmon&quot;,
-       &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-       &quot;type&quot;: [&quot;Freshwater&quot;],
-       &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
-       &quot;state&quot;: &quot;forbidden&quot;,
-       &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
-       &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
-       &quot;salinity&quot;: &quot;1.03&quot;,
-       &quot;oxygen_level&quot;: &quot;5.94&quot;,
-       &quot;notes&quot;: &quot;Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui.&quot;
-     },
-     {
-        &quot;id&quot;: 2,
-        &quot;name&quot;: &quot;Trucha&quot;,
-        &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-        &quot;type&quot;: [&quot;Saltwater&quot;],
-        &quot;description&quot;: &quot;Et eum iste impedit consequatur atque natus. Neque asperiores cum sunt nulla adipisci qui ad. Aut qui maiores quia velit facilis sint ut. Incidunt quod ducimus eos id.&quot;,
-        &quot;state&quot;: &quot;allowed&quot;,
-        &quot;temperature_range&quot;: &quot;24-30&deg;C&quot;,
-        &quot;ph_range&quot;: &quot;6.5-7.5&quot;,
-        &quot;salinity&quot;: &quot;1.02&quot;,
-        &quot;oxygen_level&quot;: &quot;5.26&quot;,
-        &quot;notes&quot;: &quot;Placeat delectus facere dolor dolorem. Repudiandae veniam ex neque et.&quot;
-      }
-   ]
- }</code>
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Salmon&quot;,
+            &quot;scientific_name&quot;: &quot;Salmo salar&quot;,
+            &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+            &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut.&quot;,
+            &quot;average_size_cm&quot;: 75.5,
+            &quot;diet&quot;: &quot;Carnivore&quot;,
+            &quot;lifespan_years&quot;: 7,
+            &quot;habitat&quot;: &quot;Rivers and Oceans&quot;,
+            &quot;conservation_status&quot;: &quot;Least Concern&quot;,
+            &quot;type&quot;: [
+                &quot;Freshwater&quot;,
+                &quot;Saltwater&quot;
+            ],
+            &quot;characteristics&quot;: {
+                &quot;state&quot;: &quot;Allowed&quot;,
+                &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
+                &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
+                &quot;salinity&quot;: 1.03,
+                &quot;oxygen_level&quot;: 5.94,
+                &quot;migration_pattern&quot;: &quot;Anadromous&quot;,
+                &quot;recorded_since&quot;: 1990,
+                &quot;notes&quot;: &quot;Quo illo facere odio et sed.&quot;
+            },
+            &quot;water_type_details&quot;: {
+                &quot;type&quot;: &quot;Freshwater&quot;,
+                &quot;ph_level&quot;: 7.2,
+                &quot;temperature_range&quot;: &quot;10-25&deg;C&quot;,
+                &quot;salinity_level&quot;: 0.05,
+                &quot;region&quot;: &quot;Rivers, Lakes, Ponds&quot;,
+                &quot;description&quot;: &quot;Water with low salt concentration&quot;
+            },
+            &quot;created_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;
+        }
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-v2-fishes" hidden>
@@ -1140,21 +1552,42 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [
-      {
+    &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;name&quot;: &quot;Salmon&quot;,
+        &quot;scientific_name&quot;: &quot;Salmo salar&quot;,
         &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-        &quot;type&quot;: [&quot;Freshwater&quot;],
-        &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
-        &quot;state&quot;: &quot;forbidden&quot;,
-        &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
-        &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
-        &quot;salinity&quot;: &quot;1.03&quot;,
-        &quot;oxygen_level&quot;: &quot;5.94&quot;,
-        &quot;notes&quot;: &quot;Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui.&quot;
-      }
-   ]
+        &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut.&quot;,
+        &quot;average_size_cm&quot;: 75.5,
+        &quot;diet&quot;: &quot;Carnivore&quot;,
+        &quot;lifespan_years&quot;: 7,
+        &quot;habitat&quot;: &quot;Rivers and Oceans&quot;,
+        &quot;conservation_status&quot;: &quot;Least Concern&quot;,
+        &quot;type&quot;: [
+            &quot;Freshwater&quot;,
+            &quot;Saltwater&quot;
+        ],
+        &quot;characteristics&quot;: {
+            &quot;state&quot;: &quot;Allowed&quot;,
+            &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
+            &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
+            &quot;salinity&quot;: 1.03,
+            &quot;oxygen_level&quot;: 5.94,
+            &quot;migration_pattern&quot;: &quot;Anadromous&quot;,
+            &quot;recorded_since&quot;: 1990,
+            &quot;notes&quot;: &quot;Quo illo facere odio et sed.&quot;
+        },
+        &quot;water_type_details&quot;: {
+            &quot;type&quot;: &quot;Freshwater&quot;,
+            &quot;ph_level&quot;: 7.2,
+            &quot;temperature_range&quot;: &quot;10-25&deg;C&quot;,
+            &quot;salinity_level&quot;: 0.05,
+            &quot;region&quot;: &quot;Rivers, Lakes, Ponds&quot;,
+            &quot;description&quot;: &quot;Water with low salt concentration&quot;
+        },
+        &quot;created_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1269,10 +1702,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "name=Salmon"\
-    --form "type=Freshwater"\
+    --form "scientific_name=Salmo salar"\
     --form "description=Eius et animi quos velit et."\
-    --form "price=10.5"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\phpA8A4.tmp" </code></pre></div>
+    --form "average_size_cm=architecto"\
+    --form "diet=architecto"\
+    --form "lifespan_years=16"\
+    --form "habitat=architecto"\
+    --form "conservation_status=architecto"\
+    --form "type=architecto"\
+    --form "characteristics[]=architecto"\
+    --form "image=@C:\Users\gines\AppData\Local\Temp\php9CEB.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1287,9 +1726,15 @@ const headers = {
 
 const body = new FormData();
 body.append('name', 'Salmon');
-body.append('type', 'Freshwater');
+body.append('scientific_name', 'Salmo salar');
 body.append('description', 'Eius et animi quos velit et.');
-body.append('price', '10.5');
+body.append('average_size_cm', 'architecto');
+body.append('diet', 'architecto');
+body.append('lifespan_years', '16');
+body.append('habitat', 'architecto');
+body.append('conservation_status', 'architecto');
+body.append('type', 'architecto');
+body.append('characteristics[]', 'architecto');
 body.append('image', document.querySelector('input[name="image"]').files[0]);
 
 fetch(url, {
@@ -1307,21 +1752,42 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-     &quot;data&quot;: [
-       {
-         &quot;id&quot;: 1,
-         &quot;name&quot;: &quot;Salmon&quot;,
-         &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-         &quot;type&quot;: [&quot;Freshwater&quot;],
-         &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
-         &quot;state&quot;: &quot;forbidden&quot;,
-         &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
-         &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
-         &quot;salinity&quot;: &quot;1.03&quot;,
-         &quot;oxygen_level&quot;: &quot;5.94&quot;,
-         &quot;notes&quot;: &quot;Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui.&quot;
-       }
-    ]
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Salmon&quot;,
+        &quot;scientific_name&quot;: &quot;Salmo salar&quot;,
+        &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+        &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut.&quot;,
+        &quot;average_size_cm&quot;: 75.5,
+        &quot;diet&quot;: &quot;Carnivore&quot;,
+        &quot;lifespan_years&quot;: 7,
+        &quot;habitat&quot;: &quot;Rivers and Oceans&quot;,
+        &quot;conservation_status&quot;: &quot;Least Concern&quot;,
+        &quot;type&quot;: [
+            &quot;Freshwater&quot;,
+            &quot;Saltwater&quot;
+        ],
+        &quot;characteristics&quot;: {
+            &quot;state&quot;: &quot;Allowed&quot;,
+            &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
+            &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
+            &quot;salinity&quot;: 1.03,
+            &quot;oxygen_level&quot;: 5.94,
+            &quot;migration_pattern&quot;: &quot;Anadromous&quot;,
+            &quot;recorded_since&quot;: 1990,
+            &quot;notes&quot;: &quot;Quo illo facere odio et sed.&quot;
+        },
+        &quot;water_type_details&quot;: {
+            &quot;type&quot;: &quot;Freshwater&quot;,
+            &quot;ph_level&quot;: 7.2,
+            &quot;temperature_range&quot;: &quot;10-25&deg;C&quot;,
+            &quot;salinity_level&quot;: 0.05,
+            &quot;region&quot;: &quot;Rivers, Lakes, Ponds&quot;,
+            &quot;description&quot;: &quot;Water with low salt concentration&quot;
+        },
+        &quot;created_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1407,6 +1873,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The name of the fish. Example: <code>Salmon</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>scientific_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="scientific_name"                data-endpoint="POSTapi-v2-fishes"
+               value="Salmo salar"
+               data-component="body">
+    <br>
+<p>The scientific name of the fish. Example: <code>Salmo salar</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
 <small>file</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -1415,18 +1892,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\phpA8A4.tmp</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="type"                data-endpoint="POSTapi-v2-fishes"
-               value="Freshwater"
-               data-component="body">
-    <br>
-<p>The type of the fish. Example: <code>Freshwater</code></p>
+<p>The image of the fish. Example: <code>C:\Users\gines\AppData\Local\Temp\php9CEB.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -1437,18 +1903,172 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Eius et animi quos velit et."
                data-component="body">
     <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
+<p>A description of the fish. Example: <code>Eius et animi quos velit et.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="price"                data-endpoint="POSTapi-v2-fishes"
-               value="10.5"
+            <b style="line-height: 2;"><code>average_size_cm</code></b>&nbsp;&nbsp;
+<small>numeric</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="average_size_cm"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
                data-component="body">
     <br>
-<p>The price of the fish. Example: <code>10.5</code></p>
+<p>The average size in centimeters. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>diet</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="diet"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The diet type (Carnivore, Herbivore, Omnivore). Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>lifespan_years</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="lifespan_years"                data-endpoint="POSTapi-v2-fishes"
+               value="16"
+               data-component="body">
+    <br>
+<p>The lifespan in years. Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>habitat</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="habitat"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The natural habitat. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>conservation_status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="conservation_status"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The conservation status. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The type of water (Saltwater, Freshwater). Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>characteristics</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+ &nbsp;
+<br>
+<p>The water characteristics.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.state"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The state (Allowed, Forbidden, Biological rest). Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>temperature_range</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.temperature_range"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The temperature range. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>ph_range</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.ph_range"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The pH range. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>salinity</code></b>&nbsp;&nbsp;
+<small>numeric</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.salinity"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The salinity level. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>oxygen_level</code></b>&nbsp;&nbsp;
+<small>numeric</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.oxygen_level"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The oxygen level. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>migration_pattern</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.migration_pattern"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The migration pattern. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>recorded_since</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="characteristics.recorded_since"                data-endpoint="POSTapi-v2-fishes"
+               value="16"
+               data-component="body">
+    <br>
+<p>The year recorded since. Example: <code>16</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.notes"                data-endpoint="POSTapi-v2-fishes"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Additional notes. Example: <code>architecto</code></p>
+                    </div>
+                                    </details>
         </div>
         </form>
 
@@ -1466,14 +2086,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
     "http://fish_shop.test/api/v2/fishes/1" \
-    --header "Content-Type: application/json" \
+    --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --data "{
-    \"name\": \"Salmon\",
-    \"type\": \"Freshwater\",
-    \"description\": \"Eius et animi quos velit et.\"
-}"
-</code></pre></div>
+    --form "name=Salmon"\
+    --form "scientific_name=Salmo salar"\
+    --form "description=Eius et animi quos velit et."\
+    --form "average_size_cm=architecto"\
+    --form "diet=architecto"\
+    --form "lifespan_years=16"\
+    --form "habitat=architecto"\
+    --form "conservation_status=architecto"\
+    --form "type=architecto"\
+    --form "characteristics[]=architecto"\
+    --form "image=@C:\Users\gines\AppData\Local\Temp\php9CED.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1482,46 +2107,74 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
-    "Content-Type": "application/json",
+    "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
 
-let body = {
-    "name": "Salmon",
-    "type": "Freshwater",
-    "description": "Eius et animi quos velit et."
-};
+const body = new FormData();
+body.append('name', 'Salmon');
+body.append('scientific_name', 'Salmo salar');
+body.append('description', 'Eius et animi quos velit et.');
+body.append('average_size_cm', 'architecto');
+body.append('diet', 'architecto');
+body.append('lifespan_years', '16');
+body.append('habitat', 'architecto');
+body.append('conservation_status', 'architecto');
+body.append('type', 'architecto');
+body.append('characteristics[]', 'architecto');
+body.append('image', document.querySelector('input[name="image"]').files[0]);
 
 fetch(url, {
     method: "PUT",
     headers,
-    body: JSON.stringify(body),
+    body,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
 <span id="example-responses-PUTapi-v2-fishes--fish_id-">
             <blockquote>
-            <p>Example response (201):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-     &quot;data&quot;: [
-       {
-         &quot;id&quot;: 1,
-         &quot;name&quot;: &quot;Updated Salmon&quot;,
-         &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-         &quot;type&quot;: [&quot;Freshwater&quot;],
-         &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
-         &quot;state&quot;: &quot;forbidden&quot;,
-         &quot;temperature_range&quot;: &quot;20-25&deg;C&quot;,
-         &quot;ph_range&quot;: &quot;7.0-8.0&quot;,
-         &quot;salinity&quot;: &quot;1.03&quot;,
-         &quot;oxygen_level&quot;: &quot;5.94&quot;,
-         &quot;notes&quot;: &quot;Quo illo facere odio et sed. Beatae et fuga accusantium optio rerum. Sit vero eaque iste tenetur eum. Enim dolor et reprehenderit eligendi et repudiandae qui.&quot;
-       }
-    ]
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Updated Salmon&quot;,
+        &quot;scientific_name&quot;: &quot;Salmo salar&quot;,
+        &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+        &quot;description&quot;: &quot;Updated description&quot;,
+        &quot;average_size_cm&quot;: 80,
+        &quot;diet&quot;: &quot;Carnivore&quot;,
+        &quot;lifespan_years&quot;: 8,
+        &quot;habitat&quot;: &quot;Updated habitat&quot;,
+        &quot;conservation_status&quot;: &quot;Least Concern&quot;,
+        &quot;type&quot;: [
+            &quot;Freshwater&quot;,
+            &quot;Saltwater&quot;
+        ],
+        &quot;characteristics&quot;: {
+            &quot;state&quot;: &quot;Allowed&quot;,
+            &quot;temperature_range&quot;: &quot;22-28&deg;C&quot;,
+            &quot;ph_range&quot;: &quot;7.2-8.0&quot;,
+            &quot;salinity&quot;: 1.02,
+            &quot;oxygen_level&quot;: 6,
+            &quot;migration_pattern&quot;: &quot;Anadromous&quot;,
+            &quot;recorded_since&quot;: 1990,
+            &quot;notes&quot;: &quot;Updated notes&quot;
+        },
+        &quot;water_type_details&quot;: {
+            &quot;type&quot;: &quot;Freshwater&quot;,
+            &quot;ph_level&quot;: 7.2,
+            &quot;temperature_range&quot;: &quot;10-25&deg;C&quot;,
+            &quot;salinity_level&quot;: 0.05,
+            &quot;region&quot;: &quot;Rivers, Lakes, Ponds&quot;,
+            &quot;description&quot;: &quot;Water with low salt concentration&quot;
+        },
+        &quot;created_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1543,7 +2196,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <form id="form-PUTapi-v2-fishes--fish_id-" data-method="PUT"
       data-path="api/v2/fishes/{fish_id}"
       data-authed="0"
-      data-hasfiles="0"
+      data-hasfiles="1"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PUTapi-v2-fishes--fish_id-', this);">
@@ -1578,10 +2231,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Content-Type"                data-endpoint="PUTapi-v2-fishes--fish_id-"
-               value="application/json"
+               value="multipart/form-data"
                data-component="header">
     <br>
-<p>Example: <code>application/json</code></p>
+<p>Example: <code>multipart/form-data</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
@@ -1630,15 +2283,92 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The name of the fish. Example: <code>Salmon</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>scientific_name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
+                              name="scientific_name"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="Salmo salar"
+               data-component="body">
+    <br>
+<p>The scientific name of the fish. Example: <code>Salmo salar</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="file" style="display: none"
                               name="image"                data-endpoint="PUTapi-v2-fishes--fish_id-"
                value=""
                data-component="body">
     <br>
-
+<p>The image of the fish. Example: <code>C:\Users\gines\AppData\Local\Temp\php9CED.tmp</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="Eius et animi quos velit et."
+               data-component="body">
+    <br>
+<p>A description of the fish. Example: <code>Eius et animi quos velit et.</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>average_size_cm</code></b>&nbsp;&nbsp;
+<small>numeric</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="average_size_cm"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The average size in centimeters. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>diet</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="diet"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The diet type (Carnivore, Herbivore, Omnivore). Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>lifespan_years</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="lifespan_years"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="16"
+               data-component="body">
+    <br>
+<p>The lifespan in years. Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>habitat</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="habitat"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The natural habitat. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>conservation_status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="conservation_status"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The conservation status. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -1646,21 +2376,109 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-v2-fishes--fish_id-"
-               value="Freshwater"
+               value="architecto"
                data-component="body">
     <br>
-<p>The type of the fish. Example: <code>Freshwater</code></p>
+<p>The type of water (Saltwater, Freshwater). Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>characteristics</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+ &nbsp;
+<br>
+<p>The water characteristics.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="PUTapi-v2-fishes--fish_id-"
-               value="Eius et animi quos velit et."
+                              name="characteristics.state"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
+<p>The state (Allowed, Forbidden, Biological rest). Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>temperature_range</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.temperature_range"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The temperature range. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>ph_range</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.ph_range"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The pH range. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>salinity</code></b>&nbsp;&nbsp;
+<small>numeric</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.salinity"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The salinity level. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>oxygen_level</code></b>&nbsp;&nbsp;
+<small>numeric</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.oxygen_level"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The oxygen level. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>migration_pattern</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.migration_pattern"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The migration pattern. Example: <code>architecto</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>recorded_since</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="characteristics.recorded_since"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="16"
+               data-component="body">
+    <br>
+<p>The year recorded since. Example: <code>16</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="characteristics.notes"                data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Additional notes. Example: <code>architecto</code></p>
+                    </div>
+                                    </details>
         </div>
         </form>
 
