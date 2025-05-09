@@ -59,6 +59,12 @@
                             </x-dropdown-link>
                         @endif
 
+                        @if(Auth::user()->role_id === 2)
+                            <x-dropdown-link :href="route('dashboard')">
+                                {{ __('Customer') }}
+                            </x-dropdown-link>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

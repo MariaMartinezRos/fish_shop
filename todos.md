@@ -14,12 +14,7 @@
 
 ## Layout clientes
 
-### Los miembros pueden
-* Ver los productos
-* Comentar y valorar los productos
 
-### Los invitados pueden
-* Ver los productos
 
 
 
