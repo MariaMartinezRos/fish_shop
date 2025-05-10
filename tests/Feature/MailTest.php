@@ -97,3 +97,24 @@ it('sends a weekly report email with the correct summary', function () {
         return true;
     });
 });
+
+it('renders the contact confirmation mail with correct subject and view', function () {
+    $mailable = new \App\Mail\ContactConfirmation();
+    expect($mailable->envelope()->subject)->toBe('Contact Confirmation');
+    $html = $mailable->render();
+    expect($html)->toContain('Contact');
+})->todo();
+
+it('builds email with correct subject and content', function () {
+    $summary = [
+        'total_sales' => 1000,
+        'total_transactions' => 10,
+        'average_transaction' => 100,
+    ];
+
+    $email = new WeeklyTransactionsReportEmail($summary);
+
+    expect($email->envelope()->subject)->toBe('PESCADERIAS BENITO')
+        ->and($email->content()->markdown)->toBe('emails.weekly-report')
+        ->and($email->content()->with['summary'])->toBe($summary);
+});

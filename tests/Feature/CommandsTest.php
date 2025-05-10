@@ -99,8 +99,6 @@ it('runs the clean:test command and calls subcommands', function () {
     // Arrange
     Artisan::call('app:clean-all-cache');
     // Act
-    $this->artisan(CleanAllCache::class);
-    // Assert
     $this->artisan('app:clean-all-cache')->assertExitCode(0);
 
     $this->artisan('clean:test')
@@ -109,5 +107,5 @@ it('runs the clean:test command and calls subcommands', function () {
         ->expectsOutput('Running tests...')
         ->expectsOutput('All tests ejecuted successfully!')
         ->assertExitCode(0);
-})->todo('Tarda demasiado en ejecutarse (ejecuta correctamente siempre que todos los tests esten correctos)');
+})->skip('This test is slow because it runs all tests, but it ensures CleanTests command is covered.');
 

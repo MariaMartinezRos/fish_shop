@@ -5,7 +5,7 @@ use App\Policies\TypeWaterPolicy;
 
 beforeEach(function () {
     $this->role_admin = \App\Models\Role::factory()->create(['name' => 'admin']);
-    $this->role_customer = \App\Models\Role::factory()->create(['name' => 'customer', 'id' => 4]);
+    $this->role_customer = \App\Models\Role::factory()->create(['name' => 'customer', 'id' => 3]);
 
     $this->admin = User::factory()->create(['role_id' => $this->role_admin->id]);
     $this->client = User::factory()->create(['role_id' => $this->role_customer->id]);
@@ -46,4 +46,4 @@ it('allows only admin to restore water types', function () {
 it('allows only admin to force delete water types', function () {
     expect($this->policy->forceDelete($this->admin))->toBeTrue()
         ->and($this->policy->forceDelete($this->client))->toBeFalse();
-}); 
+});

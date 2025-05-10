@@ -8,9 +8,20 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
 
+beforeEach(function () {
+    $this->typeWater = TypeWater::factory()->create([
+        'type' => 'Saltwater',
+        'ph_level' => 7.0,
+        'temperature_range' => '10-20°C',
+        'salinity_level' => 35,
+        'region' => 'Pacific',
+        'description' => 'Original description'
+    ]);
+});
+
 it('passes with valid data', function () {
     $data = [
-        'type' => ['Saltwater'],
+        'type' => ['Freshwater'],
         'ph_level' => 7.2,
         'temperature_range' => '10-20°C',
         'salinity_level' => 35,
@@ -20,8 +31,9 @@ it('passes with valid data', function () {
 
     $request = new UpdateTypeWaterRequest();
     $request->setContainer(app())->validateResolved();
+    $request->typeWater = $this->typeWater;
 
-    $validator = Validator::make($data, (new UpdateTypeWaterRequest)->rules());
+    $validator = Validator::make($data, $request->rules());
 
     expect($validator->passes())->toBeTrue();
 })->todo();
@@ -31,8 +43,8 @@ it('fails if type is not an array', function () {
 
     $validator = Validator::make($data, (new UpdateTypeWaterRequest)->rules());
 
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->first('type'))->toEqual('El campo type debe ser un conjunto.');
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->first('type'))->toEqual('El campo type debe ser un conjunto.');
 });
 
 it('fails if type contains an invalid value', function () {
@@ -40,8 +52,8 @@ it('fails if type contains an invalid value', function () {
 
     $validator = Validator::make($data, (new UpdateTypeWaterRequest)->rules());
 
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->first('type.0'))->toEqual('El campo type.0 no está en la lista de valores permitidos.');
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->first('type.0'))->toEqual('El campo type.0 no está en la lista de valores permitidos.');
 });
 
 it('fails if ph_level is out of range', function () {
@@ -49,8 +61,8 @@ it('fails if ph_level is out of range', function () {
 
     $validator = Validator::make($data, (new UpdateTypeWaterRequest)->rules());
 
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->first('ph_level'))->toEqual('El campo ph level tiene que estar entre 0 - 14.');
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->first('ph_level'))->toEqual('El campo ph level tiene que estar entre 0 - 14.');
 });
 
 it('passes with partial update data', function () {
@@ -63,3 +75,15 @@ it('passes with partial update data', function () {
 
     expect($validator->passes())->toBeTrue();
 });
+
+it('fails if type already exists', function () {
+    TypeWater::factory()->create(['type' => 'Freshwater']);
+
+    $data = ['type' => ['Freshwater']];
+
+    $validator = Validator::make($data, (new UpdateTypeWaterRequest)->rules());
+
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->first('type.0'))->toEqual('El campo type.0 ya ha sido registrado.');
+});
+

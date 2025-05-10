@@ -56,6 +56,7 @@ class CategoryPolicy
         if($user->role_id === 1) {
             return !$this->hasProductsWithCategoryId($category->id);
         }
+        return false;
     }
 
     /**
@@ -76,6 +77,7 @@ class CategoryPolicy
         if($user->role_id === 1) {
             return !$this->hasProductsWithCategoryId($category->id);
         }
+        return false;
     }
 
     /**
