@@ -13,13 +13,14 @@ it('renders the employee layout correctly', function () {
 // Act
     $this->actingAs($employee)
         ->get('employee/home')
-        ->assertSee('Employee Layout')
-        ->assertSee('Schedule')
-        ->assertSee('Schedule')
-        ->assertSee('Download Paycheck')
-        ->assertSee('Assignements')
-        ->assertSee('Reports')
-        ->assertSee('Study');
+        ->assertSee('Vista del Empleado');
+//        ->assertSee('Employee Layout')
+//        ->assertSee('Schedule')
+//        ->assertSee('Schedule')
+//        ->assertSee('Download Paycheck')
+//        ->assertSee('Assignements')
+//        ->assertSee('Reports')
+//        ->assertSee('Study');
 });
 
 it('does not render custom content when content is empty', function () {

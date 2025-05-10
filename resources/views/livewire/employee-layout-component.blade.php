@@ -25,7 +25,9 @@
         <section class="dashboard">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <a href="#" class="panel-link">{{ __('Schedule')}}</a>
-                <a href="#" class="panel-link text-red-600">{{ __('Schedule')}}</a>
+                @livewire('employee.schedule-download')
+
+                {{--                <a href="#" class="panel-link text-red-600">{{ __('Schedule')}}</a>--}}
                 <a href="#" class="panel-link">{{ __('Download Paycheck')}}</a>
                 <a href="#" class="panel-link">{{ __('Assignements')}}</a>
                 <a href="#" class="panel-link">{{ __('Reports')}}</a>
@@ -90,6 +92,22 @@
     }
 
     .panel-link:hover {
+        background-color: #b2dfdb;
+    }
+
+    button {
+        display: block;
+        padding: 15px;
+        background-color: #e0f2f1;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        color: #00695c;
+    }
+
+    button:hover {
         background-color: #b2dfdb;
     }
 
