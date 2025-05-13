@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f7fafc;
             margin: 0;
             padding: 0;
         }
@@ -15,7 +14,6 @@
         .container {
             margin: 40px;
             padding: 20px;
-            background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
@@ -55,28 +53,49 @@
         }
 
         table th {
-            background-color: #ebf8ff;
             color: #2b6cb0;
             font-weight: bold;
         }
 
         table td {
-            background-color: #f7fafc;
             color: #2d3748;
         }
 
         .footer {
             position: fixed;
-            bottom: 10px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            text-align: center;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .footer-bg {
+            position: absolute;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 12px;
-            color: #4a5568;
+            opacity: 0.05;
+            width: 200px;
+            pointer-events: none;
+            z-index: 0;
         }
+
+        .footer-text {
+            position: relative;
+            z-index: 1;
+            font-size: 14px;
+            color: #64748b;
+            line-height: 150px;
+            margin: 0;
+        }
+
+
     </style>
 </head>
 <body>
-
 <div class="header">
     <div class="title">{{ __('Benito\'s Fish Markets') }}</div>
 </div>
@@ -107,10 +126,12 @@
         @endforeach
         </tbody>
     </table>
-</div>
 
-<div class="footer">
-    <p>{{ __('Benito\'s Fish Markets') }}</p>
+    <div class="footer">
+        <img src="{{ public_path('images/logo.jpg') }}" alt="PESCADERÍAS BENITO Logo" class="footer-bg">
+        <p class="footer-text">{{ __('Benito\'s Fish Markets') }}</p>
+    </div>
+
 </div>
 
 </body>

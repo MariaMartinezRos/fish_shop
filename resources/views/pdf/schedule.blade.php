@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>{{ __('SCHEDULE')}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=TimesNewRoman&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto',  sans-serif;
             margin: 40px;
         }
         h1 {
@@ -81,6 +84,12 @@
         .schedule-table tr:hover {
             transition: background-color 0.3s ease;
         }
+        .schedule-table,
+        .schedule-table th,
+        .schedule-table td {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
         .time-slot {
             font-weight: 600;
             color: #1e40af;
@@ -108,11 +117,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr><td>{{ __('Tuesday')}}</td><td class="time-slot">8:00 AM - 13:30 PM</td></tr>
-        <tr><td>{{ __('Wednesday')}}</td><td class="time-slot">8:00 AM - 13:30 PM</td></tr>
-        <tr><td>{{ __('Thursday')}}</td><td class="time-slot">8:00 AM - 13:30 PM</td></tr>
-        <tr><td>{{ __('Friday')}}</td><td class="time-slot">8:00 AM - 13:30 PM</td></tr>
-        <tr><td>{{ __('Saturday')}}</td><td class="time-slot">8:00 AM - 13:30 PM</td></tr>
+        <tr><td>{{ __('Tuesday')}}</td><td class="time-slot">8:00 - 13:30</td></tr>
+        <tr><td>{{ __('Wednesday')}}</td><td class="time-slot">8:00 - 13:30</td></tr>
+        <tr><td>{{ __('Thursday')}}</td><td class="time-slot">8:00 - 13:30</td></tr>
+        <tr><td>{{ __('Friday')}}</td><td class="time-slot">8:00 - 13:30</td></tr>
+        <tr><td>{{ __('Saturday')}}</td><td class="time-slot">8:00 - 13:30</td></tr>
         </tbody>
     </table>
     <div class="footer">
