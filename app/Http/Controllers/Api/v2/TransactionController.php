@@ -189,4 +189,4 @@ class TransactionController extends Controller
 
         return response()->json(null, 204);
     }
-} 
+}

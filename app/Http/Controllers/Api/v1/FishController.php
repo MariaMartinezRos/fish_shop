@@ -9,7 +9,13 @@ use App\Models\Fish;
 use App\Models\TypeWater;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
+/**
+ * @deprecated This controller is deprecated and will be removed in a future release.
+ * Please use App\Http\Controllers\Api\v2\FishController instead.
+ */
 class FishController extends Controller
 {
     /**
@@ -18,8 +24,9 @@ class FishController extends Controller
      * @group Fishes V1
      *
      * @response 200 {"data": [{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}]}
+     * @deprecated Use v2 API endpoint instead
      */
-    public function index()
+    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         return FishResource::collection(Cache::rememberForever('fishes', function () {
             return Fish::all();
@@ -34,8 +41,9 @@ class FishController extends Controller
      * @urlParam fish int required The ID of the fish. Example: 1
      *
      * @response 200 {"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}
+     * @deprecated Use v2 API endpoint instead
      */
-    public function show(Fish $fish)
+    public function show(Fish $fish): FishResource
     {
         return new FishResource($fish);
     }
@@ -50,8 +58,9 @@ class FishController extends Controller
      * @bodyParam price number required The price of the fish. Example: 10.5
      *
      * @response 201 {"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}
+     * @deprecated Use v2 API endpoint instead
      */
-    public function store(StoreFishRequest $request)
+    public function store(StoreFishRequest $request): FishResource
     {
         $data = $request->all();
 
@@ -83,8 +92,9 @@ class FishController extends Controller
      * @bodyParam type string required The type of the fish. Example: Freshwater
      *
      * @response 200 {"id": 1, "name": "Updated Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}
+     * @deprecated Use v2 API endpoint instead
      */
-    public function update(Fish $fish, StoreFishRequest $request)
+    public function update(Fish $fish, StoreFishRequest $request): FishResource
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -106,8 +116,9 @@ class FishController extends Controller
      * @urlParam fish int required The ID of the fish. Example: 1
      *
      * @response 204 {"message": "Fish deleted successfully"}
+     * @deprecated Use v2 API endpoint instead
      */
-    public function destroy(Fish $fish)
+    public function destroy(Fish $fish): JsonResponse
     {
         $fish->delete();
 

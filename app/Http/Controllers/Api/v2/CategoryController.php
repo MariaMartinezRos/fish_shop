@@ -7,7 +7,8 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CategoryController extends Controller
 {
@@ -16,24 +17,29 @@ class CategoryController extends Controller
      *
      * @group Categories V2
      *
-     * @response 200 {
-     *    "data": [
-     *      {
-     *        "id": 1,
-     *        "name": "Fresh Fish",
-     *        "display_name": "Fresh Fish",
-     *        "description": "Fresh fish products",
-     *        "created_at": "2024-02-11T18:24:59.000000Z",
-     *        "updated_at": "2024-02-11T18:24:59.000000Z"
-     *      }
-     *    ]
-     *  }
+     * @response 200 {"data": [{"id": 1, "name": "Freshwater", "display_name": "Freshwater Fish", "description": "Fish that live in freshwater environments"}]}
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        return CategoryResource::collection(Cache::rememberForever('categories', function () {
-            return Category::all();
-        }));
+        $categories = Category::all();
+        return CategoryResource::collection($categories);
+    }
+
+    /**
+     * Store a new category.
+     *
+     * @group Categories V2
+     *
+     * @bodyParam name string required The unique identifier of the category. Example: freshwater
+     * @bodyParam display_name string required The display name of the category. Example: Freshwater Fish
+     * @bodyParam description string required The description of the category. Example: Fish that live in freshwater environments
+     *
+     * @response 201 {"data": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish", "description": "Fish that live in freshwater environments"}}
+     */
+    public function store(StoreCategoryRequest $request): CategoryResource
+    {
+        $category = Category::create($request->validated());
+        return new CategoryResource($category);
     }
 
     /**
@@ -43,47 +49,11 @@ class CategoryController extends Controller
      *
      * @urlParam category int required The ID of the category. Example: 1
      *
-     * @response 200 {
-     *     "data": {
-     *       "id": 1,
-     *       "name": "Fresh Fish",
-     *       "display_name": "Fresh Fish",
-     *       "description": "Fresh fish products",
-     *       "created_at": "2024-02-11T18:24:59.000000Z",
-     *       "updated_at": "2024-02-11T18:24:59.000000Z"
-     *     }
-     * }
+     * @response 200 {"data": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish", "description": "Fish that live in freshwater environments"}}
+     * @response 404 {"message": "Category not found"}
      */
-    public function show(Category $category)
+    public function show(Category $category): CategoryResource
     {
-        return new CategoryResource($category);
-    }
-
-    /**
-     * Store a new category.
-     *
-     * @group Categories V2
-     *
-     * @bodyParam name string required The name of the category. Example: Fresh Fish
-     * @bodyParam display_name string required The display name of the category. Example: Fresh Fish
-     * @bodyParam description string A description of the category. Example: Fresh fish products
-     *
-     * @response 201 {
-     *     "data": {
-     *       "id": 1,
-     *       "name": "Fresh Fish",
-     *       "display_name": "Fresh Fish",
-     *       "description": "Fresh fish products",
-     *       "created_at": "2024-02-11T18:24:59.000000Z",
-     *       "updated_at": "2024-02-11T18:24:59.000000Z"
-     *     }
-     * }
-     */
-    public function store(StoreCategoryRequest $request)
-    {
-        $category = Category::create($request->validated());
-        Cache::forget('categories');
-
         return new CategoryResource($category);
     }
 
@@ -94,43 +64,31 @@ class CategoryController extends Controller
      *
      * @urlParam category int required The ID of the category. Example: 1
      *
-     * @bodyParam name string required The name of the category. Example: Fresh Fish
-     * @bodyParam display_name string required The display name of the category. Example: Fresh Fish
-     * @bodyParam description string A description of the category. Example: Fresh fish products
+     * @bodyParam display_name string required The display name of the category. Example: Freshwater Fish
+     * @bodyParam description string required The description of the category. Example: Fish that live in freshwater environments
      *
-     * @response 200 {
-     *     "data": {
-     *       "id": 1,
-     *       "name": "Fresh Fish",
-     *       "display_name": "Fresh Fish",
-     *       "description": "Fresh fish products",
-     *       "created_at": "2024-02-11T18:24:59.000000Z",
-     *       "updated_at": "2024-02-11T18:24:59.000000Z"
-     *     }
-     * }
+     * @response 200 {"data": {"id": 1, "name": "freshwater", "display_name": "Updated Freshwater Fish", "description": "Updated description"}}
+     * @response 404 {"message": "Category not found"}
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category): CategoryResource
     {
         $category->update($request->validated());
-        Cache::forget('categories');
-
         return new CategoryResource($category);
     }
 
     /**
-     * Delete a category.
+     * Delete a specific category.
      *
      * @group Categories V2
      *
      * @urlParam category int required The ID of the category. Example: 1
      *
-     * @response 204
+     * @response 204 {"message": "Category deleted successfully"}
+     * @response 404 {"message": "Category not found"}
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category): JsonResponse
     {
         $category->delete();
-        Cache::forget('categories');
-
-        return response()->json(null, 204);
+        return response()->json(['message' => 'Category deleted successfully'], 204);
     }
 } 

@@ -1,0 +1,421 @@
+name: 'Products V2'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v2/products
+    metadata:
+      groupName: 'Products V2'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a list of all products.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data": [{"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}]}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v2/products/{product_id}'
+    metadata:
+      groupName: 'Products V2'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a specific product.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      product:
+        name: product
+        description: 'The ID of the product.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product_id: 1
+      product: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data": {"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"message": "Product not found"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v2/products
+    metadata:
+      groupName: 'Products V2'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a new product.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the product.'
+        required: true
+        example: Salmon
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      category_id:
+        name: category_id
+        description: 'The ID of the category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      price_per_kg:
+        name: price_per_kg
+        description: 'El tamaño de value debe ser de al menos 0.'
+        required: true
+        example: 39
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      stock_kg:
+        name: stock_kg
+        description: 'El tamaño de value debe ser de al menos 0.'
+        required: true
+        example: 84
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'The description of the product.'
+        required: true
+        example: 'Fresh salmon'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      price:
+        name: price
+        description: 'The price of the product.'
+        required: true
+        example: 19.99
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      stock:
+        name: stock
+        description: 'The stock quantity.'
+        required: true
+        example: 100
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: Salmon
+      category_id: 1
+      price_per_kg: 39
+      stock_kg: 84
+      description: 'Fresh salmon'
+      price: 19.99
+      stock: 100
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: '{"data": {"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v2/products/{product_id}'
+    metadata:
+      groupName: 'Products V2'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update an existing product.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      product:
+        name: product
+        description: 'The ID of the product.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product_id: 1
+      product: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the product.'
+        required: true
+        example: Salmon
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      category_id:
+        name: category_id
+        description: 'The ID of the category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      price_per_kg:
+        name: price_per_kg
+        description: 'El tamaño de value debe ser de al menos 0.'
+        required: true
+        example: 39
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      stock_kg:
+        name: stock_kg
+        description: 'El tamaño de value debe ser de al menos 0.'
+        required: true
+        example: 84
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'The description of the product.'
+        required: true
+        example: 'Fresh salmon'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      price:
+        name: price
+        description: 'The price of the product.'
+        required: true
+        example: 19.99
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      stock:
+        name: stock
+        description: 'The stock quantity.'
+        required: true
+        example: 100
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: Salmon
+      category_id: 1
+      price_per_kg: 39
+      stock_kg: 84
+      description: 'Fresh salmon'
+      price: 19.99
+      stock: 100
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data": {"id": 1, "name": "Updated Salmon", "description": "Updated description", "price": 24.99, "stock": 50, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"message": "Product not found"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v2/products/{product_id}'
+    metadata:
+      groupName: 'Products V2'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a specific product.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      product:
+        name: product
+        description: 'The ID of the product.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product_id: 1
+      product: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 204
+        content: '{"message": "Product deleted successfully"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"message": "Product not found"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

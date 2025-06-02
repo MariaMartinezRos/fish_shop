@@ -235,7 +235,7 @@ endpoints:
         name: characteristics.state
         description: ''
         required: true
-        example: Forbidden
+        example: 'Biological rest'
         type: string
         enumValues:
           - Allowed
@@ -288,7 +288,7 @@ endpoints:
         name: characteristics.migration_pattern
         description: ''
         required: true
-        example: Non-migratory
+        example: Anadromous
         type: string
         enumValues:
           - Non-migratory
@@ -338,12 +338,12 @@ endpoints:
       conservation_status: j
       type: Freshwater
       characteristics:
-        state: Forbidden
+        state: 'Biological rest'
         temperature_range: b
         ph_range: 'n'
         salinity: 0
         oxygen_level: 1
-        migration_pattern: Non-migratory
+        migration_pattern: Anadromous
         recorded_since: 17
         notes: architecto
       price: 10.5
@@ -459,7 +459,7 @@ endpoints:
         name: diet
         description: ''
         required: true
-        example: Omnivore
+        example: Carnivore
         type: string
         enumValues:
           - Carnivore
@@ -522,7 +522,7 @@ endpoints:
         name: characteristics.state
         description: ''
         required: true
-        example: Forbidden
+        example: 'Biological rest'
         type: string
         enumValues:
           - Allowed
@@ -575,7 +575,7 @@ endpoints:
         name: characteristics.migration_pattern
         description: ''
         required: true
-        example: Catadromous
+        example: Non-migratory
         type: string
         enumValues:
           - Non-migratory
@@ -609,18 +609,18 @@ endpoints:
       scientific_name: 'n'
       description: 'Eius et animi quos velit et.'
       average_size_cm: 1
-      diet: Omnivore
+      diet: Carnivore
       lifespan_years: 42
       habitat: l
       conservation_status: j
       type: Freshwater
       characteristics:
-        state: Forbidden
+        state: 'Biological rest'
         temperature_range: b
         ph_range: 'n'
         salinity: 0
         oxygen_level: 1
-        migration_pattern: Catadromous
+        migration_pattern: Non-migratory
         recorded_since: 17
         notes: architecto
     fileParameters: []

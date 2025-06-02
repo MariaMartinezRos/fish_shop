@@ -7,6 +7,8 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
@@ -16,32 +18,12 @@ class ProductController extends Controller
      *
      * @group Products V2
      *
-     * @response 200 {
-     *    "data": [
-     *      {
-     *        "id": 1,
-     *        "name": "Fresh Salmon",
-     *        "category_id": 1,
-     *        "price_per_kg": 25.99,
-     *        "stock_kg": 100.5,
-     *        "description": "Fresh Atlantic Salmon",
-     *        "category": {
-     *          "id": 1,
-     *          "name": "Fresh Fish",
-     *          "display_name": "Fresh Fish",
-     *          "description": "Fresh fish products"
-     *        },
-     *        "created_at": "2024-02-11T18:24:59.000000Z",
-     *        "updated_at": "2024-02-11T18:24:59.000000Z"
-     *      }
-     *    ]
-     *  }
+     * @response 200 {"data": [{"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}]}
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        return ProductResource::collection(Cache::rememberForever('products', function () {
-            return Product::with('category')->get();
-        }));
+        $products = Product::with('category')->get();
+        return ProductResource::collection($products);
     }
 
     /**
@@ -51,26 +33,10 @@ class ProductController extends Controller
      *
      * @urlParam product int required The ID of the product. Example: 1
      *
-     * @response 200 {
-     *     "data": {
-     *       "id": 1,
-     *       "name": "Fresh Salmon",
-     *       "category_id": 1,
-     *       "price_per_kg": 25.99,
-     *       "stock_kg": 100.5,
-     *       "description": "Fresh Atlantic Salmon",
-     *       "category": {
-     *         "id": 1,
-     *         "name": "Fresh Fish",
-     *         "display_name": "Fresh Fish",
-     *         "description": "Fresh fish products"
-     *       },
-     *       "created_at": "2024-02-11T18:24:59.000000Z",
-     *       "updated_at": "2024-02-11T18:24:59.000000Z"
-     *     }
-     * }
+     * @response 200 {"data": {"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}
+     * @response 404 {"message": "Product not found"}
      */
-    public function show(Product $product)
+    public function show(Product $product): ProductResource
     {
         return new ProductResource($product->load('category'));
     }
@@ -80,32 +46,15 @@ class ProductController extends Controller
      *
      * @group Products V2
      *
-     * @bodyParam name string required The name of the product. Example: Fresh Salmon
+     * @bodyParam name string required The name of the product. Example: Salmon
+     * @bodyParam description string required The description of the product. Example: Fresh salmon
+     * @bodyParam price number required The price of the product. Example: 19.99
+     * @bodyParam stock integer required The stock quantity. Example: 100
      * @bodyParam category_id integer required The ID of the category. Example: 1
-     * @bodyParam price_per_kg numeric required The price per kilogram. Example: 25.99
-     * @bodyParam stock_kg numeric required The stock in kilograms. Example: 100.5
-     * @bodyParam description string A description of the product. Example: Fresh Atlantic Salmon
      *
-     * @response 201 {
-     *     "data": {
-     *       "id": 1,
-     *       "name": "Fresh Salmon",
-     *       "category_id": 1,
-     *       "price_per_kg": 25.99,
-     *       "stock_kg": 100.5,
-     *       "description": "Fresh Atlantic Salmon",
-     *       "category": {
-     *         "id": 1,
-     *         "name": "Fresh Fish",
-     *         "display_name": "Fresh Fish",
-     *         "description": "Fresh fish products"
-     *       },
-     *       "created_at": "2024-02-11T18:24:59.000000Z",
-     *       "updated_at": "2024-02-11T18:24:59.000000Z"
-     *     }
-     * }
+     * @response 201 {"data": {"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request): ProductResource
     {
         $product = Product::create($request->validated());
         Cache::forget('products');
@@ -120,32 +69,16 @@ class ProductController extends Controller
      *
      * @urlParam product int required The ID of the product. Example: 1
      *
-     * @bodyParam name string required The name of the product. Example: Fresh Salmon
+     * @bodyParam name string required The name of the product. Example: Salmon
+     * @bodyParam description string required The description of the product. Example: Fresh salmon
+     * @bodyParam price number required The price of the product. Example: 19.99
+     * @bodyParam stock integer required The stock quantity. Example: 100
      * @bodyParam category_id integer required The ID of the category. Example: 1
-     * @bodyParam price_per_kg numeric required The price per kilogram. Example: 25.99
-     * @bodyParam stock_kg numeric required The stock in kilograms. Example: 100.5
-     * @bodyParam description string A description of the product. Example: Fresh Atlantic Salmon
      *
-     * @response 200 {
-     *     "data": {
-     *       "id": 1,
-     *       "name": "Fresh Salmon",
-     *       "category_id": 1,
-     *       "price_per_kg": 25.99,
-     *       "stock_kg": 100.5,
-     *       "description": "Fresh Atlantic Salmon",
-     *       "category": {
-     *         "id": 1,
-     *         "name": "Fresh Fish",
-     *         "display_name": "Fresh Fish",
-     *         "description": "Fresh fish products"
-     *       },
-     *       "created_at": "2024-02-11T18:24:59.000000Z",
-     *       "updated_at": "2024-02-11T18:24:59.000000Z"
-     *     }
-     * }
+     * @response 200 {"data": {"id": 1, "name": "Updated Salmon", "description": "Updated description", "price": 24.99, "stock": 50, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}
+     * @response 404 {"message": "Product not found"}
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product): ProductResource
     {
         $product->update($request->validated());
         Cache::forget('products');
@@ -154,19 +87,20 @@ class ProductController extends Controller
     }
 
     /**
-     * Delete a product.
+     * Delete a specific product.
      *
      * @group Products V2
      *
      * @urlParam product int required The ID of the product. Example: 1
      *
-     * @response 204
+     * @response 204 {"message": "Product deleted successfully"}
+     * @response 404 {"message": "Product not found"}
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): JsonResponse
     {
         $product->delete();
         Cache::forget('products');
 
-        return response()->json(null, 204);
+        return response()->json(['message' => 'Product deleted successfully'], 204);
     }
 } 
