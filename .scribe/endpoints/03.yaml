@@ -27,7 +27,23 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data": [{"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}]}'
+        content: |-
+          {
+             "data": [
+               {
+                 "id": 1,
+                 "name": "Salmon",
+                 "description": "Fresh salmon from local waters",
+                 "price": 19.99,
+                 "stock": 100,
+                 "category": {
+                   "id": 1,
+                   "name": "Frozen",
+                   "display_name": "Frozen Fish"
+                 }
+               }
+             ]
+          }
         headers: []
         description: ''
         custom: []
@@ -85,7 +101,21 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data": {"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}'
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Salmon",
+               "description": "Fresh salmon from local waters",
+               "price": 19.99,
+               "stock": 100,
+               "category": {
+                 "id": 1,
+                 "name": "Frozen",
+                 "display_name": "Frozen Fish"
+               }
+             }
+          }
         headers: []
         description: ''
         custom: []
@@ -112,9 +142,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Store a new product.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -134,7 +165,7 @@ endpoints:
         custom: []
       category_id:
         name: category_id
-        description: 'The ID of the category.'
+        description: 'The ID of the category this product belongs to.'
         required: true
         example: 1
         type: integer
@@ -164,9 +195,9 @@ endpoints:
         custom: []
       description:
         name: description
-        description: 'The description of the product.'
+        description: 'A detailed description of the product.'
         required: true
-        example: 'Fresh salmon'
+        example: 'Fresh salmon from local waters, caught and processed within 24 hours.'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -174,7 +205,7 @@ endpoints:
         custom: []
       price:
         name: price
-        description: 'The price of the product.'
+        description: 'The price of the product in dollars.'
         required: true
         example: 19.99
         type: number
@@ -184,7 +215,7 @@ endpoints:
         custom: []
       stock:
         name: stock
-        description: 'The stock quantity.'
+        description: 'The current stock quantity.'
         required: true
         example: 100
         type: integer
@@ -197,19 +228,42 @@ endpoints:
       category_id: 1
       price_per_kg: 39
       stock_kg: 84
-      description: 'Fresh salmon'
+      description: 'Fresh salmon from local waters, caught and processed within 24 hours.'
       price: 19.99
       stock: 100
     fileParameters: []
     responses:
       -
         status: 201
-        content: '{"data": {"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}'
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Salmon",
+               "description": "Fresh salmon from local waters",
+               "price": 19.99,
+               "stock": 100,
+               "category": {
+                 "id": 1,
+                 "name": "Frozen",
+                 "display_name": "Frozen Fish"
+               }
+             }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"message": "The given data was invalid.", "errors": {"name": ["The name field is required."]}}'
         headers: []
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -225,9 +279,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update an existing product.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -269,7 +324,7 @@ endpoints:
         custom: []
       category_id:
         name: category_id
-        description: 'The ID of the category.'
+        description: 'The ID of the category this product belongs to.'
         required: true
         example: 1
         type: integer
@@ -299,9 +354,9 @@ endpoints:
         custom: []
       description:
         name: description
-        description: 'The description of the product.'
+        description: 'A detailed description of the product.'
         required: true
-        example: 'Fresh salmon'
+        example: 'Fresh salmon from local waters, caught and processed within 24 hours.'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -309,7 +364,7 @@ endpoints:
         custom: []
       price:
         name: price
-        description: 'The price of the product.'
+        description: 'The price of the product in dollars.'
         required: true
         example: 19.99
         type: number
@@ -319,7 +374,7 @@ endpoints:
         custom: []
       stock:
         name: stock
-        description: 'The stock quantity.'
+        description: 'The current stock quantity.'
         required: true
         example: 100
         type: integer
@@ -332,14 +387,28 @@ endpoints:
       category_id: 1
       price_per_kg: 39
       stock_kg: 84
-      description: 'Fresh salmon'
+      description: 'Fresh salmon from local waters, caught and processed within 24 hours.'
       price: 19.99
       stock: 100
     fileParameters: []
     responses:
       -
         status: 200
-        content: '{"data": {"id": 1, "name": "Updated Salmon", "description": "Updated description", "price": 24.99, "stock": 50, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}'
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Updated Salmon",
+               "description": "Updated description",
+               "price": 24.99,
+               "stock": 50,
+               "category": {
+                 "id": 1,
+                 "name": "Frozen",
+                 "display_name": "Frozen Fish"
+               }
+             }
+          }
         headers: []
         description: ''
         custom: []
@@ -349,8 +418,17 @@ endpoints:
         headers: []
         description: ''
         custom: []
+      -
+        status: 422
+        content: '{"message": "The given data was invalid.", "errors": {"name": ["The name field is required."]}}'
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -366,9 +444,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Delete a specific product.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -407,14 +486,11 @@ endpoints:
         headers: []
         description: ''
         custom: []
-      -
-        status: 404
-        content: '{"message": "Product not found"}'
-        headers: []
-        description: ''
-        custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

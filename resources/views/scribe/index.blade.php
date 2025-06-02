@@ -255,8 +255,8 @@ fetch(url, {
     &quot;data&quot;: [
         {
             &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;Freshwater&quot;,
-            &quot;display_name&quot;: &quot;Freshwater Fish&quot;,
+            &quot;name&quot;: &quot;Frozen&quot;,
+            &quot;display_name&quot;: &quot;Frozen Fish&quot;,
             &quot;description&quot;: &quot;Fish that live in freshwater environments&quot;
         }
     ]
@@ -337,6 +337,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="categories-v2-GETapi-v2-categories--category_id-">Get a specific category.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -348,6 +349,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://fish_shop.test/api/v2/categories/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -358,6 +360,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -378,8 +381,8 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;freshwater&quot;,
-        &quot;display_name&quot;: &quot;Freshwater Fish&quot;,
+        &quot;name&quot;: &quot;Frozen&quot;,
+        &quot;display_name&quot;: &quot;Frozen Fish&quot;,
         &quot;description&quot;: &quot;Fish that live in freshwater environments&quot;
     }
 }</code>
@@ -411,7 +414,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v2-categories--category_id-" data-method="GET"
       data-path="api/v2/categories/{category_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -441,6 +444,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/categories/{category_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-categories--category_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -507,7 +521,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"name\": \"freshwater\",
     \"display_name\": \"Freshwater Fish\",
-    \"description\": \"Fish that live in freshwater environments\"
+    \"description\": \"Fish that live in freshwater environments such as rivers, lakes, and ponds.\"
 }"
 </code></pre></div>
 
@@ -525,7 +539,7 @@ const headers = {
 let body = {
     "name": "freshwater",
     "display_name": "Freshwater Fish",
-    "description": "Fish that live in freshwater environments"
+    "description": "Fish that live in freshwater environments such as rivers, lakes, and ponds."
 };
 
 fetch(url, {
@@ -545,9 +559,23 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;freshwater&quot;,
-        &quot;display_name&quot;: &quot;Freshwater Fish&quot;,
+        &quot;name&quot;: &quot;Frozen&quot;,
+        &quot;display_name&quot;: &quot;Frozen Fish&quot;,
         &quot;description&quot;: &quot;Fish that live in freshwater environments&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;name&quot;: [
+            &quot;The name field is required.&quot;
+        ]
     }
 }</code>
  </pre>
@@ -631,7 +659,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="freshwater"
                data-component="body">
     <br>
-<p>The unique identifier of the category. Example: <code>freshwater</code></p>
+<p>The unique identifier of the category (lowercase, no spaces). Example: <code>freshwater</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>display_name</code></b>&nbsp;&nbsp;
@@ -642,7 +670,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Freshwater Fish"
                data-component="body">
     <br>
-<p>The display name of the category. Example: <code>Freshwater Fish</code></p>
+<p>The human-readable name of the category. Example: <code>Freshwater Fish</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -650,16 +678,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="POSTapi-v2-categories"
-               value="Fish that live in freshwater environments"
+               value="Fish that live in freshwater environments such as rivers, lakes, and ponds."
                data-component="body">
     <br>
-<p>The description of the category. Example: <code>Fish that live in freshwater environments</code></p>
+<p>A detailed description of the category and its characteristics. Example: <code>Fish that live in freshwater environments such as rivers, lakes, and ponds.</code></p>
         </div>
         </form>
 
                     <h2 id="categories-v2-PUTapi-v2-categories--category_id-">Update an existing category.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -671,12 +700,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
     "http://fish_shop.test/api/v2/categories/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"name\": \"b\",
     \"display_name\": \"Freshwater Fish\",
-    \"description\": \"Fish that live in freshwater environments\"
+    \"description\": \"Fish that live in freshwater environments such as rivers, lakes, and ponds.\"
 }"
 </code></pre></div>
 
@@ -687,6 +717,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -694,7 +725,7 @@ const headers = {
 let body = {
     "name": "b",
     "display_name": "Freshwater Fish",
-    "description": "Fish that live in freshwater environments"
+    "description": "Fish that live in freshwater environments such as rivers, lakes, and ponds."
 };
 
 fetch(url, {
@@ -714,9 +745,9 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;freshwater&quot;,
-        &quot;display_name&quot;: &quot;Updated Freshwater Fish&quot;,
-        &quot;description&quot;: &quot;Updated description&quot;
+        &quot;name&quot;: &quot;Frozen&quot;,
+        &quot;display_name&quot;: &quot;Updated Frozen Fish&quot;,
+        &quot;description&quot;: &quot;Updated description of freshwater fish and their habitats&quot;
     }
 }</code>
  </pre>
@@ -727,6 +758,20 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;message&quot;: &quot;Category not found&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;display_name&quot;: [
+            &quot;The display name field is required.&quot;
+        ]
+    }
 }</code>
  </pre>
     </span>
@@ -747,7 +792,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PUTapi-v2-categories--category_id-" data-method="PUT"
       data-path="api/v2/categories/{category_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -777,6 +822,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/categories/{category_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v2-categories--category_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -843,7 +899,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Freshwater Fish"
                data-component="body">
     <br>
-<p>The display name of the category. Example: <code>Freshwater Fish</code></p>
+<p>The human-readable name of the category. Example: <code>Freshwater Fish</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -851,16 +907,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="PUTapi-v2-categories--category_id-"
-               value="Fish that live in freshwater environments"
+               value="Fish that live in freshwater environments such as rivers, lakes, and ponds."
                data-component="body">
     <br>
-<p>The description of the category. Example: <code>Fish that live in freshwater environments</code></p>
+<p>A detailed description of the category and its characteristics. Example: <code>Fish that live in freshwater environments such as rivers, lakes, and ponds.</code></p>
         </div>
         </form>
 
                     <h2 id="categories-v2-DELETEapi-v2-categories--category_id-">Delete a specific category.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -872,6 +929,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
     "http://fish_shop.test/api/v2/categories/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -882,6 +940,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -899,15 +958,6 @@ fetch(url, {
         </blockquote>
                 <pre>
 <code>Empty response</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Category not found&quot;
-}</code>
  </pre>
     </span>
 <span id="execution-results-DELETEapi-v2-categories--category_id-" hidden>
@@ -927,7 +977,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v2-categories--category_id-" data-method="DELETE"
       data-path="api/v2/categories/{category_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -957,6 +1007,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/categories/{category_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v2-categories--category_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1058,7 +1119,7 @@ fetch(url, {
             &quot;type&quot;: [
                 &quot;Freshwater&quot;
             ],
-            &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+            &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui.&quot;
         }
     ]
 }</code>
@@ -1177,13 +1238,15 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;Salmon&quot;,
-    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-    &quot;type&quot;: [
-        &quot;Freshwater&quot;
-    ],
-    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Salmon&quot;,
+        &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+        &quot;type&quot;: [
+            &quot;Freshwater&quot;
+        ],
+        &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1284,6 +1347,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="fishes-v1-POSTapi-v1-fishes">Store a new fish.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1295,27 +1359,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://fish_shop.test/api/v1/fishes" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "name=Salmon"\
     --form "scientific_name=n"\
-    --form "description=Eius et animi quos velit et."\
+    --form "description=A popular fish known for its pink flesh and rich flavor."\
     --form "average_size_cm=1"\
-    --form "diet=Carnivore"\
+    --form "diet=Omnivore"\
     --form "lifespan_years=42"\
     --form "habitat=l"\
     --form "conservation_status=j"\
     --form "type=Freshwater"\
-    --form "characteristics[state]=Allowed"\
+    --form "characteristics[state]=Forbidden"\
     --form "characteristics[temperature_range]=b"\
     --form "characteristics[ph_range]=n"\
     --form "characteristics[salinity]=0"\
     --form "characteristics[oxygen_level]=1"\
-    --form "characteristics[migration_pattern]=Anadromous"\
+    --form "characteristics[migration_pattern]=Catadromous"\
     --form "characteristics[recorded_since]=17"\
     --form "characteristics[notes]=architecto"\
     --form "price=10.5"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\php1E29.tmp" </code></pre></div>
+    --form "image=@C:\Users\gines\AppData\Local\Temp\php1680.tmp" \
+    --form "photo=@C:\Users\gines\AppData\Local\Temp\php1681.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1324,6 +1390,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
@@ -1331,23 +1398,24 @@ const headers = {
 const body = new FormData();
 body.append('name', 'Salmon');
 body.append('scientific_name', 'n');
-body.append('description', 'Eius et animi quos velit et.');
+body.append('description', 'A popular fish known for its pink flesh and rich flavor.');
 body.append('average_size_cm', '1');
-body.append('diet', 'Carnivore');
+body.append('diet', 'Omnivore');
 body.append('lifespan_years', '42');
 body.append('habitat', 'l');
 body.append('conservation_status', 'j');
 body.append('type', 'Freshwater');
-body.append('characteristics[state]', 'Allowed');
+body.append('characteristics[state]', 'Forbidden');
 body.append('characteristics[temperature_range]', 'b');
 body.append('characteristics[ph_range]', 'n');
 body.append('characteristics[salinity]', '0');
 body.append('characteristics[oxygen_level]', '1');
-body.append('characteristics[migration_pattern]', 'Anadromous');
+body.append('characteristics[migration_pattern]', 'Catadromous');
 body.append('characteristics[recorded_since]', '17');
 body.append('characteristics[notes]', 'architecto');
 body.append('price', '10.5');
 body.append('image', document.querySelector('input[name="image"]').files[0]);
+body.append('photo', document.querySelector('input[name="photo"]').files[0]);
 
 fetch(url, {
     method: "POST",
@@ -1364,13 +1432,15 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;Salmon&quot;,
-    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-    &quot;type&quot;: [
-        &quot;Freshwater&quot;
-    ],
-    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Salmon&quot;,
+        &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+        &quot;type&quot;: [
+            &quot;Freshwater&quot;
+        ],
+        &quot;description&quot;: &quot;A popular fish known for its pink flesh and rich flavor.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1391,7 +1461,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-fishes" data-method="POST"
       data-path="api/v1/fishes"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="1"
       data-isarraybody="0"
       autocomplete="off"
@@ -1421,6 +1491,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v1/fishes</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-fishes"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1475,18 +1556,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\php1E29.tmp</code></p>
+<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\php1680.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="POSTapi-v1-fishes"
-               value="Eius et animi quos velit et."
+               value="A popular fish known for its pink flesh and rich flavor."
                data-component="body">
     <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
+<p>A detailed description of the fish. Example: <code>A popular fish known for its pink flesh and rich flavor.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>average_size_cm</code></b>&nbsp;&nbsp;
@@ -1505,10 +1586,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="diet"                data-endpoint="POSTapi-v1-fishes"
-               value="Carnivore"
+               value="Omnivore"
                data-component="body">
     <br>
-<p>Example: <code>Carnivore</code></p>
+<p>Example: <code>Omnivore</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Carnivore</code></li> <li><code>Herbivore</code></li> <li><code>Omnivore</code></li></ul>
         </div>
@@ -1554,7 +1635,7 @@ Must be one of:
                value="Freshwater"
                data-component="body">
     <br>
-<p>The type of the fish. Example: <code>Freshwater</code></p>
+<p>The type of water where the fish lives (Freshwater or Saltwater). Example: <code>Freshwater</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -1571,10 +1652,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="characteristics.state"                data-endpoint="POSTapi-v1-fishes"
-               value="Allowed"
+               value="Forbidden"
                data-component="body">
     <br>
-<p>Example: <code>Allowed</code></p>
+<p>Example: <code>Forbidden</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Allowed</code></li> <li><code>Forbidden</code></li> <li><code>Biological rest</code></li></ul>
                     </div>
@@ -1628,10 +1709,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="characteristics.migration_pattern"                data-endpoint="POSTapi-v1-fishes"
-               value="Anadromous"
+               value="Catadromous"
                data-component="body">
     <br>
-<p>Example: <code>Anadromous</code></p>
+<p>Example: <code>Catadromous</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Non-migratory</code></li> <li><code>Anadromous</code></li> <li><code>Catadromous</code></li></ul>
                     </div>
@@ -1668,13 +1749,25 @@ Must be one of:
                value="10.5"
                data-component="body">
     <br>
-<p>The price of the fish. Example: <code>10.5</code></p>
+<p>The price of the fish in dollars. Example: <code>10.5</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>photo</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="file" style="display: none"
+                              name="photo"                data-endpoint="POSTapi-v1-fishes"
+               value=""
+               data-component="body">
+    <br>
+<p>The image file of the fish. Must be a valid image file (jpg, png, gif). Example: <code>C:\Users\gines\AppData\Local\Temp\php1681.tmp</code></p>
         </div>
         </form>
 
                     <h2 id="fishes-v1-PUTapi-v1-fishes--fish_id-">Update an existing fish.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1686,30 +1779,27 @@ Must be one of:
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
     "http://fish_shop.test/api/v1/fishes/1" \
-    --header "Content-Type: application/json" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --data "{
-    \"name\": \"Salmon\",
-    \"scientific_name\": \"n\",
-    \"description\": \"Eius et animi quos velit et.\",
-    \"average_size_cm\": 1,
-    \"diet\": \"Carnivore\",
-    \"lifespan_years\": 42,
-    \"habitat\": \"l\",
-    \"conservation_status\": \"j\",
-    \"type\": \"Freshwater\",
-    \"characteristics\": {
-        \"state\": \"Forbidden\",
-        \"temperature_range\": \"b\",
-        \"ph_range\": \"n\",
-        \"salinity\": 0,
-        \"oxygen_level\": 1,
-        \"migration_pattern\": \"Non-migratory\",
-        \"recorded_since\": 17,
-        \"notes\": \"architecto\"
-    }
-}"
-</code></pre></div>
+    --form "name=Salmon"\
+    --form "scientific_name=n"\
+    --form "description=A popular fish known for its pink flesh and rich flavor."\
+    --form "average_size_cm=1"\
+    --form "diet=Carnivore"\
+    --form "lifespan_years=42"\
+    --form "habitat=l"\
+    --form "conservation_status=j"\
+    --form "type=Freshwater"\
+    --form "characteristics[state]=Biological rest"\
+    --form "characteristics[temperature_range]=b"\
+    --form "characteristics[ph_range]=n"\
+    --form "characteristics[salinity]=0"\
+    --form "characteristics[oxygen_level]=1"\
+    --form "characteristics[migration_pattern]=Non-migratory"\
+    --form "characteristics[recorded_since]=17"\
+    --form "characteristics[notes]=architecto"\
+    --form "photo=@C:\Users\gines\AppData\Local\Temp\php1693.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1718,36 +1808,35 @@ Must be one of:
 );
 
 const headers = {
-    "Content-Type": "application/json",
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
 
-let body = {
-    "name": "Salmon",
-    "scientific_name": "n",
-    "description": "Eius et animi quos velit et.",
-    "average_size_cm": 1,
-    "diet": "Carnivore",
-    "lifespan_years": 42,
-    "habitat": "l",
-    "conservation_status": "j",
-    "type": "Freshwater",
-    "characteristics": {
-        "state": "Forbidden",
-        "temperature_range": "b",
-        "ph_range": "n",
-        "salinity": 0,
-        "oxygen_level": 1,
-        "migration_pattern": "Non-migratory",
-        "recorded_since": 17,
-        "notes": "architecto"
-    }
-};
+const body = new FormData();
+body.append('name', 'Salmon');
+body.append('scientific_name', 'n');
+body.append('description', 'A popular fish known for its pink flesh and rich flavor.');
+body.append('average_size_cm', '1');
+body.append('diet', 'Carnivore');
+body.append('lifespan_years', '42');
+body.append('habitat', 'l');
+body.append('conservation_status', 'j');
+body.append('type', 'Freshwater');
+body.append('characteristics[state]', 'Biological rest');
+body.append('characteristics[temperature_range]', 'b');
+body.append('characteristics[ph_range]', 'n');
+body.append('characteristics[salinity]', '0');
+body.append('characteristics[oxygen_level]', '1');
+body.append('characteristics[migration_pattern]', 'Non-migratory');
+body.append('characteristics[recorded_since]', '17');
+body.append('characteristics[notes]', 'architecto');
+body.append('photo', document.querySelector('input[name="photo"]').files[0]);
 
 fetch(url, {
     method: "PUT",
     headers,
-    body: JSON.stringify(body),
+    body,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -1759,13 +1848,15 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;Updated Salmon&quot;,
-    &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
-    &quot;type&quot;: [
-        &quot;Freshwater&quot;
-    ],
-    &quot;description&quot;: &quot;Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore.&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Updated Salmon&quot;,
+        &quot;image&quot;: &quot;https://via.placeholder.com/640x480.png/007777?text=sint&quot;,
+        &quot;type&quot;: [
+            &quot;Freshwater&quot;
+        ],
+        &quot;description&quot;: &quot;Updated description of the fish.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1786,8 +1877,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PUTapi-v1-fishes--fish_id-" data-method="PUT"
       data-path="api/v1/fishes/{fish_id}"
-      data-authed="0"
-      data-hasfiles="0"
+      data-authed="1"
+      data-hasfiles="1"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-fishes--fish_id-', this);">
@@ -1817,15 +1908,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="Content-Type"                data-endpoint="PUTapi-v1-fishes--fish_id-"
-               value="application/json"
+               value="multipart/form-data"
                data-component="header">
     <br>
-<p>Example: <code>application/json</code></p>
+<p>Example: <code>multipart/form-data</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
@@ -1901,10 +2003,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="PUTapi-v1-fishes--fish_id-"
-               value="Eius et animi quos velit et."
+               value="A popular fish known for its pink flesh and rich flavor."
                data-component="body">
     <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
+<p>A detailed description of the fish. Example: <code>A popular fish known for its pink flesh and rich flavor.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>average_size_cm</code></b>&nbsp;&nbsp;
@@ -1972,7 +2074,7 @@ Must be one of:
                value="Freshwater"
                data-component="body">
     <br>
-<p>The type of the fish. Example: <code>Freshwater</code></p>
+<p>The type of water where the fish lives (Freshwater or Saltwater). Example: <code>Freshwater</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -1989,10 +2091,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="characteristics.state"                data-endpoint="PUTapi-v1-fishes--fish_id-"
-               value="Forbidden"
+               value="Biological rest"
                data-component="body">
     <br>
-<p>Example: <code>Forbidden</code></p>
+<p>Example: <code>Biological rest</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Allowed</code></li> <li><code>Forbidden</code></li> <li><code>Biological rest</code></li></ul>
                     </div>
@@ -2077,11 +2179,23 @@ Must be one of:
                     </div>
                                     </details>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>photo</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="file" style="display: none"
+                              name="photo"                data-endpoint="PUTapi-v1-fishes--fish_id-"
+               value=""
+               data-component="body">
+    <br>
+<p>The image file of the fish. Must be a valid image file (jpg, png, gif). Example: <code>C:\Users\gines\AppData\Local\Temp\php1693.tmp</code></p>
+        </div>
         </form>
 
                     <h2 id="fishes-v1-DELETEapi-v1-fishes--fish_id-">Delete a specific fish.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2093,6 +2207,7 @@ Must be one of:
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
     "http://fish_shop.test/api/v1/fishes/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -2103,6 +2218,7 @@ Must be one of:
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2139,7 +2255,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-fishes--fish_id-" data-method="DELETE"
       data-path="api/v1/fishes/{fish_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -2169,6 +2285,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v1/fishes/{fish_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-fishes--fish_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -2552,6 +2679,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="fishes-v2-POSTapi-v2-fishes">Store a new fish.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2563,6 +2691,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://fish_shop.test/api/v2/fishes" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "name=Salmon"\
@@ -2575,7 +2704,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "conservation_status=architecto"\
     --form "type=architecto"\
     --form "characteristics[]=architecto"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\php1E8A.tmp" </code></pre></div>
+    --form "image=@C:\Users\gines\AppData\Local\Temp\php16D3.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2584,6 +2713,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
@@ -2672,7 +2802,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v2-fishes" data-method="POST"
       data-path="api/v2/fishes"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="1"
       data-isarraybody="0"
       autocomplete="off"
@@ -2702,6 +2832,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/fishes</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v2-fishes"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -2734,12 +2875,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Salmon"
                data-component="body">
     <br>
-<p>The name of the fish. Example: <code>Salmon</code></p>
+<p>The common name of the fish. Example: <code>Salmon</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>scientific_name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="scientific_name"                data-endpoint="POSTapi-v2-fishes"
                value="Salmo salar"
@@ -2756,18 +2897,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>The image of the fish. Example: <code>C:\Users\gines\AppData\Local\Temp\php1E8A.tmp</code></p>
+<p>The image file of the fish. Must be a valid image file (jpg, png, gif). Example: <code>C:\Users\gines\AppData\Local\Temp\php16D3.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="POSTapi-v2-fishes"
                value="Eius et animi quos velit et."
                data-component="body">
     <br>
-<p>A description of the fish. Example: <code>Eius et animi quos velit et.</code></p>
+<p>A detailed description of the fish's characteristics and behavior. Example: <code>Eius et animi quos velit et.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>average_size_cm</code></b>&nbsp;&nbsp;
@@ -2778,7 +2919,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The average size in centimeters. Example: <code>architecto</code></p>
+<p>The average size of the fish in centimeters. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>diet</code></b>&nbsp;&nbsp;
@@ -2789,7 +2930,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The diet type (Carnivore, Herbivore, Omnivore). Example: <code>architecto</code></p>
+<p>The diet type of the fish (Carnivore, Herbivore, Omnivore). Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>lifespan_years</code></b>&nbsp;&nbsp;
@@ -2800,29 +2941,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="16"
                data-component="body">
     <br>
-<p>The lifespan in years. Example: <code>16</code></p>
+<p>The typical lifespan of the fish in years. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>habitat</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="habitat"                data-endpoint="POSTapi-v2-fishes"
                value="architecto"
                data-component="body">
     <br>
-<p>The natural habitat. Example: <code>architecto</code></p>
+<p>The natural habitat where the fish is commonly found. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>conservation_status</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="conservation_status"                data-endpoint="POSTapi-v2-fishes"
                value="architecto"
                data-component="body">
     <br>
-<p>The conservation status. Example: <code>architecto</code></p>
+<p>The conservation status of the fish (e.g., Least Concern, Endangered). Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -2833,7 +2974,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The type of water (Saltwater, Freshwater). Example: <code>architecto</code></p>
+<p>The type of water where the fish lives (Saltwater, Freshwater). Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -2842,7 +2983,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string[]</small>&nbsp;
  &nbsp;
 <br>
-<p>The water characteristics.</p>
+<p>The water characteristics required for the fish.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
@@ -2853,7 +2994,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The state (Allowed, Forbidden, Biological rest). Example: <code>architecto</code></p>
+<p>The state of the fish (Allowed, Forbidden, Biological rest). Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>temperature_range</code></b>&nbsp;&nbsp;
@@ -2864,7 +3005,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The temperature range. Example: <code>architecto</code></p>
+<p>The optimal temperature range for the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>ph_range</code></b>&nbsp;&nbsp;
@@ -2875,7 +3016,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The pH range. Example: <code>architecto</code></p>
+<p>The optimal pH range for the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>salinity</code></b>&nbsp;&nbsp;
@@ -2886,7 +3027,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The salinity level. Example: <code>architecto</code></p>
+<p>The optimal salinity level for the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>oxygen_level</code></b>&nbsp;&nbsp;
@@ -2897,7 +3038,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The oxygen level. Example: <code>architecto</code></p>
+<p>The required oxygen level for the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>migration_pattern</code></b>&nbsp;&nbsp;
@@ -2908,7 +3049,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The migration pattern. Example: <code>architecto</code></p>
+<p>The migration pattern of the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>recorded_since</code></b>&nbsp;&nbsp;
@@ -2919,7 +3060,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="16"
                data-component="body">
     <br>
-<p>The year recorded since. Example: <code>16</code></p>
+<p>The year when the fish was first recorded. Example: <code>16</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -2930,7 +3071,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>Additional notes. Example: <code>architecto</code></p>
+<p>Additional notes about the fish's characteristics. Example: <code>architecto</code></p>
                     </div>
                                     </details>
         </div>
@@ -2939,6 +3080,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="fishes-v2-PUTapi-v2-fishes--fish_id-">Update an existing fish.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2950,6 +3092,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
     "http://fish_shop.test/api/v2/fishes/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "name=Salmon"\
@@ -2962,7 +3105,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "conservation_status=architecto"\
     --form "type=architecto"\
     --form "characteristics[]=architecto"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\php1EAB.tmp" </code></pre></div>
+    --form "image=@C:\Users\gines\AppData\Local\Temp\php16F5.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2971,6 +3114,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
@@ -3059,7 +3203,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PUTapi-v2-fishes--fish_id-" data-method="PUT"
       data-path="api/v2/fishes/{fish_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="1"
       data-isarraybody="0"
       autocomplete="off"
@@ -3089,6 +3233,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/fishes/{fish_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v2-fishes--fish_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -3144,12 +3299,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Salmon"
                data-component="body">
     <br>
-<p>The name of the fish. Example: <code>Salmon</code></p>
+<p>The common name of the fish. Example: <code>Salmon</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>scientific_name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="scientific_name"                data-endpoint="PUTapi-v2-fishes--fish_id-"
                value="Salmo salar"
@@ -3166,18 +3321,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>The image of the fish. Example: <code>C:\Users\gines\AppData\Local\Temp\php1EAB.tmp</code></p>
+<p>The image file of the fish. Must be a valid image file (jpg, png, gif). Example: <code>C:\Users\gines\AppData\Local\Temp\php16F5.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="PUTapi-v2-fishes--fish_id-"
                value="Eius et animi quos velit et."
                data-component="body">
     <br>
-<p>A description of the fish. Example: <code>Eius et animi quos velit et.</code></p>
+<p>A detailed description of the fish's characteristics and behavior. Example: <code>Eius et animi quos velit et.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>average_size_cm</code></b>&nbsp;&nbsp;
@@ -3188,7 +3343,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The average size in centimeters. Example: <code>architecto</code></p>
+<p>The average size of the fish in centimeters. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>diet</code></b>&nbsp;&nbsp;
@@ -3199,7 +3354,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The diet type (Carnivore, Herbivore, Omnivore). Example: <code>architecto</code></p>
+<p>The diet type of the fish (Carnivore, Herbivore, Omnivore). Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>lifespan_years</code></b>&nbsp;&nbsp;
@@ -3210,29 +3365,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="16"
                data-component="body">
     <br>
-<p>The lifespan in years. Example: <code>16</code></p>
+<p>The typical lifespan of the fish in years. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>habitat</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="habitat"                data-endpoint="PUTapi-v2-fishes--fish_id-"
                value="architecto"
                data-component="body">
     <br>
-<p>The natural habitat. Example: <code>architecto</code></p>
+<p>The natural habitat where the fish is commonly found. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>conservation_status</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="conservation_status"                data-endpoint="PUTapi-v2-fishes--fish_id-"
                value="architecto"
                data-component="body">
     <br>
-<p>The conservation status. Example: <code>architecto</code></p>
+<p>The conservation status of the fish (e.g., Least Concern, Endangered). Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -3243,7 +3398,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The type of water (Saltwater, Freshwater). Example: <code>architecto</code></p>
+<p>The type of water where the fish lives (Saltwater, Freshwater). Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -3252,7 +3407,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string[]</small>&nbsp;
  &nbsp;
 <br>
-<p>The water characteristics.</p>
+<p>The water characteristics required for the fish.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
@@ -3263,7 +3418,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The state (Allowed, Forbidden, Biological rest). Example: <code>architecto</code></p>
+<p>The state of the fish (Allowed, Forbidden, Biological rest). Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>temperature_range</code></b>&nbsp;&nbsp;
@@ -3274,7 +3429,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The temperature range. Example: <code>architecto</code></p>
+<p>The optimal temperature range for the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>ph_range</code></b>&nbsp;&nbsp;
@@ -3285,7 +3440,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The pH range. Example: <code>architecto</code></p>
+<p>The optimal pH range for the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>salinity</code></b>&nbsp;&nbsp;
@@ -3296,7 +3451,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The salinity level. Example: <code>architecto</code></p>
+<p>The optimal salinity level for the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>oxygen_level</code></b>&nbsp;&nbsp;
@@ -3307,7 +3462,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The oxygen level. Example: <code>architecto</code></p>
+<p>The required oxygen level for the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>migration_pattern</code></b>&nbsp;&nbsp;
@@ -3318,7 +3473,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>The migration pattern. Example: <code>architecto</code></p>
+<p>The migration pattern of the fish. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>recorded_since</code></b>&nbsp;&nbsp;
@@ -3329,7 +3484,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="16"
                data-component="body">
     <br>
-<p>The year recorded since. Example: <code>16</code></p>
+<p>The year when the fish was first recorded. Example: <code>16</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -3340,7 +3495,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="body">
     <br>
-<p>Additional notes. Example: <code>architecto</code></p>
+<p>Additional notes about the fish's characteristics. Example: <code>architecto</code></p>
                     </div>
                                     </details>
         </div>
@@ -3349,6 +3504,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="fishes-v2-DELETEapi-v2-fishes--fish_id-">Delete a specific fish.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -3360,6 +3516,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
     "http://fish_shop.test/api/v2/fishes/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -3370,6 +3527,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -3383,10 +3541,11 @@ fetch(url, {
 
 <span id="example-responses-DELETEapi-v2-fishes--fish_id-">
             <blockquote>
-            <p>Example response (204):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <pre>
-<code>Empty response</code>
+
+<code class="language-json" style="max-height: 300px;">{}</code>
  </pre>
     </span>
 <span id="execution-results-DELETEapi-v2-fishes--fish_id-" hidden>
@@ -3406,7 +3565,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v2-fishes--fish_id-" data-method="DELETE"
       data-path="api/v2/fishes/{fish_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -3436,6 +3595,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/fishes/{fish_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v2-fishes--fish_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -3533,13 +3703,13 @@ fetch(url, {
         {
             &quot;id&quot;: 1,
             &quot;name&quot;: &quot;Salmon&quot;,
-            &quot;description&quot;: &quot;Fresh salmon&quot;,
+            &quot;description&quot;: &quot;Fresh salmon from local waters&quot;,
             &quot;price&quot;: 19.99,
             &quot;stock&quot;: 100,
             &quot;category&quot;: {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;freshwater&quot;,
-                &quot;display_name&quot;: &quot;Freshwater Fish&quot;
+                &quot;name&quot;: &quot;Frozen&quot;,
+                &quot;display_name&quot;: &quot;Frozen Fish&quot;
             }
         }
     ]
@@ -3662,13 +3832,13 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;name&quot;: &quot;Salmon&quot;,
-        &quot;description&quot;: &quot;Fresh salmon&quot;,
+        &quot;description&quot;: &quot;Fresh salmon from local waters&quot;,
         &quot;price&quot;: 19.99,
         &quot;stock&quot;: 100,
         &quot;category&quot;: {
             &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;freshwater&quot;,
-            &quot;display_name&quot;: &quot;Freshwater Fish&quot;
+            &quot;name&quot;: &quot;Frozen&quot;,
+            &quot;display_name&quot;: &quot;Frozen Fish&quot;
         }
     }
 }</code>
@@ -3780,6 +3950,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="products-v2-POSTapi-v2-products">Store a new product.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -3791,6 +3962,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://fish_shop.test/api/v2/products" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -3798,7 +3970,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"category_id\": 1,
     \"price_per_kg\": 39,
     \"stock_kg\": 84,
-    \"description\": \"Fresh salmon\",
+    \"description\": \"Fresh salmon from local waters, caught and processed within 24 hours.\",
     \"price\": 19.99,
     \"stock\": 100
 }"
@@ -3811,6 +3983,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -3820,7 +3993,7 @@ let body = {
     "category_id": 1,
     "price_per_kg": 39,
     "stock_kg": 84,
-    "description": "Fresh salmon",
+    "description": "Fresh salmon from local waters, caught and processed within 24 hours.",
     "price": 19.99,
     "stock": 100
 };
@@ -3843,14 +4016,28 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;name&quot;: &quot;Salmon&quot;,
-        &quot;description&quot;: &quot;Fresh salmon&quot;,
+        &quot;description&quot;: &quot;Fresh salmon from local waters&quot;,
         &quot;price&quot;: 19.99,
         &quot;stock&quot;: 100,
         &quot;category&quot;: {
             &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;freshwater&quot;,
-            &quot;display_name&quot;: &quot;Freshwater Fish&quot;
+            &quot;name&quot;: &quot;Frozen&quot;,
+            &quot;display_name&quot;: &quot;Frozen Fish&quot;
         }
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;name&quot;: [
+            &quot;The name field is required.&quot;
+        ]
     }
 }</code>
  </pre>
@@ -3872,7 +4059,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v2-products" data-method="POST"
       data-path="api/v2/products"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -3902,6 +4089,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/products</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v2-products"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -3945,7 +4143,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>The ID of the category. Example: <code>1</code></p>
+<p>The ID of the category this product belongs to. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price_per_kg</code></b>&nbsp;&nbsp;
@@ -3975,10 +4173,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="POSTapi-v2-products"
-               value="Fresh salmon"
+               value="Fresh salmon from local waters, caught and processed within 24 hours."
                data-component="body">
     <br>
-<p>The description of the product. Example: <code>Fresh salmon</code></p>
+<p>A detailed description of the product. Example: <code>Fresh salmon from local waters, caught and processed within 24 hours.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -3989,7 +4187,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="19.99"
                data-component="body">
     <br>
-<p>The price of the product. Example: <code>19.99</code></p>
+<p>The price of the product in dollars. Example: <code>19.99</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>stock</code></b>&nbsp;&nbsp;
@@ -4000,13 +4198,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="100"
                data-component="body">
     <br>
-<p>The stock quantity. Example: <code>100</code></p>
+<p>The current stock quantity. Example: <code>100</code></p>
         </div>
         </form>
 
                     <h2 id="products-v2-PUTapi-v2-products--product_id-">Update an existing product.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -4018,6 +4217,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
     "http://fish_shop.test/api/v2/products/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -4025,7 +4225,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"category_id\": 1,
     \"price_per_kg\": 39,
     \"stock_kg\": 84,
-    \"description\": \"Fresh salmon\",
+    \"description\": \"Fresh salmon from local waters, caught and processed within 24 hours.\",
     \"price\": 19.99,
     \"stock\": 100
 }"
@@ -4038,6 +4238,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -4047,7 +4248,7 @@ let body = {
     "category_id": 1,
     "price_per_kg": 39,
     "stock_kg": 84,
-    "description": "Fresh salmon",
+    "description": "Fresh salmon from local waters, caught and processed within 24 hours.",
     "price": 19.99,
     "stock": 100
 };
@@ -4075,8 +4276,8 @@ fetch(url, {
         &quot;stock&quot;: 50,
         &quot;category&quot;: {
             &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;freshwater&quot;,
-            &quot;display_name&quot;: &quot;Freshwater Fish&quot;
+            &quot;name&quot;: &quot;Frozen&quot;,
+            &quot;display_name&quot;: &quot;Frozen Fish&quot;
         }
     }
 }</code>
@@ -4088,6 +4289,20 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;message&quot;: &quot;Product not found&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;name&quot;: [
+            &quot;The name field is required.&quot;
+        ]
+    }
 }</code>
  </pre>
     </span>
@@ -4108,7 +4323,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PUTapi-v2-products--product_id-" data-method="PUT"
       data-path="api/v2/products/{product_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -4138,6 +4353,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/products/{product_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v2-products--product_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4204,7 +4430,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>The ID of the category. Example: <code>1</code></p>
+<p>The ID of the category this product belongs to. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price_per_kg</code></b>&nbsp;&nbsp;
@@ -4234,10 +4460,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="PUTapi-v2-products--product_id-"
-               value="Fresh salmon"
+               value="Fresh salmon from local waters, caught and processed within 24 hours."
                data-component="body">
     <br>
-<p>The description of the product. Example: <code>Fresh salmon</code></p>
+<p>A detailed description of the product. Example: <code>Fresh salmon from local waters, caught and processed within 24 hours.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -4248,7 +4474,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="19.99"
                data-component="body">
     <br>
-<p>The price of the product. Example: <code>19.99</code></p>
+<p>The price of the product in dollars. Example: <code>19.99</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>stock</code></b>&nbsp;&nbsp;
@@ -4259,13 +4485,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="100"
                data-component="body">
     <br>
-<p>The stock quantity. Example: <code>100</code></p>
+<p>The current stock quantity. Example: <code>100</code></p>
         </div>
         </form>
 
                     <h2 id="products-v2-DELETEapi-v2-products--product_id-">Delete a specific product.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -4277,6 +4504,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
     "http://fish_shop.test/api/v2/products/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -4287,6 +4515,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -4304,15 +4533,6 @@ fetch(url, {
         </blockquote>
                 <pre>
 <code>Empty response</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Product not found&quot;
-}</code>
  </pre>
     </span>
 <span id="execution-results-DELETEapi-v2-products--product_id-" hidden>
@@ -4332,7 +4552,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v2-products--product_id-" data-method="DELETE"
       data-path="api/v2/products/{product_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -4362,6 +4582,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/products/{product_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v2-products--product_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4467,11 +4698,6 @@ fetch(url, {
             &quot;date_time&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
             &quot;transaction_number&quot;: &quot;TRX123456&quot;,
             &quot;sale_id&quot;: 1,
-            &quot;user&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;John Doe&quot;,
-                &quot;email&quot;: &quot;john@example.com&quot;
-            },
             &quot;created_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
             &quot;updated_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;
         }
@@ -4553,6 +4779,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="transactions-v2-POSTapi-v2-transactions">Store a new transaction.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -4564,6 +4791,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://fish_shop.test/api/v2/transactions" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -4586,6 +4814,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -4628,13 +4857,22 @@ fetch(url, {
         &quot;date_time&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
         &quot;transaction_number&quot;: &quot;TRX123456&quot;,
         &quot;sale_id&quot;: 1,
-        &quot;user&quot;: {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;John Doe&quot;,
-            &quot;email&quot;: &quot;john@example.com&quot;
-        },
         &quot;created_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
         &quot;updated_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;tpv&quot;: [
+            &quot;The tpv field is required.&quot;
+        ]
     }
 }</code>
  </pre>
@@ -4656,7 +4894,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v2-transactions" data-method="POST"
       data-path="api/v2/transactions"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -4686,6 +4924,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/transactions</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v2-transactions"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4718,7 +4967,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="TPV001"
                data-component="body">
     <br>
-<p>The TPV identifier. Example: <code>TPV001</code></p>
+<p>The TPV (Point of Sale Terminal) identifier. Example: <code>TPV001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>serial_number</code></b>&nbsp;&nbsp;
@@ -4729,7 +4978,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="SN123456"
                data-component="body">
     <br>
-<p>The serial number. Example: <code>SN123456</code></p>
+<p>The unique serial number of the terminal. Example: <code>SN123456</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>terminal_number</code></b>&nbsp;&nbsp;
@@ -4740,7 +4989,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="TN789012"
                data-component="body">
     <br>
-<p>The terminal number. Example: <code>TN789012</code></p>
+<p>The terminal number used for the transaction. Example: <code>TN789012</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>operation</code></b>&nbsp;&nbsp;
@@ -4751,7 +5000,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="SALE"
                data-component="body">
     <br>
-<p>The operation type. Example: <code>SALE</code></p>
+<p>The type of operation (SALE, REFUND, VOID). Example: <code>SALE</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -4762,7 +5011,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="150.50"
                data-component="body">
     <br>
-<p>The transaction amount. Example: <code>150.50</code></p>
+<p>The transaction amount in dollars. Example: <code>150.50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>card_number</code></b>&nbsp;&nbsp;
@@ -4773,18 +5022,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="4111111111111111"
                data-component="body">
     <br>
-<p>The card number. Example: <code>4111111111111111</code></p>
+<p>The masked card number used for the transaction. Example: <code>4111111111111111</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_time</code></b>&nbsp;&nbsp;
-<small>date</small>&nbsp;
+<small>datetime</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_time"                data-endpoint="POSTapi-v2-transactions"
                value="2024-02-11 18:24:59"
                data-component="body">
     <br>
-<p>The transaction date and time. Example: <code>2024-02-11 18:24:59</code></p>
+<p>The date and time of the transaction. Example: <code>2024-02-11 18:24:59</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>transaction_number</code></b>&nbsp;&nbsp;
@@ -4795,7 +5044,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="TRX123456"
                data-component="body">
     <br>
-<p>The transaction number. Example: <code>TRX123456</code></p>
+<p>The unique transaction reference number. Example: <code>TRX123456</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>sale_id</code></b>&nbsp;&nbsp;
@@ -4806,7 +5055,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>The sale ID. Example: <code>1</code></p>
+<p>The ID of the associated sale. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -4863,14 +5112,18 @@ fetch(url, {
         &quot;date_time&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
         &quot;transaction_number&quot;: &quot;TRX123456&quot;,
         &quot;sale_id&quot;: 1,
-        &quot;user&quot;: {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;John Doe&quot;,
-            &quot;email&quot;: &quot;john@example.com&quot;
-        },
         &quot;created_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
         &quot;updated_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;
     }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Transaction not found&quot;
 }</code>
  </pre>
     </span>
@@ -4971,6 +5224,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="transactions-v2-PUTapi-v2-transactions--id-">Update an existing transaction.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -4982,6 +5236,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
     "http://fish_shop.test/api/v2/transactions/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -5004,6 +5259,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -5046,13 +5302,31 @@ fetch(url, {
         &quot;date_time&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
         &quot;transaction_number&quot;: &quot;TRX123456&quot;,
         &quot;sale_id&quot;: 1,
-        &quot;user&quot;: {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;John Doe&quot;,
-            &quot;email&quot;: &quot;john@example.com&quot;
-        },
         &quot;created_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;,
         &quot;updated_at&quot;: &quot;2024-02-11T18:24:59.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Transaction not found&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;tpv&quot;: [
+            &quot;The tpv field is required.&quot;
+        ]
     }
 }</code>
  </pre>
@@ -5074,7 +5348,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PUTapi-v2-transactions--id-" data-method="PUT"
       data-path="api/v2/transactions/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -5108,6 +5382,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/transactions/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v2-transactions--id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -5163,7 +5448,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="TPV001"
                data-component="body">
     <br>
-<p>The TPV identifier. Example: <code>TPV001</code></p>
+<p>The TPV (Point of Sale Terminal) identifier. Example: <code>TPV001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>serial_number</code></b>&nbsp;&nbsp;
@@ -5174,7 +5459,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="SN123456"
                data-component="body">
     <br>
-<p>The serial number. Example: <code>SN123456</code></p>
+<p>The unique serial number of the terminal. Example: <code>SN123456</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>terminal_number</code></b>&nbsp;&nbsp;
@@ -5185,7 +5470,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="TN789012"
                data-component="body">
     <br>
-<p>The terminal number. Example: <code>TN789012</code></p>
+<p>The terminal number used for the transaction. Example: <code>TN789012</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>operation</code></b>&nbsp;&nbsp;
@@ -5196,7 +5481,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="SALE"
                data-component="body">
     <br>
-<p>The operation type. Example: <code>SALE</code></p>
+<p>The type of operation (SALE, REFUND, VOID). Example: <code>SALE</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -5207,7 +5492,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="150.50"
                data-component="body">
     <br>
-<p>The transaction amount. Example: <code>150.50</code></p>
+<p>The transaction amount in dollars. Example: <code>150.50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>card_number</code></b>&nbsp;&nbsp;
@@ -5218,18 +5503,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="4111111111111111"
                data-component="body">
     <br>
-<p>The card number. Example: <code>4111111111111111</code></p>
+<p>The masked card number used for the transaction. Example: <code>4111111111111111</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_time</code></b>&nbsp;&nbsp;
-<small>date</small>&nbsp;
+<small>datetime</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_time"                data-endpoint="PUTapi-v2-transactions--id-"
                value="2024-02-11 18:24:59"
                data-component="body">
     <br>
-<p>The transaction date and time. Example: <code>2024-02-11 18:24:59</code></p>
+<p>The date and time of the transaction. Example: <code>2024-02-11 18:24:59</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>transaction_number</code></b>&nbsp;&nbsp;
@@ -5240,7 +5525,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="TRX123456"
                data-component="body">
     <br>
-<p>The transaction number. Example: <code>TRX123456</code></p>
+<p>The unique transaction reference number. Example: <code>TRX123456</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>sale_id</code></b>&nbsp;&nbsp;
@@ -5251,13 +5536,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>The sale ID. Example: <code>1</code></p>
+<p>The ID of the associated sale. Example: <code>1</code></p>
         </div>
         </form>
 
                     <h2 id="transactions-v2-DELETEapi-v2-transactions--id-">Delete a transaction.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -5269,6 +5555,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
     "http://fish_shop.test/api/v2/transactions/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -5279,6 +5566,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -5315,7 +5603,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v2-transactions--id-" data-method="DELETE"
       data-path="api/v2/transactions/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -5345,6 +5633,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v2/transactions/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v2-transactions--id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;

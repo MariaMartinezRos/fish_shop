@@ -16,7 +16,6 @@ class CategoryController extends Controller
      * Get a list of all categories.
      *
      * @group Categories V2
-     * @authenticated
      *
      * @response 200 {
      *    "data": [
@@ -39,7 +38,6 @@ class CategoryController extends Controller
      * Store a new category.
      *
      * @group Categories V2
-     * @authenticated
      *
      * @bodyParam name string required The unique identifier of the category (lowercase, no spaces). Example: freshwater
      * @bodyParam display_name string required The human-readable name of the category. Example: Freshwater Fish
@@ -127,4 +125,4 @@ class CategoryController extends Controller
         $category->delete();
         return response()->json(['message' => 'Category deleted successfully'], 204);
     }
-} 
+}

@@ -22,7 +22,7 @@ class FishController extends Controller
      * Get a list of all fishes.
      *
      * @group Fishes V1
-     * @authenticated
+     * @deprecated Use v2 API endpoint instead
      *
      * @response 200 {
      *    "data": [
@@ -35,7 +35,6 @@ class FishController extends Controller
      *      }
      *    ]
      * }
-     * @deprecated Use v2 API endpoint instead
      */
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
@@ -48,7 +47,7 @@ class FishController extends Controller
      * Get a specific fish.
      *
      * @group Fishes V1
-     * @authenticated
+     * @deprecated Use v2 API endpoint instead
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
@@ -61,7 +60,6 @@ class FishController extends Controller
      *      "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui."
      *    }
      * }
-     * @deprecated Use v2 API endpoint instead
      */
     public function show(Fish $fish): FishResource
     {
@@ -73,6 +71,7 @@ class FishController extends Controller
      *
      * @group Fishes V1
      * @authenticated
+     * @deprecated Use v2 API endpoint instead
      *
      * @bodyParam name string required The name of the fish. Example: Salmon
      * @bodyParam type string required The type of water where the fish lives (Freshwater or Saltwater). Example: Freshwater
@@ -89,7 +88,6 @@ class FishController extends Controller
      *      "description": "A popular fish known for its pink flesh and rich flavor."
      *    }
      * }
-     * @deprecated Use v2 API endpoint instead
      */
     public function store(StoreFishRequest $request): FishResource
     {
@@ -117,6 +115,7 @@ class FishController extends Controller
      *
      * @group Fishes V1
      * @authenticated
+     * @deprecated Use v2 API endpoint instead
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
@@ -134,7 +133,6 @@ class FishController extends Controller
      *      "description": "Updated description of the fish."
      *    }
      * }
-     * @deprecated Use v2 API endpoint instead
      */
     public function update(Fish $fish, StoreFishRequest $request): FishResource
     {
@@ -155,11 +153,11 @@ class FishController extends Controller
      *
      * @group Fishes V1
      * @authenticated
+     * @deprecated Use v2 API endpoint instead
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
      * @response 204 {"message": "Fish deleted successfully"}
-     * @deprecated Use v2 API endpoint instead
      */
     public function destroy(Fish $fish): JsonResponse
     {

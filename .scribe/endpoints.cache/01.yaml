@@ -66,7 +66,7 @@ endpoints:
                  "updated_at": "2024-02-11T18:24:59.000000Z"
                }
              ]
-           }
+          }
         headers: []
         description: ''
         custom: []
@@ -180,9 +180,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Store a new fish.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
@@ -192,7 +193,7 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'The name of the fish.'
+        description: 'The common name of the fish.'
         required: true
         example: Salmon
         type: string
@@ -203,7 +204,7 @@ endpoints:
       scientific_name:
         name: scientific_name
         description: 'The scientific name of the fish.'
-        required: false
+        required: true
         example: 'Salmo salar'
         type: string
         enumValues: []
@@ -212,7 +213,7 @@ endpoints:
         custom: []
       image:
         name: image
-        description: 'The image of the fish.'
+        description: 'The image file of the fish. Must be a valid image file (jpg, png, gif).'
         required: false
         example: null
         type: file
@@ -222,8 +223,8 @@ endpoints:
         custom: []
       description:
         name: description
-        description: 'A description of the fish.'
-        required: false
+        description: "A detailed description of the fish's characteristics and behavior."
+        required: true
         example: 'Eius et animi quos velit et.'
         type: string
         enumValues: []
@@ -232,7 +233,7 @@ endpoints:
         custom: []
       average_size_cm:
         name: average_size_cm
-        description: 'The average size in centimeters.'
+        description: 'The average size of the fish in centimeters.'
         required: false
         example: architecto
         type: numeric
@@ -242,7 +243,7 @@ endpoints:
         custom: []
       diet:
         name: diet
-        description: 'The diet type (Carnivore, Herbivore, Omnivore).'
+        description: 'The diet type of the fish (Carnivore, Herbivore, Omnivore).'
         required: true
         example: architecto
         type: string
@@ -252,7 +253,7 @@ endpoints:
         custom: []
       lifespan_years:
         name: lifespan_years
-        description: 'The lifespan in years.'
+        description: 'The typical lifespan of the fish in years.'
         required: false
         example: 16
         type: integer
@@ -262,8 +263,8 @@ endpoints:
         custom: []
       habitat:
         name: habitat
-        description: 'The natural habitat.'
-        required: false
+        description: 'The natural habitat where the fish is commonly found.'
+        required: true
         example: architecto
         type: string
         enumValues: []
@@ -272,8 +273,8 @@ endpoints:
         custom: []
       conservation_status:
         name: conservation_status
-        description: 'The conservation status.'
-        required: false
+        description: 'The conservation status of the fish (e.g., Least Concern, Endangered).'
+        required: true
         example: architecto
         type: string
         enumValues: []
@@ -282,7 +283,7 @@ endpoints:
         custom: []
       type:
         name: type
-        description: 'The type of water (Saltwater, Freshwater).'
+        description: 'The type of water where the fish lives (Saltwater, Freshwater).'
         required: true
         example: architecto
         type: string
@@ -292,7 +293,7 @@ endpoints:
         custom: []
       characteristics:
         name: characteristics
-        description: 'The water characteristics.'
+        description: 'The water characteristics required for the fish.'
         required: true
         example:
           - architecto
@@ -303,7 +304,7 @@ endpoints:
         custom: []
       characteristics.state:
         name: characteristics.state
-        description: 'The state (Allowed, Forbidden, Biological rest).'
+        description: 'The state of the fish (Allowed, Forbidden, Biological rest).'
         required: true
         example: architecto
         type: string
@@ -313,7 +314,7 @@ endpoints:
         custom: []
       characteristics.temperature_range:
         name: characteristics.temperature_range
-        description: 'The temperature range.'
+        description: 'The optimal temperature range for the fish.'
         required: true
         example: architecto
         type: string
@@ -323,7 +324,7 @@ endpoints:
         custom: []
       characteristics.ph_range:
         name: characteristics.ph_range
-        description: 'The pH range.'
+        description: 'The optimal pH range for the fish.'
         required: true
         example: architecto
         type: string
@@ -333,7 +334,7 @@ endpoints:
         custom: []
       characteristics.salinity:
         name: characteristics.salinity
-        description: 'The salinity level.'
+        description: 'The optimal salinity level for the fish.'
         required: false
         example: architecto
         type: numeric
@@ -343,7 +344,7 @@ endpoints:
         custom: []
       characteristics.oxygen_level:
         name: characteristics.oxygen_level
-        description: 'The oxygen level.'
+        description: 'The required oxygen level for the fish.'
         required: false
         example: architecto
         type: numeric
@@ -353,7 +354,7 @@ endpoints:
         custom: []
       characteristics.migration_pattern:
         name: characteristics.migration_pattern
-        description: 'The migration pattern.'
+        description: 'The migration pattern of the fish.'
         required: true
         example: architecto
         type: string
@@ -363,7 +364,7 @@ endpoints:
         custom: []
       characteristics.recorded_since:
         name: characteristics.recorded_since
-        description: 'The year recorded since.'
+        description: 'The year when the fish was first recorded.'
         required: false
         example: 16
         type: integer
@@ -373,7 +374,7 @@ endpoints:
         custom: []
       characteristics.notes:
         name: characteristics.notes
-        description: 'Additional notes.'
+        description: "Additional notes about the fish's characteristics."
         required: false
         example: architecto
         type: string
@@ -438,7 +439,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -454,9 +458,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update an existing fish.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
@@ -488,7 +493,7 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'The name of the fish.'
+        description: 'The common name of the fish.'
         required: true
         example: Salmon
         type: string
@@ -499,7 +504,7 @@ endpoints:
       scientific_name:
         name: scientific_name
         description: 'The scientific name of the fish.'
-        required: false
+        required: true
         example: 'Salmo salar'
         type: string
         enumValues: []
@@ -508,7 +513,7 @@ endpoints:
         custom: []
       image:
         name: image
-        description: 'The image of the fish.'
+        description: 'The image file of the fish. Must be a valid image file (jpg, png, gif).'
         required: false
         example: null
         type: file
@@ -518,8 +523,8 @@ endpoints:
         custom: []
       description:
         name: description
-        description: 'A description of the fish.'
-        required: false
+        description: "A detailed description of the fish's characteristics and behavior."
+        required: true
         example: 'Eius et animi quos velit et.'
         type: string
         enumValues: []
@@ -528,7 +533,7 @@ endpoints:
         custom: []
       average_size_cm:
         name: average_size_cm
-        description: 'The average size in centimeters.'
+        description: 'The average size of the fish in centimeters.'
         required: false
         example: architecto
         type: numeric
@@ -538,7 +543,7 @@ endpoints:
         custom: []
       diet:
         name: diet
-        description: 'The diet type (Carnivore, Herbivore, Omnivore).'
+        description: 'The diet type of the fish (Carnivore, Herbivore, Omnivore).'
         required: true
         example: architecto
         type: string
@@ -548,7 +553,7 @@ endpoints:
         custom: []
       lifespan_years:
         name: lifespan_years
-        description: 'The lifespan in years.'
+        description: 'The typical lifespan of the fish in years.'
         required: false
         example: 16
         type: integer
@@ -558,8 +563,8 @@ endpoints:
         custom: []
       habitat:
         name: habitat
-        description: 'The natural habitat.'
-        required: false
+        description: 'The natural habitat where the fish is commonly found.'
+        required: true
         example: architecto
         type: string
         enumValues: []
@@ -568,8 +573,8 @@ endpoints:
         custom: []
       conservation_status:
         name: conservation_status
-        description: 'The conservation status.'
-        required: false
+        description: 'The conservation status of the fish (e.g., Least Concern, Endangered).'
+        required: true
         example: architecto
         type: string
         enumValues: []
@@ -578,7 +583,7 @@ endpoints:
         custom: []
       type:
         name: type
-        description: 'The type of water (Saltwater, Freshwater).'
+        description: 'The type of water where the fish lives (Saltwater, Freshwater).'
         required: true
         example: architecto
         type: string
@@ -588,7 +593,7 @@ endpoints:
         custom: []
       characteristics:
         name: characteristics
-        description: 'The water characteristics.'
+        description: 'The water characteristics required for the fish.'
         required: true
         example:
           - architecto
@@ -599,7 +604,7 @@ endpoints:
         custom: []
       characteristics.state:
         name: characteristics.state
-        description: 'The state (Allowed, Forbidden, Biological rest).'
+        description: 'The state of the fish (Allowed, Forbidden, Biological rest).'
         required: true
         example: architecto
         type: string
@@ -609,7 +614,7 @@ endpoints:
         custom: []
       characteristics.temperature_range:
         name: characteristics.temperature_range
-        description: 'The temperature range.'
+        description: 'The optimal temperature range for the fish.'
         required: true
         example: architecto
         type: string
@@ -619,7 +624,7 @@ endpoints:
         custom: []
       characteristics.ph_range:
         name: characteristics.ph_range
-        description: 'The pH range.'
+        description: 'The optimal pH range for the fish.'
         required: true
         example: architecto
         type: string
@@ -629,7 +634,7 @@ endpoints:
         custom: []
       characteristics.salinity:
         name: characteristics.salinity
-        description: 'The salinity level.'
+        description: 'The optimal salinity level for the fish.'
         required: false
         example: architecto
         type: numeric
@@ -639,7 +644,7 @@ endpoints:
         custom: []
       characteristics.oxygen_level:
         name: characteristics.oxygen_level
-        description: 'The oxygen level.'
+        description: 'The required oxygen level for the fish.'
         required: false
         example: architecto
         type: numeric
@@ -649,7 +654,7 @@ endpoints:
         custom: []
       characteristics.migration_pattern:
         name: characteristics.migration_pattern
-        description: 'The migration pattern.'
+        description: 'The migration pattern of the fish.'
         required: true
         example: architecto
         type: string
@@ -659,7 +664,7 @@ endpoints:
         custom: []
       characteristics.recorded_since:
         name: characteristics.recorded_since
-        description: 'The year recorded since.'
+        description: 'The year when the fish was first recorded.'
         required: false
         example: 16
         type: integer
@@ -669,7 +674,7 @@ endpoints:
         custom: []
       characteristics.notes:
         name: characteristics.notes
-        description: 'Additional notes.'
+        description: "Additional notes about the fish's characteristics."
         required: false
         example: architecto
         type: string
@@ -734,7 +739,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -750,9 +758,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Delete a specific fish.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -786,13 +795,16 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 204
-        content: '{"message": "Fish deleted successfully"}'
+        status: 200
+        content: '{}'
         headers: []
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

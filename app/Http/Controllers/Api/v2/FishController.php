@@ -17,7 +17,6 @@ class FishController extends Controller
      * Get a list of all fishes.
      *
      * @group Fishes V2
-     * @authenticated
      *
      * @response 200 {
      *    "data": [
@@ -68,7 +67,6 @@ class FishController extends Controller
      * Get a specific fish.
      *
      * @group Fishes V2
-     * @authenticated
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *

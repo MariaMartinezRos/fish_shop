@@ -27,7 +27,17 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data": [{"id": 1, "name": "Freshwater", "display_name": "Freshwater Fish", "description": "Fish that live in freshwater environments"}]}'
+        content: |-
+          {
+             "data": [
+               {
+                 "id": 1,
+                 "name": "Frozen",
+                 "display_name": "Frozen Fish",
+                 "description": "Fish that live in freshwater environments"
+               }
+             ]
+          }
         headers: []
         description: ''
         custom: []
@@ -48,9 +58,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Get a specific category.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -85,7 +96,15 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish", "description": "Fish that live in freshwater environments"}}'
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Frozen",
+               "display_name": "Frozen Fish",
+               "description": "Fish that live in freshwater environments"
+             }
+          }
         headers: []
         description: ''
         custom: []
@@ -96,7 +115,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -124,7 +146,7 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'The unique identifier of the category.'
+        description: 'The unique identifier of the category (lowercase, no spaces).'
         required: true
         example: freshwater
         type: string
@@ -134,7 +156,7 @@ endpoints:
         custom: []
       display_name:
         name: display_name
-        description: 'The display name of the category.'
+        description: 'The human-readable name of the category.'
         required: true
         example: 'Freshwater Fish'
         type: string
@@ -144,9 +166,9 @@ endpoints:
         custom: []
       description:
         name: description
-        description: 'The description of the category.'
+        description: 'A detailed description of the category and its characteristics.'
         required: true
-        example: 'Fish that live in freshwater environments'
+        example: 'Fish that live in freshwater environments such as rivers, lakes, and ponds.'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -155,12 +177,26 @@ endpoints:
     cleanBodyParameters:
       name: freshwater
       display_name: 'Freshwater Fish'
-      description: 'Fish that live in freshwater environments'
+      description: 'Fish that live in freshwater environments such as rivers, lakes, and ponds.'
     fileParameters: []
     responses:
       -
         status: 201
-        content: '{"data": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish", "description": "Fish that live in freshwater environments"}}'
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Frozen",
+               "display_name": "Frozen Fish",
+               "description": "Fish that live in freshwater environments"
+             }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"message": "The given data was invalid.", "errors": {"name": ["The name field is required."]}}'
         headers: []
         description: ''
         custom: []
@@ -181,9 +217,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update an existing category.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -225,7 +262,7 @@ endpoints:
         custom: []
       display_name:
         name: display_name
-        description: 'The display name of the category.'
+        description: 'The human-readable name of the category.'
         required: true
         example: 'Freshwater Fish'
         type: string
@@ -235,9 +272,9 @@ endpoints:
         custom: []
       description:
         name: description
-        description: 'The description of the category.'
+        description: 'A detailed description of the category and its characteristics.'
         required: true
-        example: 'Fish that live in freshwater environments'
+        example: 'Fish that live in freshwater environments such as rivers, lakes, and ponds.'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -246,12 +283,20 @@ endpoints:
     cleanBodyParameters:
       name: b
       display_name: 'Freshwater Fish'
-      description: 'Fish that live in freshwater environments'
+      description: 'Fish that live in freshwater environments such as rivers, lakes, and ponds.'
     fileParameters: []
     responses:
       -
         status: 200
-        content: '{"data": {"id": 1, "name": "freshwater", "display_name": "Updated Freshwater Fish", "description": "Updated description"}}'
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Frozen",
+               "display_name": "Updated Frozen Fish",
+               "description": "Updated description of freshwater fish and their habitats"
+             }
+          }
         headers: []
         description: ''
         custom: []
@@ -261,8 +306,17 @@ endpoints:
         headers: []
         description: ''
         custom: []
+      -
+        status: 422
+        content: '{"message": "The given data was invalid.", "errors": {"display_name": ["The display name field is required."]}}'
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -278,9 +332,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Delete a specific category.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -319,14 +374,11 @@ endpoints:
         headers: []
         description: ''
         custom: []
-      -
-        status: 404
-        content: '{"message": "Category not found"}'
-        headers: []
-        description: ''
-        custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

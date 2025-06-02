@@ -27,7 +27,18 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data": [{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}]}'
+        content: |-
+          {
+             "data": [
+               {
+                 "id": 1,
+                 "name": "Salmon",
+                 "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+                 "type": ["Freshwater"],
+                 "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui."
+               }
+             ]
+          }
         headers: []
         description: ''
         custom: []
@@ -85,7 +96,16 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}'
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Salmon",
+               "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+               "type": ["Freshwater"],
+               "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui."
+             }
+          }
         headers: []
         description: ''
         custom: []
@@ -106,9 +126,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Store a new fish.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
@@ -148,12 +169,12 @@ endpoints:
         custom: []
       description:
         name: description
-        description: ''
-        required: false
-        example: 'Eius et animi quos velit et.'
+        description: 'A detailed description of the fish.'
+        required: true
+        example: 'A popular fish known for its pink flesh and rich flavor.'
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: true
         custom: []
       average_size_cm:
@@ -170,7 +191,7 @@ endpoints:
         name: diet
         description: ''
         required: true
-        example: Carnivore
+        example: Omnivore
         type: string
         enumValues:
           - Carnivore
@@ -211,7 +232,7 @@ endpoints:
         custom: []
       type:
         name: type
-        description: 'The type of the fish.'
+        description: 'The type of water where the fish lives (Freshwater or Saltwater).'
         required: true
         example: Freshwater
         type: string
@@ -233,7 +254,7 @@ endpoints:
         name: characteristics.state
         description: ''
         required: true
-        example: Allowed
+        example: Forbidden
         type: string
         enumValues:
           - Allowed
@@ -286,7 +307,7 @@ endpoints:
         name: characteristics.migration_pattern
         description: ''
         required: true
-        example: Anadromous
+        example: Catadromous
         type: string
         enumValues:
           - Non-migratory
@@ -317,7 +338,7 @@ endpoints:
         custom: []
       price:
         name: price
-        description: 'The price of the fish.'
+        description: 'The price of the fish in dollars.'
         required: true
         example: 10.5
         type: number
@@ -325,37 +346,60 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
+      photo:
+        name: photo
+        description: 'The image file of the fish. Must be a valid image file (jpg, png, gif).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
     cleanBodyParameters:
       name: Salmon
       scientific_name: 'n'
-      description: 'Eius et animi quos velit et.'
+      description: 'A popular fish known for its pink flesh and rich flavor.'
       average_size_cm: 1
-      diet: Carnivore
+      diet: Omnivore
       lifespan_years: 42
       habitat: l
       conservation_status: j
       type: Freshwater
       characteristics:
-        state: Allowed
+        state: Forbidden
         temperature_range: b
         ph_range: 'n'
         salinity: 0
         oxygen_level: 1
-        migration_pattern: Anadromous
+        migration_pattern: Catadromous
         recorded_since: 17
         notes: architecto
       price: 10.5
     fileParameters:
       image: null
+      photo: null
     responses:
       -
         status: 201
-        content: '{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}'
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Salmon",
+               "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+               "type": ["Freshwater"],
+               "description": "A popular fish known for its pink flesh and rich flavor."
+             }
+          }
         headers: []
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -371,10 +415,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Update an existing fish.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
-      Content-Type: application/json
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
       fish_id:
@@ -435,12 +480,12 @@ endpoints:
         custom: []
       description:
         name: description
-        description: ''
+        description: 'A detailed description of the fish.'
         required: true
-        example: 'Eius et animi quos velit et.'
+        example: 'A popular fish known for its pink flesh and rich flavor.'
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
       average_size_cm:
@@ -498,7 +543,7 @@ endpoints:
         custom: []
       type:
         name: type
-        description: 'The type of the fish.'
+        description: 'The type of water where the fish lives (Freshwater or Saltwater).'
         required: true
         example: Freshwater
         type: string
@@ -520,7 +565,7 @@ endpoints:
         name: characteristics.state
         description: ''
         required: true
-        example: Forbidden
+        example: 'Biological rest'
         type: string
         enumValues:
           - Allowed
@@ -602,10 +647,20 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         custom: []
+      photo:
+        name: photo
+        description: 'The image file of the fish. Must be a valid image file (jpg, png, gif).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
     cleanBodyParameters:
       name: Salmon
       scientific_name: 'n'
-      description: 'Eius et animi quos velit et.'
+      description: 'A popular fish known for its pink flesh and rich flavor.'
       average_size_cm: 1
       diet: Carnivore
       lifespan_years: 42
@@ -613,7 +668,7 @@ endpoints:
       conservation_status: j
       type: Freshwater
       characteristics:
-        state: Forbidden
+        state: 'Biological rest'
         temperature_range: b
         ph_range: 'n'
         salinity: 0
@@ -621,16 +676,29 @@ endpoints:
         migration_pattern: Non-migratory
         recorded_since: 17
         notes: architecto
-    fileParameters: []
+    fileParameters:
+      photo: null
     responses:
       -
         status: 200
-        content: '{"id": 1, "name": "Updated Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}'
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Updated Salmon",
+               "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+               "type": ["Freshwater"],
+               "description": "Updated description of the fish."
+             }
+          }
         headers: []
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -646,9 +714,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Delete a specific fish.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -688,7 +757,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

@@ -17,7 +17,6 @@ class ProductController extends Controller
      * Get a list of all products.
      *
      * @group Products V2
-     * @authenticated
      *
      * @response 200 {
      *    "data": [
@@ -46,7 +45,6 @@ class ProductController extends Controller
      * Get a specific product.
      *
      * @group Products V2
-     * @authenticated
      *
      * @urlParam product int required The ID of the product. Example: 1
      *
@@ -163,4 +161,4 @@ class ProductController extends Controller
 
         return response()->json(['message' => 'Product deleted successfully'], 204);
     }
-} 
+}

@@ -43,16 +43,12 @@ endpoints:
                  "date_time": "2024-02-11T18:24:59.000000Z",
                  "transaction_number": "TRX123456",
                  "sale_id": 1,
-                 "user": {
-                   "id": 1,
-                   "name": "John Doe",
-                   "email": "john@example.com"
-                 },
+
                  "created_at": "2024-02-11T18:24:59.000000Z",
                  "updated_at": "2024-02-11T18:24:59.000000Z"
                }
              ]
-           }
+          }
         headers: []
         description: ''
         custom: []
@@ -73,9 +69,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Store a new transaction.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -85,7 +82,7 @@ endpoints:
     bodyParameters:
       tpv:
         name: tpv
-        description: 'The TPV identifier.'
+        description: 'The TPV (Point of Sale Terminal) identifier.'
         required: true
         example: TPV001
         type: string
@@ -95,7 +92,7 @@ endpoints:
         custom: []
       serial_number:
         name: serial_number
-        description: 'The serial number.'
+        description: 'The unique serial number of the terminal.'
         required: true
         example: SN123456
         type: string
@@ -105,7 +102,7 @@ endpoints:
         custom: []
       terminal_number:
         name: terminal_number
-        description: 'The terminal number.'
+        description: 'The terminal number used for the transaction.'
         required: true
         example: TN789012
         type: string
@@ -115,7 +112,7 @@ endpoints:
         custom: []
       operation:
         name: operation
-        description: 'The operation type.'
+        description: 'The type of operation (SALE, REFUND, VOID).'
         required: true
         example: SALE
         type: string
@@ -125,7 +122,7 @@ endpoints:
         custom: []
       amount:
         name: amount
-        description: 'The transaction amount.'
+        description: 'The transaction amount in dollars.'
         required: true
         example: '150.50'
         type: numeric
@@ -135,7 +132,7 @@ endpoints:
         custom: []
       card_number:
         name: card_number
-        description: 'The card number.'
+        description: 'The masked card number used for the transaction.'
         required: true
         example: '4111111111111111'
         type: string
@@ -145,17 +142,17 @@ endpoints:
         custom: []
       date_time:
         name: date_time
-        description: 'The transaction date and time.'
+        description: 'The date and time of the transaction.'
         required: true
         example: '2024-02-11 18:24:59'
-        type: date
+        type: datetime
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         custom: []
       transaction_number:
         name: transaction_number
-        description: 'The transaction number.'
+        description: 'The unique transaction reference number.'
         required: true
         example: TRX123456
         type: string
@@ -165,7 +162,7 @@ endpoints:
         custom: []
       sale_id:
         name: sale_id
-        description: 'The sale ID.'
+        description: 'The ID of the associated sale.'
         required: true
         example: 1
         type: integer
@@ -200,11 +197,7 @@ endpoints:
                 "date_time": "2024-02-11T18:24:59.000000Z",
                 "transaction_number": "TRX123456",
                 "sale_id": 1,
-                "user": {
-                  "id": 1,
-                  "name": "John Doe",
-                  "email": "john@example.com"
-                },
+
                 "created_at": "2024-02-11T18:24:59.000000Z",
                 "updated_at": "2024-02-11T18:24:59.000000Z"
               }
@@ -212,8 +205,17 @@ endpoints:
         headers: []
         description: ''
         custom: []
+      -
+        status: 422
+        content: '{"message": "The given data was invalid.", "errors": {"tpv": ["The tpv field is required."]}}'
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -279,15 +281,17 @@ endpoints:
                 "date_time": "2024-02-11T18:24:59.000000Z",
                 "transaction_number": "TRX123456",
                 "sale_id": 1,
-                "user": {
-                  "id": 1,
-                  "name": "John Doe",
-                  "email": "john@example.com"
-                },
+
                 "created_at": "2024-02-11T18:24:59.000000Z",
                 "updated_at": "2024-02-11T18:24:59.000000Z"
               }
           }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"message": "Transaction not found"}'
         headers: []
         description: ''
         custom: []
@@ -309,9 +313,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update an existing transaction.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -343,7 +348,7 @@ endpoints:
     bodyParameters:
       tpv:
         name: tpv
-        description: 'The TPV identifier.'
+        description: 'The TPV (Point of Sale Terminal) identifier.'
         required: true
         example: TPV001
         type: string
@@ -353,7 +358,7 @@ endpoints:
         custom: []
       serial_number:
         name: serial_number
-        description: 'The serial number.'
+        description: 'The unique serial number of the terminal.'
         required: true
         example: SN123456
         type: string
@@ -363,7 +368,7 @@ endpoints:
         custom: []
       terminal_number:
         name: terminal_number
-        description: 'The terminal number.'
+        description: 'The terminal number used for the transaction.'
         required: true
         example: TN789012
         type: string
@@ -373,7 +378,7 @@ endpoints:
         custom: []
       operation:
         name: operation
-        description: 'The operation type.'
+        description: 'The type of operation (SALE, REFUND, VOID).'
         required: true
         example: SALE
         type: string
@@ -383,7 +388,7 @@ endpoints:
         custom: []
       amount:
         name: amount
-        description: 'The transaction amount.'
+        description: 'The transaction amount in dollars.'
         required: true
         example: '150.50'
         type: numeric
@@ -393,7 +398,7 @@ endpoints:
         custom: []
       card_number:
         name: card_number
-        description: 'The card number.'
+        description: 'The masked card number used for the transaction.'
         required: true
         example: '4111111111111111'
         type: string
@@ -403,17 +408,17 @@ endpoints:
         custom: []
       date_time:
         name: date_time
-        description: 'The transaction date and time.'
+        description: 'The date and time of the transaction.'
         required: true
         example: '2024-02-11 18:24:59'
-        type: date
+        type: datetime
         enumValues: []
         exampleWasSpecified: true
         nullable: true
         custom: []
       transaction_number:
         name: transaction_number
-        description: 'The transaction number.'
+        description: 'The unique transaction reference number.'
         required: true
         example: TRX123456
         type: string
@@ -423,7 +428,7 @@ endpoints:
         custom: []
       sale_id:
         name: sale_id
-        description: 'The sale ID.'
+        description: 'The ID of the associated sale.'
         required: true
         example: 1
         type: integer
@@ -458,11 +463,6 @@ endpoints:
                 "date_time": "2024-02-11T18:24:59.000000Z",
                 "transaction_number": "TRX123456",
                 "sale_id": 1,
-                "user": {
-                  "id": 1,
-                  "name": "John Doe",
-                  "email": "john@example.com"
-                },
                 "created_at": "2024-02-11T18:24:59.000000Z",
                 "updated_at": "2024-02-11T18:24:59.000000Z"
               }
@@ -470,8 +470,23 @@ endpoints:
         headers: []
         description: ''
         custom: []
+      -
+        status: 404
+        content: '{"message": "Transaction not found"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"message": "The given data was invalid.", "errors": {"tpv": ["The tpv field is required."]}}'
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -487,9 +502,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Delete a transaction.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -529,7 +545,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

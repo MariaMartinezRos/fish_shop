@@ -15,7 +15,6 @@ class TransactionController extends Controller
      * Get a list of all transactions.
      *
      * @group Transactions V2
-     * @authenticated
      *
      * @response 200 {
      *    "data": [
@@ -48,7 +47,6 @@ class TransactionController extends Controller
      * Get a specific transaction.
      *
      * @group Transactions V2
-     * @authenticated
      *
      * @urlParam transaction int required The ID of the transaction. Example: 1
      *
