@@ -2,28 +2,35 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTransactionRequest extends FormRequest
 {
     /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, ValidationRule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'tpv' => ['required', 'string', 'max:255'],
-            'serial_number' => ['required', 'string'],
-            'terminal_number' => ['required', 'string'],
-            'operation' => ['required', 'string'],
-            'amount' => ['required', 'numeric', 'min:0'],
-            'card_number' => ['required', 'string', 'size:16'],
-            'date_time' => ['required', 'date'],
-            'transaction_number' => ['required', 'string'],
-            'sale_id' => ['required', 'numeric'],
+            'tpv' => 'required|string|max:255',
+            'serial_number' => 'required|string|max:255',
+            'terminal_number' => 'required|string|max:255',
+            'operation' => 'required|string|max:255',
+            'amount' => 'required|numeric|min:0',
+            'card_number' => 'required|string|size:16',
+            'date_time' => 'required|date',
+            'transaction_number' => 'required|string|max:255',
+            'sale_id' => 'required|numeric'
         ];
     }
 
@@ -35,20 +42,25 @@ class StoreTransactionRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tpv.required' => 'The TPV identifier is required.',
-            'tpv.max' => 'The TPV identifier cannot exceed 255 characters.',
+            'tpv.required' => 'The TPV is required.',
+            'tpv.max' => 'The TPV cannot exceed 255 characters.',
             'serial_number.required' => 'The serial number is required.',
+            'serial_number.max' => 'The serial number cannot exceed 255 characters.',
             'terminal_number.required' => 'The terminal number is required.',
-            'operation.required' => 'The operation type is required.',
-            'amount.required' => 'The transaction amount is required.',
+            'terminal_number.max' => 'The terminal number cannot exceed 255 characters.',
+            'operation.required' => 'The operation is required.',
+            'operation.max' => 'The operation cannot exceed 255 characters.',
+            'amount.required' => 'The amount is required.',
             'amount.numeric' => 'The amount must be a number.',
             'amount.min' => 'The amount cannot be negative.',
             'card_number.required' => 'The card number is required.',
-            'card_number.size' => 'The card number must be exactly 16 digits.',
-            'date_time.required' => 'The transaction date and time is required.',
+            'card_number.size' => 'The card number must be exactly 16 characters.',
+            'date_time.required' => 'The date and time is required.',
             'date_time.date' => 'The date and time must be a valid date.',
             'transaction_number.required' => 'The transaction number is required.',
-            'sale_id.required' => 'The sale reference is required.',
+            'transaction_number.max' => 'The transaction number cannot exceed 255 characters.',
+            'sale_id.required' => 'The sale ID is required.',
+            'sale_id.numeric' => 'The sale ID must be a number.'
         ];
     }
 }

@@ -24,6 +24,7 @@ class RecipeController extends Controller
         $detailedMeals = [];
 
         // Loop through each idMeal and make a request to the lookup API
+        // indexar las respuestas de la llamada a la api
         foreach ($mealIds as $idMeal) {
             $response2 = Http::get("www.themealdb.com/api/json/v1/1/lookup.php?i={$idMeal}");
             $mealDetails = $response2->json();

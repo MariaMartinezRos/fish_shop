@@ -29,9 +29,8 @@ class GenerateWeeklyTransactionsReportJob implements ShouldQueue
      */
     public function handle()
     {
-        // Get transactions from the past 7 days
-        $startDate = now()->startOfWeek();       // Monday
-        $endDate = now()->startOfWeek()->addDays(5); // Saturday
+        $startDate = now()->startOfWeek();
+        $endDate = now()->startOfWeek()->addDays(5);
 
         $transactions = Transaction::whereBetween('date_time', [$startDate, $endDate])->get();
 
@@ -46,6 +45,7 @@ class GenerateWeeklyTransactionsReportJob implements ShouldQueue
             'transactions' => $transactions,
         ];
 
+        // buena practica
 
         // Send report email to admin
         Mail::to('mariaamartinezros@gmail.com')->send(new WeeklyTransactionsReportEmail($summary));

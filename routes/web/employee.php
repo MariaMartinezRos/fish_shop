@@ -19,4 +19,9 @@ Route::middleware([EmployeeMiddleware::class])->group(function () {
 
     Route::get('/employee/home', [HomeController::class, 'index'])->name('employees.home');
 
+    Route::get('/employee/transactions', function () {
+        return view('employee.transactions');
+    })->name('employee.transactions');
+
 });
+

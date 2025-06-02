@@ -20,9 +20,7 @@ class Transaction extends Model
         'card_number',
         'date_time',
         'transaction_number',
-        'sale_id',
-        'created_at',
-        'updated_at',
+        'sale_id'
     ];
 
     /**
@@ -35,7 +33,6 @@ class Transaction extends Model
 
     public static function create(array $transaction): Transaction
     {
-
         $newTransaction = new self;
 
         $newTransaction->tpv = $transaction['tpv'];
@@ -47,8 +44,6 @@ class Transaction extends Model
         $newTransaction->date_time = $transaction['date_time'];
         $newTransaction->transaction_number = $transaction['transaction_number'];
         $newTransaction->sale_id = $transaction['sale_id'];
-        $newTransaction->created_at = $transaction['created_at'];
-        $newTransaction->updated_at = $transaction['updated_at'];
 
         $newTransaction->save();
 

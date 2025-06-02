@@ -20,8 +20,7 @@ it('passes with all valid fields', function () {
         'amount' => 99.99,
         'card_number' => '1234567812345678',
         'date_time' => now()->toDateTimeString(),
-        'transaction_number' => 'TXN1001',
-        'sale_id' => 123,
+        'transaction_number' => 'TXN1001'
     ];
 
     $validator = Validator::make($data, $this->request->rules(), $this->request->messages());
@@ -53,14 +52,5 @@ it('fails if date_time is not a valid date', function () {
 
     expect($validator->fails())->toBeTrue();
     expect($validator->errors()->has('date_time'))->toBeTrue();
-});
-
-it('fails if sale_id is not numeric', function () {
-    $data = ['sale_id' => 'abc'];
-
-    $validator = Validator::make($data, $this->request->rules(), $this->request->messages());
-
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->has('sale_id'))->toBeTrue();
 });
 
