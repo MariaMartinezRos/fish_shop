@@ -69,6 +69,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the vacation requests for the user.
+     */
+    public function vacationRequests(): HasMany
+    {
+        return $this->hasMany(VacationRequest::class, 'user_id');
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>

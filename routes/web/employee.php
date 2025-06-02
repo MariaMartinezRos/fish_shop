@@ -23,5 +23,15 @@ Route::middleware([EmployeeMiddleware::class])->group(function () {
         return view('employee.transactions');
     })->name('employee.transactions');
 
+    Route::get('/employee/vacation-request', function () {
+        return view('employee.vacation-request');
+    })->name('employee.vacation-request');
+
+    Route::post('/employee/vacation-request/submit', [App\Livewire\Employee\VacationRequestForm::class, 'submit'])
+        ->name('employee.vacation-request.submit');
+
+    Route::post('/employee/vacation-request/pdf', [App\Livewire\Employee\VacationRequestForm::class, 'downloadPdf'])
+        ->name('employee.vacation-request.pdf');
+
 });
 

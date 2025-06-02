@@ -29,7 +29,7 @@
                     {{--                <a href="#" class="panel-link text-red-600">{{ __('Schedule')}}</a>--}}
                     <a href="#" class="panel-link">{{ __('Download Paycheck')}}</a>
                     <a href="{{ route('employee.transactions') }}" class="panel-link">{{ __('Add a New Transaction')}}</a>
-                    <a href="#" class="panel-link">{{ __('Reports')}}</a>
+                    <a href="{{ route('employee.vacation-request') }}" class="panel-link">{{ __('Request vacation')}}</a>
                     <a href="#" class="panel-link">{{ __('Study')}}</a>
                 </div>
             </section>

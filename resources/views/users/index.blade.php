@@ -39,6 +39,9 @@
                                 {{ __('Role') }}
                             </th>
                             <th class="px-6 py-3 text-xs tracking-widest text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700">
+                                {{ __('Status') }}
+                            </th>
+                            <th class="px-6 py-3 text-xs tracking-widest text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700">
                                 {{ __('Actions') }}
                             </th>
                         </tr>
@@ -49,6 +52,46 @@
                                 <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">{{ $user->name }}</td>
                                 <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">{{ $user->email }}</td>
                                 <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">{{ $user->role->display_name ?? __('No Role') }}</td>
+
+                                <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">
+                                    @if($user->role->name === 'employee')
+                                        @php
+                                            $latestVacation = $user->vacationRequests()->latest()->first();
+                                        @endphp
+                                        @if($latestVacation)
+                                            @switch($latestVacation->status)
+                                                @case('pending')
+                                                    <div wire:key="pending-{{ $latestVacation->id }}">
+                                                        <img src="{{ asset('images/available-dot.png') }}" 
+                                                             alt="Pending" 
+                                                             class="w-4 h-4 inline-block align-middle cursor-pointer" 
+                                                             title="Pending"
+                                                             onclick="Livewire.dispatch('showVacationModal', { requestId: {{ $latestVacation->id }}, type: 'pending' })">
+                                                    </div>
+                                                    @break
+                                                @case('approved')
+                                                    <div wire:key="approved-{{ $latestVacation->id }}">
+                                                        <img src="{{ asset('images/unavailable-dot.png') }}" 
+                                                             alt="Approved" 
+                                                             class="w-4 h-4 inline-block align-middle cursor-pointer" 
+                                                             title="Approved"
+                                                             onclick="Livewire.dispatch('showVacationModal', { requestId: {{ $latestVacation->id }}, type: 'approved' })">
+                                                    </div>
+                                                    @break
+                                                @case('rejected')
+                                                    <img src="{{ asset('images/available-dot.png') }}" alt="Rejected" class="w-4 h-4 inline-block align-middle" title="Rejected">
+                                                    @break
+                                                @default
+                                                    <img src="{{ asset('images/available-dot.png') }}" alt="Pending" class="w-4 h-4 inline-block align-middle" title="Pending">
+                                            @endswitch
+                                        @else
+                                            <img src="{{ asset('images/available-dot.png') }}" alt="Pending" class="w-4 h-4 inline-block align-middle" title="Pending">
+                                        @endif
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+
                                 <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">
                                     <div class="flex justify-between">
                                         <a href="{{ route('users.edit', $user) }}" class="text-blue-600 dark:text-blue-400">{{ __('Edit') }}</a>
@@ -72,5 +115,9 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div>
+        @livewire('vacation-request-actions')
     </div>
 </x-app-layout>
