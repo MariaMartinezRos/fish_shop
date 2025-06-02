@@ -31,7 +31,7 @@ return [
                 'domains' => ['*'],
 
                 // Match only routes whose methods are in this list. Example: ['GET', 'POST'].
-                'versions' => ['v2'],
+//                'versions' => ['v2', 'v1'],
             ],
 
             // Include these routes even if they did not match the rules above.

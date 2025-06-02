@@ -4,6 +4,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Fish;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 
@@ -15,7 +16,12 @@ beforeEach(function () {
 
 it('returns a successful response for fetching all products', function () {
     $category = Category::factory()->create();
+    $fish = Fish::factory()->create();
     $product = Product::factory()->create(['category_id' => $category->id]);
+    $product->fishes()->attach($fish->id, [
+        'days_on_sale' => 15,
+        'supplier' => 'Test Supplier'
+    ]);
 
     $response = $this->getJson('/api/v2/products');
 
@@ -32,6 +38,12 @@ it('returns a successful response for fetching all products', function () {
                     'name',
                     'display_name'
                 ],
+                'fishes' => [[
+                    'id',
+                    'name',
+                    'days_on_sale',
+                    'supplier'
+                ]],
                 'created_at',
                 'updated_at'
             ]]
@@ -40,7 +52,12 @@ it('returns a successful response for fetching all products', function () {
 
 it('returns a successful response for fetching a single product', function () {
     $category = Category::factory()->create();
+    $fish = Fish::factory()->create();
     $product = Product::factory()->create(['category_id' => $category->id]);
+    $product->fishes()->attach($fish->id, [
+        'days_on_sale' => 15,
+        'supplier' => 'Test Supplier'
+    ]);
 
     $response = $this->getJson("/api/v2/products/{$product->id}");
 
@@ -57,6 +74,12 @@ it('returns a successful response for fetching a single product', function () {
                     'name',
                     'display_name'
                 ],
+                'fishes' => [[
+                    'id',
+                    'name',
+                    'days_on_sale',
+                    'supplier'
+                ]],
                 'created_at',
                 'updated_at'
             ]

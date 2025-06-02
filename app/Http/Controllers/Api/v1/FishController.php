@@ -22,8 +22,19 @@ class FishController extends Controller
      * Get a list of all fishes.
      *
      * @group Fishes V1
+     * @authenticated
      *
-     * @response 200 {"data": [{"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}]}
+     * @response 200 {
+     *    "data": [
+     *      {
+     *        "id": 1,
+     *        "name": "Salmon",
+     *        "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+     *        "type": ["Freshwater"],
+     *        "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui."
+     *      }
+     *    ]
+     * }
      * @deprecated Use v2 API endpoint instead
      */
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -37,10 +48,19 @@ class FishController extends Controller
      * Get a specific fish.
      *
      * @group Fishes V1
+     * @authenticated
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
-     * @response 200 {"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}
+     * @response 200 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Salmon",
+     *      "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+     *      "type": ["Freshwater"],
+     *      "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui."
+     *    }
+     * }
      * @deprecated Use v2 API endpoint instead
      */
     public function show(Fish $fish): FishResource
@@ -52,12 +72,23 @@ class FishController extends Controller
      * Store a new fish.
      *
      * @group Fishes V1
+     * @authenticated
      *
      * @bodyParam name string required The name of the fish. Example: Salmon
-     * @bodyParam type string required The type of the fish. Example: Freshwater
-     * @bodyParam price number required The price of the fish. Example: 10.5
+     * @bodyParam type string required The type of water where the fish lives (Freshwater or Saltwater). Example: Freshwater
+     * @bodyParam price number required The price of the fish in dollars. Example: 10.5
+     * @bodyParam description string required A detailed description of the fish. Example: A popular fish known for its pink flesh and rich flavor.
+     * @bodyParam photo file The image file of the fish. Must be a valid image file (jpg, png, gif).
      *
-     * @response 201 {"id": 1, "name": "Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}
+     * @response 201 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Salmon",
+     *      "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+     *      "type": ["Freshwater"],
+     *      "description": "A popular fish known for its pink flesh and rich flavor."
+     *    }
+     * }
      * @deprecated Use v2 API endpoint instead
      */
     public function store(StoreFishRequest $request): FishResource
@@ -85,13 +116,24 @@ class FishController extends Controller
      * Update an existing fish.
      *
      * @group Fishes V1
+     * @authenticated
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
      * @bodyParam name string required The name of the fish. Example: Salmon
-     * @bodyParam type string required The type of the fish. Example: Freshwater
+     * @bodyParam type string required The type of water where the fish lives (Freshwater or Saltwater). Example: Freshwater
+     * @bodyParam description string required A detailed description of the fish. Example: A popular fish known for its pink flesh and rich flavor.
+     * @bodyParam photo file The image file of the fish. Must be a valid image file (jpg, png, gif).
      *
-     * @response 200 {"id": 1, "name": "Updated Salmon", "image": "https://via.placeholder.com/640x480.png/007777?text=sint", "type": ["Freshwater"], "description": "Et consectetur nisi excepturi esse aut. Minima quae mollitia corporis ut qui. Iusto velit aut fugit incidunt quam facere. Consequatur vel quia iste illum tempore."}
+     * @response 200 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Updated Salmon",
+     *      "image": "https://via.placeholder.com/640x480.png/007777?text=sint",
+     *      "type": ["Freshwater"],
+     *      "description": "Updated description of the fish."
+     *    }
+     * }
      * @deprecated Use v2 API endpoint instead
      */
     public function update(Fish $fish, StoreFishRequest $request): FishResource
@@ -112,6 +154,7 @@ class FishController extends Controller
      * Delete a specific fish.
      *
      * @group Fishes V1
+     * @authenticated
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
@@ -122,6 +165,6 @@ class FishController extends Controller
     {
         $fish->delete();
 
-        return response()->json(['message' => 'Fish deleted successfully'], 200);
+        return response()->json(null, 200);
     }
 }

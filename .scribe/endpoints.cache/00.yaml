@@ -172,7 +172,7 @@ endpoints:
         name: diet
         description: ''
         required: true
-        example: Herbivore
+        example: Carnivore
         type: string
         enumValues:
           - Carnivore
@@ -235,7 +235,7 @@ endpoints:
         name: characteristics.state
         description: ''
         required: true
-        example: 'Biological rest'
+        example: Allowed
         type: string
         enumValues:
           - Allowed
@@ -332,13 +332,13 @@ endpoints:
       scientific_name: 'n'
       description: 'Eius et animi quos velit et.'
       average_size_cm: 1
-      diet: Herbivore
+      diet: Carnivore
       lifespan_years: 42
       habitat: l
       conservation_status: j
       type: Freshwater
       characteristics:
-        state: 'Biological rest'
+        state: Allowed
         temperature_range: b
         ph_range: 'n'
         salinity: 0
@@ -522,7 +522,7 @@ endpoints:
         name: characteristics.state
         description: ''
         required: true
-        example: 'Biological rest'
+        example: Forbidden
         type: string
         enumValues:
           - Allowed
@@ -615,7 +615,7 @@ endpoints:
       conservation_status: j
       type: Freshwater
       characteristics:
-        state: 'Biological rest'
+        state: Forbidden
         temperature_range: b
         ph_range: 'n'
         salinity: 0

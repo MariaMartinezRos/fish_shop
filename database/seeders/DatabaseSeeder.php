@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             TransactionSeeder::class,
             CategorySeeder::class,
-            ProductSeeder::class,
-            UserSeeder::class,
             FishSeeder::class,
+            ProductSeeder::class,
+            UserSeeder::class,  
             TypeWaterSeeder::class,
         ]);
     }

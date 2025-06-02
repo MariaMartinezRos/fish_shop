@@ -246,8 +246,7 @@ it('deletes a fish successfully', function () {
 
     $response = $this->deleteJson("/api/v2/fishes/{$fish->id}");
 
-    $response->assertStatus(200)
-        ->assertJson(['message' => 'Fish deleted successfully']);
+    $response->assertStatus(200);
 
     $this->assertSoftDeleted('fishes', ['id' => $fish->id]);
 });

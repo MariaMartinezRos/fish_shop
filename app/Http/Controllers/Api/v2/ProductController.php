@@ -17,12 +17,28 @@ class ProductController extends Controller
      * Get a list of all products.
      *
      * @group Products V2
+     * @authenticated
      *
-     * @response 200 {"data": [{"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}]}
+     * @response 200 {
+     *    "data": [
+     *      {
+     *        "id": 1,
+     *        "name": "Salmon",
+     *        "description": "Fresh salmon from local waters",
+     *        "price": 19.99,
+     *        "stock": 100,
+     *        "category": {
+     *          "id": 1,
+     *          "name": "Frozen",
+     *          "display_name": "Frozen Fish"
+     *        }
+     *      }
+     *    ]
+     * }
      */
     public function index(): AnonymousResourceCollection
     {
-        $products = Product::with('category')->get();
+        $products = Product::with(['category', 'fishes'])->get();
         return ProductResource::collection($products);
     }
 
@@ -30,29 +46,58 @@ class ProductController extends Controller
      * Get a specific product.
      *
      * @group Products V2
+     * @authenticated
      *
      * @urlParam product int required The ID of the product. Example: 1
      *
-     * @response 200 {"data": {"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}
+     * @response 200 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Salmon",
+     *      "description": "Fresh salmon from local waters",
+     *      "price": 19.99,
+     *      "stock": 100,
+     *      "category": {
+     *        "id": 1,
+     *        "name": "Frozen",
+     *        "display_name": "Frozen Fish"
+     *      }
+     *    }
+     * }
      * @response 404 {"message": "Product not found"}
      */
     public function show(Product $product): ProductResource
     {
-        return new ProductResource($product->load('category'));
+        return new ProductResource($product->load(['category', 'fishes']));
     }
 
     /**
      * Store a new product.
      *
      * @group Products V2
+     * @authenticated
      *
      * @bodyParam name string required The name of the product. Example: Salmon
-     * @bodyParam description string required The description of the product. Example: Fresh salmon
-     * @bodyParam price number required The price of the product. Example: 19.99
-     * @bodyParam stock integer required The stock quantity. Example: 100
-     * @bodyParam category_id integer required The ID of the category. Example: 1
+     * @bodyParam description string required A detailed description of the product. Example: Fresh salmon from local waters, caught and processed within 24 hours.
+     * @bodyParam price number required The price of the product in dollars. Example: 19.99
+     * @bodyParam stock integer required The current stock quantity. Example: 100
+     * @bodyParam category_id integer required The ID of the category this product belongs to. Example: 1
      *
-     * @response 201 {"data": {"id": 1, "name": "Salmon", "description": "Fresh salmon", "price": 19.99, "stock": 100, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}
+     * @response 201 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Salmon",
+     *      "description": "Fresh salmon from local waters",
+     *      "price": 19.99,
+     *      "stock": 100,
+     *      "category": {
+     *        "id": 1,
+     *        "name": "Frozen",
+     *        "display_name": "Frozen Fish"
+     *      }
+     *    }
+     * }
+     * @response 422 {"message": "The given data was invalid.", "errors": {"name": ["The name field is required."]}}
      */
     public function store(StoreProductRequest $request): ProductResource
     {
@@ -66,17 +111,32 @@ class ProductController extends Controller
      * Update an existing product.
      *
      * @group Products V2
+     * @authenticated
      *
      * @urlParam product int required The ID of the product. Example: 1
      *
      * @bodyParam name string required The name of the product. Example: Salmon
-     * @bodyParam description string required The description of the product. Example: Fresh salmon
-     * @bodyParam price number required The price of the product. Example: 19.99
-     * @bodyParam stock integer required The stock quantity. Example: 100
-     * @bodyParam category_id integer required The ID of the category. Example: 1
+     * @bodyParam description string required A detailed description of the product. Example: Fresh salmon from local waters, caught and processed within 24 hours.
+     * @bodyParam price number required The price of the product in dollars. Example: 19.99
+     * @bodyParam stock integer required The current stock quantity. Example: 100
+     * @bodyParam category_id integer required The ID of the category this product belongs to. Example: 1
      *
-     * @response 200 {"data": {"id": 1, "name": "Updated Salmon", "description": "Updated description", "price": 24.99, "stock": 50, "category": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish"}}}
+     * @response 200 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Updated Salmon",
+     *      "description": "Updated description",
+     *      "price": 24.99,
+     *      "stock": 50,
+     *      "category": {
+     *        "id": 1,
+     *        "name": "Frozen",
+     *        "display_name": "Frozen Fish"
+     *      }
+     *    }
+     * }
      * @response 404 {"message": "Product not found"}
+     * @response 422 {"message": "The given data was invalid.", "errors": {"name": ["The name field is required."]}}
      */
     public function update(UpdateProductRequest $request, Product $product): ProductResource
     {
@@ -90,11 +150,11 @@ class ProductController extends Controller
      * Delete a specific product.
      *
      * @group Products V2
+     * @authenticated
      *
      * @urlParam product int required The ID of the product. Example: 1
      *
      * @response 204 {"message": "Product deleted successfully"}
-     * @response 404 {"message": "Product not found"}
      */
     public function destroy(Product $product): JsonResponse
     {

@@ -15,6 +15,7 @@ class TransactionController extends Controller
      * Get a list of all transactions.
      *
      * @group Transactions V2
+     * @authenticated
      *
      * @response 200 {
      *    "data": [
@@ -29,16 +30,12 @@ class TransactionController extends Controller
      *        "date_time": "2024-02-11T18:24:59.000000Z",
      *        "transaction_number": "TRX123456",
      *        "sale_id": 1,
-     *        "user": {
-     *          "id": 1,
-     *          "name": "John Doe",
-     *          "email": "john@example.com"
-     *        },
+
      *        "created_at": "2024-02-11T18:24:59.000000Z",
      *        "updated_at": "2024-02-11T18:24:59.000000Z"
      *      }
      *    ]
-     *  }
+     * }
      */
     public function index()
     {
@@ -51,6 +48,7 @@ class TransactionController extends Controller
      * Get a specific transaction.
      *
      * @group Transactions V2
+     * @authenticated
      *
      * @urlParam transaction int required The ID of the transaction. Example: 1
      *
@@ -66,15 +64,12 @@ class TransactionController extends Controller
      *       "date_time": "2024-02-11T18:24:59.000000Z",
      *       "transaction_number": "TRX123456",
      *       "sale_id": 1,
-     *       "user": {
-     *         "id": 1,
-     *         "name": "John Doe",
-     *         "email": "john@example.com"
-     *       },
+
      *       "created_at": "2024-02-11T18:24:59.000000Z",
      *       "updated_at": "2024-02-11T18:24:59.000000Z"
      *     }
      * }
+     * @response 404 {"message": "Transaction not found"}
      */
     public function show(Transaction $transaction)
     {
@@ -85,16 +80,17 @@ class TransactionController extends Controller
      * Store a new transaction.
      *
      * @group Transactions V2
+     * @authenticated
      *
-     * @bodyParam tpv string required The TPV identifier. Example: TPV001
-     * @bodyParam serial_number string required The serial number. Example: SN123456
-     * @bodyParam terminal_number string required The terminal number. Example: TN789012
-     * @bodyParam operation string required The operation type. Example: SALE
-     * @bodyParam amount numeric required The transaction amount. Example: 150.50
-     * @bodyParam card_number string required The card number. Example: 4111111111111111
-     * @bodyParam date_time date required The transaction date and time. Example: 2024-02-11 18:24:59
-     * @bodyParam transaction_number string required The transaction number. Example: TRX123456
-     * @bodyParam sale_id integer required The sale ID. Example: 1
+     * @bodyParam tpv string required The TPV (Point of Sale Terminal) identifier. Example: TPV001
+     * @bodyParam serial_number string required The unique serial number of the terminal. Example: SN123456
+     * @bodyParam terminal_number string required The terminal number used for the transaction. Example: TN789012
+     * @bodyParam operation string required The type of operation (SALE, REFUND, VOID). Example: SALE
+     * @bodyParam amount numeric required The transaction amount in dollars. Example: 150.50
+     * @bodyParam card_number string required The masked card number used for the transaction. Example: 4111111111111111
+     * @bodyParam date_time datetime required The date and time of the transaction. Example: 2024-02-11 18:24:59
+     * @bodyParam transaction_number string required The unique transaction reference number. Example: TRX123456
+     * @bodyParam sale_id integer required The ID of the associated sale. Example: 1
      *
      * @response 201 {
      *     "data": {
@@ -108,15 +104,12 @@ class TransactionController extends Controller
      *       "date_time": "2024-02-11T18:24:59.000000Z",
      *       "transaction_number": "TRX123456",
      *       "sale_id": 1,
-     *       "user": {
-     *         "id": 1,
-     *         "name": "John Doe",
-     *         "email": "john@example.com"
-     *       },
+
      *       "created_at": "2024-02-11T18:24:59.000000Z",
      *       "updated_at": "2024-02-11T18:24:59.000000Z"
      *     }
      * }
+     * @response 422 {"message": "The given data was invalid.", "errors": {"tpv": ["The tpv field is required."]}}
      */
     public function store(StoreTransactionRequest $request)
     {
@@ -130,18 +123,19 @@ class TransactionController extends Controller
      * Update an existing transaction.
      *
      * @group Transactions V2
+     * @authenticated
      *
      * @urlParam transaction int required The ID of the transaction. Example: 1
      *
-     * @bodyParam tpv string required The TPV identifier. Example: TPV001
-     * @bodyParam serial_number string required The serial number. Example: SN123456
-     * @bodyParam terminal_number string required The terminal number. Example: TN789012
-     * @bodyParam operation string required The operation type. Example: SALE
-     * @bodyParam amount numeric required The transaction amount. Example: 150.50
-     * @bodyParam card_number string required The card number. Example: 4111111111111111
-     * @bodyParam date_time date required The transaction date and time. Example: 2024-02-11 18:24:59
-     * @bodyParam transaction_number string required The transaction number. Example: TRX123456
-     * @bodyParam sale_id integer required The sale ID. Example: 1
+     * @bodyParam tpv string required The TPV (Point of Sale Terminal) identifier. Example: TPV001
+     * @bodyParam serial_number string required The unique serial number of the terminal. Example: SN123456
+     * @bodyParam terminal_number string required The terminal number used for the transaction. Example: TN789012
+     * @bodyParam operation string required The type of operation (SALE, REFUND, VOID). Example: SALE
+     * @bodyParam amount numeric required The transaction amount in dollars. Example: 150.50
+     * @bodyParam card_number string required The masked card number used for the transaction. Example: 4111111111111111
+     * @bodyParam date_time datetime required The date and time of the transaction. Example: 2024-02-11 18:24:59
+     * @bodyParam transaction_number string required The unique transaction reference number. Example: TRX123456
+     * @bodyParam sale_id integer required The ID of the associated sale. Example: 1
      *
      * @response 200 {
      *     "data": {
@@ -155,15 +149,12 @@ class TransactionController extends Controller
      *       "date_time": "2024-02-11T18:24:59.000000Z",
      *       "transaction_number": "TRX123456",
      *       "sale_id": 1,
-     *       "user": {
-     *         "id": 1,
-     *         "name": "John Doe",
-     *         "email": "john@example.com"
-     *       },
      *       "created_at": "2024-02-11T18:24:59.000000Z",
      *       "updated_at": "2024-02-11T18:24:59.000000Z"
      *     }
      * }
+     * @response 404 {"message": "Transaction not found"}
+     * @response 422 {"message": "The given data was invalid.", "errors": {"tpv": ["The tpv field is required."]}}
      */
     public function update(UpdateTransactionRequest $request, Transaction $transaction)
     {
@@ -177,6 +168,7 @@ class TransactionController extends Controller
      * Delete a transaction.
      *
      * @group Transactions V2
+     * @authenticated
      *
      * @urlParam transaction int required The ID of the transaction. Example: 1
      *

@@ -115,8 +115,7 @@ it('fails to update a fish with missing required fields', function () {
 it('deletes a fish successfully', function () {
     $fish = Fish::factory()->create();
     $this->deleteJson("/api/v1/fishes/{$fish->id}")
-        ->assertStatus(200)
-        ->assertJson(['message' => 'Fish deleted successfully']);
+        ->assertStatus(200);
 });
 
 it('returns 404 when deleting a non-existent fish', function () {

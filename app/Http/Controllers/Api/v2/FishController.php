@@ -17,6 +17,7 @@ class FishController extends Controller
      * Get a list of all fishes.
      *
      * @group Fishes V2
+     * @authenticated
      *
      * @response 200 {
      *    "data": [
@@ -54,7 +55,7 @@ class FishController extends Controller
      *        "updated_at": "2024-02-11T18:24:59.000000Z"
      *      }
      *    ]
-     *  }
+     * }
      */
     public function index()
     {
@@ -67,6 +68,7 @@ class FishController extends Controller
      * Get a specific fish.
      *
      * @group Fishes V2
+     * @authenticated
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
@@ -115,26 +117,27 @@ class FishController extends Controller
      * Store a new fish.
      *
      * @group Fishes V2
+     * @authenticated
      *
-     * @bodyParam name string required The name of the fish. Example: Salmon
-     * @bodyParam scientific_name string The scientific name of the fish. Example: Salmo salar
-     * @bodyParam image file The image of the fish.
-     * @bodyParam description string A description of the fish.
-     * @bodyParam average_size_cm numeric The average size in centimeters.
-     * @bodyParam diet string required The diet type (Carnivore, Herbivore, Omnivore).
-     * @bodyParam lifespan_years integer The lifespan in years.
-     * @bodyParam habitat string The natural habitat.
-     * @bodyParam conservation_status string The conservation status.
-     * @bodyParam type string required The type of water (Saltwater, Freshwater).
-     * @bodyParam characteristics array required The water characteristics.
-     * @bodyParam characteristics.state string required The state (Allowed, Forbidden, Biological rest).
-     * @bodyParam characteristics.temperature_range string required The temperature range.
-     * @bodyParam characteristics.ph_range string required The pH range.
-     * @bodyParam characteristics.salinity numeric The salinity level.
-     * @bodyParam characteristics.oxygen_level numeric The oxygen level.
-     * @bodyParam characteristics.migration_pattern string required The migration pattern.
-     * @bodyParam characteristics.recorded_since integer The year recorded since.
-     * @bodyParam characteristics.notes string Additional notes.
+     * @bodyParam name string required The common name of the fish. Example: Salmon
+     * @bodyParam scientific_name string required The scientific name of the fish. Example: Salmo salar
+     * @bodyParam image file The image file of the fish. Must be a valid image file (jpg, png, gif).
+     * @bodyParam description string required A detailed description of the fish's characteristics and behavior.
+     * @bodyParam average_size_cm numeric The average size of the fish in centimeters.
+     * @bodyParam diet string required The diet type of the fish (Carnivore, Herbivore, Omnivore).
+     * @bodyParam lifespan_years integer The typical lifespan of the fish in years.
+     * @bodyParam habitat string required The natural habitat where the fish is commonly found.
+     * @bodyParam conservation_status string required The conservation status of the fish (e.g., Least Concern, Endangered).
+     * @bodyParam type string required The type of water where the fish lives (Saltwater, Freshwater).
+     * @bodyParam characteristics array required The water characteristics required for the fish.
+     * @bodyParam characteristics.state string required The state of the fish (Allowed, Forbidden, Biological rest).
+     * @bodyParam characteristics.temperature_range string required The optimal temperature range for the fish.
+     * @bodyParam characteristics.ph_range string required The optimal pH range for the fish.
+     * @bodyParam characteristics.salinity numeric The optimal salinity level for the fish.
+     * @bodyParam characteristics.oxygen_level numeric The required oxygen level for the fish.
+     * @bodyParam characteristics.migration_pattern string required The migration pattern of the fish.
+     * @bodyParam characteristics.recorded_since integer The year when the fish was first recorded.
+     * @bodyParam characteristics.notes string Additional notes about the fish's characteristics.
      *
      * @response 201 {
      *     "data": {
@@ -203,28 +206,29 @@ class FishController extends Controller
      * Update an existing fish.
      *
      * @group Fishes V2
+     * @authenticated
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
-     * @bodyParam name string required The name of the fish. Example: Salmon
-     * @bodyParam scientific_name string The scientific name of the fish. Example: Salmo salar
-     * @bodyParam image file The image of the fish.
-     * @bodyParam description string A description of the fish.
-     * @bodyParam average_size_cm numeric The average size in centimeters.
-     * @bodyParam diet string required The diet type (Carnivore, Herbivore, Omnivore).
-     * @bodyParam lifespan_years integer The lifespan in years.
-     * @bodyParam habitat string The natural habitat.
-     * @bodyParam conservation_status string The conservation status.
-     * @bodyParam type string required The type of water (Saltwater, Freshwater).
-     * @bodyParam characteristics array required The water characteristics.
-     * @bodyParam characteristics.state string required The state (Allowed, Forbidden, Biological rest).
-     * @bodyParam characteristics.temperature_range string required The temperature range.
-     * @bodyParam characteristics.ph_range string required The pH range.
-     * @bodyParam characteristics.salinity numeric The salinity level.
-     * @bodyParam characteristics.oxygen_level numeric The oxygen level.
-     * @bodyParam characteristics.migration_pattern string required The migration pattern.
-     * @bodyParam characteristics.recorded_since integer The year recorded since.
-     * @bodyParam characteristics.notes string Additional notes.
+     * @bodyParam name string required The common name of the fish. Example: Salmon
+     * @bodyParam scientific_name string required The scientific name of the fish. Example: Salmo salar
+     * @bodyParam image file The image file of the fish. Must be a valid image file (jpg, png, gif).
+     * @bodyParam description string required A detailed description of the fish's characteristics and behavior.
+     * @bodyParam average_size_cm numeric The average size of the fish in centimeters.
+     * @bodyParam diet string required The diet type of the fish (Carnivore, Herbivore, Omnivore).
+     * @bodyParam lifespan_years integer The typical lifespan of the fish in years.
+     * @bodyParam habitat string required The natural habitat where the fish is commonly found.
+     * @bodyParam conservation_status string required The conservation status of the fish (e.g., Least Concern, Endangered).
+     * @bodyParam type string required The type of water where the fish lives (Saltwater, Freshwater).
+     * @bodyParam characteristics array required The water characteristics required for the fish.
+     * @bodyParam characteristics.state string required The state of the fish (Allowed, Forbidden, Biological rest).
+     * @bodyParam characteristics.temperature_range string required The optimal temperature range for the fish.
+     * @bodyParam characteristics.ph_range string required The optimal pH range for the fish.
+     * @bodyParam characteristics.salinity numeric The optimal salinity level for the fish.
+     * @bodyParam characteristics.oxygen_level numeric The required oxygen level for the fish.
+     * @bodyParam characteristics.migration_pattern string required The migration pattern of the fish.
+     * @bodyParam characteristics.recorded_since integer The year when the fish was first recorded.
+     * @bodyParam characteristics.notes string Additional notes about the fish's characteristics.
      *
      * @response 200 {
      *     "data": {
@@ -291,16 +295,17 @@ class FishController extends Controller
      * Delete a specific fish.
      *
      * @group Fishes V2
+     * @authenticated
      *
      * @urlParam fish int required The ID of the fish. Example: 1
      *
-     * @response 204 {"message": "Fish deleted successfully"}
+     * @response 200
      */
     public function destroy(Fish $fish)
     {
         $fish->delete();
         Cache::forget('fishes');
 
-        return response()->json(['message' => 'Fish deleted successfully'], 200);
+        return response()->json(null, 200);
     }
 }

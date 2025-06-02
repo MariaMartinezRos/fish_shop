@@ -52,4 +52,10 @@ class Fish extends Model
                 'notes'
             ]);
     }
+
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class)
+            ->withPivot(['days_on_sale', 'supplier']);
+    }
 }

@@ -22,6 +22,19 @@
             <p class="text-2xl font-bold text-green-600 mt-4">{{ $product['price_per_kg'] }} €/kg</p>
             <p class="text-gray-600 mt-4 text-lg">{{ __('Amount: ').$product['stock_kg'] }} kg</p>
 
+            @if(Auth::check() && Auth::user()->role_id === 1)
+                @foreach($product->fishes as $fish)
+                    <div class="mt-4">
+                        @if($fish->pivot->days_on_sale)
+                            <p class="text-gray-600 mt-2">{{ __('Days for sale: ') }} {{ $fish->pivot->days_on_sale }}</p>
+                        @endif
+                        @if($fish->pivot->supplier)
+                            <p class="text-gray-600 mt-2">{{ __('Supplier: ') }} {{ $fish->pivot->supplier }}</p>
+                        @endif
+                    </div>
+                @endforeach
+            @endif
+
             <!-- Botones de acción -->
             <div class="mt-6 flex justify-center space-x-4">
                 @if(Auth::check() && Auth::user()->role_id === 1)

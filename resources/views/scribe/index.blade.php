@@ -1301,12 +1301,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "scientific_name=n"\
     --form "description=Eius et animi quos velit et."\
     --form "average_size_cm=1"\
-    --form "diet=Herbivore"\
+    --form "diet=Carnivore"\
     --form "lifespan_years=42"\
     --form "habitat=l"\
     --form "conservation_status=j"\
     --form "type=Freshwater"\
-    --form "characteristics[state]=Biological rest"\
+    --form "characteristics[state]=Allowed"\
     --form "characteristics[temperature_range]=b"\
     --form "characteristics[ph_range]=n"\
     --form "characteristics[salinity]=0"\
@@ -1315,7 +1315,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "characteristics[recorded_since]=17"\
     --form "characteristics[notes]=architecto"\
     --form "price=10.5"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\phpCA98.tmp" </code></pre></div>
+    --form "image=@C:\Users\gines\AppData\Local\Temp\php1E29.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1333,12 +1333,12 @@ body.append('name', 'Salmon');
 body.append('scientific_name', 'n');
 body.append('description', 'Eius et animi quos velit et.');
 body.append('average_size_cm', '1');
-body.append('diet', 'Herbivore');
+body.append('diet', 'Carnivore');
 body.append('lifespan_years', '42');
 body.append('habitat', 'l');
 body.append('conservation_status', 'j');
 body.append('type', 'Freshwater');
-body.append('characteristics[state]', 'Biological rest');
+body.append('characteristics[state]', 'Allowed');
 body.append('characteristics[temperature_range]', 'b');
 body.append('characteristics[ph_range]', 'n');
 body.append('characteristics[salinity]', '0');
@@ -1475,7 +1475,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\phpCA98.tmp</code></p>
+<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\php1E29.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -1505,10 +1505,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="diet"                data-endpoint="POSTapi-v1-fishes"
-               value="Herbivore"
+               value="Carnivore"
                data-component="body">
     <br>
-<p>Example: <code>Herbivore</code></p>
+<p>Example: <code>Carnivore</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Carnivore</code></li> <li><code>Herbivore</code></li> <li><code>Omnivore</code></li></ul>
         </div>
@@ -1571,10 +1571,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="characteristics.state"                data-endpoint="POSTapi-v1-fishes"
-               value="Biological rest"
+               value="Allowed"
                data-component="body">
     <br>
-<p>Example: <code>Biological rest</code></p>
+<p>Example: <code>Allowed</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Allowed</code></li> <li><code>Forbidden</code></li> <li><code>Biological rest</code></li></ul>
                     </div>
@@ -1699,7 +1699,7 @@ Must be one of:
     \"conservation_status\": \"j\",
     \"type\": \"Freshwater\",
     \"characteristics\": {
-        \"state\": \"Biological rest\",
+        \"state\": \"Forbidden\",
         \"temperature_range\": \"b\",
         \"ph_range\": \"n\",
         \"salinity\": 0,
@@ -1733,7 +1733,7 @@ let body = {
     "conservation_status": "j",
     "type": "Freshwater",
     "characteristics": {
-        "state": "Biological rest",
+        "state": "Forbidden",
         "temperature_range": "b",
         "ph_range": "n",
         "salinity": 0,
@@ -1989,10 +1989,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="characteristics.state"                data-endpoint="PUTapi-v1-fishes--fish_id-"
-               value="Biological rest"
+               value="Forbidden"
                data-component="body">
     <br>
-<p>Example: <code>Biological rest</code></p>
+<p>Example: <code>Forbidden</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Allowed</code></li> <li><code>Forbidden</code></li> <li><code>Biological rest</code></li></ul>
                     </div>
@@ -2575,7 +2575,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "conservation_status=architecto"\
     --form "type=architecto"\
     --form "characteristics[]=architecto"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\phpCAE9.tmp" </code></pre></div>
+    --form "image=@C:\Users\gines\AppData\Local\Temp\php1E8A.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2756,7 +2756,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>The image of the fish. Example: <code>C:\Users\gines\AppData\Local\Temp\phpCAE9.tmp</code></p>
+<p>The image of the fish. Example: <code>C:\Users\gines\AppData\Local\Temp\php1E8A.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -2962,7 +2962,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "conservation_status=architecto"\
     --form "type=architecto"\
     --form "characteristics[]=architecto"\
-    --form "image=@C:\Users\gines\AppData\Local\Temp\phpCAFB.tmp" </code></pre></div>
+    --form "image=@C:\Users\gines\AppData\Local\Temp\php1EAB.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -3166,7 +3166,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>The image of the fish. Example: <code>C:\Users\gines\AppData\Local\Temp\phpCAFB.tmp</code></p>
+<p>The image of the fish. Example: <code>C:\Users\gines\AppData\Local\Temp\php1EAB.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;

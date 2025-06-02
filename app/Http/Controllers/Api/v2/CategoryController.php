@@ -16,8 +16,18 @@ class CategoryController extends Controller
      * Get a list of all categories.
      *
      * @group Categories V2
+     * @authenticated
      *
-     * @response 200 {"data": [{"id": 1, "name": "Freshwater", "display_name": "Freshwater Fish", "description": "Fish that live in freshwater environments"}]}
+     * @response 200 {
+     *    "data": [
+     *      {
+     *        "id": 1,
+     *        "name": "Frozen",
+     *        "display_name": "Frozen Fish",
+     *        "description": "Fish that live in freshwater environments"
+     *      }
+     *    ]
+     * }
      */
     public function index(): AnonymousResourceCollection
     {
@@ -29,12 +39,21 @@ class CategoryController extends Controller
      * Store a new category.
      *
      * @group Categories V2
+     * @authenticated
      *
-     * @bodyParam name string required The unique identifier of the category. Example: freshwater
-     * @bodyParam display_name string required The display name of the category. Example: Freshwater Fish
-     * @bodyParam description string required The description of the category. Example: Fish that live in freshwater environments
+     * @bodyParam name string required The unique identifier of the category (lowercase, no spaces). Example: freshwater
+     * @bodyParam display_name string required The human-readable name of the category. Example: Freshwater Fish
+     * @bodyParam description string required A detailed description of the category and its characteristics. Example: Fish that live in freshwater environments such as rivers, lakes, and ponds.
      *
-     * @response 201 {"data": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish", "description": "Fish that live in freshwater environments"}}
+     * @response 201 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Frozen",
+     *      "display_name": "Frozen Fish",
+     *      "description": "Fish that live in freshwater environments"
+     *    }
+     * }
+     * @response 422 {"message": "The given data was invalid.", "errors": {"name": ["The name field is required."]}}
      */
     public function store(StoreCategoryRequest $request): CategoryResource
     {
@@ -46,10 +65,18 @@ class CategoryController extends Controller
      * Get a specific category.
      *
      * @group Categories V2
+     * @authenticated
      *
      * @urlParam category int required The ID of the category. Example: 1
      *
-     * @response 200 {"data": {"id": 1, "name": "freshwater", "display_name": "Freshwater Fish", "description": "Fish that live in freshwater environments"}}
+     * @response 200 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Frozen",
+     *      "display_name": "Frozen Fish",
+     *      "description": "Fish that live in freshwater environments"
+     *    }
+     * }
      * @response 404 {"message": "Category not found"}
      */
     public function show(Category $category): CategoryResource
@@ -61,14 +88,23 @@ class CategoryController extends Controller
      * Update an existing category.
      *
      * @group Categories V2
+     * @authenticated
      *
      * @urlParam category int required The ID of the category. Example: 1
      *
-     * @bodyParam display_name string required The display name of the category. Example: Freshwater Fish
-     * @bodyParam description string required The description of the category. Example: Fish that live in freshwater environments
+     * @bodyParam display_name string required The human-readable name of the category. Example: Freshwater Fish
+     * @bodyParam description string required A detailed description of the category and its characteristics. Example: Fish that live in freshwater environments such as rivers, lakes, and ponds.
      *
-     * @response 200 {"data": {"id": 1, "name": "freshwater", "display_name": "Updated Freshwater Fish", "description": "Updated description"}}
+     * @response 200 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Frozen",
+     *      "display_name": "Updated Frozen Fish",
+     *      "description": "Updated description of freshwater fish and their habitats"
+     *    }
+     * }
      * @response 404 {"message": "Category not found"}
+     * @response 422 {"message": "The given data was invalid.", "errors": {"display_name": ["The display name field is required."]}}
      */
     public function update(UpdateCategoryRequest $request, Category $category): CategoryResource
     {
@@ -80,11 +116,11 @@ class CategoryController extends Controller
      * Delete a specific category.
      *
      * @group Categories V2
+     * @authenticated
      *
      * @urlParam category int required The ID of the category. Example: 1
      *
      * @response 204 {"message": "Category deleted successfully"}
-     * @response 404 {"message": "Category not found"}
      */
     public function destroy(Category $category): JsonResponse
     {
