@@ -5,14 +5,13 @@ use App\Models\User;
 use App\Models\Role;
 
 it('creates user created event with user model', function () {
-    $role = Role::factory()->create();
-    $user = User::factory()->create(['role_id' => $role->id]);
-
+    $user = User::factory()->create();
     $event = new UserCreated($user);
 
     expect($event->user)->toBe($user)
         ->and($event->user->id)->toBe($user->id)
-        ->and($event->user->role_id)->toBe($role->id);
+        ->and($event->broadcastOn())->toBeArray()
+        ->and($event->broadcastOn()[0])->toBeInstanceOf(\Illuminate\Broadcasting\PrivateChannel::class);
 });
 
 it('handles user with all attributes', function () {

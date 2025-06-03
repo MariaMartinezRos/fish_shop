@@ -24,7 +24,7 @@ class CleanTests extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): void
+    public function handle(): int
     {
         $this->info('Clearing caches...');
 
@@ -33,9 +33,11 @@ class CleanTests extends Command
         $this->info('All caches cleared successfully!');
         $this->info('Running tests...');
 
-        Artisan::call('test', [], $this->getOutput());
+        $exitCode = Artisan::call('test', [], $this->getOutput());
 
         $this->info('All tests ejecuted successfully!');
+
+        return $exitCode;
 
     }
 }

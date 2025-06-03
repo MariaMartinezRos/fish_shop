@@ -7,12 +7,12 @@ use App\Models\Category;
 it('creates product added event with product model', function () {
     $category = Category::factory()->create();
     $product = Product::factory()->create(['category_id' => $category->id]);
-
     $event = new ProductAdded($product);
 
     expect($event->product)->toBe($product)
         ->and($event->product->id)->toBe($product->id)
-        ->and($event->product->category_id)->toBe($category->id);
+        ->and($event->broadcastOn())->toBeArray()
+        ->and($event->broadcastOn()[0])->toBeInstanceOf(\Illuminate\Broadcasting\PrivateChannel::class);
 });
 
 it('handles product with all attributes', function () {

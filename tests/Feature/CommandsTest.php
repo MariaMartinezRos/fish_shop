@@ -2,11 +2,19 @@
 
 use App\Console\Commands\CleanAllCache;
 use App\Console\Commands\CreateCategories;
+use App\Console\Commands\CleanTests;
+use App\Console\Commands\TestVacationRequestEmail;
 use App\Jobs\GenerateWeeklyTransactionsReportJob;
+use App\Mail\VacationRequestNotification;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\VacationRequest;
 use Carbon\Carbon;
+use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Facades\Artisan;
+use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\NullOutput;
 
 it('cleans all cache', function () {
     // Arrange
@@ -95,6 +103,30 @@ it('dispatches the GenerateWeeklyTransactionsReportJob when the command is run',
     Bus::assertDispatched(GenerateWeeklyTransactionsReportJob::class);
 });
 
+it('executes clean:test command successfully', function () {
+    Artisan::shouldReceive('call')
+        ->once()
+        ->with('app:clean-all-cache')
+        ->andReturn(0);
+
+    Artisan::shouldReceive('call')
+        ->once()
+        ->with('test', [], Mockery::any())
+        ->andReturn(0);
+
+    $command = new CleanTests();
+    $command->setLaravel(app());
+
+    $input = new StringInput('');
+    $output = new NullOutput();
+    $outputStyle = new OutputStyle($input, $output);
+    $command->setOutput($outputStyle);
+
+    $exitCode = $command->handle();
+
+    expect($exitCode)->toBe(0);
+});
+
 it('runs the clean:test command and calls subcommands', function () {
     // Arrange
     Artisan::call('app:clean-all-cache');
@@ -109,3 +141,30 @@ it('runs the clean:test command and calls subcommands', function () {
         ->assertExitCode(0);
 })->skip('This test is slow because it runs all tests, but it ensures CleanTests command is covered.');
 
+it('sends test vacation request email', function () {
+    Mail::fake();
+
+    $roleAdmin = Role::factory()->create(['name' => 'admin']);
+    $admin = User::factory()->create(['role_id' => $roleAdmin->id, 'email' => 'mariaamartinezros@gmail.com']);
+
+    $roleEmployee = Role::factory()->create(['name' => 'employee']);
+    $employee = User::factory()->create(['role_id' => $roleEmployee->id, 'email' => 'test@example.com']);
+
+    $command = new TestVacationRequestEmail();
+    $command->setLaravel(app());
+
+    // Como un '''faker''' para mockear los comandos
+    $input = new StringInput('');
+    $output = new BufferedOutput();
+    $outputStyle = new OutputStyle($input, $output);
+    $command->setOutput($outputStyle);
+
+    $command->handle();
+
+    expect(User::where('email', $employee->email)->exists())->toBeTrue()
+        ->and(VacationRequest::where('user_id', User::where('email', $employee->email)->first()->id)->exists())->toBeTrue();
+
+    Mail::assertSent(VacationRequestNotification::class, function ($mail) use ($admin) {
+        return $mail->hasTo($admin->email);
+    });
+});

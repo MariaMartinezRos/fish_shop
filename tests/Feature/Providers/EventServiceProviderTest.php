@@ -15,30 +15,16 @@ use App\Models\User;
 use App\Providers\EventServiceProvider;
 use Illuminate\Support\Facades\Event;
 
-it('registers all event listeners correctly', function () {
-    // Clear any existing event listeners
-    Event::forget(UserCreated::class);
-    Event::forget(FishAdded::class);
-    Event::forget(ProductAdded::class);
-    Event::forget(PageAccessed::class);
+it('registers event listeners correctly', function () {
+    Event::fake();
 
-    // Boot the EventServiceProvider to register listeners
-    $provider = new EventServiceProvider(app());
-    $provider->boot();
+    event(new UserCreated(User::factory()->make()));
 
-    // Get all registered listeners
-    $listeners = Event::getListeners(UserCreated::class);
-
-    // Convert class names to strings for comparison
-    $listenerClasses = array_map(function($listener) {
-        return is_string($listener) ? $listener : get_class($listener);
-    }, $listeners);
-
-    expect($listenerClasses)->toContain(SendWelcomeEmail::class)
-        ->and(Event::getListeners(FishAdded::class))->toContain(SendNotificationOnFishAdded::class)
-        ->and(Event::getListeners(ProductAdded::class))->toContain(SendNotificationOnProductAdded::class)
-        ->and(Event::getListeners(PageAccessed::class))->toContain(ShowSweetAlertOnPageAccess::class);
-})->todo();
+    Event::assertListening(
+        UserCreated::class,
+        SendWelcomeEmail::class,
+    );
+});
 
 it('has correct event-listener mappings in protected $listen property', function () {
     $provider = new EventServiceProvider(app());
@@ -96,8 +82,8 @@ it('registers expected event listeners', function () {
     event(new PageAccessed($message));
 
     Event::assertListening(
-        \App\Events\UserCreated::class,
-        \App\Listeners\SendWelcomeEmail::class
+        UserCreated::class,
+        SendWelcomeEmail::class
     );
 
     Event::assertListening(
