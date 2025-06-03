@@ -29,6 +29,50 @@ it('returns a successful response for fetching a single fish', function () {
         ->assertJson(['data' => ['id' => $fish->id]]);
 });
 
+
+it('lists all fishes', function () {
+    $fishes = Fish::factory()->count(3)->create();
+
+    $response = $this->getJson('/api/v1/fishes');
+
+    $response->assertStatus(200)
+        ->assertJsonCount(3, 'data')
+        ->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'name',
+                    'image',
+                    'type',
+                    'description'
+                ]
+            ]
+        ]);
+});
+
+it('shows a specific fish', function () {
+    $fish = Fish::factory()->create();
+
+    $response = $this->getJson("/api/v1/fishes/{$fish->id}");
+
+    $response->assertStatus(200)
+        ->assertJsonStructure([
+            'data' => [
+                'id',
+                'name',
+                'image',
+                'type',
+                'description'
+            ]
+        ])
+        ->assertJson([
+            'data' => [
+                'id' => $fish->id,
+                'name' => $fish->name
+            ]
+        ]);
+});
+
 it('returns 404 for a non-existent fish', function () {
     $response = $this->getJson('/api/v1/fishes/999999');
     $response->assertStatus(404);

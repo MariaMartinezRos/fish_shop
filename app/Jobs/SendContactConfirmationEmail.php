@@ -21,6 +21,11 @@ class SendContactConfirmationEmail implements ShouldQueue
         $this->user = $user;
     }
 
+    public function getUser()
+    {
+        return $this->user;
+    }
+
     public function handle()
     {
         Mail::to($this->user->email)->queue(new ContactConfirmation($this->user));
