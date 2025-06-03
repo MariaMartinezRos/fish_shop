@@ -1,37 +1,72 @@
 <?php
 
 use App\Charts\SalesPerHourChart;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 
-    it('builds chart data and sets labels/datasets', function () {
-        // Mock the DB query to return some test data
-        DB::shouldReceive('connection->getDriverName')
-            ->andReturn('sqlite');
+beforeEach(function () {
+    // Create test transactions for today
+    $today = now()->format('Y-m-d');
+    Transaction::factory()->create([
+        'date_time' => $today . ' 10:00:00',
+        'amount' => 100
+    ]);
+    Transaction::factory()->create([
+        'date_time' => $today . ' 10:30:00',
+        'amount' => 200
+    ]);
+    Transaction::factory()->create([
+        'date_time' => $today . ' 15:00:00',
+        'amount' => 300
+    ]);
+});
 
-        DB::shouldReceive('table->select->whereDate->groupBy->orderBy->get')
-            ->andReturn(collect([
-                (object)['hour' => '10', 'total' => 100],
-                (object)['hour' => '11', 'total' => 200],
-            ]));
+it('builds chart with correct data structure', function () {
+    $chart = new SalesPerHourChart();
+    $chart->build();
 
-        $chart = new SalesPerHourChart();
-        $chart->build();
+    expect($chart->labels)->toBeArray()
+        ->and($chart->datasets)->toBeArray()
+        ->and($chart->datasets[0]->data)->toBeArray()
+        ->and($chart->datasets[0]->options)->toBeArray();
+})->todo();
 
-        expect($chart->labels)->toBe(['10', '11']);
-        expect($chart->datasets)->toHaveCount(1);
-    })->todo();
+it('aggregates sales by hour correctly', function () {
+    $chart = new SalesPerHourChart();
+    $chart->build();
 
-    it('handles empty data gracefully', function () {
-        // Mock the DB query to return empty data
-        DB::shouldReceive('connection->getDriverName')
-            ->andReturn('sqlite');
+    // Get the data from the chart
+    $data = $chart->datasets[0]->data;
+    $labels = $chart->labels;
 
-        DB::shouldReceive('table->select->whereDate->groupBy->orderBy->get')
-            ->andReturn(collect([]));
+    // Find the index for hour 10 (should have 300 total - 100 + 200)
+    $hour10Index = array_search('10', $labels);
+    expect($data[$hour10Index])->toBe(300.0);
 
-        $chart = new SalesPerHourChart();
-        $chart->build();
+    // Find the index for hour 15 (should have 300)
+    $hour15Index = array_search('15', $labels);
+    expect($data[$hour15Index])->toBe(300.0);
+})->todo();
 
-        expect($chart->labels)->toBe([]);
-        expect($chart->datasets)->toHaveCount(1);
-    })->todo();
+it('handles empty data correctly', function () {
+    // Clear all transactions
+    Transaction::query()->delete();
+
+    $chart = new SalesPerHourChart();
+    $chart->build();
+
+    expect($chart->labels)->toBeArray();
+    expect($chart->datasets)->toBeArray();
+    expect($chart->datasets[0]->data)->toBeArray();
+    expect($chart->datasets[0]->data)->toBeEmpty();
+})->todo();
+
+it('uses correct chart options', function () {
+    $chart = new SalesPerHourChart();
+    $chart->build();
+
+    $options = $chart->datasets[0]->options;
+    expect($options)->toHaveKey('backgroundColor', 'rgba(54, 162, 235, 0.2)');
+    expect($options)->toHaveKey('borderColor', 'rgba(54, 162, 235, 1)');
+    expect($options)->toHaveKey('borderWidth', 1);
+})->todo();

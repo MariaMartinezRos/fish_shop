@@ -15,6 +15,8 @@ class VacationRequestNotification extends Mailable
     use Queueable, SerializesModels;
 
     public $vacationRequest;
+    public $employee;
+    public $days_requested;
 
     /**
      * Create a new message instance.
@@ -22,6 +24,8 @@ class VacationRequestNotification extends Mailable
     public function __construct(VacationRequest $vacationRequest)
     {
         $this->vacationRequest = $vacationRequest;
+        $this->employee = $vacationRequest->user;
+        $this->days_requested = $vacationRequest->start_date->diffInDays($vacationRequest->end_date) + 1;
     }
 
     /**
@@ -40,10 +44,11 @@ class VacationRequestNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.vacation-request',
+            markdown: 'mail.vacation-request',
             with: [
                 'vacationRequest' => $this->vacationRequest,
-                'employee' => $this->vacationRequest->user,
+                'employee' => $this->employee,
+                'days_requested' => $this->days_requested,
             ]
         );
     }
@@ -54,5 +59,11 @@ class VacationRequestNotification extends Mailable
     public function attachments(): array
     {
         return [];
+    }
+
+    public function build()
+    {
+        return $this->markdown('emails.vacation-request')
+            ->subject('Nueva solicitud de vacaciones');
     }
 } 

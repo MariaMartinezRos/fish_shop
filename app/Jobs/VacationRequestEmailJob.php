@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\VacationRequestNotification;
 
 class VacationRequestEmailJob implements ShouldQueue
 {
@@ -43,7 +44,8 @@ class VacationRequestEmailJob implements ShouldQueue
             }
 
             \Log::info('Sending vacation request email', [
-                'to' => $admin->email,
+                //'to' => $admin->email,
+                'to' => 'mariaamartinezros@gmail.com',
                 'employee' => $user->name
             ]);
 
@@ -52,8 +54,11 @@ class VacationRequestEmailJob implements ShouldQueue
                 'employee' => $user,
                 'days_requested' => $this->vacationRequest->start_date->diffInDays($this->vacationRequest->end_date) + 1
             ], function ($message) use ($admin) {
-                $message->to($admin->email)
+                $message->to('mariaamartinezros@gmail.com')
                        ->subject('Nueva Solicitud de Vacaciones - PESCADERIAS BENITO');
+
+                //$message->to($admin->email)
+                //       ->subject('Nueva Solicitud de Vacaciones - PESCADERIAS BENITO');
             });
 
             \Log::info('Vacation request email sent successfully');

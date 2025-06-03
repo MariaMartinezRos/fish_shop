@@ -2,7 +2,7 @@
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 use function Pest\Laravel\actingAs;
@@ -18,7 +18,7 @@ use function Pest\Laravel\actingAs;
 |
 */
 
-uses(TestCase::class, LazilyRefreshDatabase::class)->in('Feature');
+uses(TestCase::class, RefreshDatabase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------

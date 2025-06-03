@@ -93,4 +93,9 @@ class User extends Authenticatable
 
     // email_verified_at is cast to a datetime object.
     // password is cast to a hashed value.
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
 }

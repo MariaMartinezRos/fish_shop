@@ -1,10 +1,19 @@
 <?php
 
-
 namespace App\Providers;
 
+use App\Events\FishAdded;
+use App\Events\UserCreated;
+use App\Listeners\SendNotificationOnFishAdded;
+use App\Listeners\SendWelcomeEmail;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\ProductAdded;
+use App\Listeners\SendNotificationOnProductAdded;
+use App\Events\PageAccessed;
+use App\Listeners\LogPageAccess;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -14,17 +23,20 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        \App\Events\UserCreated::class => [
-            \App\Listeners\SendWelcomeEmail::class,
+        Registered::class => [
+            SendEmailVerificationNotification::class,
         ],
-        \App\Events\FishAdded::class => [
-            \App\Listeners\SendNotificationOnFishAdded::class,
+        UserCreated::class => [
+            SendWelcomeEmail::class,
         ],
-        \App\Events\ProductAdded::class => [
-            \App\Listeners\SendNotificationOnProductAdded::class,
+        FishAdded::class => [
+            SendNotificationOnFishAdded::class,
         ],
-        \App\Events\PageAccessed::class => [
-            \App\Listeners\ShowSweetAlertOnPageAccess::class,
+        ProductAdded::class => [
+            SendNotificationOnProductAdded::class,
+        ],
+        PageAccessed::class => [
+            LogPageAccess::class,
         ],
     ];
 
@@ -35,6 +47,11 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen(UserCreated::class, [SendWelcomeEmail::class, 'handle']);
+    }
+
+    public function shouldDiscoverEvents(): bool
+    {
+        return false;
     }
 }

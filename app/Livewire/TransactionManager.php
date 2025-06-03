@@ -171,4 +171,24 @@ class TransactionManager extends Component
     {
         $this->resetPage();
     }
-} 
+//
+//    public function updateTransaction()
+//    {
+//        $this->validate([
+//            'transaction.date' => 'required|date',
+//            'transaction.amount' => 'required|numeric|min:0',
+//            'transaction.description' => 'required|string|max:255'
+//        ]);
+//
+//        $transaction = Transaction::findOrFail($this->transaction['id']);
+//        $transaction->update([
+//            'date' => $this->transaction['date'],
+//            'amount' => $this->transaction['amount'],
+//            'description' => $this->transaction['description']
+//        ]);
+//
+//        $this->showModal = false;
+//        $this->reset(['transaction']);
+//        $this->dispatch('transactionUpdated');
+//    }
+}

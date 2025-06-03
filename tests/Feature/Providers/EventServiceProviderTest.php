@@ -15,43 +15,36 @@ use App\Models\User;
 use App\Providers\EventServiceProvider;
 use Illuminate\Support\Facades\Event;
 
-it('registers all event listeners correctly', function () {
-    // Clear any existing event listeners
-    Event::forget(UserCreated::class);
-    Event::forget(FishAdded::class);
-    Event::forget(ProductAdded::class);
-    Event::forget(PageAccessed::class);
-
-    // Boot the EventServiceProvider to register listeners
+it('registers event listeners correctly', function () {
     $provider = new EventServiceProvider(app());
     $provider->boot();
 
-    // Get all registered listeners
-    $listeners = Event::getListeners(UserCreated::class);
+    // Test UserCreated event
+    expect(Event::getListeners(UserCreated::class))->toContain(SendWelcomeEmail::class);
 
-    // Convert class names to strings for comparison
-    $listenerClasses = array_map(function($listener) {
-        return is_string($listener) ? $listener : get_class($listener);
-    }, $listeners);
+    // Test FishAdded event
+    expect(Event::getListeners(FishAdded::class))->toContain(SendNotificationOnFishAdded::class);
 
-    expect($listenerClasses)->toContain(SendWelcomeEmail::class)
-        ->and(Event::getListeners(FishAdded::class))->toContain(SendNotificationOnFishAdded::class)
-        ->and(Event::getListeners(ProductAdded::class))->toContain(SendNotificationOnProductAdded::class)
-        ->and(Event::getListeners(PageAccessed::class))->toContain(ShowSweetAlertOnPageAccess::class);
-})->todo();
+    // Test ProductAdded event
+    expect(Event::getListeners(ProductAdded::class))->toContain(SendNotificationOnProductAdded::class);
 
-it('has correct event-listener mappings in protected $listen property', function () {
+    // Test PageAccessed event
+    expect(Event::getListeners(PageAccessed::class))->toContain(ShowSweetAlertOnPageAccess::class);
+});
+
+it('has correct event to listener mappings', function () {
     $provider = new EventServiceProvider(app());
-    $listen = $provider->listens();
+    $mappings = $provider->listens();
 
-    expect($listen)->toHaveKey(UserCreated::class)
-        ->and($listen[UserCreated::class])->toContain(SendWelcomeEmail::class)
-        ->and($listen)->toHaveKey(FishAdded::class)
-        ->and($listen[FishAdded::class])->toContain(SendNotificationOnFishAdded::class)
-        ->and($listen)->toHaveKey(ProductAdded::class)
-        ->and($listen[ProductAdded::class])->toContain(SendNotificationOnProductAdded::class)
-        ->and($listen)->toHaveKey(PageAccessed::class)
-        ->and($listen[PageAccessed::class])->toContain(ShowSweetAlertOnPageAccess::class);
+    expect($mappings)->toHaveKey(UserCreated::class);
+    expect($mappings)->toHaveKey(FishAdded::class);
+    expect($mappings)->toHaveKey(ProductAdded::class);
+    expect($mappings)->toHaveKey(PageAccessed::class);
+
+    expect($mappings[UserCreated::class])->toContain(SendWelcomeEmail::class);
+    expect($mappings[FishAdded::class])->toContain(SendNotificationOnFishAdded::class);
+    expect($mappings[ProductAdded::class])->toContain(SendNotificationOnProductAdded::class);
+    expect($mappings[PageAccessed::class])->toContain(ShowSweetAlertOnPageAccess::class);
 });
 
 it('dispatches SendWelcomeEmail when UserCreated event is fired', function () {

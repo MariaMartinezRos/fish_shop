@@ -13,8 +13,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->date('start_date');
             $table->date('end_date');
-            $table->text('comments');
+            $table->text('comments')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->boolean('policy_acknowledged')->default(false);
             $table->timestamps();
         });
     }
