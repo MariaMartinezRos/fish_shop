@@ -32,14 +32,14 @@ class TransactionManager extends Component
         'serial_number' => 'required|string',
         'terminal_number' => 'required|string',
         'operation' => 'required|string',
-        'amount' => 'required|numeric|min:0',
-        'card_number' => 'required|string|size:16',
+        'amount' => 'required|numeric|min:4',
+        'card_number' => 'required|string|min:4',
         'date_time' => 'required|date',
         'transaction_number' => 'required|string',
         'sale_id' => 'required|numeric',
     ];
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View|\Illuminate\View\View
     {
         $transactions = Transaction::search($this->search)->paginate(10);
 
@@ -48,7 +48,7 @@ class TransactionManager extends Component
         ]);
     }
 
-    public function create()
+    public function create(): void
     {
         $this->authorize('create', Transaction::class);
         $this->resetValidation();
@@ -56,7 +56,7 @@ class TransactionManager extends Component
         $this->creating = true;
     }
 
-    public function edit(Transaction $transaction)
+    public function edit(Transaction $transaction): void
     {
         $this->authorize('update', $transaction);
         $this->editing = true;
@@ -73,7 +73,7 @@ class TransactionManager extends Component
         $this->sale_id = $transaction->sale_id;
     }
 
-    public function update()
+    public function update(): void
     {
         $this->authorize('update', Transaction::class);
 
@@ -114,7 +114,7 @@ class TransactionManager extends Component
         session()->flash('message', __('Transaction updated successfully.'));
     }
 
-    public function store()
+    public function store(): void
     {
         $this->authorize('create', Transaction::class);
 
@@ -149,7 +149,7 @@ class TransactionManager extends Component
         session()->flash('message', __('Transaction created successfully.'));
     }
 
-    public function delete($id)
+    public function delete($id): void
     {
         $transaction = Transaction::findOrFail($id);
 
@@ -162,13 +162,13 @@ class TransactionManager extends Component
         }
     }
 
-    public function cancel()
+    public function cancel(): void
     {
         $this->reset(['tpv', 'serial_number', 'terminal_number', 'operation', 'amount', 'card_number', 'date_time', 'transaction_number', 'sale_id', 'editing', 'transactionId', 'creating']);
     }
 
-    public function updatedSearch()
+    public function updatedSearch(): void
     {
         $this->resetPage();
     }
-} 
+}

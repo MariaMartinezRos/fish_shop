@@ -15,7 +15,7 @@ class TransactionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->role_id === 1 ; // Admin or Employee
+        return $user->role_id === 1 || $user->role_id === 2;
     }
 
     /**
@@ -23,7 +23,7 @@ class TransactionPolicy
      */
     public function view(User $user): bool
     {
-        return $user->role_id === 1 ; // Admin or Employee
+        return $user->role_id === 1 || $user->role_id === 2;
     }
 
     /**
@@ -31,7 +31,7 @@ class TransactionPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role_id === 1; // Admin or Employee
+        return $user->role_id === 1 || $user->role_id === 2;
     }
 
     /**
@@ -39,7 +39,7 @@ class TransactionPolicy
      */
     public function update(User $user): bool
     {
-        return $user->role_id === 1 ; // Admin or Employee
+        return $user->role_id === 1 || $user->role_id === 2;
     }
 
     /**
@@ -47,7 +47,7 @@ class TransactionPolicy
      */
     public function delete(User $user): bool
     {
-        return $user->role_id === 1; // Only Admin
+        return $user->role_id === 1 || $user->role_id === 2;
     }
 }
 

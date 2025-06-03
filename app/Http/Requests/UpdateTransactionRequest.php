@@ -27,7 +27,7 @@ class UpdateTransactionRequest extends FormRequest
             'terminal_number' => 'nullable|string|max:255',
             'operation' => 'nullable|string|max:255',
             'amount' => 'nullable|numeric|min:0',
-            'card_number' => 'nullable|string|size:16',
+            'card_number' => 'nullable|string|min:4',
             'date_time' => 'nullable|date',
             'transaction_number' => 'nullable|string|max:255',
             'sale_id' => 'nullable|numeric'
@@ -54,7 +54,6 @@ class UpdateTransactionRequest extends FormRequest
             'amount.numeric' => 'The amount must be a number.',
             'amount.min' => 'The amount cannot be negative.',
             'card_number.required' => 'The card number is required.',
-            'card_number.size' => 'The card number must be exactly 16 characters.',
             'date_time.required' => 'The date and time is required.',
             'date_time.date' => 'The date and time must be a valid date.',
             'transaction_number.required' => 'The transaction number is required.',

@@ -206,7 +206,7 @@ it('validates card number format', function () {
         'terminal_number' => 'TN789012',
         'operation' => 'SALE',
         'amount' => 99.99,
-        'card_number' => '1234', // Invalid card number
+        'card_number' => null, // Invalid card number
         'date_time' => now()->format('Y-m-d H:i:s'),
         'transaction_number' => 'TXN123456',
         'sale_id' => '100'

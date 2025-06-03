@@ -74,7 +74,7 @@ it('validates amount is numeric and not negative', function () {
     expect($validator->errors()->has('amount'))->toBeTrue();
 });
 
-it('validates card_number is exactly 16 digits', function () {
+it('validates card_number is at least 4 digits', function () {
     // Arrange
     $request = new StoreTransactionRequest();
 
@@ -85,7 +85,7 @@ it('validates card_number is exactly 16 digits', function () {
         'terminal_number' => 'TN12345',
         'operation' => 'purchase',
         'amount' => 100.50,
-        'card_number' => '123456789012345', // Tarjeta con menos de 16 dígitos
+        'card_number' => '123',
         'date_time' => '2025-05-08 12:00:00',
         'transaction_number' => 'TX123456789',
         'sale_id' => 1,
@@ -93,8 +93,8 @@ it('validates card_number is exactly 16 digits', function () {
 
     // Assert
     $validator = Validator::make($data, $request->rules(), $request->messages());
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->has('card_number'))->toBeTrue();
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->has('card_number'))->toBeTrue();
 });
 
 it('validates sale_id is required and numeric', function () {
@@ -116,7 +116,7 @@ it('validates sale_id is required and numeric', function () {
 
     // Assert
     $validator = Validator::make($data, $request->rules(), $request->messages());
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->has('sale_id'))->toBeTrue();
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->has('sale_id'))->toBeTrue();
 });
 

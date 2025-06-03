@@ -27,13 +27,13 @@ it('passes with all valid fields', function () {
     expect($validator->passes())->toBeTrue();
 });
 
-it('fails if card_number is less than 16 characters', function () {
-    $data = ['card_number' => '123456'];
+it('fails if card_number is less than 4 characters', function () {
+    $data = ['card_number' => '123'];
 
     $validator = Validator::make($data, $this->request->rules(), $this->request->messages());
 
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->has('card_number'))->toBeTrue();
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->has('card_number'))->toBeTrue();
 });
 
 it('fails if amount is negative', function () {
