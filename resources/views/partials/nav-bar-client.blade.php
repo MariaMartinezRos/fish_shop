@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Fish Shop') }}</title>
+    <title>{{ config('app.name', __('Fish Shop')) }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -19,7 +19,7 @@
 <body class="font-sans text-gray-900 antialiased bg-gray-100 dark:bg-gray-900">
 @livewireScripts
 
-<div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
+<div >
 
 <nav class="bg-blue-600 text-white p-4 shadow-lg w-full">
     <div class="container mx-auto flex justify-between items-center">
@@ -125,4 +125,9 @@
         </ul>
     </div>
 </nav>
+
+{{--<p>&copy; {{ __('1986 Benito\'s Fish Markets. All rights reserved.') }}</p>--}}
+{{--<p>{{ __('836 846 209') }}</p>--}}
+
+</div>
 

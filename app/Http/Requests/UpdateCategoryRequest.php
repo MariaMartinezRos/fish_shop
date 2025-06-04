@@ -38,11 +38,11 @@ class UpdateCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The name is required.',
-            'name.max' => 'The name cannot exceed 255 characters.',
-            'name.unique' => 'This name is already taken.',
-            'display_name.max' => 'The display name cannot exceed 255 characters.',
-            'description.string' => 'The description must be a string.'
+            'name.required' => __('The name is required.'),
+            'name.max' => __('The name cannot exceed 255 characters.'),
+            'name.unique' => __('This name is already taken.'),
+            'display_name.max' => __('The display name cannot exceed 255 characters.'),
+            'description.string' => __('The description must be a string.'),
         ];
     }
 }

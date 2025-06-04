@@ -23,6 +23,6 @@ class ContactController extends Controller
         // Despachar el Job para enviar el correo de confirmación
         SendContactConfirmationEmail::dispatch(User::where('email', $request->email)->first());
 
-        return back()->with('success', 'Your message has been sent successfully!');
+        return back()->with('success', __('Your message has been sent successfully!'));
     }
 }

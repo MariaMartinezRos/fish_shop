@@ -31,7 +31,7 @@
                                 @endif
                             </h3>
                             <p class="mt-1 text-md text-gray-500">{{ $product['description'] }}</p>
-                                <img src="{{ $product['category'] }}" alt="Category of the fish" class="h-6 w-6 ml-2">
+                                <img src="{{ $product['category'] }}" alt="{{ __('Category of the fish') }}" class="h-6 w-6 ml-2">
                         </div>
                         <p class="text-lg font-medium text-gray-900">{{ $product['price'] }}</p>
                     </div>

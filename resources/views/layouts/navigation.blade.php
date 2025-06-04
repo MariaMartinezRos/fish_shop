@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('sales') }}">
-                        <img src="{{ asset('images/android-chrome-192x192.png') }}" alt="Pescaderias Benito" width="50" height="50">
+                        <img src="{{ asset('images/android-chrome-192x192.png') }}" alt="{{ __('Benito\'s Fish Markets') }}" width="50" height="50">
                     </a>
                 </div>
 

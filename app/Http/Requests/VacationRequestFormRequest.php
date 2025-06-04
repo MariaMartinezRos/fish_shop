@@ -53,16 +53,16 @@ class VacationRequestFormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'start_date.required' => 'Por favor, selecciona una fecha de inicio.',
-            'start_date.date' => 'La fecha de inicio debe ser una fecha válida.',
-            'start_date.after' => 'La fecha de inicio debe ser posterior a hoy.',
-            'end_date.required' => 'Por favor, selecciona una fecha de fin.',
-            'end_date.date' => 'La fecha de fin debe ser una fecha válida.',
-            'end_date.after_or_equal' => 'La fecha de fin debe ser posterior o igual a la fecha de inicio.',
-            'comments.required' => 'Por favor, proporciona un motivo para tu solicitud de vacaciones.',
-            'comments.min' => 'Por favor, proporciona más detalles sobre tu solicitud de vacaciones.',
-            'policy_acknowledged.required' => 'Debes aceptar la política de vacaciones.',
-            'policy_acknowledged.accepted' => 'Debes aceptar la política de vacaciones.',
+            'start_date.required' => __('Please select a start date.'),
+            'start_date.date' => __('The start date must be a valid date.'),
+            'start_date.after' => __('The start date must be after today.'),
+            'end_date.required' => __('Please select an end date.'),
+            'end_date.date' => __('The end date must be a valid date.'),
+            'end_date.after_or_equal' => __('The end date must be after or equal to the start date.'),
+            'comments.required' => __('Please provide a reason for your vacation request.'),
+            'comments.min' => __('Please provide more details about your vacation request.'),
+            'policy_acknowledged.required' => __('You must accept the vacation policy.'),
+            'policy_acknowledged.accepted' => __('You must accept the vacation policy.'),
         ];
     }
-} 
+}

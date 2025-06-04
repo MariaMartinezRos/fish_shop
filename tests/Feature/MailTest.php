@@ -20,7 +20,7 @@ it('includes login details for the welcome mail', function () {
 
     // Assert
     $mail->AssertSeeInText("Gracias por crear una cuenta, {$user->name}!!");
-    $mail->AssertSeeInText('Login');
+    $mail->AssertSeeInText('Iniciar Sesión:');
     $mail->AssertSeeInHtml(route('login'));
 
 });

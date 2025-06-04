@@ -44,34 +44,34 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Vacation Request Form</h1>
+            <h1>{{ __('Vacation Request Form') }}</h1>
         </div>
         
         <div class="content">
             <div class="section">
-                <p><span class="label">Employee Name:</span> {{ $employee->name }}</p>
-                <p><span class="label">Request Date:</span> {{ $requested_at }}</p>
+                <p><span class="label">{{ __('Employee Name:') }}</span> {{ $employee->name }}</p>
+                <p><span class="label">{{ __('Request Date:') }}</span> {{ $requested_at }}</p>
             </div>
             
             <div class="section">
-                <p><span class="label">Start Date:</span> {{ $start_date }}</p>
-                <p><span class="label">End Date:</span> {{ $end_date }}</p>
+                <p><span class="label">{{ __('Start Date:') }}</span> {{ $start_date }}</p>
+                <p><span class="label">{{ __('End Date:') }}</span> {{ $end_date }}</p>
             </div>
             
             <div class="section">
-                <p><span class="label">Comments:</span></p>
+                <p><span class="label">{{ __('Comments:') }}</span></p>
                 <p>{{ $comments }}</p>
             </div>
         </div>
         
         <div class="footer">
             <div style="float: left; width: 45%;">
-                <p><span class="label">Employee Signature:</span></p>
+                <p><span class="label">{{ __('Employee Signature:') }}</span></p>
                 <div class="signature-line"></div>
             </div>
             
             <div style="float: right; width: 45%;">
-                <p><span class="label">Administrator Signature:</span></p>
+                <p><span class="label">{{ __('Administrator Signature:') }}</span></p>
                 <div class="signature-line"></div>
             </div>
             

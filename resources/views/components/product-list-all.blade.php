@@ -7,7 +7,7 @@
 
     @include('partials.favicon')
 
-    <title>{{ config('app.name', 'Fish Shop') }}</title>
+    <title>{{ config('app.name', __('Fish Shop')) }}</title>
 
 
     <!-- Fonts -->

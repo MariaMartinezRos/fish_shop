@@ -45,19 +45,19 @@ class UpdateFishRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The fish name is required.',
-            'name.max' => 'The fish name cannot exceed 255 characters.',
-            'scientific_name.max' => 'The scientific name cannot exceed 255 characters.',
-            'image.image' => 'The file must be an image.',
-            'image.max' => 'The image size cannot exceed 2MB.',
-            'average_size_cm.between' => 'The average size must be between 0 and 1000 cm.',
-            'diet.in' => 'The diet must be one of: Carnivore, Herbivore, or Omnivore.',
-            'lifespan_years.min' => 'The lifespan cannot be negative.',
-            'type.in' => 'The water type must be either Saltwater or Freshwater.',
-            'characteristics.state.in' => 'The state must be one of: Allowed, Forbidden, or Biological rest.',
-            'characteristics.migration_pattern.in' => 'The migration pattern must be one of: Non-migratory, Anadromous, or Catadromous.',
-            'characteristics.recorded_since.min' => 'The recorded since year must be 1900 or later.',
-            'characteristics.recorded_since.max' => 'The recorded since year cannot be in the future.',
+            'name.required' => __('The fish name is required.'),
+            'name.max' => __('The fish name cannot exceed 255 characters.'),
+            'scientific_name.max' => __('The scientific name cannot exceed 255 characters.'),
+            'image.image' => __('The file must be an image.'),
+            'image.max' => __('The image size cannot exceed 2MB.'),
+            'average_size_cm.between' => __('The average size must be between 0 and 1000 cm.'),
+            'diet.in' => __('The diet must be one of: Carnivore, Herbivore, or Omnivore.'),
+            'lifespan_years.min' => __('The lifespan cannot be negative.'),
+            'type.in' => __('The water type must be either Saltwater or Freshwater.'),
+            'characteristics.state.in' => __('The state must be one of: Allowed, Forbidden, or Biological rest.'),
+            'characteristics.migration_pattern.in' => __('The migration pattern must be one of: Non-migratory, Anadromous, or Catadromous.'),
+            'characteristics.recorded_since.min' => __('The recorded since year must be 1900 or later.'),
+            'characteristics.recorded_since.max' => __('The recorded since year cannot be in the future.'),
         ];
     }
 

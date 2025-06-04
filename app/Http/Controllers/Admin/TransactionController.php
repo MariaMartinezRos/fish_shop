@@ -15,7 +15,7 @@ class TransactionController extends Controller
 {
     use AuthorizesRequests;
     /**
-     * Muestra la lista de transacciones.
+     * Shows the list of transactions.
      */
     public function index()
     {
@@ -27,12 +27,12 @@ class TransactionController extends Controller
             return view('transactions', ['transactions' => []]);
         }
 
-        event(new PageAccessed('Has accedido a la página correctamente.'));
+        event(new PageAccessed(__('You have successfully accessed the page.')));
         return view('transactions', compact('transactions'));
     }
 
     /**
-     * Filtra las transacciones por fecha y cantidad.
+     * Filters transactions by date and amount.
      */
     public function showSales()
     {
@@ -49,12 +49,12 @@ class TransactionController extends Controller
         $chartHour = $this->showGraphicHour();
         $chartWeek = $this->showGraphicWeek();
 
-        event(new PageAccessed('Has accedido a la página correctamente.'));
+        event(new PageAccessed(__('You have successfully accessed the page.')));
         return view('sales', compact('totalAmount', 'totalClients', 'chartHour', 'chartWeek'));
     }
 
     /**
-     * Muestra gráficos de ventas por hora.
+     * Shows sales charts by hour.
      */
     public function showGraphicHour()
     {
@@ -67,7 +67,7 @@ class TransactionController extends Controller
     }
 
     /**
-     * Muestra gráficos de ventas por semana.
+     * Shows sales charts by week.
      */
     public function showGraphicWeek()
     {

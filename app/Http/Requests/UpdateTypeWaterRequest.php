@@ -38,18 +38,18 @@ class UpdateTypeWaterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'type.required' => 'At least one water type is required.',
-            'type.array' => 'The water type must be an array.',
-            'type.*.in' => 'Each water type must be either Saltwater or Freshwater.',
-            'type.*.unique' => 'One or more water types already exist.',
-            'ph_level.required' => 'The pH level is required.',
-            'ph_level.numeric' => 'The pH level must be a number.',
-            'ph_level.between' => 'The pH level must be between 0 and 14.',
-            'temperature_range.required' => 'The temperature range is required.',
-            'salinity_level.required' => 'The salinity level is required.',
-            'salinity_level.numeric' => 'The salinity level must be a number.',
-            'salinity_level.min' => 'The salinity level cannot be negative.',
-            'region.required' => 'The region is required.',
+            'type.required' => __('At least one water type is required.'),
+            'type.array' => __('The water type must be an array.'),
+            'type.*.in' => __('Each water type must be either Saltwater or Freshwater.'),
+            'type.*.unique' => __('One or more water types already exist.'),
+            'ph_level.required' => __('The pH level is required.'),
+            'ph_level.numeric' => __('The pH level must be a number.'),
+            'ph_level.between' => __('The pH level must be between 0 and 14.'),
+            'temperature_range.required' => __('The temperature range is required.'),
+            'salinity_level.required' => __('The salinity level is required.'),
+            'salinity_level.numeric' => __('The salinity level must be a number.'),
+            'salinity_level.min' => __('The salinity level cannot be negative.'),
+            'region.required' => __('The region is required.'),
         ];
     }
 }

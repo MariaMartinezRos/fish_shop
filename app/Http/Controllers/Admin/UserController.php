@@ -60,7 +60,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.index')
-            ->with('success', 'Usuario creado correctamente');
+            ->with('success', __('User created successfully'));
     }
 
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
             'role_id' => $request->role_id,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
+        return redirect()->route('users.index')->with('success', __('User updated successfully'));
     }
 
     /**
@@ -104,6 +104,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente');
+        return redirect()->route('users.index')->with('success', __('User deleted successfully'));
     }
 }

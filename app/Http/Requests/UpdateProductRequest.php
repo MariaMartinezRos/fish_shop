@@ -38,16 +38,16 @@ class UpdateProductRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The product name is required.',
-            'name.max' => 'The product name cannot exceed 255 characters.',
-            'category_id.required' => 'The category is required.',
-            'category_id.exists' => 'The selected category does not exist.',
-            'price_per_kg.required' => 'The price per kilogram is required.',
-            'price_per_kg.numeric' => 'The price must be a number.',
-            'price_per_kg.min' => 'The price cannot be negative.',
-            'stock_kg.required' => 'The stock amount is required.',
-            'stock_kg.numeric' => 'The stock amount must be a number.',
-            'stock_kg.min' => 'The stock amount cannot be negative.',
+            'name.required' => __('The product name is required.'),
+            'name.max' => __('The product name cannot exceed 255 characters.'),
+            'category_id.required' => __('The category is required.'),
+            'category_id.exists' => __('The selected category does not exist.'),
+            'price_per_kg.required' => __('The price per kilogram is required.'),
+            'price_per_kg.numeric' => __('The price must be a number.'),
+            'price_per_kg.min' => __('The price cannot be negative.'),
+            'stock_kg.required' => __('The stock amount is required.'),
+            'stock_kg.numeric' => __('The stock amount must be a number.'),
+            'stock_kg.min' => __('The stock amount cannot be negative.'),
         ];
     }
 } 

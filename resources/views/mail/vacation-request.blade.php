@@ -1,24 +1,24 @@
 @component('mail::message')
-# Nueva Solicitud de Vacaciones
+# {{ __('New Vacation Request') }}
 
-Hola,
+{{ __('Hello') }},
 
-El empleado {{ $employee->name }} ha solicitado vacaciones.
+{{ __('The employee') }} {{ $employee->name }} {{ __('has requested vacation.') }}
 
-**Detalles de la solicitud:**
+**{{ __('Request details') }}:**
 
-- **Empleado:** {{ $employee->name }}
-- **Fecha de inicio:** {{ $vacationRequest->start_date->format('d/m/Y') }}
-- **Fecha de fin:** {{ $vacationRequest->end_date->format('d/m/Y') }}
-- **Días solicitados:** {{ $days_requested }}
-- **Motivo:** {{ $vacationRequest->comments }}
+- **{{ __('Employee') }}:** {{ $employee->name }}
+- **{{ __('Start date') }}:** {{ $vacationRequest->start_date->format('d/m/Y') }}
+- **{{ __('End date') }}:** {{ $vacationRequest->end_date->format('d/m/Y') }}
+- **{{ __('Days requested') }}:** {{ $days_requested }}
+- **{{ __('Reason') }}:** {{ $vacationRequest->comments }}
 
 @component('mail::button', ['url' => route('users.index')])
-Ver Solicitud
+{{ __('View Request') }}
 @endcomponent
 
-Por favor, revisa esta solicitud y toma la acción correspondiente.
+{{ __('Please review this request and take appropriate action.') }}
 
-Saludos,<br>
+{{ __('Regards') }},<br>
 {{ config('app.name') }}
 @endcomponent 

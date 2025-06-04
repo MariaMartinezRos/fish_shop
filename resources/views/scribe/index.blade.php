@@ -45,12 +45,12 @@
     </span>
 </a>
 <div class="tocify-wrapper">
-    
+
             <div class="lang-selector">
                                             <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                             <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
                     </div>
-    
+
     <div class="search">
         <input type="text" class="search" id="input-search" placeholder="Search">
     </div>
@@ -90,7 +90,7 @@
                             </ul>
                     <ul id="tocify-header-fishes-v1" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="fishes-v1">
-                    <a href="#fishes-v1">Fishes V1</a>
+                    <a href="#fishes-v1">Fishes V1 - DEPRECATED</a>
                 </li>
                                     <ul id="tocify-subheader-fishes-v1" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="fishes-v1-GETapi-v1-fishes">
@@ -208,7 +208,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
         <h1 id="categories-v2">Categories V2</h1>
 
-    
+
 
                                 <h2 id="categories-v2-GETapi-v2-categories">Get a list of all categories.</h2>
 
@@ -888,7 +888,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="b"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>b</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>display_name</code></b>&nbsp;&nbsp;
@@ -1067,11 +1067,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
                 <h1 id="fishes-v1">Fishes V1</h1>
 
-    
+
 
                                 <h2 id="fishes-v1-GETapi-v1-fishes">Get a list of all fishes.</h2>
 
+
 <p>
+    <small class="badge badge-darkred">DEPRECATED</small>
 </p>
 
 
@@ -1198,7 +1200,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
                     <h2 id="fishes-v1-GETapi-v1-fishes--fish_id-">Get a specific fish.</h2>
 
+
 <p>
+    <small class="badge badge-darkred">DEPRECATED</small>
 </p>
 
 
@@ -1346,7 +1350,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
                     <h2 id="fishes-v1-POSTapi-v1-fishes">Store a new fish.</h2>
 
+
 <p>
+    <small class="badge badge-darkred">DEPRECATED</small>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
@@ -1545,7 +1551,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="n"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
@@ -1556,7 +1562,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>El campo value debe ser una imagen. El campo value no debe ser mayor que 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\php1680.tmp</code></p>
+<p>The value field must be an image. The value field must not be larger than 2048 kilobytes. Example: <code>C:\Users\gines\AppData\Local\Temp\php1680.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -1578,7 +1584,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>El campo value tiene que estar entre 0 - 1000. Example: <code>1</code></p>
+<p>The value field must nbe between 0 - 1000. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>diet</code></b>&nbsp;&nbsp;
@@ -1602,7 +1608,7 @@ Must be one of:
                value="42"
                data-component="body">
     <br>
-<p>El tamaño de value debe ser de al menos 0. Example: <code>42</code></p>
+<p>The size must be at least 0. Example: <code>42</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>habitat</code></b>&nbsp;&nbsp;
@@ -1613,7 +1619,7 @@ Must be one of:
                value="l"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>l</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>l</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>conservation_status</code></b>&nbsp;&nbsp;
@@ -1624,7 +1630,7 @@ Must be one of:
                value="j"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>j</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>j</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -1668,7 +1674,7 @@ Must be one of:
                value="b"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>b</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>b</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>ph_range</code></b>&nbsp;&nbsp;
@@ -1679,7 +1685,7 @@ Must be one of:
                value="n"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>n</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>salinity</code></b>&nbsp;&nbsp;
@@ -1690,7 +1696,7 @@ Must be one of:
                value="0"
                data-component="body">
     <br>
-<p>El campo value tiene que estar entre 0 - 100. Example: <code>0</code></p>
+<p>The value field must be between 0 - 100. Example: <code>0</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>oxygen_level</code></b>&nbsp;&nbsp;
@@ -1701,7 +1707,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>El campo value tiene que estar entre 0 - 100. Example: <code>1</code></p>
+<p>The value field must be between 0 - 100. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>migration_pattern</code></b>&nbsp;&nbsp;
@@ -1725,7 +1731,7 @@ Must be one of:
                value="17"
                data-component="body">
     <br>
-<p>El tamaño de value debe ser de al menos 1900. El campo value no debe ser mayor que 2025. Example: <code>17</code></p>
+<p>The value field must be at least 1900. The value field must not be larger than 2025. Example: <code>17</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -1766,7 +1772,9 @@ Must be one of:
 
                     <h2 id="fishes-v1-PUTapi-v1-fishes--fish_id-">Update an existing fish.</h2>
 
+
 <p>
+    <small class="badge badge-darkred">DEPRECATED</small>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
@@ -1984,7 +1992,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="n"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
@@ -2017,7 +2025,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>El campo value tiene que estar entre 0 - 1000. Example: <code>1</code></p>
+<p>The value field must be between 0 - 1000. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>diet</code></b>&nbsp;&nbsp;
@@ -2041,7 +2049,7 @@ Must be one of:
                value="42"
                data-component="body">
     <br>
-<p>El tamaño de value debe ser de al menos 0. Example: <code>42</code></p>
+<p>The size must be at least 0. Example: <code>42</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>habitat</code></b>&nbsp;&nbsp;
@@ -2052,7 +2060,7 @@ Must be one of:
                value="l"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>l</code></p>
+<p>The value field must not be larger than 255 characters.. Example: <code>l</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>conservation_status</code></b>&nbsp;&nbsp;
@@ -2063,7 +2071,7 @@ Must be one of:
                value="j"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>j</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>j</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -2107,7 +2115,7 @@ Must be one of:
                value="b"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>b</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>b</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>ph_range</code></b>&nbsp;&nbsp;
@@ -2118,7 +2126,7 @@ Must be one of:
                value="n"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+<p>The value field must not be larger than 255 characters. Example: <code>n</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>salinity</code></b>&nbsp;&nbsp;
@@ -2129,7 +2137,7 @@ Must be one of:
                value="0"
                data-component="body">
     <br>
-<p>El campo value tiene que estar entre 0 - 100. Example: <code>0</code></p>
+<p>The value field must be between 0 - 100. Example: <code>0</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>oxygen_level</code></b>&nbsp;&nbsp;
@@ -2140,7 +2148,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>El campo value tiene que estar entre 0 - 100. Example: <code>1</code></p>
+<p>The value field must be between 0 - 100. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>migration_pattern</code></b>&nbsp;&nbsp;
@@ -2164,7 +2172,7 @@ Must be one of:
                value="17"
                data-component="body">
     <br>
-<p>El tamaño de value debe ser de al menos 1900. El campo value no debe ser mayor que 2025. Example: <code>17</code></p>
+<p>The value field must be at least 1900.The value field must not be larger than 2025. Example: <code>17</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -2194,7 +2202,9 @@ Must be one of:
 
                     <h2 id="fishes-v1-DELETEapi-v1-fishes--fish_id-">Delete a specific fish.</h2>
 
+
 <p>
+    <small class="badge badge-darkred">DEPRECATED</small>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
@@ -2345,7 +2355,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
                 <h1 id="fishes-v2">Fishes V2</h1>
 
-    
+
 
                                 <h2 id="fishes-v2-GETapi-v2-fishes">Get a list of all fishes.</h2>
 
@@ -3655,7 +3665,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
                 <h1 id="products-v2">Products V2</h1>
 
-    
+
 
                                 <h2 id="products-v2-GETapi-v2-products">Get a list of all products.</h2>
 
@@ -4154,7 +4164,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="39"
                data-component="body">
     <br>
-<p>El tamaño de value debe ser de al menos 0. Example: <code>39</code></p>
+<p>The size must be at least 0. Example: <code>39</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>stock_kg</code></b>&nbsp;&nbsp;
@@ -4165,7 +4175,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="84"
                data-component="body">
     <br>
-<p>El tamaño de value debe ser de al menos 0. Example: <code>84</code></p>
+<p>The size must be at least 0. Example: <code>84</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -4441,7 +4451,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="39"
                data-component="body">
     <br>
-<p>El tamaño de value debe ser de al menos 0. Example: <code>39</code></p>
+<p>The size must be at least 0. Example: <code>39</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>stock_kg</code></b>&nbsp;&nbsp;
@@ -4452,7 +4462,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="84"
                data-component="body">
     <br>
-<p>El tamaño de value debe ser de al menos 0. Example: <code>84</code></p>
+<p>The size must be at least 0. Example: <code>84</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -4642,7 +4652,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
                 <h1 id="transactions-v2">Transactions V2</h1>
 
-    
+
 
                                 <h2 id="transactions-v2-GETapi-v2-transactions">Get a list of all transactions.</h2>
 
@@ -5691,9 +5701,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-            
 
-        
+
+
     </div>
     <div class="dark-box">
                     <div class="lang-selector">

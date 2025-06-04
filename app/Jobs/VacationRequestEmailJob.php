@@ -53,12 +53,12 @@ class VacationRequestEmailJob implements ShouldQueue
                 'days_requested' => $this->vacationRequest->start_date->diffInDays($this->vacationRequest->end_date) + 1
             ], function ($message) use ($admin) {
                 $message->to($admin->email)
-                       ->subject('Nueva Solicitud de Vacaciones - PESCADERIAS BENITO');
+                       ->subject(__('New Vacation Request - PESCADERIAS BENITO'));
             });
 
-            \Log::info('Vacation request email sent successfully');
+            \Log::info(__('Vacation request email sent successfully'));
         } catch (\Exception $e) {
-            \Log::error('Failed to send vacation request email', [
+            \Log::error(__('Failed to send vacation request email'), [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);

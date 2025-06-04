@@ -166,7 +166,7 @@ it('can create a product successfully', function () {
             'description' => 'Salmon noruego de la mejor calidad',
         ])
         ->assertRedirect('products/1')
-        ->assertSessionHas('success', 'Product created successfully.');
+        ->assertSessionHas('success', 'Producto creado correctamente.');
 
     // Assert
     $this->assertDatabaseHas('products', [
@@ -196,7 +196,7 @@ it('can edit a product successfully', function () {
             'description' => 'Salmon noruego de la mejor calidad',
         ])
         ->assertRedirect('products/1')
-        ->assertSessionHas('success', 'Product updated successfully');
+        ->assertSessionHas('success', 'Producto actualizado correctamente');
 
     // Assert
     $this->assertDatabaseHas('products', [
@@ -220,7 +220,7 @@ it('can delete a product successfully', function () {
     $this->actingAs($admin)
         ->delete("products/{$product->id}")
         ->assertRedirect('stock')
-        ->assertSessionHas('success', 'Product deleted successfully');
+        ->assertSessionHas('success', 'Producto eliminado correctamente');
 });
 
 it('can be downloaded as a PDF file', function () {

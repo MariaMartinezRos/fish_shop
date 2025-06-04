@@ -164,7 +164,7 @@ it('can delete a category', function () {
     Livewire::actingAs($admin)
         ->test(CategoryManager::class)
         ->call('delete', $category->id)
-        ->assertSee('Categoría eliminada exitosamente.');
+        ->assertSee('Categoría eliminada correctamente');
 
     $this->assertDatabaseMissing('categories', ['id' => $category->id]);
 });

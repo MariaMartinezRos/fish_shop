@@ -207,7 +207,7 @@
                                         <button wire:click="edit({{ $transaction->id }})" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                                             {{ __('Edit') }}
                                         </button>
-                                        <button wire:click="delete({{ $transaction->id }})" wire:confirm="Are you sure you want to delete this transaction?" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                        <button wire:click="delete({{ $transaction->id }})" wire:confirm="{{ __('Are you sure you want to delete this transaction?') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                             {{ __('Delete') }}
                                         </button>
                                     </div>

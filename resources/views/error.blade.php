@@ -1,10 +1,10 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Error</title>
+        <title>{{ __('Error') }}</title>
     </head>
     <body>
-        <h1>Error</h1>
-        <img src="{{ $url }}" alt="Error Image">
+        <h1>{{ __('Error') }}</h1>
+        <img src="{{ $url }}" alt="{{ __('Error Image') }}">
     </body>
 </html>

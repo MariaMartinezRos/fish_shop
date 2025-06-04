@@ -42,24 +42,24 @@ class StoreTransactionRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tpv.required' => 'The TPV is required.',
-            'tpv.max' => 'The TPV cannot exceed 255 characters.',
-            'serial_number.required' => 'The serial number is required.',
-            'serial_number.max' => 'The serial number cannot exceed 255 characters.',
-            'terminal_number.required' => 'The terminal number is required.',
-            'terminal_number.max' => 'The terminal number cannot exceed 255 characters.',
-            'operation.required' => 'The operation is required.',
-            'operation.max' => 'The operation cannot exceed 255 characters.',
-            'amount.required' => 'The amount is required.',
-            'amount.numeric' => 'The amount must be a number.',
-            'amount.min' => 'The amount cannot be negative.',
-            'card_number.required' => 'The card number is required.',
-            'date_time.required' => 'The date and time is required.',
-            'date_time.date' => 'The date and time must be a valid date.',
-            'transaction_number.required' => 'The transaction number is required.',
-            'transaction_number.max' => 'The transaction number cannot exceed 255 characters.',
-            'sale_id.required' => 'The sale ID is required.',
-            'sale_id.numeric' => 'The sale ID must be a number.'
+            'tpv.required' => __('The TPV is required.'),
+            'tpv.max' => __('The TPV cannot exceed 255 characters.'),
+            'serial_number.required' => __('The serial number is required.'),
+            'serial_number.max' => __('The serial number cannot exceed 255 characters.'),
+            'terminal_number.required' => __('The terminal number is required.'),
+            'terminal_number.max' => __('The terminal number cannot exceed 255 characters.'),
+            'operation.required' => __('The operation is required.'),
+            'operation.max' => __('The operation cannot exceed 255 characters.'),
+            'amount.required' => __('The amount is required.'),
+            'amount.numeric' => __('The amount must be a number.'),
+            'amount.min' => __('The amount cannot be negative.'),
+            'card_number.required' => __('The card number is required.'),
+            'date_time.required' => __('The date and time is required.'),
+            'date_time.date' => __('The date and time must be a valid date.'),
+            'transaction_number.required' => __('The transaction number is required.'),
+            'transaction_number.max' => __('The transaction number cannot exceed 255 characters.'),
+            'sale_id.required' => __('The sale ID is required.'),
+            'sale_id.numeric' => __('The sale ID must be a number.')
         ];
     }
 }

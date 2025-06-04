@@ -163,6 +163,6 @@ class FishController extends Controller
     {
         $fish->delete();
 
-        return response()->json(null, 200);
+        return response()->json(['message' => __('Fish deleted successfully')], 200);
     }
 }

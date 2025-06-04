@@ -42,10 +42,10 @@ class VacationRequestActionRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'requestId.required' => 'El ID de la solicitud es requerido.',
-            'requestId.exists' => 'La solicitud de vacaciones no existe.',
-            'type.required' => 'El tipo de acción es requerido.',
-            'type.in' => 'El tipo de acción no es válido.',
+            'requestId.required' => __('The request ID is required.'),
+            'requestId.exists' => __('The vacation request does not exist.'),
+            'type.required' => __('The type of action is required.'),
+            'type.in' => __('The type of action is not valid.'),
         ];
     }
-} 
+}

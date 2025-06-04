@@ -167,7 +167,7 @@ class ProductController extends Controller
     public string $search = '';
 
     /**
-     * Muestra la lista de productos. Tambien realiza una consulta en la base de datos para filtrarlos
+     * Shows the list of products. Also performs a database query to filter them
      */
     public function index(Request $request)
     {
@@ -181,7 +181,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Muestra un producto en particular
+     * Shows a particular product
      */
     public function show($id)
     {
@@ -193,7 +193,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Importa los productos desde un archivo Excel
+     * Imports products from an Excel file
      */
     public function import(Request $request)
     {
@@ -205,12 +205,11 @@ class ProductController extends Controller
 
         Excel::import(new ProductsImport, $request->file('file'));
 
-        return redirect()->route('stock')->with('success', 'Product created successfully.');
-
+        return redirect()->route('stock')->with('success', __('Product created successfully.'));
     }
 
     /**
-     * Agrega un producto
+     * Adds a product
      */
     public function create()
     {
@@ -229,13 +228,12 @@ class ProductController extends Controller
 
         event(new ProductAdded($product));
 
-
-        // Redirigir con mensaje de éxito
-        return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product created successfully.');
+        // Redirect with success message
+        return redirect()->route('products.show', ['id' => $product->id])->with('success', __('Product created successfully.'));
     }
 
     /**
-     * Edita un producto
+     * Edits a product
      */
     public function edit(Product $product)
     {
@@ -252,11 +250,11 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return redirect()->route('products.show', ['id' => $product->id])->with('success', 'Product updated successfully');
+        return redirect()->route('products.show', ['id' => $product->id])->with('success', __('Product updated successfully'));
     }
 
     /**
-     * Elimina un producto
+     * Deletes a product
      */
     public function destroy(Product $product)
     {
@@ -264,26 +262,25 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->route('stock')->with('success', 'Product deleted successfully');
+        return redirect()->route('stock')->with('success', __('Product deleted successfully'));
     }
 
     // DANGER ZONE
     /**
-     * Elimina todos los productos
+     * Deletes all products
      */
     public function deleteAll()
     {
         $this->authorize('delete', Product::class);
 
-        // desactiva temporalmente las restricciones de claves foráneas en la base de datos
-
-        //esto es necesario ya qeu si la tabla products tiene una relación con otra tabla
-        // (como categories), no se puede eliminar o truncar la tabla products si hay registros
-        // en categorias que dependan de ella
+        // Temporarily disable foreign key constraints in the database
+        // This is necessary because if the products table has a relationship with another table
+        // (like categories), you cannot delete or truncate the products table if there are records
+        // in categories that depend on it
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Product::truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        return redirect()->route('products.index')->with('success', 'All products have been deleted.');
+        return redirect()->route('products.index')->with('success', __('All products have been deleted.'));
     }
 }

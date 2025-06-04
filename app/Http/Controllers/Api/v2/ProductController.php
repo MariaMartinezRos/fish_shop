@@ -159,6 +159,6 @@ class ProductController extends Controller
         $product->delete();
         Cache::forget('products');
 
-        return response()->json(['message' => 'Product deleted successfully'], 204);
+        return response()->json(['message' => __('Product deleted successfully')], 204);
     }
 }

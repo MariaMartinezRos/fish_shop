@@ -4,7 +4,7 @@
     {{ __('You can now login to your account using the button below:')}}
 
     @component('mail::button', ['url' => url('login')])
-        Login
+        {{ __('Login') }}
     @endcomponent
 
     {{ __('Thanks')}},<br>

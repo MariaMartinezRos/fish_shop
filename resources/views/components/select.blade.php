@@ -3,7 +3,7 @@
         'name',
         'options' => [],
         'selected' => null,
-        'placeholder' => 'Select an option',
+        'placeholder' => __('Select an option'),
         'required' => false,
         'disabled' => false,
         'class' => '',

@@ -29,7 +29,7 @@ class ContactConfirmation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact Confirmation',
+            subject: __('Contact Confirmation'),
         );
     }
 

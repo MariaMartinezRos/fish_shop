@@ -123,6 +123,6 @@ class CategoryController extends Controller
     public function destroy(Category $category): JsonResponse
     {
         $category->delete();
-        return response()->json(['message' => 'Category deleted successfully'], 204);
+        return response()->json(['message' => __('Category deleted successfully')], 204);
     }
 }

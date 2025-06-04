@@ -5,7 +5,7 @@
             <div class="flex transition-transform duration-500 ease-in-out" style="transform: translateX(-{{ $currentIndex * 100 }}%);">
                 @foreach($images as $image)
                     <div class="w-full flex-shrink-0">
-                        <img src="{{ $image }}" alt="Carousel Image" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                        <img src="{{ $image }}" alt="{{ __('Carousel Image') }}" class="w-full h-64 object-cover rounded-lg shadow-lg">
                     </div>
                 @endforeach
             </div>
