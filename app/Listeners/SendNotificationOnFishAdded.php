@@ -22,7 +22,7 @@ class SendNotificationOnFishAdded
     {
         Session::flash('toast', [
             'type' => 'success',
-            'message' => '¡Pez agregado exitosamente: '.$event->fish->name.'!',
+            'message' => __('Fish added succesfully: ').$event->fish->name.'!',
         ]);
     }
 }

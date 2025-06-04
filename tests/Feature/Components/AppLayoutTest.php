@@ -32,7 +32,7 @@ it('renders app layout with navigation for authenticated user', function () {
         <div>Test Content</div>
     </x-app-layout>');
 
-    $view->assertSee('Cerrar Sesión');
+    $view->assertSee('Finalizar sesión');
     $view->assertDontSee('Iniciar sesión');
 });
 
@@ -43,5 +43,5 @@ it('renders app layout with admin navigation for admin user', function () {
     </x-app-layout>');
 
     $view->assertSee('Ventas');
-    $view->assertSee('Cerrar Sesión');
+    $view->assertSee('Finalizar sesión');
 });

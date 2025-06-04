@@ -74,7 +74,7 @@ test('employee can submit vacation request', function () {
         ->set('policy_acknowledged', true)
         ->call('submit');
 
-    $component->assertSee('Vacation request submitted successfully!');
+    $component->assertSee('¡Solicitud de vacaciones enviada con éxito!');
 
     $this->assertDatabaseHas('vacation_requests', [
         'user_id' => $this->employee->id,

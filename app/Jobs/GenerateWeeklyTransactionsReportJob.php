@@ -26,7 +26,7 @@ class GenerateWeeklyTransactionsReportJob implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle()
+    public function handle(): void
     {
         $startDate = now()->startOfWeek();
         $endDate = now()->startOfWeek()->addDays(5);
@@ -44,9 +44,7 @@ class GenerateWeeklyTransactionsReportJob implements ShouldQueue
             'transactions' => $transactions,
         ];
 
-        // buena practica
-
-        // Send report email to admin
+        // Send report email to admin ( me lo envio a mi pq estoy en entorno de pruebas y asi es mas comodo)
         Mail::to('mariaamartinezros@gmail.com')->send(new WeeklyTransactionsReportEmail($summary));
     }
 }

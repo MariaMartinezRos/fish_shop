@@ -83,7 +83,7 @@ it('includes logout if logged in', function () {
     $this->actingAs($admin)
         ->get(route('stock'))
         ->assertOk()
-        ->assertSee('Cerrar Sesión')
+        ->assertSee('Finalizar sesión')
         ->assertSee(route('logout'));
 });
 

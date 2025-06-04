@@ -14,8 +14,6 @@ class FetchCarouselImages implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    //    private string $imagePath = 'C:\\Users\\gines\\Herd\\fish_shop\\public\\images\\fishes';
-
     /**
      * Execute the job.
      */

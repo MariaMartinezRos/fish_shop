@@ -22,8 +22,16 @@ class VacationRequest extends Model
         'end_date' => 'date',
     ];
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function totalDays(): float|int
+    {
+        if ($this->start_date && $this->end_date) {
+            return $this->end_date->diffInDays($this->start_date) + 1; // +1 para incluir ambos días
+        }
+        return 0;
     }
 }

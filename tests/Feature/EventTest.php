@@ -66,7 +66,7 @@ it('flashes a success message to the session when a fish is added', function () 
 
     expect(Session::get('toast'))->toBe([
         'type' => 'success',
-        'message' => '¡Pez agregado exitosamente: Trucha!',
+        'message' => 'Pez agregado exitosamente: Trucha!',
     ]);
 });
 
@@ -89,7 +89,7 @@ it('flashes a success message to the session when a product is added', function 
 
     expect(Session::get('toast'))->toBe([
         'type' => 'success',
-        'message' => '¡Producto agregado exitosamente: Trucha!',
+        'message' => '¡Producto agregado exitosamente:Trucha!',
     ]);
 });
 

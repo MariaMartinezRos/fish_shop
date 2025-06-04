@@ -22,7 +22,7 @@ class VacationRequestEmailJob implements ShouldQueue
         $this->vacationRequest = $vacationRequest;
     }
 
-    public function handle()
+    public function handle(): \Illuminate\Http\RedirectResponse
     {
         try {
             \Log::info('Starting VacationRequestEmailJob', [
@@ -31,7 +31,7 @@ class VacationRequestEmailJob implements ShouldQueue
 
             $user = $this->vacationRequest->user;
             if (! $user) {
-                throw new \Exception('User not found for vacation request');
+                throw new \Exception(__('User not found for vacation request'));
             }
 
             $admin = User::whereHas('role', function ($query) {
@@ -39,7 +39,8 @@ class VacationRequestEmailJob implements ShouldQueue
             })->first();
 
             if (! $admin) {
-                throw new \Exception('No admin user found to send vacation request notification');
+                session()->flash('error', __('No admin user found to send vacation request notification'));
+                return redirect()->back()->withInput();
             }
 
             \Log::info('Sending vacation request email', [
@@ -50,19 +51,17 @@ class VacationRequestEmailJob implements ShouldQueue
             Mail::send('mail.vacation-request', [
                 'vacationRequest' => $this->vacationRequest,
                 'employee' => $user,
-                'days_requested' => $this->vacationRequest->start_date->diffInDays($this->vacationRequest->end_date) + 1,
+                'days_requested' => $this->vacationRequest->totalDays(),
             ], function ($message) use ($admin) {
-                $message->to($admin->email)
+//                $message->to($admin->email)
+                $message->to('mariaamartinezros@gmail.com')
                     ->subject(__('New Vacation Request - PESCADERIAS BENITO'));
             });
 
-            \Log::info(__('Vacation request email sent successfully'));
+            session()->flash('success', __('Vacation request email sent successfully'));
         } catch (\Exception $e) {
-            \Log::error(__('Failed to send vacation request email'), [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
-            ]);
-            throw $e;
+                session()->flash('error', __('Failed to send vacation request email'));
+                return redirect()->back()->withInput();
         }
     }
 }

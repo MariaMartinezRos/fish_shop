@@ -29,7 +29,7 @@ class VacationRequestNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Nueva Solicitud de Vacaciones - PESCADERIAS BENITO',
+            subject: __('New Vacation Request - PESCADERIAS BENITO'),
         );
     }
 

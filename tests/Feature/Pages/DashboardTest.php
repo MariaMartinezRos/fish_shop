@@ -46,7 +46,7 @@ it('includes logout if logged in', function () {
     loginAsUser();
     get(route('dashboard'))
         ->assertOk()
-        ->assertSeeText('Cerrar Sesión')
+        ->assertSeeText('Finalizar sesión')
         ->assertSee(route('dashboard'));
 
 });

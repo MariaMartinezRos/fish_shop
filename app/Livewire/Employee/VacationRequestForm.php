@@ -29,7 +29,7 @@ class VacationRequestForm extends Component
             ->exists();
 
         if ($hasApprovedVacation) {
-            session()->flash('error', 'No puedes solicitar vacaciones porque ya tienes una solicitud aprobada.');
+            session()->flash('error', __('You cannot request vacation because you already have an approved request.'));
 
             return;
         }
@@ -47,10 +47,10 @@ class VacationRequestForm extends Component
 
         $this->reset();
         $this->dispatch('vacation-request-submitted');
-        session()->flash('message', 'Vacation request submitted successfully!');
+        session()->flash('message', __('Vacation request submitted successfully!'));
     }
 
-    public function downloadPdf()
+    public function downloadPdf(): \Symfony\Component\HttpFoundation\StreamedResponse
     {
         $validated = $this->validate((new VacationRequestFormRequest)->rules(), (new VacationRequestFormRequest)->messages());
 
@@ -69,7 +69,7 @@ class VacationRequestForm extends Component
         }, 'vacation-request.pdf');
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
         $hasApprovedVacation = VacationRequest::where('user_id', Auth::id())
             ->where('status', 'approved')

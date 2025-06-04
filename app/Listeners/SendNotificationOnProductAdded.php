@@ -22,7 +22,7 @@ class SendNotificationOnProductAdded
     {
         Session::flash('toast', [
             'type' => 'success',
-            'message' => '¡Producto agregado exitosamente: '.$event->product->name.'!',
+            'message' => __('Product added succesfully: ').$event->product->name.'!',
         ]);
     }
 }
