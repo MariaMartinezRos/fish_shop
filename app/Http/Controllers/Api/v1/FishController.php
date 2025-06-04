@@ -7,10 +7,9 @@ use App\Http\Requests\StoreFishRequest;
 use App\Http\Resources\FishResource;
 use App\Models\Fish;
 use App\Models\TypeWater;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 
 /**
  * @deprecated This controller is deprecated and will be removed in a future release.
@@ -22,6 +21,7 @@ class FishController extends Controller
      * Get a list of all fishes.
      *
      * @group Fishes V1
+     *
      * @deprecated Use v2 API endpoint instead
      *
      * @response 200 {
@@ -47,6 +47,7 @@ class FishController extends Controller
      * Get a specific fish.
      *
      * @group Fishes V1
+     *
      * @deprecated Use v2 API endpoint instead
      *
      * @urlParam fish int required The ID of the fish. Example: 1
@@ -70,7 +71,9 @@ class FishController extends Controller
      * Store a new fish.
      *
      * @group Fishes V1
+     *
      * @authenticated
+     *
      * @deprecated Use v2 API endpoint instead
      *
      * @bodyParam name string required The name of the fish. Example: Salmon
@@ -114,7 +117,9 @@ class FishController extends Controller
      * Update an existing fish.
      *
      * @group Fishes V1
+     *
      * @authenticated
+     *
      * @deprecated Use v2 API endpoint instead
      *
      * @urlParam fish int required The ID of the fish. Example: 1
@@ -152,7 +157,9 @@ class FishController extends Controller
      * Delete a specific fish.
      *
      * @group Fishes V1
+     *
      * @authenticated
+     *
      * @deprecated Use v2 API endpoint instead
      *
      * @urlParam fish int required The ID of the fish. Example: 1

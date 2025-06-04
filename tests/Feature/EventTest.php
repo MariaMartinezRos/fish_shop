@@ -47,7 +47,6 @@ it('broadcasts on the correct channel', function () {
     expect($event->broadcastOn())->toContainOnlyInstancesOf(PrivateChannel::class);
 })->todo('no es necesario');
 
-
 it('creates a FishAdded event with a fish instance', function () {
     $fish = new Fish(['name' => 'Salmón']);
     $event = new FishAdded($fish);
@@ -61,13 +60,13 @@ it('flashes a success message to the session when a fish is added', function () 
 
     $fish = new Fish(['name' => 'Trucha']);
     $event = new FishAdded($fish);
-    $listener = new SendNotificationOnFishAdded();
+    $listener = new SendNotificationOnFishAdded;
 
     $listener->handle($event);
 
     expect(Session::get('toast'))->toBe([
         'type' => 'success',
-        'message' => '¡Pez agregado exitosamente: Trucha!'
+        'message' => '¡Pez agregado exitosamente: Trucha!',
     ]);
 });
 
@@ -84,30 +83,26 @@ it('flashes a success message to the session when a product is added', function 
 
     $product = new Product(['name' => 'Trucha']);
     $event = new ProductAdded($product);
-    $listener = new SendNotificationOnProductAdded();
+    $listener = new SendNotificationOnProductAdded;
 
     $listener->handle($event);
 
     expect(Session::get('toast'))->toBe([
         'type' => 'success',
-        'message' => '¡Producto agregado exitosamente: Trucha!'
+        'message' => '¡Producto agregado exitosamente: Trucha!',
     ]);
 });
-
 
 it('flashes a success message to the session when a page is accessed', function () {
     Session::start();
 
     $event = new PageAccessed('Test message');
-    $listener = new ShowSweetAlertOnPageAccess();
+    $listener = new ShowSweetAlertOnPageAccess;
 
     $listener->handle($event);
 
     expect(Session::get('toast'))->toBe([
         'type' => 'success',
-        'message' => '¡ Test message !'
+        'message' => '¡ Test message !',
     ]);
 });
-
-
-

@@ -1,11 +1,11 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Notification;
 
 beforeEach(function () {
-Notification::fake();
+    Notification::fake();
 });
 
 it('redirects to dashboard if email already verified', function () {
@@ -27,8 +27,8 @@ it('sends email verification notification if email is not verified', function ()
     $response = $this->actingAs($user)->post('/email/verification-notification');
 
     $response
-    ->assertRedirect()
-    ->assertSessionHas('status', 'verification-link-sent');
+        ->assertRedirect()
+        ->assertSessionHas('status', 'verification-link-sent');
 
     Notification::assertSentTo($user, VerifyEmail::class);
 });

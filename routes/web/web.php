@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\{Admin\SoftDeletesReportController,
-    ContactController,
-    ProductController,
-    ProfileController,
-    RecipeController};
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
 // Página principal
@@ -64,9 +63,8 @@ Route::middleware('auth')->group(function () {
 // =====================================================
 // INCLUSIÓN DE ARCHIVOS DE RUTAS Y AUTENTICACIÓN
 // =====================================================
-require __DIR__ . '/../auth.php';
+require __DIR__.'/../auth.php';
 
-require __DIR__ . '/admin.php';
-require __DIR__ . '/customer.php';
-require __DIR__ . '/employee.php';
-
+require __DIR__.'/admin.php';
+require __DIR__.'/customer.php';
+require __DIR__.'/employee.php';

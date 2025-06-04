@@ -1,14 +1,10 @@
 <?php
 
 use App\Http\Requests\UpdateFishRequest;
-use App\Http\Requests\UserRequest;
-use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 beforeEach(function () {
-    $this->request = new UpdateFishRequest();
+    $this->request = new UpdateFishRequest;
 });
 
 it('passes with valid minimal data', function () {
@@ -62,5 +58,3 @@ it('fails if characteristics.state is not an allowed value', function () {
     expect($validator->fails())->toBeTrue();
     expect($validator->errors()->has('characteristics.state'))->toBeTrue();
 });
-
-

@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Transaction;
 use App\Models\Role;
+use App\Models\Transaction;
 use App\Models\User;
 
 beforeEach(function () {
@@ -29,13 +29,13 @@ it('returns a successful response for fetching all transactions', function () {
                 'transaction_number',
                 'sale_id',
                 'created_at',
-                'updated_at'
-            ]]
+                'updated_at',
+            ]],
         ]);
 });
 
 it('returns a successful response for fetching a single transaction', function () {
-    $transaction = Transaction::factory()->create(['sale_id' =>'100']);
+    $transaction = Transaction::factory()->create(['sale_id' => '100']);
 
     $response = $this->getJson("/api/v2/transactions/{$transaction->id}");
 
@@ -53,8 +53,8 @@ it('returns a successful response for fetching a single transaction', function (
                 'transaction_number',
                 'sale_id',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 });
 
@@ -69,7 +69,7 @@ it('stores a new transaction successfully', function () {
         'card_number' => '4111111111111111',
         'date_time' => now()->format('Y-m-d H:i:s'),
         'transaction_number' => 'TXN123456',
-        'sale_id' => '100'
+        'sale_id' => '100',
     ];
 
     $response = $this->postJson('/api/v2/transactions', $data);
@@ -88,8 +88,8 @@ it('stores a new transaction successfully', function () {
                 'transaction_number',
                 'sale_id',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 
     $this->assertDatabaseHas('transactions', [
@@ -100,7 +100,7 @@ it('stores a new transaction successfully', function () {
         'amount' => 99.99,
         'card_number' => '4111111111111111',
         'transaction_number' => 'TXN123456',
-        'sale_id' => '100'
+        'sale_id' => '100',
     ]);
 });
 
@@ -116,7 +116,7 @@ it('updates an existing transaction successfully', function () {
         'card_number' => '4111111111111111',
         'date_time' => now()->format('Y-m-d H:i:s'),
         'transaction_number' => 'TXN654321',
-        'sale_id' => '100'
+        'sale_id' => '100',
     ];
 
     $response = $this->putJson("/api/v2/transactions/{$transaction->id}", $updateData);
@@ -135,8 +135,8 @@ it('updates an existing transaction successfully', function () {
                 'transaction_number',
                 'sale_id',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 
     $this->assertDatabaseHas('transactions', [
@@ -148,7 +148,7 @@ it('updates an existing transaction successfully', function () {
         'amount' => 49.99,
         'card_number' => '4111111111111111',
         'transaction_number' => 'TXN654321',
-        'sale_id' => '100'
+        'sale_id' => '100',
     ]);
 });
 
@@ -175,7 +175,7 @@ it('validates required fields when storing a transaction', function () {
             'card_number',
             'date_time',
             'transaction_number',
-            'sale_id'
+            'sale_id',
         ]);
 });
 
@@ -194,7 +194,7 @@ it('validates required fields when updating a transaction', function () {
             'card_number',
             'date_time',
             'transaction_number',
-            'sale_id'
+            'sale_id',
         ]);
 })->todo('da 200 ');
 
@@ -209,13 +209,13 @@ it('validates card number format', function () {
         'card_number' => null, // Invalid card number
         'date_time' => now()->format('Y-m-d H:i:s'),
         'transaction_number' => 'TXN123456',
-        'sale_id' => '100'
+        'sale_id' => '100',
     ];
 
     $response = $this->postJson('/api/v2/transactions', $data);
 
     $response->assertStatus(422)
         ->assertJsonValidationErrors([
-            'card_number'
+            'card_number',
         ]);
 });

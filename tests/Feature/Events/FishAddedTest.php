@@ -7,14 +7,13 @@ use App\Models\TypeWater;
 it('creates fish added event with fish model', function () {
     $typeWater = TypeWater::factory()->create();
     $fish = Fish::factory()->create();
-//    $fish->typeWater()->attach([$typeWater->id, 'temperature_range' => '24-30°C']);
+    //    $fish->typeWater()->attach([$typeWater->id, 'temperature_range' => '24-30°C']);
     $fish->typeWater()->attach([
         $typeWater->id => [
             'temperature_range' => '24-30°C',
             'ph_range' => '6.5-7.5',
         ],
     ]);
-
 
     $event = new FishAdded($fish);
 
@@ -24,4 +23,3 @@ it('creates fish added event with fish model', function () {
         ->and($event->broadcastOn())->toBeArray()
         ->and($event->broadcastOn()[0])->toBeInstanceOf(\Illuminate\Broadcasting\PrivateChannel::class);
 });
-

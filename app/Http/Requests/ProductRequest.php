@@ -36,16 +36,16 @@ class ProductRequest extends FormRequest
     public function messages(): array
     {
         return [
-        'name.required' => __('The name is required.'),
-        'name.unique' => __('This product name is already in use.'),
-        'category_id.required' => __('The category is required.'),
-        'category_id.exists' => __('The selected category does not exist.'),
-        'price_per_kg.required' => __('The price per kg is required.'),
-        'price_per_kg.numeric' => __('The price must be a number.'),
-        'stock_kg.required' => __('The stock is required.'),
-        'stock_kg.numeric' => __('The stock must be a number.'),
-        'description.string' => __('The description must be a string.'),
-        'name.max' => __('The name cannot exceed 255 characters.'),
+            'name.required' => __('The name is required.'),
+            'name.unique' => __('This product name is already in use.'),
+            'category_id.required' => __('The category is required.'),
+            'category_id.exists' => __('The selected category does not exist.'),
+            'price_per_kg.required' => __('The price per kg is required.'),
+            'price_per_kg.numeric' => __('The price must be a number.'),
+            'stock_kg.required' => __('The stock is required.'),
+            'stock_kg.numeric' => __('The stock must be a number.'),
+            'description.string' => __('The description must be a string.'),
+            'name.max' => __('The name cannot exceed 255 characters.'),
         ];
     }
 }

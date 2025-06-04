@@ -1,10 +1,7 @@
 <?php
 
-
-use App\Models\Category;
-use Illuminate\Support\Facades\View;
 use App\Http\Controllers\CategoryController;
-
+use App\Models\Category;
 
 it('returns the category view with empty array when there are no categories', function () {
     // Arrange
@@ -38,7 +35,7 @@ it('returns the category view with categories when they exist', function () {
 
 it('renders the correct view manually from controller', function () {
     loginAsAdmin();
-    $controller = new CategoryController();
+    $controller = new CategoryController;
 
     $response = $controller->index();
 

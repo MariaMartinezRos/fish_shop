@@ -36,6 +36,7 @@ class UserController extends Controller
         $this->authorize('create', User::class);
 
         $roles = \App\Models\Role::all(); // Fetch all roles
+
         return view('users.create', compact('roles'));
     }
 

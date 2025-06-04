@@ -29,7 +29,7 @@ class Fish extends Model
         'diet',
         'lifespan_years',
         'habitat',
-        'conservation_status'
+        'conservation_status',
     ];
 
     protected $casts = [
@@ -49,7 +49,7 @@ class Fish extends Model
                 'oxygen_level',
                 'migration_pattern',
                 'recorded_since',
-                'notes'
+                'notes',
             ]);
     }
 

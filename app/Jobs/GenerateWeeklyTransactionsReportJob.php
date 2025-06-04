@@ -4,12 +4,11 @@ namespace App\Jobs;
 
 use App\Mail\WeeklyTransactionsReportEmail;
 use App\Models\Transaction;
-use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
 class GenerateWeeklyTransactionsReportJob implements ShouldQueue

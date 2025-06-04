@@ -1,8 +1,8 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
 
 it('uses SoftDeletes on User model', function () {
     expect(class_uses_recursive(User::class))->toContain(SoftDeletes::class);
@@ -59,5 +59,3 @@ it('uses SoftDeletes on TypeWater model', function () {
 it('has deleted_at column in type_water table', function () {
     expect(Schema::hasColumn('type_water', 'deleted_at'))->toBeTrue();
 });
-
-

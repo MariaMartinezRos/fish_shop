@@ -1,11 +1,8 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
-use Database\Factories\CategoryFactory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 beforeEach(function () {
     $role = Role::factory()->create(['name' => 'admin']);
@@ -83,7 +80,7 @@ it('filters products by search term', function () {
     $response->assertStatus(200)
         ->assertViewIs('dashboard.stock-client')
         ->assertViewHas('products', function ($products) use ($product1) {
-            return $products->contains($product1) && !$products->contains('name', 'Another Product');
+            return $products->contains($product1) && ! $products->contains('name', 'Another Product');
         });
 });
 

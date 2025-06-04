@@ -73,7 +73,8 @@ class UserPolicy
     {
         // Only admins can permanently delete users
         // return $user->role_id === 1 && $user->id !== $model->id;
-        return $user->role_id === 1;    }
+        return $user->role_id === 1;
+    }
 
     /**
      * Determine whether the user can perform any action.

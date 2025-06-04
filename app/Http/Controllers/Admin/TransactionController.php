@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 class TransactionController extends Controller
 {
     use AuthorizesRequests;
+
     /**
      * Shows the list of transactions.
      */
@@ -28,6 +29,7 @@ class TransactionController extends Controller
         }
 
         event(new PageAccessed(__('You have successfully accessed the page.')));
+
         return view('transactions', compact('transactions'));
     }
 
@@ -50,6 +52,7 @@ class TransactionController extends Controller
         $chartWeek = $this->showGraphicWeek();
 
         event(new PageAccessed(__('You have successfully accessed the page.')));
+
         return view('sales', compact('totalAmount', 'totalClients', 'chartHour', 'chartWeek'));
     }
 

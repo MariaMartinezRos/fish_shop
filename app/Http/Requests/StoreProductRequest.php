@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'price_per_kg' => 'required|numeric|min:0',
             'stock_kg' => 'required|numeric|min:0',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
         ];
     }
 
@@ -50,4 +50,4 @@ class StoreProductRequest extends FormRequest
             'stock_kg.min' => __('The stock amount cannot be negative.'),
         ];
     }
-} 
+}

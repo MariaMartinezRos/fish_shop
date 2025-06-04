@@ -38,6 +38,7 @@ class ProductController extends Controller
     public function index(): AnonymousResourceCollection
     {
         $products = Product::with(['category', 'fishes'])->get();
+
         return ProductResource::collection($products);
     }
 
@@ -73,6 +74,7 @@ class ProductController extends Controller
      * Store a new product.
      *
      * @group Products V2
+     *
      * @authenticated
      *
      * @bodyParam name string required The name of the product. Example: Salmon
@@ -109,6 +111,7 @@ class ProductController extends Controller
      * Update an existing product.
      *
      * @group Products V2
+     *
      * @authenticated
      *
      * @urlParam product int required The ID of the product. Example: 1
@@ -148,6 +151,7 @@ class ProductController extends Controller
      * Delete a specific product.
      *
      * @group Products V2
+     *
      * @authenticated
      *
      * @urlParam product int required The ID of the product. Example: 1

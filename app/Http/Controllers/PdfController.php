@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Dompdf\Dompdf;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PdfController extends Controller
 {
     use AuthorizesRequests;
+
     /**
      * Descarga todos los productos en un archivo PDF
      */
@@ -26,4 +25,3 @@ class PdfController extends Controller
 
     }
 }
-

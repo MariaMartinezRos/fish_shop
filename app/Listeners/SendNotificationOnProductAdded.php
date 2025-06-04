@@ -2,12 +2,8 @@
 
 namespace App\Listeners;
 
-use App\Events\FishAdded;
 use App\Events\ProductAdded;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Session;
-
 
 class SendNotificationOnProductAdded
 {
@@ -26,7 +22,7 @@ class SendNotificationOnProductAdded
     {
         Session::flash('toast', [
             'type' => 'success',
-            'message' => '¡Producto agregado exitosamente: ' . $event->product->name . '!'
+            'message' => '¡Producto agregado exitosamente: '.$event->product->name.'!',
         ]);
     }
 }

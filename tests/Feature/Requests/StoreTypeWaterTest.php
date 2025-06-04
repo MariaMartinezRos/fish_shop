@@ -1,15 +1,11 @@
 <?php
 
 use App\Http\Requests\StoreTypeWaterRequest;
-use App\Http\Requests\UserRequest;
-use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 it('validates type is required', function () {
     // Arrange
-    $request = new StoreTypeWaterRequest();
+    $request = new StoreTypeWaterRequest;
 
     // Act
     $data = [
@@ -27,7 +23,7 @@ it('validates type is required', function () {
 
 it('validates type must be either Saltwater or Freshwater', function () {
     // Arrange
-    $request = new StoreTypeWaterRequest();
+    $request = new StoreTypeWaterRequest;
 
     // Act
     $data = [
@@ -46,7 +42,7 @@ it('validates type must be either Saltwater or Freshwater', function () {
 
 it('validates ph_level is numeric and between 0 and 14', function () {
     // Arrange
-    $request = new StoreTypeWaterRequest();
+    $request = new StoreTypeWaterRequest;
 
     // Act
     $data = [
@@ -65,7 +61,7 @@ it('validates ph_level is numeric and between 0 and 14', function () {
 
 it('validates temperature_range is required', function () {
     // Arrange
-    $request = new StoreTypeWaterRequest();
+    $request = new StoreTypeWaterRequest;
 
     // Act
     $data = [
@@ -83,7 +79,7 @@ it('validates temperature_range is required', function () {
 
 it('validates salinity_level is numeric and not negative', function () {
     // Arrange
-    $request = new StoreTypeWaterRequest();
+    $request = new StoreTypeWaterRequest;
 
     // Act
     $data = [
@@ -102,7 +98,7 @@ it('validates salinity_level is numeric and not negative', function () {
 
 it('validates region is required', function () {
     // Arrange
-    $request = new StoreTypeWaterRequest();
+    $request = new StoreTypeWaterRequest;
 
     // Act
     $data = [
@@ -120,7 +116,7 @@ it('validates region is required', function () {
 
 it('validates type is unique', function () {
     // Arrange
-    $request = new StoreTypeWaterRequest();
+    $request = new StoreTypeWaterRequest;
 
     // Simulamos que ya existe un tipo 'Saltwater'
     // (Asegúrate de que el tipo esté presente en la base de datos para hacer esta prueba)

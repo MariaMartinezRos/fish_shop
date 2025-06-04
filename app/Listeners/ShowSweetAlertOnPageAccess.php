@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Events\PageAccessed;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class ShowSweetAlertOnPageAccess
 {
@@ -24,7 +22,7 @@ class ShowSweetAlertOnPageAccess
     {
         Session::flash('toast', [
             'type' => 'success',
-            'message' => '¡ ' . $event->message . ' !'
+            'message' => '¡ '.$event->message.' !',
         ]);
     }
 }

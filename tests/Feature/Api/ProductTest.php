@@ -1,12 +1,10 @@
 <?php
 
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Fish;
+use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Fish;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\UploadedFile;
 
 beforeEach(function () {
     $role = Role::factory()->create(['name' => 'admin']);
@@ -20,7 +18,7 @@ it('returns a successful response for fetching all products', function () {
     $product = Product::factory()->create(['category_id' => $category->id]);
     $product->fishes()->attach($fish->id, [
         'days_on_sale' => 15,
-        'supplier' => 'Test Supplier'
+        'supplier' => 'Test Supplier',
     ]);
 
     $response = $this->getJson('/api/v2/products');
@@ -36,17 +34,17 @@ it('returns a successful response for fetching all products', function () {
                 'category' => [
                     'id',
                     'name',
-                    'display_name'
+                    'display_name',
                 ],
                 'fishes' => [[
                     'id',
                     'name',
                     'days_on_sale',
-                    'supplier'
+                    'supplier',
                 ]],
                 'created_at',
-                'updated_at'
-            ]]
+                'updated_at',
+            ]],
         ]);
 });
 
@@ -56,7 +54,7 @@ it('returns a successful response for fetching a single product', function () {
     $product = Product::factory()->create(['category_id' => $category->id]);
     $product->fishes()->attach($fish->id, [
         'days_on_sale' => 15,
-        'supplier' => 'Test Supplier'
+        'supplier' => 'Test Supplier',
     ]);
 
     $response = $this->getJson("/api/v2/products/{$product->id}");
@@ -72,17 +70,17 @@ it('returns a successful response for fetching a single product', function () {
                 'category' => [
                     'id',
                     'name',
-                    'display_name'
+                    'display_name',
                 ],
                 'fishes' => [[
                     'id',
                     'name',
                     'days_on_sale',
-                    'supplier'
+                    'supplier',
                 ]],
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 });
 
@@ -94,7 +92,7 @@ it('stores a new product successfully', function () {
         'description' => 'A test product description',
         'price_per_kg' => 99.99,
         'stock_kg' => 100,
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ];
 
     $response = $this->postJson('/api/v2/products', $data);
@@ -109,8 +107,8 @@ it('stores a new product successfully', function () {
                 'stock_kg',
                 'category',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 
     $this->assertDatabaseHas('products', [
@@ -118,7 +116,7 @@ it('stores a new product successfully', function () {
         'description' => 'A test product description',
         'price_per_kg' => 99.99,
         'stock_kg' => 100,
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ]);
 });
 
@@ -131,7 +129,7 @@ it('updates an existing product successfully', function () {
         'description' => 'Updated product description',
         'price_per_kg' => 149.99,
         'stock_kg' => 50,
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ];
 
     $response = $this->putJson("/api/v2/products/{$product->id}", $updateData);
@@ -145,8 +143,8 @@ it('updates an existing product successfully', function () {
                 'price_per_kg',
                 'stock_kg',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 
     $this->assertDatabaseHas('products', [
@@ -155,7 +153,7 @@ it('updates an existing product successfully', function () {
         'description' => 'Updated product description',
         'price_per_kg' => 149.99,
         'stock_kg' => 50,
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ]);
 });
 
@@ -178,7 +176,7 @@ it('validates required fields when storing a product', function () {
             'name',
             'price_per_kg',
             'stock_kg',
-            'category_id'
+            'category_id',
         ]);
 });
 
@@ -193,7 +191,6 @@ it('validates required fields when updating a product', function () {
             'name',
             'price_per_kg',
             'stock_kg',
-            'category_id'
+            'category_id',
         ]);
 });
-

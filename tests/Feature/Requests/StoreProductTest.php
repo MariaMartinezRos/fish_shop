@@ -1,16 +1,12 @@
 <?php
 
 use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UserRequest;
 use App\Models\Category;
-use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 it('validates product name is required', function () {
     // Arrange
-    $request = new StoreProductRequest();
+    $request = new StoreProductRequest;
 
     // Act
     $data = [
@@ -28,7 +24,7 @@ it('validates product name is required', function () {
 
 it('validates category_id exists in the database', function () {
     // Arrange
-    $request = new StoreProductRequest();
+    $request = new StoreProductRequest;
     // Asegúrate de crear una categoría en la base de datos si es necesario
     Category::create(['id' => 1, 'name' => 'Test Category']);
 
@@ -49,7 +45,7 @@ it('validates category_id exists in the database', function () {
 
 it('validates price_per_kg is numeric and not negative', function () {
     // Arrange
-    $request = new StoreProductRequest();
+    $request = new StoreProductRequest;
 
     // Act
     $data = [
@@ -68,7 +64,7 @@ it('validates price_per_kg is numeric and not negative', function () {
 
 it('validates stock_kg is numeric and not negative', function () {
     // Arrange
-    $request = new StoreProductRequest();
+    $request = new StoreProductRequest;
 
     // Act
     $data = [
@@ -84,4 +80,3 @@ it('validates stock_kg is numeric and not negative', function () {
     expect($validator->fails())->toBeTrue();
     expect($validator->errors()->has('stock_kg'))->toBeTrue();
 });
-

@@ -85,7 +85,7 @@ it('sends a weekly report email with the correct summary', function () {
         'transaction_number' => 'TXN-001',
     ]);
 
-    (new GenerateWeeklyTransactionsReportJob())->handle();
+    (new GenerateWeeklyTransactionsReportJob)->handle();
 
     // Assert
     Mail::assertSent(WeeklyTransactionsReportEmail::class, function ($mail) use ($startOfWeek) {
@@ -99,7 +99,7 @@ it('sends a weekly report email with the correct summary', function () {
 });
 
 it('renders the contact confirmation mail with correct subject and view', function () {
-    $mailable = new \App\Mail\ContactConfirmation();
+    $mailable = new \App\Mail\ContactConfirmation;
     expect($mailable->envelope()->subject)->toBe('Contact Confirmation');
     $html = $mailable->render();
     expect($html)->toContain('Contact');

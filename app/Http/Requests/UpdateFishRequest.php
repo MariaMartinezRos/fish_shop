@@ -32,7 +32,7 @@ class UpdateFishRequest extends FormRequest
             'characteristics.salinity' => ['nullable', 'numeric', 'between:0,100'],
             'characteristics.oxygen_level' => ['nullable', 'numeric', 'between:0,100'],
             'characteristics.migration_pattern' => ['required_with:characteristics', 'string', 'in:Non-migratory,Anadromous,Catadromous'],
-            'characteristics.recorded_since' => ['nullable', 'integer', 'min:1900', 'max:' . date('Y')],
+            'characteristics.recorded_since' => ['nullable', 'integer', 'min:1900', 'max:'.date('Y')],
             'characteristics.notes' => ['nullable', 'string'],
         ];
     }
@@ -61,30 +61,29 @@ class UpdateFishRequest extends FormRequest
         ];
     }
 
-
-//    /**
-//     * Get the validated data from the request.
-//     *
-//     * @param  null  $key
-//     * @param  null  $default
-//     */
-//    public function validated($key = null, $default = null): array
-//    {
-//        $validated = parent::validated();
-//
-//        // Only set default values if the corresponding fields are being updated
-//        if (!isset($validated['diet'])) {
-//            $validated['diet'] = 'Omnivore';
-//        }
-//
-//        if (isset($validated['characteristics']) && !isset($validated['characteristics']['state'])) {
-//            $validated['characteristics']['state'] = 'Allowed';
-//        }
-//
-//        if (isset($validated['characteristics']) && !isset($validated['characteristics']['migration_pattern'])) {
-//            $validated['characteristics']['migration_pattern'] = 'Non-migratory';
-//        }
-//
-//        return $validated;
-//    }
+    //    /**
+    //     * Get the validated data from the request.
+    //     *
+    //     * @param  null  $key
+    //     * @param  null  $default
+    //     */
+    //    public function validated($key = null, $default = null): array
+    //    {
+    //        $validated = parent::validated();
+    //
+    //        // Only set default values if the corresponding fields are being updated
+    //        if (!isset($validated['diet'])) {
+    //            $validated['diet'] = 'Omnivore';
+    //        }
+    //
+    //        if (isset($validated['characteristics']) && !isset($validated['characteristics']['state'])) {
+    //            $validated['characteristics']['state'] = 'Allowed';
+    //        }
+    //
+    //        if (isset($validated['characteristics']) && !isset($validated['characteristics']['migration_pattern'])) {
+    //            $validated['characteristics']['migration_pattern'] = 'Non-migratory';
+    //        }
+    //
+    //        return $validated;
+    //    }
 }

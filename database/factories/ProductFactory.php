@@ -34,7 +34,7 @@ class ProductFactory extends Factory
     public function configure(): self
     {
         return $this->afterCreating(function (Product $product) {
-            $fishes = \App\Models\Fish::inRandomOrder()->take(rand(1,3))->get();
+            $fishes = \App\Models\Fish::inRandomOrder()->take(rand(1, 3))->get();
             foreach ($fishes as $fish) {
                 $product->fishes()->attach($fish->id, [
                     'days_on_sale' => $this->faker->numberBetween(1, 5),

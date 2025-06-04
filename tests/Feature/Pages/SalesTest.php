@@ -6,7 +6,6 @@ use App\Models\Role;
 use App\Models\User;
 use Smalot\PdfParser\Parser;
 
-
 use function Pest\Laravel\get;
 
 it('returns a successful response for sales page', function () {
@@ -61,7 +60,7 @@ it('can download a soft deleted document', function () {
     // Arrange
     loginAsAdmin();
     $category = Category::factory()->create(['id' => 1]);
-    $product = Product::factory()->create(['name'=> 'Producto Prueba', 'category_id' => $category->id]);
+    $product = Product::factory()->create(['name' => 'Producto Prueba', 'category_id' => $category->id]);
     $product->delete();
 
     // Act
@@ -69,7 +68,7 @@ it('can download a soft deleted document', function () {
         ->assertOk()
         ->assertHeader('Content-Type', 'application/pdf');
 
-    $parser = new Parser();
+    $parser = new Parser;
     $pdf = $parser->parseContent($response->getContent());
     $text = $pdf->getText();
 
@@ -78,7 +77,6 @@ it('can download a soft deleted document', function () {
     expect($text)->toContain('Products');
     expect($text)->toContain($product->name);
 });
-
 
 it('calls the command when the button is pressed', function () {
     // Arrange
@@ -96,4 +94,3 @@ it('calls the command when the button is pressed', function () {
     $this->artisan('config:clear')->assertExitCode(0);
     $this->artisan('app:clean-log')->assertExitCode(0);
 });
-

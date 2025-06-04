@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'tpv',
         'serial_number',
@@ -20,7 +21,7 @@ class Transaction extends Model
         'card_number',
         'date_time',
         'transaction_number',
-        'sale_id'
+        'sale_id',
     ];
 
     /**

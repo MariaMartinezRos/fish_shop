@@ -3,10 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\FishAdded;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Session;
-
 
 class SendNotificationOnFishAdded
 {
@@ -25,7 +22,7 @@ class SendNotificationOnFishAdded
     {
         Session::flash('toast', [
             'type' => 'success',
-            'message' => '¡Pez agregado exitosamente: ' . $event->fish->name . '!'
+            'message' => '¡Pez agregado exitosamente: '.$event->fish->name.'!',
         ]);
     }
 }

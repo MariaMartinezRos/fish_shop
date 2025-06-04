@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
 {
-
     /**
      * Obtiene las reglas de validación para la solicitud.
      */
@@ -40,7 +39,7 @@ class UserRequest extends FormRequest
             'password2.required' => __('You must confirm the password.'),
             'password2.same' => __('The passwords do not match.'),
             'role_id.required' => __('You must select a valid role.'),
-//            'role_id.in' => 'El rol seleccionado no es válido.',
+            //            'role_id.in' => 'El rol seleccionado no es válido.',
         ];
     }
 }

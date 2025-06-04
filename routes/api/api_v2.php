@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 // Fish routes
 Route::get('fishes', [FishController::class, 'index']);
-//Route::get('fishes/list', [FishController::class, 'list']);
+// Route::get('fishes/list', [FishController::class, 'list']);
 Route::get('fishes/{fish}', [FishController::class, 'show']);
 
 // Category routes (public)
@@ -48,4 +48,3 @@ Route::middleware('auth:sanctum')->group(function () {
     // Transaction routes
     Route::apiResource('transactions', TransactionController::class);
 });
-

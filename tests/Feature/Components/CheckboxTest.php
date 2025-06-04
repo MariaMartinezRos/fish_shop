@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-
 it('renders checkbox component with label', function () {
     $view = $this->blade('<x-checkbox name="test" label="Test Checkbox" />');
 

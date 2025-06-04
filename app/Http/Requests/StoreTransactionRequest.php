@@ -30,7 +30,7 @@ class StoreTransactionRequest extends FormRequest
             'card_number' => 'required|string|min:4',
             'date_time' => 'required|date',
             'transaction_number' => 'required|string|max:255',
-            'sale_id' => 'required|numeric'
+            'sale_id' => 'required|numeric',
         ];
     }
 
@@ -59,7 +59,7 @@ class StoreTransactionRequest extends FormRequest
             'transaction_number.required' => __('The transaction number is required.'),
             'transaction_number.max' => __('The transaction number cannot exceed 255 characters.'),
             'sale_id.required' => __('The sale ID is required.'),
-            'sale_id.numeric' => __('The sale ID must be a number.')
+            'sale_id.numeric' => __('The sale ID must be a number.'),
         ];
     }
 }

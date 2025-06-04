@@ -1,14 +1,7 @@
 <?php
 
-use App\Http\Controllers\{Admin\ProductController,
-    Admin\SoftDeletesController,
-    Admin\TransactionController,
-    Admin\UserController,
-    CategoryController,
-    Employee\HomeController};
-use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\Employee\HomeController;
 use App\Http\Middleware\EmployeeMiddleware;
-use App\Livewire\TransactionSearcher;
 use Illuminate\Support\Facades\Route;
 
 // =====================================================
@@ -34,4 +27,3 @@ Route::middleware([EmployeeMiddleware::class])->group(function () {
         ->name('employee.vacation-request.pdf');
 
 });
-

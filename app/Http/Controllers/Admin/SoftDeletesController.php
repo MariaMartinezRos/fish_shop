@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Schema;
 class SoftDeletesController extends Controller
 {
     use AuthorizesRequests;
+
     /**
      * Descarga todos los productos en un archivo PDF
      */
@@ -45,10 +46,9 @@ class SoftDeletesController extends Controller
         $pdf = Pdf::loadView('pdf.soft-deletes', [
             'tables' => $deletedRecords,
             'startDate' => $startDate,
-            'endDate' => $endDate
+            'endDate' => $endDate,
         ]);
 
         return $pdf->download('soft-deletes-report.pdf');
     }
 }
-

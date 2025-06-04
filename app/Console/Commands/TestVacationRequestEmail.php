@@ -36,7 +36,7 @@ class TestVacationRequestEmail extends Command
             [
                 'name' => 'Test User',
                 'password' => bcrypt('password'),
-                'role_id' => 2 // role_id 2 es empleado
+                'role_id' => 2, // role_id 2 es empleado
             ]
         );
 
@@ -48,16 +48,16 @@ class TestVacationRequestEmail extends Command
             'days_requested' => 5,
             'reason' => 'Test vacation request',
             'comments' => 'This is a test vacation request for email testing purposes.',
-            'status' => 'pending'
+            'status' => 'pending',
         ]);
 
         // Enviar el email
         $admin = User::where('role_id', 1)->first();
         if ($admin) {
-//            Mail::to($admin->email)->send(new VacationRequestNotification($vacationRequest));
-//            $this->info('Email enviado correctamente a ' . $admin->email);
+            //            Mail::to($admin->email)->send(new VacationRequestNotification($vacationRequest));
+            //            $this->info('Email enviado correctamente a ' . $admin->email);
             Mail::to('mariaamartinezros@gmail.com')->send(new VacationRequestNotification($vacationRequest));
-            $this->info('Email enviado correctamente a ' . 'mariaamartinezros@gmail.com');
+            $this->info('Email enviado correctamente a '.'mariaamartinezros@gmail.com');
         } else {
             $this->error('No se encontró ningún administrador en el sistema.');
         }

@@ -1,8 +1,8 @@
 <?php
 
 use App\Events\ProductAdded;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
 
 it('creates product added event with product model', function () {
     $category = Category::factory()->create();
@@ -22,7 +22,7 @@ it('handles product with all attributes', function () {
         'name' => 'Test Product',
         'description' => 'Test Description',
         'price_per_kg' => 99.99,
-        'stock_kg' => 100
+        'stock_kg' => 100,
     ]);
 
     $event = new ProductAdded($product);

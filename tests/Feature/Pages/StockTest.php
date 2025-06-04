@@ -7,11 +7,10 @@ use App\Models\User;
 
 use function Pest\Laravel\get;
 
-
 it('returns a successful response for stock page', function () {
     // Act
     loginAsAdmin();
-        get(route('stock'))
+    get(route('stock'))
         ->assertOk();
 });
 

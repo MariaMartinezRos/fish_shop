@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\TypeWater;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -72,4 +71,4 @@ class TypeWaterPolicy
         // Only admins can permanently delete water types
         return $user->role_id === 1;
     }
-} 
+}

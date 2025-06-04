@@ -24,7 +24,7 @@ class StoreCategoryRequest extends FormRequest
         return [
             'name' => 'required|string|max:255|unique:categories',
             'display_name' => 'nullable|string|max:255',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
         ];
     }
 
@@ -41,4 +41,4 @@ class StoreCategoryRequest extends FormRequest
             'name.unique' => __('This category name is already in use.'),
         ];
     }
-} 
+}

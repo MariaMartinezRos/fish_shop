@@ -2,10 +2,10 @@
 
 use App\Models\Fish;
 use App\Models\Role;
-use App\Models\User;
 use App\Models\TypeWater;
-use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 beforeEach(function () {
     $role = Role::factory()->create(['name' => 'admin']);
@@ -24,7 +24,7 @@ it('returns a successful response for fetching all fishes', function () {
         'oxygen_level' => 5.94,
         'migration_pattern' => 'Non-migratory',
         'recorded_since' => 1990,
-        'notes' => 'Test notes'
+        'notes' => 'Test notes',
     ]);
 
     $response = $this->getJson('/api/v2/fishes');
@@ -51,7 +51,7 @@ it('returns a successful response for fetching all fishes', function () {
                     'oxygen_level',
                     'migration_pattern',
                     'recorded_since',
-                    'notes'
+                    'notes',
                 ],
                 'water_type_details' => [
                     'type',
@@ -59,11 +59,11 @@ it('returns a successful response for fetching all fishes', function () {
                     'temperature_range',
                     'salinity_level',
                     'region',
-                    'description'
+                    'description',
                 ],
                 'created_at',
-                'updated_at'
-            ]]
+                'updated_at',
+            ]],
         ]);
 });
 
@@ -78,7 +78,7 @@ it('returns a successful response for fetching a single fish', function () {
         'oxygen_level' => 5.94,
         'migration_pattern' => 'Non-migratory',
         'recorded_since' => 1990,
-        'notes' => 'Test notes'
+        'notes' => 'Test notes',
     ]);
 
     $response = $this->getJson("/api/v2/fishes/{$fish->id}");
@@ -100,8 +100,8 @@ it('returns a successful response for fetching a single fish', function () {
                 'characteristics',
                 'water_type_details',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 });
 
@@ -126,8 +126,8 @@ it('stores a new fish successfully', function () {
             'oxygen_level' => 5.94,
             'migration_pattern' => 'Non-migratory',
             'recorded_since' => 1990,
-            'notes' => 'Test notes'
-        ]
+            'notes' => 'Test notes',
+        ],
     ];
 
     $response = $this->postJson('/api/v2/fishes', $data);
@@ -149,14 +149,14 @@ it('stores a new fish successfully', function () {
                 'characteristics',
                 'water_type_details',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 
     $this->assertDatabaseHas('fishes', [
         'name' => 'Salmon',
         'scientific_name' => 'Salmo salar',
-        'diet' => 'Carnivore'
+        'diet' => 'Carnivore',
     ]);
 });
 
@@ -172,7 +172,7 @@ it('updates an existing fish successfully', function () {
         'oxygen_level' => 5.94,
         'migration_pattern' => 'Non-migratory',
         'recorded_since' => 1990,
-        'notes' => 'Test notes'
+        'notes' => 'Test notes',
     ]);
 
     $updateData = [
@@ -194,8 +194,8 @@ it('updates an existing fish successfully', function () {
             'oxygen_level' => 6.0,
             'migration_pattern' => 'Anadromous',
             'recorded_since' => 1990,
-            'notes' => 'Updated notes'
-        ]
+            'notes' => 'Updated notes',
+        ],
     ];
 
     $response = $this->putJson("/api/v2/fishes/{$fish->id}", $updateData);
@@ -217,15 +217,15 @@ it('updates an existing fish successfully', function () {
                 'characteristics',
                 'water_type_details',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 
     $this->assertDatabaseHas('fishes', [
         'id' => $fish->id,
         'name' => 'Updated Salmon',
         'scientific_name' => 'Salmo salar',
-        'diet' => 'Carnivore'
+        'diet' => 'Carnivore',
     ]);
 
 });
@@ -241,7 +241,7 @@ it('deletes a fish successfully', function () {
         'oxygen_level' => 5.94,
         'migration_pattern' => 'Non-migratory',
         'recorded_since' => 1990,
-        'notes' => 'Test notes'
+        'notes' => 'Test notes',
     ]);
 
     $response = $this->deleteJson("/api/v2/fishes/{$fish->id}");
@@ -263,7 +263,7 @@ it('validates required fields when storing a fish', function () {
             'characteristics.state',
             'characteristics.temperature_range',
             'characteristics.ph_range',
-            'characteristics.migration_pattern'
+            'characteristics.migration_pattern',
         ]);
 });
 
@@ -281,11 +281,11 @@ it('validates required fields when updating a fish', function () {
             'characteristics.state',
             'characteristics.temperature_range',
             'characteristics.ph_range',
-            'characteristics.migration_pattern'
+            'characteristics.migration_pattern',
         ]);
 });
 
-it('can create a fish with a photo attached', function (){
+it('can create a fish with a photo attached', function () {
     Storage::fake('public');
 
     $fish = Fish::factory()->create();
@@ -311,8 +311,8 @@ it('can create a fish with a photo attached', function (){
             'oxygen_level' => 5.94,
             'migration_pattern' => 'Non-migratory',
             'recorded_since' => 1990,
-            'notes' => 'Test notes'
-        ]
+            'notes' => 'Test notes',
+        ],
     ];
 
     $response = $this->postJson('/api/v2/fishes', $data);
@@ -334,15 +334,15 @@ it('can create a fish with a photo attached', function (){
                 'characteristics',
                 'water_type_details',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 
     $this->assertDatabaseHas('fishes', [
         'name' => 'Salmon',
         'scientific_name' => 'Salmo salar',
-        'diet' => 'Carnivore'
+        'diet' => 'Carnivore',
     ]);
 
-    Storage::disk('public')->assertExists('fishes/' . $image->hashName());
+    Storage::disk('public')->assertExists('fishes/'.$image->hashName());
 })->todo('Test is not passing due to the image upload functionality.');

@@ -1,12 +1,10 @@
 <?php
 
 use App\Models\Role;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Schema;
 
 it('has a HasMany relation with users', function () {
-    $role = new Role();
+    $role = new Role;
     expect($role->users())->toBeInstanceOf(HasMany::class);
 });
 

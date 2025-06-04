@@ -51,15 +51,14 @@ class TransactionPolicy
     }
 }
 
-
-//namespace App\Policies;
+// namespace App\Policies;
 //
-//use App\Models\Transaction;
-//use App\Models\User;
-//use Illuminate\Auth\Access\HandlesAuthorization;
+// use App\Models\Transaction;
+// use App\Models\User;
+// use Illuminate\Auth\Access\HandlesAuthorization;
 //
-//class TransactionPolicy
-//{
+// class TransactionPolicy
+// {
 //    use HandlesAuthorization;
 //
 //    /**
@@ -101,4 +100,4 @@ class TransactionPolicy
 //    {
 //        return $user->role_id === 1; // Only Admin
 //    }
-//}
+// }

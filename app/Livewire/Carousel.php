@@ -13,7 +13,7 @@ class Carousel extends Component
 
     public $currentIndex = 0;
 
-//    private $imagePath = 'C:\\Users\\gines\\Herd\\fish_shop\\public\\images\\fishes';
+    //    private $imagePath = 'C:\\Users\\gines\\Herd\\fish_shop\\public\\images\\fishes';
 
     public function mount(): void
     {

@@ -55,8 +55,8 @@ class CreateAdmin extends Command
             return;
         }
 
-        //check if the role admin its created. if not, create it
-        if (!(Role::where('name', 'admin')->exists())) {
+        // check if the role admin its created. if not, create it
+        if (! (Role::where('name', 'admin')->exists())) {
             Role::create([
                 'name' => 'admin',
                 'display_name' => 'Administrator',

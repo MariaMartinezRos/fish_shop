@@ -38,7 +38,7 @@ it('updates existing transaction', function () {
 it('deletes transaction', function () {
     $transaction = Transaction::factory()->create();
 
-    $auxiliar = $transaction-> id;
+    $auxiliar = $transaction->id;
 
     Livewire::actingAs($this->user)
         ->test(TransactionManager::class)
@@ -69,6 +69,6 @@ it('validates required fields', function () {
             'card_number',
             'date_time',
             'transaction_number',
-            'sale_id'
+            'sale_id',
         ]);
 });

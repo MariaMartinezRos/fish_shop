@@ -1,15 +1,11 @@
 <?php
 
 use App\Http\Requests\UpdateProductRequest;
-use App\Http\Requests\UserRequest;
 use App\Models\Category;
-use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 beforeEach(function () {
-    $this->request = new UpdateProductRequest();
+    $this->request = new UpdateProductRequest;
 });
 
 it('passes with valid partial update data', function () {

@@ -1,15 +1,11 @@
 <?php
 
 use App\Http\Requests\StoreTransactionRequest;
-use App\Http\Requests\UserRequest;
-use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 it('validates tpv is required', function () {
     // Arrange
-    $request = new StoreTransactionRequest();
+    $request = new StoreTransactionRequest;
 
     // Act
     $data = [
@@ -31,7 +27,7 @@ it('validates tpv is required', function () {
 
 it('validates serial_number is required', function () {
     // Arrange
-    $request = new StoreTransactionRequest();
+    $request = new StoreTransactionRequest;
 
     // Act
     $data = [
@@ -53,7 +49,7 @@ it('validates serial_number is required', function () {
 
 it('validates amount is numeric and not negative', function () {
     // Arrange
-    $request = new StoreTransactionRequest();
+    $request = new StoreTransactionRequest;
 
     // Act
     $data = [
@@ -76,7 +72,7 @@ it('validates amount is numeric and not negative', function () {
 
 it('validates card_number is at least 4 digits', function () {
     // Arrange
-    $request = new StoreTransactionRequest();
+    $request = new StoreTransactionRequest;
 
     // Act
     $data = [
@@ -99,7 +95,7 @@ it('validates card_number is at least 4 digits', function () {
 
 it('validates sale_id is required and numeric', function () {
     // Arrange
-    $request = new StoreTransactionRequest();
+    $request = new StoreTransactionRequest;
 
     // Act
     $data = [
@@ -119,4 +115,3 @@ it('validates sale_id is required and numeric', function () {
     expect($validator->fails())->toBeTrue()
         ->and($validator->errors()->has('sale_id'))->toBeTrue();
 });
-

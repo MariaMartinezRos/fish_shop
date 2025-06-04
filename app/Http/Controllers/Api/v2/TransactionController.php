@@ -78,6 +78,7 @@ class TransactionController extends Controller
      * Store a new transaction.
      *
      * @group Transactions V2
+     *
      * @authenticated
      *
      * @bodyParam tpv string required The TPV (Point of Sale Terminal) identifier. Example: TPV001
@@ -121,6 +122,7 @@ class TransactionController extends Controller
      * Update an existing transaction.
      *
      * @group Transactions V2
+     *
      * @authenticated
      *
      * @urlParam transaction int required The ID of the transaction. Example: 1
@@ -166,6 +168,7 @@ class TransactionController extends Controller
      * Delete a transaction.
      *
      * @group Transactions V2
+     *
      * @authenticated
      *
      * @urlParam transaction int required The ID of the transaction. Example: 1

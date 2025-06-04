@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\File;
 
 it('ensures the auth.php file exists before including it', function () {
@@ -20,4 +19,3 @@ it('ensures the api.php file exists', function () {
     expect(File::exists(base_path('routes/api/api.php')))
         ->toBeTrue();
 });
-

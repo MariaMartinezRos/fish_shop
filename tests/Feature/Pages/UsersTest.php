@@ -60,12 +60,12 @@ it('can create a user successfully', function () {
 
     // Act
     $this->post('users', [
-            'name' => 'Jane Doe',
-            'email' => 'example@example.com',
-            'password' => '1234567890',
-            'password2' => '1234567890',
-            'role_id' => 4,
-        ])
+        'name' => 'Jane Doe',
+        'email' => 'example@example.com',
+        'password' => '1234567890',
+        'password2' => '1234567890',
+        'role_id' => 4,
+    ])
         ->assertRedirect('users')
         ->assertSessionHas('success', 'Usuario creado correctamente');
 
@@ -96,10 +96,10 @@ it('can update a user', function () {
 
     // Act
     $this->put("users/{$user->id}", [
-            'name' => 'Jane Doe',
-            'email' => 'example@example.com',
-            'role_id' => 4,
-        ])
+        'name' => 'Jane Doe',
+        'email' => 'example@example.com',
+        'role_id' => 4,
+    ])
         ->assertRedirect('users')
         ->assertSessionHas('success', 'Usuario actualizado correctamente');
 });

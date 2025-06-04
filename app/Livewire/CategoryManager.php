@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,11 +13,17 @@ class CategoryManager extends Component
     use WithPagination;
 
     public $name = '';
+
     public $display_name = '';
+
     public $description = '';
+
     public $editing = false;
+
     public $creating = false;
+
     public $categoryId = null;
+
     public $search = '';
 
     protected $rules = [
@@ -59,7 +64,7 @@ class CategoryManager extends Component
     {
         $this->authorize('update', Category::class);
 
-        $request = new UpdateCategoryRequest();
+        $request = new UpdateCategoryRequest;
         $request->setContainer(app())
             ->setRouteResolver(function () {
                 return ['category' => $this->categoryId];
@@ -87,7 +92,7 @@ class CategoryManager extends Component
     {
         $this->authorize('create', Category::class);
 
-        $request = new StoreCategoryRequest();
+        $request = new StoreCategoryRequest;
         $request->merge([
             'name' => $this->name,
             'description' => $this->description,

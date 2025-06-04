@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Employee;
 
-use Livewire\Component;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Response;
+use Livewire\Component;
 
 class ScheduleDownload extends Component
 {
@@ -12,10 +12,10 @@ class ScheduleDownload extends Component
     {
         $pdf = Pdf::loadView('pdf.schedule');
 
-        $filename = __('weekly-schedule') . '.pdf';
+        $filename = __('weekly-schedule').'.pdf';
 
         return Response::streamDownload(
-            fn () => print($pdf->output()),
+            fn () => print ($pdf->output()),
             $filename
         );
     }

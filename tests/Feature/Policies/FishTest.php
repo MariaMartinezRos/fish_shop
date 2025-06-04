@@ -10,7 +10,7 @@ beforeEach(function () {
     $this->admin = User::factory()->create(['role_id' => $this->role_admin->id]);
     $this->client = User::factory()->create(['role_id' => $this->role_customer->id]);
 
-    $this->policy = new FishPolicy();
+    $this->policy = new FishPolicy;
 });
 
 it('allows anyone to view any fish', function () {

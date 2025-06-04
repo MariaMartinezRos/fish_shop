@@ -1,12 +1,8 @@
 <?php
 
 use App\Http\Requests\UpdateTypeWaterRequest;
-use App\Http\Requests\UserRequest;
-use App\Models\Role;
 use App\Models\TypeWater;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 beforeEach(function () {
     $this->typeWater = TypeWater::factory()->create([
@@ -15,7 +11,7 @@ beforeEach(function () {
         'temperature_range' => '10-20°C',
         'salinity_level' => 35,
         'region' => 'Pacific',
-        'description' => 'Original description'
+        'description' => 'Original description',
     ]);
 });
 
@@ -29,7 +25,7 @@ it('passes with valid data', function () {
         'description' => 'Tropical waters',
     ];
 
-    $request = new UpdateTypeWaterRequest();
+    $request = new UpdateTypeWaterRequest;
     $request->setContainer(app())->validateResolved();
     $request->typeWater = $this->typeWater;
 
@@ -86,4 +82,3 @@ it('fails if type already exists', function () {
     expect($validator->fails())->toBeTrue()
         ->and($validator->errors()->first('type.0'))->toEqual('El campo type.0 ya ha sido registrado.');
 });
-

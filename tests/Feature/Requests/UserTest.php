@@ -1,13 +1,13 @@
 <?php
+
 use App\Http\Requests\UserRequest;
 use App\Models\Role;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 it('validates correctly for a new user creation', function () {
     // Arrange
-    $request = new UserRequest();
+    $request = new UserRequest;
     $role = Role::factory()->create(['id' => 1]);
 
     // Act
@@ -36,7 +36,7 @@ it('validates correctly for user update', function () {
         'role_id' => $role->id,
     ]);
 
-    $request = new UserRequest();
+    $request = new UserRequest;
 
     $data = [
         'name' => 'Updated User',
@@ -66,7 +66,7 @@ it('fails when required fields are missing', function () {
         'role_id' => $role->id,
     ];
 
-    $request = new UserRequest();
+    $request = new UserRequest;
 
     // Act
     $validator = Validator::make($data, $request->rules(), $request->messages());
@@ -88,7 +88,7 @@ it('fails when passwords do not match', function () {
         'role_id' => $role->id,
     ];
 
-    $request = new UserRequest();
+    $request = new UserRequest;
 
     // Act
     $validator = Validator::make($data, $request->rules(), $request->messages());
@@ -118,7 +118,7 @@ it('fails when email is already taken', function () {
         'role_id' => 1,
     ];
 
-    $request = new UserRequest();
+    $request = new UserRequest;
 
     // Validación
     $validator = Validator::make($data, $request->rules(), $request->messages());
@@ -127,4 +127,3 @@ it('fails when email is already taken', function () {
     expect($validator->fails())->toBeTrue();
     expect($validator->errors()->first('email'))->toBe('Este correo ya está en uso.');
 });
-

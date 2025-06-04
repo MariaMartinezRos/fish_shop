@@ -1,12 +1,12 @@
 <?php
 
-use App\Events\UserCreated;
 use App\Events\FishAdded;
-use App\Events\ProductAdded;
 use App\Events\PageAccessed;
-use App\Listeners\SendWelcomeEmail;
+use App\Events\ProductAdded;
+use App\Events\UserCreated;
 use App\Listeners\SendNotificationOnFishAdded;
 use App\Listeners\SendNotificationOnProductAdded;
+use App\Listeners\SendWelcomeEmail;
 use App\Listeners\ShowSweetAlertOnPageAccess;
 use App\Mail\WelcomeMail;
 use App\Models\Fish;
@@ -71,9 +71,9 @@ it('triggers the listener and sends welcome email', function () {
 it('registers expected event listeners', function () {
     Event::fake();
 
-    $user = new User();
-    $fish = new Fish();
-    $product = new Product();
+    $user = new User;
+    $fish = new Fish;
+    $product = new Product;
     $message = 'Page accessed';
 
     event(new UserCreated($user));

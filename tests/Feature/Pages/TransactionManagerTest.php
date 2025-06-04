@@ -1,13 +1,14 @@
 <?php
 
 use App\Livewire\TransactionManager;
-use App\Models\Transaction;
 use App\Models\Role;
+use App\Models\Transaction;
 use App\Models\User;
 
 use function Pest\Laravel\get;
+
 //
-//it('returns a successful response for transaction page', function () {
+// it('returns a successful response for transaction page', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -17,15 +18,15 @@ use function Pest\Laravel\get;
 //        ->get('employee/transactions')
 //        ->assertOk()
 //        ->assertStatus(200);
-//});
+// });
 //
-//it('cannot be accessed by guest', function () {
+// it('cannot be accessed by guest', function () {
 //    // Act & Assert
 //    get('employee/transactions')
 //        ->assertRedirect(route('login'));
-//});
+// });
 //
-//it('cannot be accessed by customer', function () {
+// it('cannot be accessed by customer', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 4]);
 //    $customer = User::factory()->create(['role_id' => 4]);
@@ -34,9 +35,9 @@ use function Pest\Laravel\get;
 //    $this->actingAs($customer)
 //        ->get('employee/transactions')
 //        ->assertRedirect(route('login'));
-//});
+// });
 //
-//it('can be accessed by employee', function () {
+// it('can be accessed by employee', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -45,9 +46,9 @@ use function Pest\Laravel\get;
 //    $this->actingAs($employee)
 //        ->get('employee/transactions')
 //        ->assertOk();
-//});
+// });
 //
-//it('can be accessed by admin', function () {
+// it('can be accessed by admin', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 1]);
 //    $admin = User::factory()->create(['role_id' => 1]);
@@ -56,9 +57,9 @@ use function Pest\Laravel\get;
 //    $this->actingAs($admin)
 //        ->get('employee/transactions')
 //        ->assertOk();
-//});
+// });
 //
-//it('renders the transaction manager component', function () {
+// it('renders the transaction manager component', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -67,9 +68,9 @@ use function Pest\Laravel\get;
 //    Livewire::actingAs($employee)
 //        ->test(TransactionManager::class)
 //        ->assertViewIs('livewire.transaction-manager');
-//});
+// });
 //
-//it('displays a list of transactions', function () {
+// it('displays a list of transactions', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -82,9 +83,9 @@ use function Pest\Laravel\get;
 //        ->assertSee($transactions[0]->tpv)
 //        ->assertSee($transactions[1]->tpv)
 //        ->assertSee($transactions[2]->tpv);
-//});
+// });
 //
-//it('shows a message when no transactions are available', function () {
+// it('shows a message when no transactions are available', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -93,9 +94,9 @@ use function Pest\Laravel\get;
 //    Livewire::actingAs($employee)
 //        ->test(TransactionManager::class)
 //        ->assertSee('No transactions found.');
-//});
+// });
 //
-//it('can create a new transaction as employee', function () {
+// it('can create a new transaction as employee', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -125,9 +126,9 @@ use function Pest\Laravel\get;
 //        'transaction_number' => 'TXN-001',
 //        'sale_id' => 1,
 //    ]);
-//});
+// });
 //
-//it('cannot edit a transaction as employee', function () {
+// it('cannot edit a transaction as employee', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -139,9 +140,9 @@ use function Pest\Laravel\get;
 //        ->test(TransactionManager::class)
 //        ->call('edit', $transaction)
 //        ->assertForbidden();
-//});
+// });
 //
-//it('cannot delete a transaction as employee', function () {
+// it('cannot delete a transaction as employee', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -153,9 +154,9 @@ use function Pest\Laravel\get;
 //        ->test(TransactionManager::class)
 //        ->call('delete', $transaction->id)
 //        ->assertForbidden();
-//});
+// });
 //
-//it('validates required fields when creating a transaction', function () {
+// it('validates required fields when creating a transaction', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -174,9 +175,9 @@ use function Pest\Laravel\get;
 //        ->set('sale_id', '')
 //        ->call('store')
 //        ->assertHasErrors(['tpv', 'serial_number', 'terminal_number', 'operation', 'amount', 'card_number', 'date_time', 'transaction_number', 'sale_id']);
-//});
+// });
 //
-//it('validates amount is numeric and not negative', function () {
+// it('validates amount is numeric and not negative', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -187,9 +188,9 @@ use function Pest\Laravel\get;
 //        ->set('amount', -100)
 //        ->call('store')
 //        ->assertHasErrors(['amount']);
-//});
+// });
 //
-//it('validates card number is exactly 16 digits', function () {
+// it('validates card number is exactly 16 digits', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -200,9 +201,9 @@ use function Pest\Laravel\get;
 //        ->set('card_number', '123456')
 //        ->call('store')
 //        ->assertHasErrors(['card_number']);
-//});
+// });
 //
-//it('can search transactions', function () {
+// it('can search transactions', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -216,9 +217,9 @@ use function Pest\Laravel\get;
 //        ->set('search', 'ALHAMA')
 //        ->assertSee('PESCADERIA BENITO ALHAMA')
 //        ->assertDontSee('PESCADERIA BENITO LIBRILLA');
-//});
+// });
 //
-//it('paginates transactions', function () {
+// it('paginates transactions', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -230,9 +231,9 @@ use function Pest\Laravel\get;
 //        ->test(TransactionManager::class)
 //        ->assertSee('Previous')
 //        ->assertSee('Next');
-//});
+// });
 //
-//it('shows create form when clicking add transaction button', function () {
+// it('shows create form when clicking add transaction button', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 3]);
@@ -243,4 +244,4 @@ use function Pest\Laravel\get;
 //        ->call('create')
 //        ->assertSet('creating', true)
 //        ->assertSet('editing', false);
-//});
+// });

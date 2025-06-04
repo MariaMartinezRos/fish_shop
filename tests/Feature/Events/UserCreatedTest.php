@@ -1,8 +1,8 @@
 <?php
 
 use App\Events\UserCreated;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
 
 it('creates user created event with user model', function () {
     $user = User::factory()->create();
@@ -20,7 +20,7 @@ it('handles user with all attributes', function () {
         'role_id' => $role->id,
         'name' => 'Test User',
         'email' => 'test@example.com',
-        'password' => 'password'
+        'password' => 'password',
     ]);
 
     $event = new UserCreated($user);

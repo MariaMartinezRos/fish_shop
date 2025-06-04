@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Requests\VacationRequestActionRequest;
-use App\Models\User;
 use App\Models\Role;
-use App\Models\VacationRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 it('authorizes admin users', function () {
@@ -13,7 +12,7 @@ it('authorizes admin users', function () {
 
     Auth::login($admin);
 
-    $request = new VacationRequestActionRequest();
+    $request = new VacationRequestActionRequest;
     expect($request->authorize())->toBeTrue();
 });
 
@@ -23,12 +22,12 @@ it('does not authorize non-admin users', function () {
 
     Auth::login($user);
 
-    $request = new VacationRequestActionRequest();
+    $request = new VacationRequestActionRequest;
     expect($request->authorize())->toBeFalse();
 });
 
 it('validates required fields', function () {
-    $request = new VacationRequestActionRequest();
+    $request = new VacationRequestActionRequest;
     $rules = $request->rules();
 
     expect($rules)->toHaveKey('requestId')
@@ -38,21 +37,21 @@ it('validates required fields', function () {
 });
 
 it('validates requestId exists in vacation_requests table', function () {
-    $request = new VacationRequestActionRequest();
+    $request = new VacationRequestActionRequest;
     $rules = $request->rules();
 
     expect($rules['requestId'])->toContain('exists:vacation_requests,id');
 });
 
 it('validates type is one of allowed values', function () {
-    $request = new VacationRequestActionRequest();
+    $request = new VacationRequestActionRequest;
     $rules = $request->rules();
 
     expect($rules['type'])->toContain('in:pending,approved');
 });
 
 it('has custom error messages', function () {
-    $request = new VacationRequestActionRequest();
+    $request = new VacationRequestActionRequest;
     $messages = $request->messages();
 
     expect($messages)->toHaveKey('requestId.required')
@@ -63,20 +62,20 @@ it('has custom error messages', function () {
 
 it('validates request data correctly', function () {
     // Create vacation request
-    $request = new VacationRequestActionRequest();
+    $request = new VacationRequestActionRequest;
     $validator = validator([
         'requestId' => 1,
-        'type' => 'pending'
+        'type' => 'pending',
     ], $request->rules());
 
     expect($validator->passes())->toBeTrue();
 })->todo();
 
 it('fails validation with invalid data', function () {
-    $request = new VacationRequestActionRequest();
+    $request = new VacationRequestActionRequest;
     $validator = validator([
         'requestId' => 999999, // Non-existent ID
-        'type' => 'invalid_type'
+        'type' => 'invalid_type',
     ], $request->rules());
 
     expect($validator->fails())->toBeTrue()

@@ -1,34 +1,34 @@
 <?php
 
-use App\Models\User;
+use App\Jobs\VacationRequestEmailJob;
 use App\Models\Role;
+use App\Models\User;
 use App\Models\VacationRequest;
 use Illuminate\Support\Facades\Mail;
-use App\Jobs\VacationRequestEmailJob;
 use Illuminate\Support\Facades\Queue;
 use Livewire\Livewire;
-use Illuminate\Mail\Message;
-use function Pest\Laravel\{get, post};
+
+use function Pest\Laravel\get;
 
 beforeEach(function () {
     $employeeRole = Role::create([
         'name' => 'employee',
         'display_name' => 'Employee',
-        'description' => 'Employee role'
+        'description' => 'Employee role',
     ]);
 
     $adminRole = Role::create([
         'name' => 'admin',
         'display_name' => 'Administrator',
-        'description' => 'Administrator role'
+        'description' => 'Administrator role',
     ]);
 
     $this->employee = User::factory()->create([
-        'role_id' => $employeeRole->id
+        'role_id' => $employeeRole->id,
     ]);
 
     $this->admin = User::factory()->create([
-        'role_id' => $adminRole->id
+        'role_id' => $adminRole->id,
     ]);
 });
 
@@ -78,7 +78,7 @@ test('employee can submit vacation request', function () {
 
     $this->assertDatabaseHas('vacation_requests', [
         'user_id' => $this->employee->id,
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     Queue::assertPushed(VacationRequestEmailJob::class);
@@ -90,11 +90,11 @@ test('employee can download vacation request pdf', function () {
             'start_date' => now()->addDays(5)->format('Y-m-d'),
             'end_date' => now()->addDays(10)->format('Y-m-d'),
             'comments' => 'I need a vacation for personal reasons',
-            'policy_acknowledged' => true
+            'policy_acknowledged' => true,
         ]);
 
     $response->assertHeader('Content-Type', 'text/html; charset=utf-8');
-//    $response->assertHeader('Content-Disposition', 'attachment; filename="vacation-request.pdf"');
+    //    $response->assertHeader('Content-Disposition', 'attachment; filename="vacation-request.pdf"');
 });
 
 test('vacation request email is sent to admin', function () {
@@ -105,7 +105,7 @@ test('vacation request email is sent to admin', function () {
         'start_date' => now()->addDays(5),
         'end_date' => now()->addDays(10),
         'comments' => 'Test vacation request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     $job = new VacationRequestEmailJob($vacationRequest);
@@ -124,7 +124,7 @@ test('vacation request status is displayed correctly in users list', function ()
         'start_date' => now()->addDays(5),
         'end_date' => now()->addDays(10),
         'comments' => 'Pending request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     $approvedRequest = VacationRequest::create([
@@ -132,7 +132,7 @@ test('vacation request status is displayed correctly in users list', function ()
         'start_date' => now()->addDays(15),
         'end_date' => now()->addDays(20),
         'comments' => 'Approved request',
-        'status' => 'approved'
+        'status' => 'approved',
     ]);
 
     $rejectedRequest = VacationRequest::create([
@@ -140,7 +140,7 @@ test('vacation request status is displayed correctly in users list', function ()
         'start_date' => now()->addDays(25),
         'end_date' => now()->addDays(30),
         'comments' => 'Rejected request',
-        'status' => 'rejected'
+        'status' => 'rejected',
     ]);
 
     // Test each status is displayed correctly

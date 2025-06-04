@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-
 it('renders select component with options', function () {
     $options = [
         '1' => 'Option 1',

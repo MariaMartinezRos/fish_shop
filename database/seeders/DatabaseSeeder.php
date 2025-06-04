@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             FishSeeder::class,
             ProductSeeder::class,
-            UserSeeder::class,  
+            UserSeeder::class,
             TypeWaterSeeder::class,
         ]);
     }

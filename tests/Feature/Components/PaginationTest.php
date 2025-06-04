@@ -7,6 +7,7 @@ use App\Models\User;
 use App\View\Components\Pagination;
 
 use function Pest\Laravel\get;
+
 beforeEach(function () {
     $categories = Category::factory()->count(5)->create();
     $products = Product::factory()->count(30)->create();

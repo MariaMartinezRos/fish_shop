@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Imports\ProductsImport;
 use App\Models\Category;
 use App\Models\Product;
@@ -18,7 +17,7 @@ it('creates a new product if valid and does not exist', function () {
     $category = Category::factory()->create();
     $row = ['Salmon', $category->id, 25, 100, 'Fresh salmon'];
 
-    $import = new ProductsImport();
+    $import = new ProductsImport;
     $product = $import->model($row);
 
     expect($product)->toBeInstanceOf(Product::class)
@@ -29,7 +28,7 @@ it('creates a new product if valid and does not exist', function () {
 it('skips the row if category does not exist', function () {
     $row = ['Tuna', 999, 20, 50, 'Fresh tuna'];
 
-    $import = new ProductsImport();
+    $import = new ProductsImport;
     $product = $import->model($row);
 
     expect($product)->toBeNull();
@@ -44,7 +43,7 @@ it('updates existing product and returns null', function () {
 
     $newData = ['Mackerel', $category->id, 30, 150, 'Updated description'];
 
-    $import = new ProductsImport();
+    $import = new ProductsImport;
     $result = $import->model($newData);
 
     $updatedProduct = Product::where('name', 'Mackerel')->first();
@@ -54,4 +53,3 @@ it('updates existing product and returns null', function () {
         ->and($updatedProduct->stock_kg)->toBe(150)
         ->and($updatedProduct->description)->toBe('Updated description');
 });
-

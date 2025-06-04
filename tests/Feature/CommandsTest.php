@@ -1,8 +1,8 @@
 <?php
 
 use App\Console\Commands\CleanAllCache;
-use App\Console\Commands\CreateCategories;
 use App\Console\Commands\CleanTests;
+use App\Console\Commands\CreateCategories;
 use App\Console\Commands\TestVacationRequestEmail;
 use App\Jobs\GenerateWeeklyTransactionsReportJob;
 use App\Mail\VacationRequestNotification;
@@ -114,11 +114,11 @@ it('executes clean:test command successfully', function () {
         ->with('test', [], Mockery::any())
         ->andReturn(0);
 
-    $command = new CleanTests();
+    $command = new CleanTests;
     $command->setLaravel(app());
 
     $input = new StringInput('');
-    $output = new NullOutput();
+    $output = new NullOutput;
     $outputStyle = new OutputStyle($input, $output);
     $command->setOutput($outputStyle);
 
@@ -150,12 +150,12 @@ it('sends test vacation request email', function () {
     $roleEmployee = Role::factory()->create(['name' => 'employee']);
     $employee = User::factory()->create(['role_id' => $roleEmployee->id, 'email' => 'test@example.com']);
 
-    $command = new TestVacationRequestEmail();
+    $command = new TestVacationRequestEmail;
     $command->setLaravel(app());
 
     // Como un '''faker''' para mockear los comandos
     $input = new StringInput('');
-    $output = new BufferedOutput();
+    $output = new BufferedOutput;
     $outputStyle = new OutputStyle($input, $output);
     $command->setOutput($outputStyle);
 

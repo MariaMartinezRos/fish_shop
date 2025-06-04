@@ -5,8 +5,9 @@ use App\Models\Role;
 use App\Models\User;
 
 use function Pest\Laravel\get;
+
 //
-//it('returns a successful response for transactions page', function () {
+// it('returns a successful response for transactions page', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 1]);
 //    $admin = User::factory()->create(['role_id' => 'admin']);
@@ -16,15 +17,15 @@ use function Pest\Laravel\get;
 //        ->get(route('transaction'))
 //        ->assertOk()
 //        ->assertStatus(200);
-//});
+// });
 //
-//it('cannot be accessed by guest', function () {
+// it('cannot be accessed by guest', function () {
 //    // Act & Assert
 //    get(route('transaction'))
 //        ->assertRedirect(route('login'));
-//});
+// });
 //
-//it('cannot be accessed by costumer', function () {
+// it('cannot be accessed by costumer', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 4]);
 //    $costumer = User::factory()->create(['role_id' => 'costumer']);
@@ -33,9 +34,9 @@ use function Pest\Laravel\get;
 //    $this->actingAs($costumer)
 //        ->get(route('transaction'))
 //        ->assertRedirect(route('login'));
-//});
+// });
 //
-//it('cannot be accessed by employee', function () {
+// it('cannot be accessed by employee', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 3]);
 //    $employee = User::factory()->create(['role_id' => 'employee']);
@@ -44,9 +45,9 @@ use function Pest\Laravel\get;
 //    $this->actingAs($employee)
 //        ->get(route('transaction'))
 //        ->assertRedirect(route('login'));
-//});
+// });
 //
-//it('can be accessed by admin', function () {
+// it('can be accessed by admin', function () {
 //    // Arrange
 //    $role = Role::factory()->create(['id' => 1]);
 //    $admin = User::factory()->create(['role_id' => 'admin']);
@@ -56,9 +57,9 @@ use function Pest\Laravel\get;
 //        ->get(route('transaction'))
 //        ->assertOk()
 //        ->assertSeeText('Cliente');
-//});
+// });
 //
-//it('displays transactions correctly', function () {
+// it('displays transactions correctly', function () {
 //    // Act
 //    $this->artisan('db:seed');
 //
@@ -71,9 +72,9 @@ use function Pest\Laravel\get;
 //        ->assertOk()
 //        ->assertSeeText('PESCADERIA BENITO ALHAMA')
 //        ->assertSeeText('PESCADERIA BENITO LIBRILLA');
-//});
+// });
 //
-//it('renders the transaction component correctly', function () {
+// it('renders the transaction component correctly', function () {
 //    // Arrange
 //    $admin = User::factory()->create(['role_id' => 'admin']);
 //
@@ -83,9 +84,9 @@ use function Pest\Laravel\get;
 //
 //    // Assert
 //    $response->assertSeeLivewire('transaction-searcher');
-//});
+// });
 //
-//it('searches transactions correctly', function () {
+// it('searches transactions correctly', function () {
 //    // Arrange: Create transactions with different tpv values
 //    $this->artisan('db:seed');
 //
@@ -97,4 +98,4 @@ use function Pest\Laravel\get;
 //    $component->assertViewHas('transactions', function ($transactions) {
 //        return $transactions->count() === 20;
 //    });
-//});
+// });

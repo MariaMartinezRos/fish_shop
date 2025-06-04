@@ -15,7 +15,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'display_name',
-        'description'
+        'description',
     ];
 
     public function scopeSearch($query, $search)
@@ -25,10 +25,9 @@ class Category extends Model
         }
 
         return $query->where(function ($q) use ($search) {
-            $q->where('name', 'like', '%' . $search . '%')
-                ->orWhere('display_name', 'like', '%' . $search . '%')
-                ->orWhere('description', 'like', '%' . $search . '%');;
+            $q->where('name', 'like', '%'.$search.'%')
+                ->orWhere('display_name', 'like', '%'.$search.'%')
+                ->orWhere('description', 'like', '%'.$search.'%');
         });
     }
-
 }

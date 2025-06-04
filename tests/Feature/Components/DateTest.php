@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-
 it('renders date component with label', function () {
     $view = $this->blade('<x-date name="test" label="Test Date" />');
 

@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use App\Models\Transaction;
 use App\Policies\TransactionPolicy;
 
 beforeEach(function () {
@@ -11,7 +10,7 @@ beforeEach(function () {
     $this->admin = User::factory()->create(['role_id' => $this->role_admin->id]);
     $this->client = User::factory()->create(['role_id' => $this->role_customer->id]);
 
-    $this->policy = new TransactionPolicy();
+    $this->policy = new TransactionPolicy;
 });
 
 it('allows only admin to view any transactions', function () {

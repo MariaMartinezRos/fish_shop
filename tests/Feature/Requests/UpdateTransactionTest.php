@@ -1,14 +1,10 @@
 <?php
 
 use App\Http\Requests\UpdateTransactionRequest;
-use App\Http\Requests\UserRequest;
-use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 beforeEach(function () {
-    $this->request = new UpdateTransactionRequest();
+    $this->request = new UpdateTransactionRequest;
 });
 
 it('passes with all valid fields', function () {
@@ -20,7 +16,7 @@ it('passes with all valid fields', function () {
         'amount' => 99.99,
         'card_number' => '1234567812345678',
         'date_time' => now()->toDateTimeString(),
-        'transaction_number' => 'TXN1001'
+        'transaction_number' => 'TXN1001',
     ];
 
     $validator = Validator::make($data, $this->request->rules(), $this->request->messages());
@@ -53,4 +49,3 @@ it('fails if date_time is not a valid date', function () {
     expect($validator->fails())->toBeTrue();
     expect($validator->errors()->has('date_time'))->toBeTrue();
 });
-

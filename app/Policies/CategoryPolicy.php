@@ -53,9 +53,10 @@ class CategoryPolicy
     public function delete(User $user, Category $category): bool
     {
         // Only admins can delete categories
-        if($user->role_id === 1) {
-            return !$this->hasProductsWithCategoryId($category->id);
+        if ($user->role_id === 1) {
+            return ! $this->hasProductsWithCategoryId($category->id);
         }
+
         return false;
     }
 
@@ -74,9 +75,10 @@ class CategoryPolicy
     public function forceDelete(User $user, Category $category): bool
     {
         // Only admins can delete categories
-        if($user->role_id === 1) {
-            return !$this->hasProductsWithCategoryId($category->id);
+        if ($user->role_id === 1) {
+            return ! $this->hasProductsWithCategoryId($category->id);
         }
+
         return false;
     }
 

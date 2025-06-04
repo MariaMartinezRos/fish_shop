@@ -10,7 +10,7 @@ beforeEach(function () {
     $this->admin = User::factory()->create(['role_id' => $this->role_admin->id]);
     $this->client = User::factory()->create(['role_id' => $this->role_customer->id]);
 
-    $this->productPolicy = new ProductPolicy();
+    $this->productPolicy = new ProductPolicy;
 });
 
 it('allows only admin to create products', function () {

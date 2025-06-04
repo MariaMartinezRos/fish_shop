@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Models\Transaction;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,17 +13,29 @@ class TransactionManager extends Component
     use WithPagination;
 
     public $tpv = '';
+
     public $serial_number = '';
+
     public $terminal_number = '';
+
     public $operation = '';
+
     public $amount = '';
+
     public $card_number = '';
+
     public $date_time = '';
+
     public $transaction_number = '';
+
     public $sale_id = '';
+
     public $editing = false;
+
     public $creating = false;
+
     public $transactionId = null;
+
     public $search = '';
 
     protected $rules = [
@@ -77,7 +88,7 @@ class TransactionManager extends Component
     {
         $this->authorize('update', Transaction::class);
 
-        $request = new UpdateTransactionRequest();
+        $request = new UpdateTransactionRequest;
         $request->setContainer(app())
             ->setRouteResolver(function () {
                 return ['transaction' => $this->transactionId];
@@ -118,7 +129,7 @@ class TransactionManager extends Component
     {
         $this->authorize('create', Transaction::class);
 
-        $request = new StoreTransactionRequest();
+        $request = new StoreTransactionRequest;
         $request->merge([
             'tpv' => $this->tpv,
             'serial_number' => $this->serial_number,

@@ -2,10 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Role;
-use App\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Hash;
 
 class LoadSoftDeletes extends Command
 {
@@ -32,8 +29,9 @@ class LoadSoftDeletes extends Command
         $tables = ['categories', 'fish', 'products', 'roles', 'transactions', 'typewaters', 'users'];
 
         foreach ($tables as $table) {
-            if (!\Schema::hasColumn($table, 'deleted_at')) {
+            if (! \Schema::hasColumn($table, 'deleted_at')) {
                 $this->error("The deleted_at column does not exist in the {$table} table.");
+
                 continue;
             }
 

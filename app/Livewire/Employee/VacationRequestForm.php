@@ -2,26 +2,26 @@
 
 namespace App\Livewire\Employee;
 
-use Livewire\Component;
+use App\Http\Requests\VacationRequestFormRequest;
+use App\Jobs\VacationRequestEmailJob;
 use App\Models\VacationRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
-use App\Jobs\VacationRequestEmailJob;
-use App\Mail\VacationRequestNotification;
-use Illuminate\Support\Facades\Mail;
-use App\Models\User;
-use App\Http\Requests\VacationRequestFormRequest;
+use Livewire\Component;
 
 class VacationRequestForm extends Component
 {
     public $start_date;
+
     public $end_date;
+
     public $comments;
+
     public $policy_acknowledged = false;
 
     public function submit()
     {
-        $validated = $this->validate((new VacationRequestFormRequest())->rules(), (new VacationRequestFormRequest())->messages());
+        $validated = $this->validate((new VacationRequestFormRequest)->rules(), (new VacationRequestFormRequest)->messages());
 
         // Verificar si ya tiene una solicitud aprobada
         $hasApprovedVacation = VacationRequest::where('user_id', Auth::id())
@@ -30,6 +30,7 @@ class VacationRequestForm extends Component
 
         if ($hasApprovedVacation) {
             session()->flash('error', 'No puedes solicitar vacaciones porque ya tienes una solicitud aprobada.');
+
             return;
         }
 
@@ -38,7 +39,7 @@ class VacationRequestForm extends Component
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'comments' => $this->comments,
-            'status' => 'pending'
+            'status' => 'pending',
         ]);
 
         // Dispatch email job
@@ -51,14 +52,14 @@ class VacationRequestForm extends Component
 
     public function downloadPdf()
     {
-        $validated = $this->validate((new VacationRequestFormRequest())->rules(), (new VacationRequestFormRequest())->messages());
+        $validated = $this->validate((new VacationRequestFormRequest)->rules(), (new VacationRequestFormRequest)->messages());
 
         $data = [
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'comments' => $this->comments,
             'employee' => Auth::user(),
-            'requested_at' => now()->format('Y-m-d H:i:s')
+            'requested_at' => now()->format('Y-m-d H:i:s'),
         ];
 
         $pdf = PDF::loadView('pdf.vacation-request', $data);
@@ -75,7 +76,7 @@ class VacationRequestForm extends Component
             ->exists();
 
         return view('livewire.employee.vacation-request', [
-            'hasApprovedVacation' => $hasApprovedVacation
+            'hasApprovedVacation' => $hasApprovedVacation,
         ]);
     }
 }

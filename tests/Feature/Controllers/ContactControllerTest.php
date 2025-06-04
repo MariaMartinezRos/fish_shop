@@ -3,7 +3,6 @@
 use App\Jobs\SendContactConfirmationEmail;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 
 it('submits contact form successfully', function () {
@@ -15,7 +14,7 @@ it('submits contact form successfully', function () {
     $response = $this->post(route('contact.submit'), [
         'name' => 'Test User',
         'email' => $employee->email,
-        'message' => 'Test message'
+        'message' => 'Test message',
     ]);
 
     $response->assertRedirect()
@@ -36,7 +35,7 @@ it('validates email format', function () {
     $response = $this->post(route('contact.submit'), [
         'name' => 'Test User',
         'email' => 'invalid-email',
-        'message' => 'Test message'
+        'message' => 'Test message',
     ]);
 
     $response->assertSessionHasErrors(['email']);
@@ -48,7 +47,7 @@ it('handles non-existent user email', function () {
     $response = $this->post(route('contact.submit'), [
         'name' => 'Test User',
         'email' => 'nonexistent@example.com',
-        'message' => 'Test message'
+        'message' => 'Test message',
     ]);
 
     $response->assertRedirect()
@@ -61,7 +60,7 @@ it('validates message length', function () {
     $response = $this->post(route('contact.submit'), [
         'name' => 'Test User',
         'email' => 'test@example.com',
-        'message' => '' // Empty message
+        'message' => '', // Empty message
     ]);
 
     $response->assertSessionHasErrors(['message']);
@@ -71,7 +70,7 @@ it('validates name length', function () {
     $response = $this->post(route('contact.submit'), [
         'name' => str_repeat('a', 256), // Exceeds max length
         'email' => 'test@example.com',
-        'message' => 'Test message'
+        'message' => 'Test message',
     ]);
 
     $response->assertSessionHasErrors(['name']);

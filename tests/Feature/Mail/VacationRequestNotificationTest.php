@@ -14,7 +14,7 @@ it('builds vacation request notification email', function () {
         'start_date' => now(),
         'end_date' => now()->addDays(5),
         'comments' => 'Test vacation request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     $mail = new VacationRequestNotification($vacationRequest);
@@ -35,7 +35,7 @@ it('includes correct data in email content', function () {
         'start_date' => $startDate,
         'end_date' => $endDate,
         'comments' => 'Test vacation request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     $mail = new VacationRequestNotification($vacationRequest);

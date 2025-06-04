@@ -31,6 +31,7 @@ class CategoryController extends Controller
     public function index(): AnonymousResourceCollection
     {
         $categories = Category::all();
+
         return CategoryResource::collection($categories);
     }
 
@@ -56,6 +57,7 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request): CategoryResource
     {
         $category = Category::create($request->validated());
+
         return new CategoryResource($category);
     }
 
@@ -63,6 +65,7 @@ class CategoryController extends Controller
      * Get a specific category.
      *
      * @group Categories V2
+     *
      * @authenticated
      *
      * @urlParam category int required The ID of the category. Example: 1
@@ -86,6 +89,7 @@ class CategoryController extends Controller
      * Update an existing category.
      *
      * @group Categories V2
+     *
      * @authenticated
      *
      * @urlParam category int required The ID of the category. Example: 1
@@ -107,6 +111,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category): CategoryResource
     {
         $category->update($request->validated());
+
         return new CategoryResource($category);
     }
 
@@ -114,6 +119,7 @@ class CategoryController extends Controller
      * Delete a specific category.
      *
      * @group Categories V2
+     *
      * @authenticated
      *
      * @urlParam category int required The ID of the category. Example: 1
@@ -123,6 +129,7 @@ class CategoryController extends Controller
     public function destroy(Category $category): JsonResponse
     {
         $category->delete();
+
         return response()->json(['message' => __('Category deleted successfully')], 204);
     }
 }

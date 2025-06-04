@@ -150,14 +150,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ProductAdded;
-use App\Http\Requests\ProductRequest;
-use App\Imports\ProductsImport;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {

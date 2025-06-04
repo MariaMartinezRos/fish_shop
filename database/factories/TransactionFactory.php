@@ -17,12 +17,12 @@ class TransactionFactory extends Factory
         return [
             'tpv' => $this->faker->word(),
             'serial_number' => $this->faker->uuid(),
-            'terminal_number' => 'TERM-' . $this->faker->randomNumber(3),
+            'terminal_number' => 'TERM-'.$this->faker->randomNumber(3),
             'operation' => $this->faker->randomElement(['sale', 'refund']),
             'amount' => $this->faker->randomFloat(2, 1, 500),
             'card_number' => $this->faker->creditCardNumber(),
             'date_time' => $this->faker->dateTimeBetween('-1 week', 'now'),
-            'transaction_number' => 'TXN-' . $this->faker->unique()->numerify('#####'),
+            'transaction_number' => 'TXN-'.$this->faker->unique()->numerify('#####'),
             'sale_id' => $this->faker->randomNumber(5),
         ];
     }

@@ -14,7 +14,7 @@ class VacationRequest extends Model
         'start_date',
         'end_date',
         'comments',
-        'status'
+        'status',
     ];
 
     protected $casts = [
@@ -26,4 +26,4 @@ class VacationRequest extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-} 
+}

@@ -72,4 +72,4 @@ class FishPolicy
         // Only admins can permanently delete fish entries
         return $user->role_id === 1;
     }
-} 
+}

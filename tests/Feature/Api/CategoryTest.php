@@ -23,8 +23,8 @@ it('returns a successful response for fetching all categories', function () {
                 'display_name',
                 'description',
                 'created_at',
-                'updated_at'
-            ]]
+                'updated_at',
+            ]],
         ]);
 });
 
@@ -41,8 +41,8 @@ it('returns a successful response for fetching a single category', function () {
                 'display_name',
                 'description',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 });
 
@@ -50,7 +50,7 @@ it('stores a new category successfully', function () {
     $data = [
         'name' => 'test-category',
         'display_name' => 'Test Category',
-        'description' => 'A test category description'
+        'description' => 'A test category description',
     ];
 
     $response = $this->postJson('/api/v2/categories', $data);
@@ -63,14 +63,14 @@ it('stores a new category successfully', function () {
                 'display_name',
                 'description',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 
     $this->assertDatabaseHas('categories', [
         'name' => 'test-category',
         'display_name' => 'Test Category',
-        'description' => 'A test category description'
+        'description' => 'A test category description',
     ]);
 });
 
@@ -80,7 +80,7 @@ it('updates an existing category successfully', function () {
     $updateData = [
         'name' => 'updated-category',
         'display_name' => 'Updated Category',
-        'description' => 'Updated category description'
+        'description' => 'Updated category description',
     ];
 
     $response = $this->putJson("/api/v2/categories/{$category->id}", $updateData);
@@ -93,15 +93,15 @@ it('updates an existing category successfully', function () {
                 'display_name',
                 'description',
                 'created_at',
-                'updated_at'
-            ]
+                'updated_at',
+            ],
         ]);
 
     $this->assertDatabaseHas('categories', [
         'id' => $category->id,
         'name' => 'updated-category',
         'display_name' => 'Updated Category',
-        'description' => 'Updated category description'
+        'description' => 'Updated category description',
     ]);
 });
 
@@ -120,7 +120,7 @@ it('validates required fields when storing a category', function () {
 
     $response->assertStatus(422)
         ->assertJsonValidationErrors([
-            'name'
+            'name',
         ]);
 })->todo();
 
@@ -131,7 +131,7 @@ it('validates required fields when updating a category', function () {
 
     $response->assertStatus(422)
         ->assertJsonValidationErrors([
-            'name'
+            'name',
         ]);
 });
 
@@ -141,13 +141,13 @@ it('prevents duplicate category names', function () {
     $data = [
         'name' => 'test-category',
         'display_name' => 'Another Test Category',
-        'description' => 'Another test category description'
+        'description' => 'Another test category description',
     ];
 
     $response = $this->postJson('/api/v2/categories', $data);
 
     $response->assertStatus(422)
         ->assertJsonValidationErrors([
-            'name'
+            'name',
         ]);
 });

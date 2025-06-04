@@ -11,7 +11,6 @@ it('creates page accessed event with message', function () {
         ->and($event->broadcastOn()[0])->toBeInstanceOf(\Illuminate\Broadcasting\PrivateChannel::class);
 });
 
-
 it('handles empty message', function () {
     $event = new PageAccessed('');
 

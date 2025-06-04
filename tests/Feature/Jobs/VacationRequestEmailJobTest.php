@@ -2,11 +2,10 @@
 
 use App\Jobs\VacationRequestEmailJob;
 use App\Mail\VacationRequestNotification;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\VacationRequest;
-use App\Models\Role;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
 
 it('sends vacation request email to admin', function () {
     Mail::fake();
@@ -22,15 +21,13 @@ it('sends vacation request email to admin', function () {
         'start_date' => now(),
         'end_date' => now()->addDays(5),
         'comments' => 'Test vacation request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     VacationRequestEmailJob::dispatch($vacationRequest);
 
-    Mail::assertSent(VacationRequestNotification::class, function ($mail) use ($admin) {
+    Mail::assertSent(VacationRequestNotification::class, function ($mail) {
         return $mail->hasTo('mariaamartinezros@gmail.com');
     });
 
 })->todo('comprobar envio');
-
-

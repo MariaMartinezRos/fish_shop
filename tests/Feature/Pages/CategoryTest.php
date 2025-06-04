@@ -8,14 +8,14 @@ use App\Models\User;
 
 use function Pest\Laravel\get;
 
-//beforeEach(function () {
+// beforeEach(function () {
 //    $this->role_admin = \App\Models\Role::factory()->create(['name' => 'admin']);
 //    $this->role_customer = \App\Models\Role::factory()->create(['name' => 'customer', 'id' => 4]);
 //
 //    $this->admin = User::factory()->create(['role_id' => $this->role_admin->id]);
 //    $this->client = User::factory()->create(['role_id' => $this->role_customer->id]);
 //
-//});
+// });
 
 it('returns a successful response for category page', function () {
     // Arrange
@@ -69,7 +69,6 @@ it('can be accessed by admin', function () {
         ->assertSeeText('Cliente');
 });
 
-
 it('renders the category manager component', function () {
     // Arrange
     $role = Role::factory()->create(['id' => 1]);
@@ -119,12 +118,12 @@ it('can create a new category', function () {
         ->set('display_name', 'Test Category')
         ->set('description', 'Test Description')
         ->call('store')
-        ->assertSee( 'Categoría creada exitosamente.');
+        ->assertSee('Categoría creada exitosamente.');
 
     $this->assertDatabaseHas('categories', [
         'name' => 'test-category',
         'display_name' => 'Test Category',
-        'description' => 'Test Description'
+        'description' => 'Test Description',
     ]);
 });
 
@@ -149,7 +148,7 @@ it('can edit an existing category', function () {
         'id' => $category->id,
         'name' => 'updated-category',
         'display_name' => 'Updated Category',
-        'description' => 'Updated Description'
+        'description' => 'Updated Description',
     ]);
 });
 

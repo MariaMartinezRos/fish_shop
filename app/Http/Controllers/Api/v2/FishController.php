@@ -115,6 +115,7 @@ class FishController extends Controller
      * Store a new fish.
      *
      * @group Fishes V2
+     *
      * @authenticated
      *
      * @bodyParam name string required The common name of the fish. Example: Salmon
@@ -193,7 +194,7 @@ class FishController extends Controller
             $fish->typeWater()->attach($typeWater->id, $characteristics);
         }
 
-       Cache::forget('fishes');
+        Cache::forget('fishes');
 
         event(new FishAdded($fish));
 
@@ -204,6 +205,7 @@ class FishController extends Controller
      * Update an existing fish.
      *
      * @group Fishes V2
+     *
      * @authenticated
      *
      * @urlParam fish int required The ID of the fish. Example: 1
@@ -293,6 +295,7 @@ class FishController extends Controller
      * Delete a specific fish.
      *
      * @group Fishes V2
+     *
      * @authenticated
      *
      * @urlParam fish int required The ID of the fish. Example: 1

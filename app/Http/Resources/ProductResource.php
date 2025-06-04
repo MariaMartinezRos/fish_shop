@@ -22,8 +22,8 @@ class ProductResource extends JsonResource
             'stock_kg' => $this->stock_kg,
             'description' => $this->description,
             'category' => new CategoryResource($this->whenLoaded('category')),
-            'fishes' => $this->whenLoaded('fishes', function() {
-                return $this->fishes->map(function($fish) {
+            'fishes' => $this->whenLoaded('fishes', function () {
+                return $this->fishes->map(function ($fish) {
                     return [
                         'id' => $fish->id,
                         'name' => $fish->name,
@@ -36,4 +36,4 @@ class ProductResource extends JsonResource
             'updated_at' => $this->updated_at,
         ];
     }
-} 
+}

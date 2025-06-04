@@ -1,11 +1,9 @@
 <?php
 
 use App\Livewire\VacationRequestActions;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\VacationRequest;
-use App\Models\Role;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Livewire\Livewire;
 
 it('shows vacation request modal', function () {
@@ -18,7 +16,7 @@ it('shows vacation request modal', function () {
         'start_date' => now(),
         'end_date' => now()->addDays(5),
         'comments' => 'Test vacation request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     Livewire::actingAs($admin)
@@ -43,7 +41,7 @@ it('approves vacation request when admin', function () {
         'start_date' => now(),
         'end_date' => now()->addDays(5),
         'comments' => 'Test vacation request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     Livewire::actingAs($admin)
@@ -68,7 +66,7 @@ it('rejects vacation request when admin', function () {
         'start_date' => now(),
         'end_date' => now()->addDays(5),
         'comments' => 'Test vacation request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     Livewire::actingAs($admin)
@@ -91,7 +89,7 @@ it('does not allow non-admin to approve request', function () {
         'start_date' => now(),
         'end_date' => now()->addDays(5),
         'comments' => 'Test vacation request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     Livewire::actingAs($user)
@@ -112,7 +110,7 @@ it('does not allow non-admin to reject request', function () {
         'start_date' => now(),
         'end_date' => now()->addDays(5),
         'comments' => 'Test vacation request',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     Livewire::actingAs($user)

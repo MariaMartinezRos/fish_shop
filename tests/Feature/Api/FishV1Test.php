@@ -29,7 +29,6 @@ it('returns a successful response for fetching a single fish', function () {
         ->assertJson(['data' => ['id' => $fish->id]]);
 });
 
-
 it('lists all fishes', function () {
     $fishes = Fish::factory()->count(3)->create();
 
@@ -44,9 +43,9 @@ it('lists all fishes', function () {
                     'name',
                     'image',
                     'type',
-                    'description'
-                ]
-            ]
+                    'description',
+                ],
+            ],
         ]);
 });
 
@@ -62,14 +61,14 @@ it('shows a specific fish', function () {
                 'name',
                 'image',
                 'type',
-                'description'
-            ]
+                'description',
+            ],
         ])
         ->assertJson([
             'data' => [
                 'id' => $fish->id,
-                'name' => $fish->name
-            ]
+                'name' => $fish->name,
+            ],
         ]);
 });
 
@@ -99,7 +98,7 @@ it('stores a new fish successfully', function () {
             'salinity' => '0.5-1.5',
             'oxygen_level' => '6-8',
             'migration_pattern' => 'Non-migratory',
-            'notes' => 'Test notes'
+            'notes' => 'Test notes',
         ],
     ];
     $this->postJson('/api/v1/fishes', $data)
