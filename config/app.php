@@ -123,4 +123,12 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+     *  --------------------------------------------------------------------------
+     *  Application Admin Email
+     *   --------------------------------------------------------------------------
+     */
+
+    'admin_email' => env('APP_MAIL', 'mariabarqueros03@gmail.com'),
+
 ];

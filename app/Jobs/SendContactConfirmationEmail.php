@@ -26,8 +26,23 @@ class SendContactConfirmationEmail implements ShouldQueue
         return $this->user;
     }
 
-    public function handle()
+    public function handle(): void
     {
-        Mail::to($this->user->email)->queue(new ContactConfirmation($this->user));
+        try {
+            \Log::info('Starting SendContactConfirmationEmail job', [
+                'user_email' => $this->user->email
+            ]);
+
+            if (!$this->user || !$this->user->email) {
+                throw new \Exception('Invalid user or missing email address');
+            }
+
+            Mail::to($this->user->email)->queue(new ContactConfirmation($this->user));
+            
+            \Log::info('Contact confirmation email queued successfully');
+        } catch (\Exception $e) {
+            \Log::error('Failed to queue contact confirmation email: ' . $e->getMessage());
+            throw $e;
+        }
     }
 }

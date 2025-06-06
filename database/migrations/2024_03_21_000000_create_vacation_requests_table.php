@@ -14,7 +14,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->text('comments');
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('rejected');
             $table->timestamps();
         });
     }

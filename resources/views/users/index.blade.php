@@ -62,7 +62,7 @@
                                             @switch($latestVacation->status)
                                                 @case('pending')
                                                     <div wire:key="pending-{{ $latestVacation->id }}">
-                                                        <img src="{{ asset('images/available-dot.png') }}" 
+                                                        <img src="{{ asset('images/pending-dot.png') }}" 
                                                              alt="Pending" 
                                                              class="w-4 h-4 inline-block align-middle cursor-pointer" 
                                                              title="Pending"
@@ -71,21 +71,40 @@
                                                     @break
                                                 @case('approved')
                                                     <div wire:key="approved-{{ $latestVacation->id }}">
-                                                        <img src="{{ asset('images/unavailable-dot.png') }}" 
-                                                             alt="Approved" 
-                                                             class="w-4 h-4 inline-block align-middle cursor-pointer" 
-                                                             title="Approved"
-                                                             onclick="Livewire.dispatch('showVacationModal', { requestId: {{ $latestVacation->id }}, type: 'approved' })">
+                                                        @if(now()->between($latestVacation->start_date, $latestVacation->end_date))
+                                                            <img src="{{ asset('images/unavailable-dot.png') }}" 
+                                                                 alt="On Vacation" 
+                                                                 class="w-4 h-4 inline-block align-middle cursor-pointer" 
+                                                                 title="On Vacation"
+                                                                 onclick="Livewire.dispatch('showVacationModal', { requestId: {{ $latestVacation->id }}, type: 'approved' })">
+                                                        @else
+                                                            <img src="{{ asset('images/available-dot.png') }}" 
+                                                                 alt="Available" 
+                                                                 class="w-4 h-4 inline-block align-middle cursor-pointer" 
+                                                                 title="Available"
+                                                                 onclick="Livewire.dispatch('showVacationModal', { requestId: {{ $latestVacation->id }}, type: 'approved' })">
+                                                        @endif
                                                     </div>
                                                     @break
                                                 @case('rejected')
-                                                    <img src="{{ asset('images/available-dot.png') }}" alt="Rejected" class="w-4 h-4 inline-block align-middle" title="Rejected">
+                                                    <div wire:key="rejected-{{ $latestVacation->id }}">
+                                                        <img src="{{ asset('images/available-dot.png') }}" 
+                                                             alt="Available" 
+                                                             class="w-4 h-4 inline-block align-middle" 
+                                                             title="Available">
+                                                    </div>
                                                     @break
                                                 @default
-                                                    <img src="{{ asset('images/available-dot.png') }}" alt="Pending" class="w-4 h-4 inline-block align-middle" title="Pending">
+                                                    <img src="{{ asset('images/available-dot.png') }}" 
+                                                         alt="Available" 
+                                                         class="w-4 h-4 inline-block align-middle" 
+                                                         title="Available">
                                             @endswitch
                                         @else
-                                            <img src="{{ asset('images/available-dot.png') }}" alt="Pending" class="w-4 h-4 inline-block align-middle" title="Pending">
+                                            <img src="{{ asset('images/available-dot.png') }}" 
+                                                 alt="Available" 
+                                                 class="w-4 h-4 inline-block align-middle" 
+                                                 title="Available">
                                         @endif
                                     @else
                                         -

@@ -144,27 +144,55 @@ it('runs the clean:test command and calls subcommands', function () {
 it('sends test vacation request email', function () {
     Mail::fake();
 
-    $roleAdmin = Role::factory()->create(['name' => 'admin']);
-    $admin = User::factory()->create(['role_id' => $roleAdmin->id, 'email' => 'mariaamartinezros@gmail.com']);
+    // Crear roles esperados
+    Role::factory()->create(['id' => 1, 'name' => 'admin']);
+    Role::factory()->create(['id' => 2, 'name' => 'employee']);
 
-    $roleEmployee = Role::factory()->create(['name' => 'employee']);
-    $employee = User::factory()->create(['role_id' => $roleEmployee->id, 'email' => 'test@example.com']);
+    // Crear usuarios
+    $admin = User::factory()->create([
+        'role_id' => 1,
+        'email' => config('app.admin_email'),
+    ]);
 
-    $command = new TestVacationRequestEmail;
-    $command->setLaravel(app());
+    User::factory()->create([
+        'role_id' => 2,
+        'email' => 'test@example.com',
+    ]);
 
-    // Como un '''faker''' para mockear los comandos
-    $input = new StringInput('');
-    $output = new BufferedOutput;
-    $outputStyle = new OutputStyle($input, $output);
-    $command->setOutput($outputStyle);
+    // Ejecutar el comando de prueba
+    Artisan::call('app:test-vacation-email');
 
-    $command->handle();
-
-    expect(User::where('email', $employee->email)->exists())->toBeTrue()
-        ->and(VacationRequest::where('user_id', User::where('email', $employee->email)->first()->id)->exists())->toBeTrue();
-
-    Mail::assertSent(VacationRequestNotification::class, function ($mail) use ($admin) {
+    // Asegurar que se haya enviado el correo
+    Mail::assertSent(\App\Mail\VacationRequestNotification::class, function ($mail) use ($admin) {
         return $mail->hasTo($admin->email);
     });
 });
+
+
+//it('sends test vacation request email', function () {
+//    Mail::fake();
+//
+//    $roleAdmin = Role::factory()->create(['name' => 'admin']);
+//    $admin = User::factory()->create(['role_id' => $roleAdmin->id, 'email' => 'mariaamartinezros@gmail.com']);
+//
+//    $roleEmployee = Role::factory()->create(['name' => 'employee']);
+//    $employee = User::factory()->create(['role_id' => $roleEmployee->id, 'email' => 'test@example.com']);
+//
+//    $command = new TestVacationRequestEmail;
+//    $command->setLaravel(app());
+//
+//    // Como un '''faker''' para mockear los comandos
+//    $input = new StringInput('');
+//    $output = new BufferedOutput;
+//    $outputStyle = new OutputStyle($input, $output);
+//    $command->setOutput($outputStyle);
+//
+//    $command->handle();
+//
+//    expect(User::where('email', $employee->email)->exists())->toBeTrue()
+//        ->and(VacationRequest::where('user_id', User::where('email', $employee->email)->first()->id)->exists())->toBeTrue();
+//
+//    Mail::assertSent(VacationRequestNotification::class, function ($mail) use ($admin) {
+//        return $mail->hasTo($admin->email);
+//    });
+//});

@@ -19,9 +19,27 @@ class FetchCarouselImages implements ShouldQueue
      */
     public function handle(): void
     {
-        $files = File::files(public_path('images/fishes/'));
-        $images = collect($files)->map(fn ($file) => asset('images/fishes/'.$file->getFilename()))->toArray();
+        try {
+            \Log::info('Starting FetchCarouselImages job');
+            
+            $imagePath = public_path('images/fishes/');
+            if (!File::exists($imagePath)) {
+                throw new \Exception('Fish images directory does not exist');
+            }
 
-        Cache::put('carousel_images', $images, now()->addMinutes(10));
+            $files = File::files($imagePath);
+            $images = collect($files)
+                ->map(fn ($file) => asset('images/fishes/'.$file->getFilename()))
+                ->toArray();
+
+            Cache::put('carousel_images', $images, now()->addMinutes(10));
+            
+            \Log::info('Carousel images fetched and cached successfully', [
+                'count' => count($images)
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Failed to fetch carousel images: ' . $e->getMessage());
+            throw $e;
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\VacationRequestNotification;
 use App\Models\User;
 use App\Models\VacationRequest;
 use Illuminate\Bus\Queueable;
@@ -10,6 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use App\Models\VacationRequest as VacationRequestModel;
 
 class VacationRequestEmailJob implements ShouldQueue
 {
@@ -22,7 +24,7 @@ class VacationRequestEmailJob implements ShouldQueue
         $this->vacationRequest = $vacationRequest;
     }
 
-    public function handle(): \Illuminate\Http\RedirectResponse
+    public function handle(): void
     {
         try {
             \Log::info('Starting VacationRequestEmailJob', [
@@ -39,29 +41,30 @@ class VacationRequestEmailJob implements ShouldQueue
             })->first();
 
             if (! $admin) {
-                session()->flash('error', __('No admin user found to send vacation request notification'));
-                return redirect()->back()->withInput();
+                throw new \Exception(__('No admin user found to send vacation request notification'));
             }
 
             \Log::info('Sending vacation request email', [
-                'to' => $admin->email,
-                'employee' => $user->name,
+                'admin_email' => $admin->email,
+                'employee_name' => $user->name,
+                'vacation_request_id' => $this->vacationRequest->id
             ]);
 
-            Mail::send('mail.vacation-request', [
-                'vacationRequest' => $this->vacationRequest,
-                'employee' => $user,
-                'days_requested' => $this->vacationRequest->totalDays(),
-            ], function ($message) use ($admin) {
-//                $message->to($admin->email)
-                $message->to('mariaamartinezros@gmail.com')
-                    ->subject(__('New Vacation Request - PESCADERIAS BENITO'));
-            });
+            Mail::to($admin->email)
+                ->queue(new VacationRequestNotification(
+                    $this->vacationRequest,
+                    $user,
+                    $this->vacationRequest->totalDays()
+                ));
 
-            session()->flash('success', __('Vacation request email sent successfully'));
+            \Log::info('Vacation request email sent successfully');
+            
         } catch (\Exception $e) {
-                session()->flash('error', __('Failed to send vacation request email'));
-                return redirect()->back()->withInput();
+            \Log::error('Failed to send vacation request email: ' . $e->getMessage(), [
+                'exception' => $e,
+                'vacation_request_id' => $this->vacationRequest->id ?? null
+            ]);
+            throw $e;
         }
     }
 }

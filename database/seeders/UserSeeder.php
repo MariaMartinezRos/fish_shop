@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Admin',
-            'email' => 'admin@admin.com',
+            'email' => config('app.admin_email'),
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
             'role_id' => 1,
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
 
     private function isDataAlreadyGiven(): bool
     {
-        return User::where('email', 'admin@admin.com')->exists()
+        return User::where('email', config('app.admin_email'))->exists()
             && User::where('email', 'employee@employee.com')->exists()
             && User::where('email', 'customer@customer.com')->exists();
     }

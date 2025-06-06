@@ -28,23 +28,37 @@ class GenerateWeeklyTransactionsReportJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $startDate = now()->startOfWeek();
-        $endDate = now()->startOfWeek()->addDays(5);
+        try {
+            \Log::info('Starting GenerateWeeklyTransactionsReportJob');
 
-        $transactions = Transaction::whereBetween('date_time', [$startDate, $endDate])->get();
+            $startDate = now()->startOfWeek();
+            $endDate = now()->startOfWeek()->addDays(5);
 
-        $totalAmount = $transactions->sum('amount');
-        $count = $transactions->count();
+            $transactions = Transaction::whereBetween('date_time', [$startDate, $endDate])->get();
 
-        $summary = [
-            'start' => $startDate->toDateString(),
-            'end' => $endDate->toDateString(),
-            'total_sales' => $totalAmount,
-            'transaction_count' => $count,
-            'transactions' => $transactions,
-        ];
+            $totalAmount = $transactions->sum('amount');
+            $count = $transactions->count();
 
-        // Send report email to admin ( me lo envio a mi pq estoy en entorno de pruebas y asi es mas comodo)
-        Mail::to('mariaamartinezros@gmail.com')->send(new WeeklyTransactionsReportEmail($summary));
+            $summary = [
+                'start' => $startDate->toDateString(),
+                'end' => $endDate->toDateString(),
+                'total_sales' => $totalAmount,
+                'transaction_count' => $count,
+                'transactions' => $transactions,
+            ];
+
+            \Log::info('Sending weekly transactions report', [
+                'period' => $startDate->toDateString() . ' to ' . $endDate->toDateString(),
+                'total_sales' => $totalAmount,
+                'transaction_count' => $count
+            ]);
+
+            Mail::to('mariaamartinezros@gmail.com')->send(new WeeklyTransactionsReportEmail($summary));
+            
+            \Log::info('Weekly transactions report sent successfully');
+        } catch (\Exception $e) {
+            \Log::error('Failed to generate weekly transactions report: ' . $e->getMessage());
+            throw $e;
+        }
     }
 }

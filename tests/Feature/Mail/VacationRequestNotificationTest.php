@@ -17,7 +17,8 @@ it('builds vacation request notification email', function () {
         'status' => 'pending',
     ]);
 
-    $mail = new VacationRequestNotification($vacationRequest);
+    $daysRequested = $vacationRequest->totalDays();
+    $mail = new VacationRequestNotification($vacationRequest, $employee, $daysRequested);
 
     expect($mail->vacationRequest)->toEqual($vacationRequest)
         ->and($mail->envelope()->subject)->toEqual('Nueva Solicitud de Vacaciones - PESCADERIAS BENITO')
@@ -38,7 +39,8 @@ it('includes correct data in email content', function () {
         'status' => 'pending',
     ]);
 
-    $mail = new VacationRequestNotification($vacationRequest);
+    $daysRequested = $vacationRequest->totalDays();
+    $mail = new VacationRequestNotification($vacationRequest, $employee, $daysRequested);
     $content = $mail->content();
 
     expect($content->with['vacationRequest']->start_date->format('Y-m-d'))->toBe($startDate->format('Y-m-d'))

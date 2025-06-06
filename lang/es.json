@@ -757,6 +757,11 @@
     "Please provide details about your vacation request...": "Por favor, proporciona detalles sobre tu solicitud de vacaciones...",
     "Vacation Request": "Solicitud de Vacaciones",
     "Product added succesfully:": "¡Producto agregado exitosamente:",
-    "Product added succesfully: ": "¡Producto agregado exitosamente:"
+    "Product added succesfully: ": "¡Producto agregado exitosamente:",
+    "Start Date:": "Fecha de Inicio:",
+    "End Date:": "Fecha de Fin:",
+    "Comments:": "Comentarios:",
+    "Error sending email": "Error al enviar el correo electrónico",
+    "This is a test vacation request for email testing purposes.": "Esta es una solicitud de vacaciones de prueba para fines de prueba de correo electrónico."
 }
 

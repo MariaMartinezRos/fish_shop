@@ -92,4 +92,11 @@ class User extends Authenticatable
 
     // email_verified_at is cast to a datetime object.
     // password is cast to a hashed value.
+
+    public function scopeHasApprovedVacation($query)
+    {
+        return $query->whereHas('vacationRequests', function ($q) {
+            $q->where('status', 'approved');
+        });
+    }
 }

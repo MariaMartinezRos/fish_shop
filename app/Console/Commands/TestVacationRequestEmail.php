@@ -2,9 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\VacationRequest;
 use App\Mail\VacationRequestNotification;
 use App\Models\User;
-use App\Models\VacationRequest;
+use App\Models\VacationRequest as VacationRequestModel;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -41,25 +42,21 @@ class TestVacationRequestEmail extends Command
         );
 
         // Crear una solicitud de vacaciones de prueba
-        $vacationRequest = VacationRequest::create([
+        $vacationRequest = VacationRequestModel::create([
             'user_id' => $user->id,
             'start_date' => Carbon::now()->addDays(5),
             'end_date' => Carbon::now()->addDays(10),
-            'days_requested' => 5,
-            'reason' => 'Test vacation request',
-            'comments' => 'This is a test vacation request for email testing purposes.',
+            'comments' => __('This is a test vacation request for email testing purposes.'),
             'status' => 'pending',
         ]);
 
         // Enviar el email
         $admin = User::where('role_id', 1)->first();
         if ($admin) {
-            //            Mail::to($admin->email)->send(new VacationRequestNotification($vacationRequest));
-            //            $this->info('Email enviado correctamente a ' . $admin->email);
-            Mail::to('mariaamartinezros@gmail.com')->send(new VacationRequestNotification($vacationRequest));
-            $this->info('Email enviado correctamente a '.'mariaamartinezros@gmail.com');
+            Mail::to(config('app.admin_email'))->send(new VacationRequestNotification($vacationRequest, $user, $vacationRequest->totalDays()));
+            $this->info(__('Vacation request email sent successfully'));
         } else {
-            $this->error('No se encontró ningún administrador en el sistema.');
+            $this->error(__('Error sending email'));
         }
     }
 }

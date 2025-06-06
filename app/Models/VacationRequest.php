@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class VacationRequest extends Model
 {
-    use HasFactory;
 
     protected $fillable = [
         'user_id',
@@ -30,8 +29,9 @@ class VacationRequest extends Model
     public function totalDays(): float|int
     {
         if ($this->start_date && $this->end_date) {
-            return $this->end_date->diffInDays($this->start_date) + 1; // +1 para incluir ambos días
+            return $this->start_date->diffInDays($this->end_date) + 1;
         }
+
         return 0;
     }
 }

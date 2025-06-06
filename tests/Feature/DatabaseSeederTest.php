@@ -109,7 +109,7 @@ it('adds given user', function () {
 
     // Assert
     $this->assertDatabaseCount(User::class, 3);
-    $this->assertDatabaseHas(User::class, ['email' => 'admin@admin.com']);
+    $this->assertDatabaseHas(User::class, ['email' => config('app.admin_email')]);
 });
 
 it('adds given user only once', function () {

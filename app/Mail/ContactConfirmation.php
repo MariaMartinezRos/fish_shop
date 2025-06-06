@@ -15,12 +15,14 @@ class ContactConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +31,7 @@ class ContactConfirmation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('Contact Confirmation'),
+            subject: __('Contact Confirmation - PESCADERIAS BENITO'),
         );
     }
 
@@ -40,6 +42,9 @@ class ContactConfirmation extends Mailable
     {
         return new Content(
             view: 'emails.contact-confirmation',
+            with: [
+                'user' => $this->user
+            ]
         );
     }
 

@@ -4,6 +4,7 @@ namespace App\Livewire\Employee;
 
 use App\Http\Requests\VacationRequestFormRequest;
 use App\Jobs\VacationRequestEmailJob;
+use App\Models\User;
 use App\Models\VacationRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
@@ -19,14 +20,11 @@ class VacationRequestForm extends Component
 
     public $policy_acknowledged = false;
 
-    public function submit()
+    public function submit(): void
     {
         $validated = $this->validate((new VacationRequestFormRequest)->rules(), (new VacationRequestFormRequest)->messages());
 
-        // Verificar si ya tiene una solicitud aprobada
-        $hasApprovedVacation = VacationRequest::where('user_id', Auth::id())
-            ->where('status', 'approved')
-            ->exists();
+        $hasApprovedVacation = User::hasApprovedVacation()->exists();
 
         if ($hasApprovedVacation) {
             session()->flash('error', __('You cannot request vacation because you already have an approved request.'));
@@ -41,6 +39,11 @@ class VacationRequestForm extends Component
             'comments' => $this->comments,
             'status' => 'pending',
         ]);
+
+        // Calculate days requested
+        
+        //$vacationRequest->days_requested = $daysRequested;
+        //$vacationRequest->save();
 
         // Dispatch email job
         VacationRequestEmailJob::dispatch($vacationRequest);
@@ -57,6 +60,7 @@ class VacationRequestForm extends Component
         $data = [
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
+            'days_requested' => \Carbon\Carbon::parse($this->start_date)->diffInDays(\Carbon\Carbon::parse($this->end_date)) + 1,
             'comments' => $this->comments,
             'employee' => Auth::user(),
             'requested_at' => now()->format('Y-m-d H:i:s'),

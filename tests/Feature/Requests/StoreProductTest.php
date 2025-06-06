@@ -18,8 +18,8 @@ it('validates product name is required', function () {
 
     // Assert
     $validator = Validator::make($data, $request->rules(), $request->messages());
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->has('name'))->toBeTrue();
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->has('name'))->toBeTrue();
 });
 
 it('validates category_id exists in the database', function () {
