@@ -38,11 +38,11 @@ class RecipeController extends Controller
             return view('dashboard.recipes', compact('detailedMeals'));
 
         } catch (ConnectionException $e) {
-            session()->flash('error', 'No se pudo conectar con el servicio de recetas.');
-            return redirect()->back();
+            session()->flash('error', $e->getMessage());
+            return view('dashboard.recipes', ['detailedMeals' => collect([])]);
         } catch (\Exception $e) {
             session()->flash('error', $e->getMessage());
-            return redirect()->back();
+            return view('dashboard.recipes', ['detailedMeals' => collect([])]);
         }
     }
 }

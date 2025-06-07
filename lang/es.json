@@ -762,6 +762,8 @@
     "End Date:": "Fecha de Fin:",
     "Comments:": "Comentarios:",
     "Error sending email": "Error al enviar el correo electrónico",
-    "This is a test vacation request for email testing purposes.": "Esta es una solicitud de vacaciones de prueba para fines de prueba de correo electrónico."
+    "This is a test vacation request for email testing purposes.": "Esta es una solicitud de vacaciones de prueba para fines de prueba de correo electrónico.",
+    "Unable to connect to the recipe database. Please try again later.": "No se puede conectar a la base de datos de recetas. Por favor, inténtalo de nuevo más tarde.",
+    "Ooops, something happened...": "Ooops, algo sucedió..."
 }
 
