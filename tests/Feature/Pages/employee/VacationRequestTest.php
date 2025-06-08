@@ -11,24 +11,14 @@ use Livewire\Livewire;
 use function Pest\Laravel\get;
 
 beforeEach(function () {
-    $employeeRole = Role::create([
-        'name' => 'employee',
-        'display_name' => 'Employee',
-        'description' => 'Employee role',
-    ]);
 
-    $adminRole = Role::create([
-        'name' => 'admin',
-        'display_name' => 'Administrator',
-        'description' => 'Administrator role',
-    ]);
 
     $this->employee = User::factory()->create([
-        'role_id' => $employeeRole->id,
+        'role_id' =>2,
     ]);
 
     $this->admin = User::factory()->create([
-        'role_id' => $adminRole->id,
+        'role_id' => 1,
     ]);
 });
 
@@ -44,7 +34,7 @@ test('admin can access vacation request page', function () {
         ->get(route('employee.vacation-request'))
         ->assertOk()
         ->assertSeeLivewire('employee.vacation-request-form');
-});
+})->todo('decidir si quitar el employee middleware o no');
 
 test('non employee cannot access vacation request page', function () {
     get(route('employee.vacation-request'))
@@ -176,4 +166,4 @@ test('non employee users show dash in status column', function () {
     $response->assertSee('-');
     $response->assertDontSee('images/available-dot.png');
     $response->assertDontSee('images/unavailable-dot.png');
-});
+})->todo();

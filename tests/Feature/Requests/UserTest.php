@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Validator;
 it('validates correctly for a new user creation', function () {
     // Arrange
     $request = new UserRequest;
-    $role = Role::factory()->create(['id' => 1]);
 
     // Act
     $data = [
@@ -16,7 +15,7 @@ it('validates correctly for a new user creation', function () {
         'email' => 'testuser@example.com',
         'password' => 'password123',
         'password2' => 'password123',
-        'role_id' => $role->id,
+        'role_id' =>1,
     ];
 
     // Assert
@@ -27,13 +26,12 @@ it('validates correctly for a new user creation', function () {
 
 it('validates correctly for user update', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
 
     $user = User::create([
         'name' => 'Existing User',
         'email' => 'existinguser@example.com',
         'password' => bcrypt('password123'),
-        'role_id' => $role->id,
+        'role_id' => 1,
     ]);
 
     $request = new UserRequest;
@@ -57,13 +55,12 @@ it('validates correctly for user update', function () {
 
 it('fails when required fields are missing', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
 
     $data = [
         'email' => 'testuser@example.com',
         'password' => 'password123',
         'password2' => 'password123',
-        'role_id' => $role->id,
+        'role_id' => 1,
     ];
 
     $request = new UserRequest;
@@ -78,14 +75,13 @@ it('fails when required fields are missing', function () {
 
 it('fails when passwords do not match', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
 
     $data = [
         'name' => 'Test User',
         'email' => 'testuser@example.com',
         'password' => 'password123',
         'password2' => 'differentpassword',
-        'role_id' => $role->id,
+        'role_id' => 1,
     ];
 
     $request = new UserRequest;
@@ -94,19 +90,18 @@ it('fails when passwords do not match', function () {
     $validator = Validator::make($data, $request->rules(), $request->messages());
 
     // Assert
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->first('password2'))->toBe('Las contraseñas no coinciden.');
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->first('password2'))->toBe('Las contraseñas no coinciden.');
 });
 
 it('fails when email is already taken', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
 
     User::create([
         'name' => 'Existing User',
         'email' => 'existinguser@example.com',
         'password' => bcrypt('password123'),
-        'role_id' => $role->id,
+        'role_id' => 1,
     ]);
 
     // Act
@@ -124,6 +119,6 @@ it('fails when email is already taken', function () {
     $validator = Validator::make($data, $request->rules(), $request->messages());
 
     // Act & Assert
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->first('email'))->toBe('Este correo ya está en uso.');
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->first('email'))->toBe('Este correo ya está en uso.');
 });

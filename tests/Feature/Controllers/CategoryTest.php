@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Models\Category;
+use App\Models\User;
 
 it('returns the category view with empty array when there are no categories', function () {
     // Arrange
@@ -34,10 +35,15 @@ it('returns the category view with categories when they exist', function () {
 });
 
 it('renders the correct view manually from controller', function () {
-    loginAsAdmin();
+    $admin = User::factory()->create(['role_id' => 1]);
+    
+    $category = Category::factory()->create();
+    
     $controller = new CategoryController;
-
-    $response = $controller->index();
-
+    
+    $this->actingAs($admin);
+    
+    $response = $controller->index($admin);
+    
     expect($response->getName())->toBe('category');
 });

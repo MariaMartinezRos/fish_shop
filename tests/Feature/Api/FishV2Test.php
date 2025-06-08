@@ -8,8 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 beforeEach(function () {
-    $role = Role::factory()->create(['name' => 'admin']);
-    $admin = User::factory()->create(['role_id' => $role->id]);
+    $admin = User::factory()->create(['role_id' => 1]);
     loginAsUser($admin);
 });
 

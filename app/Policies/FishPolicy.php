@@ -15,8 +15,7 @@ class FishPolicy
      */
     public function viewAny(User $user): bool
     {
-        // Anyone can view the fish list
-        return true;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -24,8 +23,7 @@ class FishPolicy
      */
     public function view(User $user): bool
     {
-        // Anyone can view individual fish
-        return true;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -33,8 +31,7 @@ class FishPolicy
      */
     public function create(User $user): bool
     {
-        // Only admins can create fish entries
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -42,8 +39,7 @@ class FishPolicy
      */
     public function update(User $user): bool
     {
-        // Only admins can update fish entries
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -51,8 +47,7 @@ class FishPolicy
      */
     public function delete(User $user): bool
     {
-        // Only admins can delete fish entries
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -60,8 +55,7 @@ class FishPolicy
      */
     public function restore(User $user): bool
     {
-        // Only admins can restore soft-deleted fish entries
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -70,6 +64,6 @@ class FishPolicy
     public function forceDelete(User $user): bool
     {
         // Only admins can permanently delete fish entries
-        return $user->role_id === 1;
+        return $user->role_id === 1 ;
     }
 }

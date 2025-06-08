@@ -6,8 +6,7 @@ use App\Models\User;
 use App\Models\VacationRequest;
 
 it('builds vacation request notification email', function () {
-    $employeeRole = Role::factory()->create(['name' => 'employee']);
-    $employee = User::factory()->create(['role_id' => $employeeRole->id]);
+    $employee = User::factory()->create(['role_id' => 2]);
 
     $vacationRequest = VacationRequest::create([
         'user_id' => $employee->id,
@@ -27,7 +26,7 @@ it('builds vacation request notification email', function () {
 });
 
 it('includes correct data in email content', function () {
-    $employee = User::factory()->create();
+    $employee = User::factory()->create(['role_id' => 2]);
     $startDate = now();
     $endDate = now()->addDays(5);
 

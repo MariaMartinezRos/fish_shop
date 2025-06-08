@@ -42,8 +42,7 @@ function loginAsUser(?User $user = null)
 
 function loginAsAdmin(?User $user = null)
 {
-    $role = Role::factory()->create(['id' => 1]);
-    $user = $user ?? User::factory()->create(['role_id' => $role->id]);
+    $user = $user ?? User::factory()->create(['role_id' =>1]);
 
     actingAs($user);
 

@@ -7,8 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 
 beforeEach(function () {
-    $role = Role::factory()->create(['name' => 'admin']);
-    $admin = User::factory()->create(['role_id' => $role->id]);
+    $admin = User::factory()->create(['role_id' => 1]);
     loginAsUser($admin);
 });
 

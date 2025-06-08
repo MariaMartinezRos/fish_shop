@@ -4,23 +4,20 @@ use App\Models\User;
 use App\Policies\FishPolicy;
 
 beforeEach(function () {
-    $this->role_admin = \App\Models\Role::factory()->create(['name' => 'admin']);
-    $this->role_customer = \App\Models\Role::factory()->create(['name' => 'customer', 'id' => 3]);
-
-    $this->admin = User::factory()->create(['role_id' => $this->role_admin->id]);
-    $this->client = User::factory()->create(['role_id' => $this->role_customer->id]);
+    $this->admin = User::factory()->create(['role_id' => 1]);
+    $this->client = User::factory()->create(['role_id' => 4]);
 
     $this->policy = new FishPolicy;
 });
 
-it('allows anyone to view any fish', function () {
+it('allows only admin to view any fish', function () {
     expect($this->policy->viewAny($this->admin))->toBeTrue()
-        ->and($this->policy->viewAny($this->client))->toBeTrue();
+        ->and($this->policy->viewAny($this->client))->toBeFalse();
 });
 
-it('allows anyone to view individual fish', function () {
+it('allows admin to view individual fish', function () {
     expect($this->policy->view($this->admin))->toBeTrue()
-        ->and($this->policy->view($this->client))->toBeTrue();
+        ->and($this->policy->view($this->client))->toBeFalse();
 });
 
 it('allows only admin to create fish', function () {

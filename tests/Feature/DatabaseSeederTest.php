@@ -60,15 +60,16 @@ it('adds given product only once', function () {
 
 it('adds given role', function () {
     // Assert
-    $this->assertDatabaseCount(Role::class, 0);
+    $this->assertDatabaseCount(Role::class, 4);
 
     // Act
     $this->artisan('db:seed');
 
     // Assert
-    $this->assertDatabaseCount(Role::class, 3);
+    $this->assertDatabaseCount(Role::class, 4);
     $this->assertDatabaseHas(Role::class, ['name' => 'admin']);
     $this->assertDatabaseHas(Role::class, ['name' => 'employee']);
+    $this->assertDatabaseHas(Role::class, ['name' => 'supplier']);
     $this->assertDatabaseHas(Role::class, ['name' => 'customer']);
 });
 
@@ -78,7 +79,7 @@ it('adds given role only once', function () {
     $this->artisan('db:seed');
 
     // Act && Assert
-    $this->assertDatabaseCount(Role::class, 3);
+    $this->assertDatabaseCount(Role::class, 4);
 });
 
 it('adds given transaction', function () {

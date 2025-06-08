@@ -4,11 +4,8 @@ use App\Models\User;
 use App\Policies\CategoryPolicy;
 
 beforeEach(function () {
-    $this->role_admin = \App\Models\Role::factory()->create(['name' => 'admin']);
-    $this->role_customer = \App\Models\Role::factory()->create(['name' => 'customer', 'id' => 3]);
-
-    $this->admin = User::factory()->create(['role_id' => $this->role_admin->id]);
-    $this->client = User::factory()->create(['role_id' => $this->role_customer->id]);
+    $this->admin = User::factory()->create(['role_id' => 1]);
+    $this->client = User::factory()->create(['role_id' => 4]);
 
     $this->policy = new CategoryPolicy;
 });

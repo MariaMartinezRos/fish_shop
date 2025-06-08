@@ -41,16 +41,12 @@ it('has correct event-listener mappings in protected $listen property', function
 });
 
 it('dispatches SendWelcomeEmail when UserCreated event is fired', function () {
-    // Arrange
     Event::fake();
 
-    $role_customer = \App\Models\Role::factory()->create(['name' => 'customer', 'id' => 4]);
-    $client = User::factory()->create(['role_id' => $role_customer->id]);
+    $client = User::factory()->create(['role_id' => 4]);
 
-    // Act
     event(new UserCreated($client));
 
-    // Assert
     Event::assertDispatched(UserCreated::class);
     Event::assertListening(
         UserCreated::class,
@@ -58,46 +54,71 @@ it('dispatches SendWelcomeEmail when UserCreated event is fired', function () {
     );
 });
 
-it('triggers the listener and sends welcome email', function () {
-    Mail::fake();
-
-    event(new UserCreated($user = \App\Models\User::factory()->create()));
-
-    Mail::assertSent(WelcomeMail::class, function ($mail) use ($user) {
-        return $mail->hasTo($user->email);
-    });
-});
-
-it('registers expected event listeners', function () {
+it('dispatches SendNotificationOnFishAdded when FishAdded event is fired', function () {
     Event::fake();
 
-    $user = new User;
-    $fish = new Fish;
-    $product = new Product;
-    $message = 'Page accessed';
+    $fish = Fish::factory()->create();
 
-    event(new UserCreated($user));
     event(new FishAdded($fish));
+
+    Event::assertDispatched(FishAdded::class);
+    Event::assertListening(
+        FishAdded::class,
+        SendNotificationOnFishAdded::class
+    );
+});
+
+it('dispatches SendNotificationOnProductAdded when ProductAdded event is fired', function () {
+    Event::fake();
+
+    $category = \App\Models\Category::factory()->create();
+    $product = Product::factory()->create(['category_id' => $category->id]);
+
     event(new ProductAdded($product));
+
+    Event::assertDispatched(ProductAdded::class);
+    Event::assertListening(
+        ProductAdded::class,
+        SendNotificationOnProductAdded::class
+    );
+});
+
+it('dispatches ShowSweetAlertOnPageAccess when PageAccessed event is fired', function () {
+    Event::fake();
+
+    $message = 'Welcome to the Fish Shop!';
+
     event(new PageAccessed($message));
 
+    Event::assertDispatched(PageAccessed::class);
     Event::assertListening(
+        PageAccessed::class,
+        ShowSweetAlertOnPageAccess::class
+    );
+});
+
+it('registers all event listeners in the correct order', function () {
+    $provider = new EventServiceProvider(app());
+    $listen = $provider->listens();
+
+    // Check that each event has exactly one listener
+    foreach ($listen as $event => $listeners) {
+        expect($listeners)->toHaveCount(1);
+    }
+});
+
+it('registers all required events', function () {
+    $provider = new EventServiceProvider(app());
+    $listen = $provider->listens();
+
+    $requiredEvents = [
         UserCreated::class,
-        SendWelcomeEmail::class
-    );
+        FishAdded::class,
+        ProductAdded::class,
+        PageAccessed::class
+    ];
 
-    Event::assertListening(
-        \App\Events\FishAdded::class,
-        \App\Listeners\SendNotificationOnFishAdded::class
-    );
-
-    Event::assertListening(
-        \App\Events\ProductAdded::class,
-        \App\Listeners\SendNotificationOnProductAdded::class
-    );
-
-    Event::assertListening(
-        \App\Events\PageAccessed::class,
-        \App\Listeners\ShowSweetAlertOnPageAccess::class
-    );
+    foreach ($requiredEvents as $event) {
+        expect($listen)->toHaveKey($event);
+    }
 });

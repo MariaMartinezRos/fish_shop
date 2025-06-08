@@ -48,7 +48,6 @@ it('includes product links for the admin', function () {
     $products = Product::factory()->count(30)->create();
 
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act

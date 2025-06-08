@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 it('authorizes admin users', function () {
     // Create admin role and user
-    $adminRole = Role::factory()->create(['name' => 'admin']);
-    $admin = User::factory()->create(['role_id' => $adminRole->id]);
+    $admin = User::factory()->create(['role_id' => 1]);
 
     Auth::login($admin);
 

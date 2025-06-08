@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\VacationRequest;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class VacationRequestPolicy
@@ -21,9 +22,9 @@ class VacationRequestPolicy
     /**
      * Determine whether the user can view the vacation requests.
      */
-    public function view(User $user): bool
+    public function view(User $user, VacationRequest $vacationRequest): bool
     {
-        return $user->role_id === 1 || $user->role_id === 2;
+        return $user->role_id === 1 ||( $vacationRequest->user_id === $user->id);
     }
 
     /**
@@ -31,7 +32,7 @@ class VacationRequestPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role_id === 2;
+        return $user->role_id === 1 || $user->role_id === 2;
     }
 
     /**

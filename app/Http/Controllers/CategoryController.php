@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
+
 
 class CategoryController extends Controller
 {
@@ -12,8 +15,10 @@ class CategoryController extends Controller
     /**
      * Shows the categories page.
      */
-    public function index()
+    public function index(User $user)
     {
+        $this->authorize('viewAny', Category::class);
+
         $categories = DB::table('categories')->get();
 
         if ($categories->isEmpty()) {

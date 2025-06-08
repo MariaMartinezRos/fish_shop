@@ -79,8 +79,7 @@ it('creates predefined categories successfully', function () {
 
 it('loads soft deleted records from tables', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 3]);
-    $user = User::factory()->create(['role_id' => $role->id]);
+    $user = User::factory()->create(['role_id' => 3]);
     $user->delete();
 
     // Act & Assert
@@ -143,10 +142,6 @@ it('runs the clean:test command and calls subcommands', function () {
 
 it('sends test vacation request email', function () {
     Mail::fake();
-
-    // Crear roles esperados
-    Role::factory()->create(['id' => 1, 'name' => 'admin']);
-    Role::factory()->create(['id' => 2, 'name' => 'employee']);
 
     // Crear usuarios
     $admin = User::factory()->create([

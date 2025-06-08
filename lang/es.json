@@ -764,6 +764,10 @@
     "Error sending email": "Error al enviar el correo electrónico",
     "This is a test vacation request for email testing purposes.": "Esta es una solicitud de vacaciones de prueba para fines de prueba de correo electrónico.",
     "Unable to connect to the recipe database. Please try again later.": "No se puede conectar a la base de datos de recetas. Por favor, inténtalo de nuevo más tarde.",
-    "Ooops, something happened...": "Ooops, algo sucedió..."
+    "Ooops, something happened...": "Ooops, algo sucedió...",
+    "Fish images directory does not exist": "El directorio de imágenes de pescado no existe",
+    "Carousel images fetched and cached successfully": "Imágenes del carrusel obtenidas y almacenadas en caché correctamente",
+    "Failed to fetch carousel images: ": "Error al obtener imágenes del carrusel: ",
+    "Image directory does not exist: ": "El directorio de imágenes no existe: "
 }
 

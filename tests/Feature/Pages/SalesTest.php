@@ -26,7 +26,6 @@ it('cannot be accessed by guest', function () {
 
 it('cannot be accessed by costumer', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 4]);
     $costumer = User::factory()->create(['role_id' => 4]);
 
     // Act
@@ -37,8 +36,7 @@ it('cannot be accessed by costumer', function () {
 
 it('cannot be accessed by employee', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 3]);
-    $employee = User::factory()->create(['role_id' => 3]);
+    $employee = User::factory()->create(['role_id' => 2]);
 
     // Act
     $this->actingAs($employee)
@@ -73,9 +71,9 @@ it('can download a soft deleted document', function () {
     $text = $pdf->getText();
 
     // Assert
-    expect($text)->toContain('Informe de Eliminaciones');
-    expect($text)->toContain('Products');
-    expect($text)->toContain($product->name);
+    expect($text)->toContain('Informe de Eliminaciones')
+        ->and($text)->toContain('Products')
+        ->and($text)->toContain($product->name);
 });
 
 it('calls the command when the button is pressed', function () {

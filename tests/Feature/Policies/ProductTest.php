@@ -4,11 +4,8 @@ use App\Models\User;
 use App\Policies\ProductPolicy;
 
 beforeEach(function () {
-    $this->role_admin = \App\Models\Role::factory()->create(['name' => 'admin']);
-    $this->role_customer = \App\Models\Role::factory()->create(['name' => 'customer', 'id' => 3]);
-
-    $this->admin = User::factory()->create(['role_id' => $this->role_admin->id]);
-    $this->client = User::factory()->create(['role_id' => $this->role_customer->id]);
+    $this->admin = User::factory()->create(['role_id' => 1]);
+    $this->client = User::factory()->create(['role_id' => 4]);
 
     $this->productPolicy = new ProductPolicy;
 });
@@ -26,11 +23,6 @@ it('allows only admin to update products', function () {
 it('allows only admin to delete products', function () {
     expect($this->productPolicy->delete($this->admin))->toBeTrue()
         ->and($this->productPolicy->delete($this->client))->toBeFalse();
-});
-
-it('allows only admin to authorize product actions', function () {
-    expect($this->productPolicy->authorize($this->admin))->toBeTrue()
-        ->and($this->productPolicy->authorize($this->client))->toBeFalse();
 });
 
 it('allows anyone to view products', function () {

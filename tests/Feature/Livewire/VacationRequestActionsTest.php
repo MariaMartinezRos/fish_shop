@@ -7,10 +7,9 @@ use App\Models\VacationRequest;
 use Livewire\Livewire;
 
 it('shows vacation request modal', function () {
-    $adminRole = Role::factory()->create(['name' => 'admin']);
-    $admin = User::factory()->create(['role_id' => $adminRole->id]);
+    $admin = User::factory()->create(['role_id' => 1]);
 
-    $employee = User::factory()->create();
+    $employee = User::factory()->create(['role_id' => 2]);
     $vacationRequest = VacationRequest::create([
         'user_id' => $employee->id,
         'start_date' => now(),
@@ -31,11 +30,10 @@ it('shows vacation request modal', function () {
 
 it('approves vacation request when admin', function () {
     // Create admin role and user
-    $adminRole = Role::factory()->create(['name' => 'admin']);
-    $admin = User::factory()->create(['role_id' => $adminRole->id]);
+    $admin = User::factory()->create(['role_id' => 1]);
 
     // Create employee and vacation request
-    $employee = User::factory()->create();
+    $employee = User::factory()->create(['role_id' => 2]);
     $vacationRequest = VacationRequest::create([
         'user_id' => $employee->id,
         'start_date' => now(),
@@ -56,11 +54,10 @@ it('approves vacation request when admin', function () {
 
 it('rejects vacation request when admin', function () {
     // Create admin role and user
-    $adminRole = Role::factory()->create(['name' => 'admin']);
-    $admin = User::factory()->create(['role_id' => $adminRole->id]);
+    $admin = User::factory()->create(['role_id' => 1]);
 
     // Create employee and vacation request
-    $employee = User::factory()->create();
+    $employee = User::factory()->create(['role_id' => 2]);
     $vacationRequest = VacationRequest::create([
         'user_id' => $employee->id,
         'start_date' => now(),

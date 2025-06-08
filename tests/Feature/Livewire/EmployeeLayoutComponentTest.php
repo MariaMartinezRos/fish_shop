@@ -5,8 +5,7 @@ use App\Models\User;
 
 it('renders the employee layout correctly', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 2]);
-    $employee = User::factory()->create(['role_id' => $role->id]);
+    $employee = User::factory()->create(['role_id' => 2]);
 
     // Act
     $this->actingAs($employee)

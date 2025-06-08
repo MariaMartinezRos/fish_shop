@@ -7,8 +7,7 @@ use function Pest\Laravel\get;
 
 it('returns a successful response for home page', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 2]);
-    $employee = User::factory()->create(['role_id' => $role->id]);
+    $employee = User::factory()->create(['role_id' =>2]);
 
     // Act
     $this->actingAs($employee)
@@ -23,20 +22,18 @@ it('cannot be accessed by guest', function () {
         ->assertRedirect(route('login'));
 });
 
-it('cannot be accessed by costumer', function () {
+it('cannot be accessed by customer', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 3]);
-    $costumer = User::factory()->create(['role_id' => $role->id]);
+    $customer = User::factory()->create(['role_id' => 4]);
 
     // Act
-    $this->actingAs($costumer)
+    $this->actingAs($customer)
         ->get('employee/home')
         ->assertRedirect(route('login'));
 });
 
 it('cannot be accessed by admin', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act

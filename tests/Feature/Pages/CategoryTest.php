@@ -19,7 +19,6 @@ use function Pest\Laravel\get;
 
 it('returns a successful response for category page', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act
@@ -37,7 +36,6 @@ it('cannot be accessed by guest', function () {
 
 it('cannot be accessed by costumer', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 4]);
     $costumer = User::factory()->create(['role_id' => 4]);
 
     // Act
@@ -48,7 +46,6 @@ it('cannot be accessed by costumer', function () {
 
 it('cannot be accessed by employee', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 3]);
     $employee = User::factory()->create(['role_id' => 3]);
 
     // Act
@@ -59,7 +56,6 @@ it('cannot be accessed by employee', function () {
 
 it('can be accessed by admin', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act
@@ -71,7 +67,6 @@ it('can be accessed by admin', function () {
 
 it('renders the category manager component', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act & Assert
@@ -82,7 +77,6 @@ it('renders the category manager component', function () {
 
 it('displays a list of categories', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     $categories = Category::factory()->count(3)->create();
@@ -97,7 +91,6 @@ it('displays a list of categories', function () {
 
 it('shows a message when no categories are available', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act & Assert
@@ -108,7 +101,6 @@ it('shows a message when no categories are available', function () {
 
 it('can create a new category', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act & Assert
@@ -129,7 +121,6 @@ it('can create a new category', function () {
 
 it('can edit an existing category', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     $category = Category::factory()->create();
@@ -154,7 +145,6 @@ it('can edit an existing category', function () {
 
 it('can delete a category', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     $category = Category::factory()->create(['id' => 9]);
@@ -170,7 +160,6 @@ it('can delete a category', function () {
 
 it('cannot delete a category that is in use by products', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     $category = Category::factory()->create();
@@ -187,7 +176,6 @@ it('cannot delete a category that is in use by products', function () {
 
 it('validates required fields when creating a category', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act & Assert
@@ -202,7 +190,6 @@ it('validates required fields when creating a category', function () {
 
 it('validates unique category names', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     Category::factory()->create(['name' => 'existing-category']);
@@ -219,7 +206,6 @@ it('validates unique category names', function () {
 
 it('can search categories', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     Category::factory()->create(['name' => 'test-category']);
@@ -235,7 +221,6 @@ it('can search categories', function () {
 
 it('paginates categories', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     Category::factory()->count(15)->create();
@@ -249,7 +234,6 @@ it('paginates categories', function () {
 
 it('shows create form when clicking add category button', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act & Assert
@@ -262,7 +246,6 @@ it('shows create form when clicking add category button', function () {
 
 it('shows edit form when clicking edit button', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 1]);
     $admin = User::factory()->create(['role_id' => 1]);
 
     $category = Category::factory()->create();

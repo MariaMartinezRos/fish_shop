@@ -10,8 +10,7 @@ use Livewire\Livewire;
 beforeEach(function () {
     $this->user = User::factory()->create();
 
-    $adminRole = Role::factory()->create(['name' => 'admin']);
-    $this->admin = User::factory()->create(['role_id' => $adminRole->id]);
+    $this->admin = User::factory()->create(['role_id' => 1]);
 });
 
 it('updates existing transaction', function () {
@@ -40,7 +39,7 @@ it('deletes transaction', function () {
 
     $auxiliar = $transaction->id;
 
-    Livewire::actingAs($this->user)
+    Livewire::actingAs($this->admin)
         ->test(TransactionManager::class)
         ->call('delete', $transaction->id);
 
@@ -48,7 +47,7 @@ it('deletes transaction', function () {
 });
 
 it('validates required fields', function () {
-    Livewire::actingAs($this->user)
+    Livewire::actingAs($this->admin)
         ->test(TransactionManager::class)
         ->set('tpv', '')
         ->set('serial_number', '')

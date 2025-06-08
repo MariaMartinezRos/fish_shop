@@ -1,6 +1,11 @@
 
 <div>
     <div class="relative w-full max-w-4xl mx-auto">
+        @if (session('error'))
+            <div class="bg-red-500 text-white text-center py-2 px-4 rounded mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="overflow-hidden relative">
             <div class="flex transition-transform duration-500 ease-in-out" style="transform: translateX(-{{ $currentIndex * 100 }}%);">
                 @foreach($images as $image)

@@ -19,6 +19,13 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        DB::table('roles')->insert([
+            ['name' => 'admin', 'display_name' => 'Administrator', 'description' => 'User has full access to manage the system, including user roles and permissions'],
+            ['name' => 'employee', 'display_name' => 'Employee', 'description' => 'User has general access to perform assigned tasks and duties'],
+            ['name' => 'supplier', 'display_name' => 'Supplier', 'description' => 'User provides goods to the system'],
+            ['name' => 'customer', 'display_name' => 'Client', 'description' => 'User interacts with the system as a client for purchases or services'],
+        ]);
     }
 
     /**

@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Queue;
 it('submits contact form successfully', function () {
     Queue::fake();
 
-    $employeeRole = Role::factory()->create(['name' => 'employee']);
-    $employee = User::factory()->create(['role_id' => $employeeRole->id]);
+    $employee = User::factory()->create(['role_id' => 2]);
 
     $response = $this->post(route('contact.submit'), [
         'name' => 'Test User',

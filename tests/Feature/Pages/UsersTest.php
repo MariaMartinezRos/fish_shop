@@ -23,18 +23,16 @@ it('cannot be accessed by guest', function () {
 
 it('cannot be accessed by costumer', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 4]);
-    $costumer = User::factory()->create(['role_id' => 4]);
+    $customer = User::factory()->create(['role_id' => 4]);
 
     // Act
-    $this->actingAs($costumer)
+    $this->actingAs($customer)
         ->get('users')
         ->assertRedirect(route('login'));
 });
 
 it('cannot be accessed by employee', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 3]);
     $employee = User::factory()->create(['role_id' => 3]);
 
     // Act
@@ -55,7 +53,6 @@ it('can be accessed by admin', function () {
 
 it('can create a user successfully', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 4]);
     loginAsAdmin();
 
     // Act
@@ -90,7 +87,6 @@ it('can delete a user', function () {
 
 it('can update a user', function () {
     // Arrange
-    $role = Role::factory()->create(['id' => 4]);
     loginAsAdmin();
     $user = User::factory()->create(['name' => 'John Doe', 'email' => 'example@example.com']);
 

@@ -15,7 +15,6 @@ class ProductPolicy
      */
     public function viewAny(User $user): bool
     {
-        // Anyone can view the product list
         return true;
     }
 
@@ -24,7 +23,6 @@ class ProductPolicy
      */
     public function view(User $user): bool
     {
-        // Anyone can view individual products
         return true;
     }
 
@@ -33,8 +31,7 @@ class ProductPolicy
      */
     public function create(User $user): bool
     {
-        // Only admins can create products
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -42,8 +39,7 @@ class ProductPolicy
      */
     public function update(User $user): bool
     {
-        // Only admins can update products
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier' ;
     }
 
     /**
@@ -51,8 +47,7 @@ class ProductPolicy
      */
     public function delete(User $user): bool
     {
-        // Only admins can delete products
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -60,20 +55,13 @@ class ProductPolicy
      */
     public function restore(User $user): bool
     {
-        // Only admins can restore soft-deleted products
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
      * Determine whether the user can permanently delete the product.
      */
     public function forceDelete(User $user): bool
-    {
-        // Only admins can permanently delete products
-        return $user->role_id === 1;
-    }
-
-    public function authorize(User $user): bool
     {
         return $user->role_id === 1;
     }

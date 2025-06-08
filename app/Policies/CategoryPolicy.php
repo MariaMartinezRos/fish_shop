@@ -16,7 +16,6 @@ class CategoryPolicy
      */
     public function viewAny(User $user): bool
     {
-        // Anyone can view categories
         return true;
     }
 
@@ -25,7 +24,6 @@ class CategoryPolicy
      */
     public function view(User $user): bool
     {
-        // Anyone can view individual categories
         return true;
     }
 
@@ -34,8 +32,7 @@ class CategoryPolicy
      */
     public function create(User $user): bool
     {
-        // Only admins can create categories
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -43,8 +40,7 @@ class CategoryPolicy
      */
     public function update(User $user): bool
     {
-        // Only admins can update categories
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -52,8 +48,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category): bool
     {
-        // Only admins can delete categories
-        if ($user->role_id === 1) {
+        if ($user->role_id === 1 || $user->role->name === 'supplier') {
             return ! $this->hasProductsWithCategoryId($category->id);
         }
 
@@ -65,8 +60,7 @@ class CategoryPolicy
      */
     public function restore(User $user): bool
     {
-        // Only admins can restore soft-deleted categories
-        return $user->role_id === 1;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**

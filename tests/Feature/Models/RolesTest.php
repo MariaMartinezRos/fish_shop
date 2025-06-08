@@ -10,9 +10,9 @@ it('has a HasMany relation with users', function () {
 
 it('can be created with fillable fields', function () {
     $data = [
-        'name' => 'admin',
-        'display_name' => 'Administrator',
-        'description' => 'Full access',
+        'name' => 'client',
+        'display_name' => 'Client',
+        'description' => 'A user with client role',
     ];
 
     $role = Role::create($data);
