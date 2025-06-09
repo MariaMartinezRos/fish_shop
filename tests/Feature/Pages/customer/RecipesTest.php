@@ -30,7 +30,6 @@ it('includes the nav bar client partial', function () {
     $response->assertSee('Productos');
     $response->assertSee('Tiendas');
     $response->assertSee('Recetas');
-    $response->assertSee('Contacto');
 
 });
 

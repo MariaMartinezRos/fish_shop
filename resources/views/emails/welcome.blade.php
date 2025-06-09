@@ -1,12 +1,10 @@
 @component('mail::message')
-    # {{ __('Thanks for creating an account')}}, {{ $user->name }}!!
+# {{ __('Thanks for creating an account')}}, {{ $user->name }}!!
 
-    {{ __('You can now login to your account using the button below:')}}
+{{ __('You can now login to your account using the button below:')}}
 
-    @component('mail::button', ['url' => url('login')])
-        {{ __('Login') }}
-    @endcomponent
+{{ __('Login') }}: {{ url('login') }}
 
-    {{ __('Thanks')}},<br>
-    {{ config('app.name') }}
+{{ __('Thanks')}},
+{{ config('app.name') }}
 @endcomponent
