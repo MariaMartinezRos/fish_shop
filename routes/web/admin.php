@@ -48,4 +48,10 @@ Route::middleware([AdminMiddleware::class])->group(function () {
         return back()->with('status', 'success');
     })->name('run.command');
 
+    Route::post('/weekly-report', function () {
+        Artisan::call('app:run-weekly-report');
+
+        return back()->with('status', 'success');
+    })->name('weekly.report');
+
 });

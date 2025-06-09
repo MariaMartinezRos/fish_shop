@@ -792,6 +792,7 @@
     "Transaction deleted successfully.": "Transacción eliminada correctamente.",
     "You are not authorized to delete this transaction.": "No estas autorizado para eliminar esta transacción.",
     "Date": "Fecha",
-    "The description is required.": "La descripción es obligatoria."
+    "The description is required.": "La descripción es obligatoria.",
+    "Send Weekly Report": "Enviar Informe Semanal"
 }
 

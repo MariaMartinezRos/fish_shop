@@ -34,6 +34,15 @@
                     </button>
                 </form>
 
+                <form action="{{ route('weekly.report') }}" method="POST" class="p-6 ">
+                    @csrf
+                    <button
+                        type="submit"
+                        class="px-4 py-2 bg-violet-500 text-white rounded-md hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-violet-400">
+                        {{ __('Send Weekly Report') }}
+                    </button>
+                </form>
+
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- renderiza el grafico --}}
                     {!! $chartHour->container() !!}
