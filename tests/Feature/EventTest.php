@@ -55,20 +55,6 @@ it('creates a FishAdded event with a fish instance', function () {
         ->and($event->fish->name)->toBe('Salmón');
 });
 
-it('flashes a success message to the session when a fish is added', function () {
-    Session::start();
-
-    $fish = new Fish(['name' => 'Trucha']);
-    $event = new FishAdded($fish);
-    $listener = new SendNotificationOnFishAdded;
-
-    $listener->handle($event);
-
-    expect(Session::get('toast'))->toBe([
-        'type' => 'success',
-        'message' => 'Pez agregado exitosamente: Trucha!',
-    ]);
-});
 
 it('creates a ProductAdded event with a product instance', function () {
     $product = new Product(['name' => 'Salmón']);
@@ -76,21 +62,6 @@ it('creates a ProductAdded event with a product instance', function () {
 
     expect($event->product)->toBeInstanceOf(Product::class)
         ->and($event->product->name)->toBe('Salmón');
-});
-
-it('flashes a success message to the session when a product is added', function () {
-    Session::start();
-
-    $product = new Product(['name' => 'Trucha']);
-    $event = new ProductAdded($product);
-    $listener = new SendNotificationOnProductAdded;
-
-    $listener->handle($event);
-
-    expect(Session::get('toast'))->toBe([
-        'type' => 'success',
-        'message' => '¡Producto agregado exitosamente:Trucha!',
-    ]);
 });
 
 it('flashes a success message to the session when a page is accessed', function () {

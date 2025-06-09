@@ -20,9 +20,6 @@ class SendNotificationOnProductAdded
      */
     public function handle(ProductAdded $event): void
     {
-        Session::flash('toast', [
-            'type' => 'success',
-            'message' => __('Product added succesfully: ').$event->product->name.'!',
-        ]);
+        \Log::info('Product added successfully: ' . $event->product->name);
     }
 }

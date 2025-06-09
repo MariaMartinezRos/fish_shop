@@ -20,9 +20,6 @@ class SendNotificationOnFishAdded
      */
     public function handle(FishAdded $event): void
     {
-        Session::flash('toast', [
-            'type' => 'success',
-            'message' => __('Fish added succesfully: ').$event->fish->name.'!',
-        ]);
+        \Log::info('Fish added successfully: ' . $event->fish->name);
     }
 }
