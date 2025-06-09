@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
@@ -11,4 +10,4 @@ class CalendarController extends Controller
     {
         return view('employee.calendar');
     }
-} 
+}

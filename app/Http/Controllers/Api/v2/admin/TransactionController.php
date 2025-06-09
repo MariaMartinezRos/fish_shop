@@ -77,6 +77,7 @@ class TransactionController extends Controller
     public function show(Transaction $transaction)
     {
         $this->authorize('view', $transaction);
+
         return new TransactionResource($transaction->load('user'));
     }
 

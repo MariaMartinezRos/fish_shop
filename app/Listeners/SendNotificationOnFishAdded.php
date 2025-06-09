@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\FishAdded;
-use Illuminate\Support\Facades\Session;
 
 class SendNotificationOnFishAdded
 {
@@ -20,6 +19,6 @@ class SendNotificationOnFishAdded
      */
     public function handle(FishAdded $event): void
     {
-        \Log::info('Fish added successfully: ' . $event->fish->name);
+        \Log::info('Fish added successfully: '.$event->fish->name);
     }
 }

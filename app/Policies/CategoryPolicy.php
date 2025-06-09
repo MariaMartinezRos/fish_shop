@@ -48,7 +48,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category): bool
     {
-        if ($user->role_id === 1 ) {
+        if ($user->role_id === 1) {
             return ! $this->hasProductsWithCategoryId($category->id);
         }
 
@@ -60,7 +60,7 @@ class CategoryPolicy
      */
     public function restore(User $user): bool
     {
-        return $user->role_id === 1 ;
+        return $user->role_id === 1;
     }
 
     /**

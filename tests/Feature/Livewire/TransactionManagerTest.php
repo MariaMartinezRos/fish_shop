@@ -1,7 +1,6 @@
 <?php
 
 use App\Livewire\TransactionManager;
-use App\Models\Role;
 use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;

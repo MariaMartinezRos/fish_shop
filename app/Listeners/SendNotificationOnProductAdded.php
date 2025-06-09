@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\ProductAdded;
-use Illuminate\Support\Facades\Session;
 
 class SendNotificationOnProductAdded
 {
@@ -20,6 +19,6 @@ class SendNotificationOnProductAdded
      */
     public function handle(ProductAdded $event): void
     {
-        \Log::info('Product added successfully: ' . $event->product->name);
+        \Log::info('Product added successfully: '.$event->product->name);
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');
 
@@ -20,7 +19,7 @@ test('registration validation fails with invalid data', function () {
 
 test('registration fails with duplicate email', function () {
     $user = \App\Models\User::factory()->create([
-        'email' => 'test@example.com'
+        'email' => 'test@example.com',
     ]);
 
     $response = $this->post('/register', [
@@ -32,4 +31,3 @@ test('registration fails with duplicate email', function () {
 
     $response->assertSessionHasErrors(['email']);
 });
-

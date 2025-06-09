@@ -36,14 +36,14 @@ it('returns the category view with categories when they exist', function () {
 
 it('renders the correct view manually from controller', function () {
     $admin = User::factory()->create(['role_id' => 1]);
-    
+
     $category = Category::factory()->create();
-    
+
     $controller = new CategoryController;
-    
+
     $this->actingAs($admin);
-    
+
     $response = $controller->index($admin);
-    
+
     expect($response->getName())->toBe('category');
 });

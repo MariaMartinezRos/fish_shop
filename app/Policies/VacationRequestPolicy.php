@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\Transaction;
 use App\Models\User;
 use App\Models\VacationRequest;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -24,7 +23,7 @@ class VacationRequestPolicy
      */
     public function view(User $user, VacationRequest $vacationRequest): bool
     {
-        return $user->role_id === 1 ||( $vacationRequest->user_id === $user->id);
+        return $user->role_id === 1 || ($vacationRequest->user_id === $user->id);
     }
 
     /**

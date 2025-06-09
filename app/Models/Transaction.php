@@ -64,7 +64,7 @@ class Transaction extends Model
      */
     public function scopeToday(Builder $query): Builder
     {
-//        return $query->whereDate('date_time', now());
+        //        return $query->whereDate('date_time', now());
         return $query
             ->whereDate('date_time', now())
             ->where('operation', 'VENTA')

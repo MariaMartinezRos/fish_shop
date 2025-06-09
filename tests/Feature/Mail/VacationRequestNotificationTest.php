@@ -1,7 +1,6 @@
 <?php
 
 use App\Mail\VacationRequestNotification;
-use App\Models\Role;
 use App\Models\User;
 use App\Models\VacationRequest;
 

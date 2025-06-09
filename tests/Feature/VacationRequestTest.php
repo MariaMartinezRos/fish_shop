@@ -1,6 +1,5 @@
 <?php
 
-
 it('shows chekbox component', function () {
     $employee = \App\Models\User::factory()->create(['role_id' => 2]);
     $this->actingAs($employee)->get(route('employee.vacation-request'))

@@ -2,17 +2,22 @@
 
 namespace App\Livewire\Employee;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
+use Livewire\Component;
 
 class Calendar extends Component
 {
     public $holidays = [];
+
     public $currentMonth;
+
     public $currentYear;
+
     public $error = null;
+
     public $selectedDay = null;
+
     public $holidayInfo = null;
 
     public function mount()
@@ -27,7 +32,7 @@ class Calendar extends Component
         try {
             $response = Http::get('https://api.generadordni.es/v2/holidays/holidays', [
                 'country' => 'ES',
-                'year' => $this->currentYear
+                'year' => $this->currentYear,
             ]);
 
             if ($response->successful()) {
@@ -38,7 +43,7 @@ class Calendar extends Component
                 $this->holidays = [];
             }
         } catch (\Exception $e) {
-            $this->error =__('The holidays will be available soon!');
+            $this->error = __('The holidays will be available soon!');
             $this->holidays = [];
         }
     }
@@ -61,7 +66,9 @@ class Calendar extends Component
 
     public function selectDay($day): void
     {
-        if (!$day) return;
+        if (! $day) {
+            return;
+        }
 
         $this->selectedDay = $day;
         $this->holidayInfo = $this->getHolidayInfo($day);
@@ -79,6 +86,7 @@ class Calendar extends Component
                 return $holiday;
             }
         }
+
         return null;
     }
 
@@ -90,12 +98,13 @@ class Calendar extends Component
     public function isWeekend($day): bool
     {
         $date = Carbon::create($this->currentYear, $this->currentMonth, $day);
+
         return $date->isSunday() || $date->isMonday();
     }
 
     public function getDayClasses($day): string
     {
-        if (!$day) {
+        if (! $day) {
             return 'bg-gray-100';
         }
 
@@ -148,7 +157,7 @@ class Calendar extends Component
             'calendarDays' => $calendarDays,
             'monthName' => $firstDayOfMonth->locale('es')->monthName,
             'year' => $this->currentYear,
-            'error' => $this->error
+            'error' => $this->error,
         ]);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\Employee\CalendarController;
 use App\Http\Controllers\Employee\HomeController;
 use App\Http\Middleware\EmployeeMiddleware;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Employee\CalendarController;
 
 // =====================================================
 // RUTAS PARA EMPLEADOS (AUTENTICADO + EMPLOYEE)
@@ -28,6 +28,5 @@ Route::middleware([EmployeeMiddleware::class])->group(function () {
         ->name('employee.vacation-request.pdf');
 
     Route::get('/employee/calendar', [CalendarController::class, 'index'])->name('employee.calendar');
-
 
 });

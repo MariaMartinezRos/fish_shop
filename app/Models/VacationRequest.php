@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class VacationRequest extends Model
 {
-
     protected $fillable = [
         'user_id',
         'start_date',

@@ -1,13 +1,12 @@
 <?php
 
-use App\Models\Role;
 use App\Models\User;
 
 use function Pest\Laravel\get;
 
 it('returns a successful response for home page', function () {
     // Arrange
-    $employee = User::factory()->create(['role_id' =>2]);
+    $employee = User::factory()->create(['role_id' => 2]);
 
     // Act
     $this->actingAs($employee)

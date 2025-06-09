@@ -14,4 +14,3 @@ Route::get('categories/{category}', [CategoryController::class, 'show']);
 // Product routes (public read)
 Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{product}', [ProductController::class, 'show']);
-

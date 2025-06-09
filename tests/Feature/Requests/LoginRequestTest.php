@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 it('validates required fields', function () {

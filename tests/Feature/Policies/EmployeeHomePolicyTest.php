@@ -4,7 +4,7 @@ use App\Models\User;
 use App\Policies\EmployeeHomePolicy;
 
 beforeEach(function () {
-    $this->policy = new EmployeeHomePolicy();
+    $this->policy = new EmployeeHomePolicy;
     $this->regularUser = User::factory()->create(['role_id' => 3]);
     $this->employee = User::factory()->create(['role_id' => 2]);
     $this->admin = User::factory()->create(['role_id' => 1]);
@@ -24,4 +24,4 @@ it('allows access to employee', function () {
 
 it('allows access to admin', function () {
     expect($this->policy->view($this->admin))->toBeTrue();
-}); 
+});

@@ -4,8 +4,6 @@ use App\Events\FishAdded;
 use App\Events\PageAccessed;
 use App\Events\ProductAdded;
 use App\Events\UserCreated;
-use App\Listeners\SendNotificationOnFishAdded;
-use App\Listeners\SendNotificationOnProductAdded;
 use App\Listeners\ShowSweetAlertOnPageAccess;
 use App\Models\Fish;
 use App\Models\Product;
@@ -54,7 +52,6 @@ it('creates a FishAdded event with a fish instance', function () {
     expect($event->fish)->toBeInstanceOf(Fish::class)
         ->and($event->fish->name)->toBe('Salmón');
 });
-
 
 it('creates a ProductAdded event with a product instance', function () {
     $product = new Product(['name' => 'Salmón']);

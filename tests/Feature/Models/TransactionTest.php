@@ -2,7 +2,6 @@
 
 use App\Models\Transaction;
 use App\Models\User;
-use Carbon\Carbon;
 
 it('can create a transaction with all attributes', function () {
     $transaction = Transaction::create([
@@ -14,7 +13,7 @@ it('can create a transaction with all attributes', function () {
         'card_number' => '****1234',
         'date_time' => now(),
         'transaction_number' => 'TRX001',
-        'sale_id' => 1
+        'sale_id' => 1,
     ]);
 
     expect($transaction)
@@ -39,7 +38,7 @@ it('can be associated with a user', function () {
         'card_number' => '****1234',
         'date_time' => now(),
         'transaction_number' => 'TRX001',
-        'sale_id' => 1
+        'sale_id' => 1,
     ]);
 
     expect($transaction->user)
@@ -57,7 +56,7 @@ it('can search transactions by tpv', function () {
         'card_number' => '****1234',
         'date_time' => now(),
         'transaction_number' => 'TRX001',
-        'sale_id' => 1
+        'sale_id' => 1,
     ]);
 
     Transaction::create([
@@ -69,7 +68,7 @@ it('can search transactions by tpv', function () {
         'card_number' => '****5678',
         'date_time' => now(),
         'transaction_number' => 'TRX002',
-        'sale_id' => 2
+        'sale_id' => 2,
     ]);
 
     $results = Transaction::search('TPV001')->get();
@@ -93,7 +92,7 @@ it('can get today transactions', function () {
         'card_number' => '****1234',
         'date_time' => $today,
         'transaction_number' => 'TRX001',
-        'sale_id' => 1
+        'sale_id' => 1,
     ]);
 
     // Yesterday's transaction
@@ -106,7 +105,7 @@ it('can get today transactions', function () {
         'card_number' => '****5678',
         'date_time' => $yesterday,
         'transaction_number' => 'TRX002',
-        'sale_id' => 2
+        'sale_id' => 2,
     ]);
 
     $todayTransactions = Transaction::today()->get();
@@ -126,7 +125,7 @@ it('can be soft deleted', function () {
         'card_number' => '****1234',
         'date_time' => now(),
         'transaction_number' => 'TRX001',
-        'sale_id' => 1
+        'sale_id' => 1,
     ]);
 
     $transactionId = $transaction->id;

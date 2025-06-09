@@ -163,8 +163,7 @@ it('sends test vacation request email', function () {
     });
 });
 
-
-//it('sends test vacation request email', function () {
+// it('sends test vacation request email', function () {
 //    Mail::fake();
 //
 //    $roleAdmin = Role::factory()->create(['name' => 'admin']);
@@ -190,4 +189,4 @@ it('sends test vacation request email', function () {
 //    Mail::assertSent(VacationRequestNotification::class, function ($mail) use ($admin) {
 //        return $mail->hasTo($admin->email);
 //    });
-//});
+// });

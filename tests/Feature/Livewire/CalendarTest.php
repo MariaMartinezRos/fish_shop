@@ -1,9 +1,9 @@
 <?php
 
 use App\Livewire\Employee\Calendar;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Livewire\Livewire;
-use Carbon\Carbon;
 
 it('shows current month by default', function () {
     Livewire::test(Calendar::class)
@@ -34,11 +34,11 @@ it('shows holidays from API', function () {
         'date' => Carbon::now()->format('Y-m-d 00:00:00'),
         'name' => 'Test Holiday',
         'type' => 'public',
-        'rule' => '01-01'
+        'rule' => '01-01',
     ];
 
     Http::fake([
-        'api.generadordni.es/v2/holidays/holidays*' => Http::response([$holiday])
+        'api.generadordni.es/v2/holidays/holidays*' => Http::response([$holiday]),
     ]);
 
     Livewire::test(Calendar::class)
@@ -48,7 +48,7 @@ it('shows holidays from API', function () {
 
 it('handles API errors gracefully', function () {
     Http::fake([
-        'api.generadordni.es/v2/holidays/holidays*' => Http::response([], 500)
+        'api.generadordni.es/v2/holidays/holidays*' => Http::response([], 500),
     ]);
 
     Livewire::test(Calendar::class)
@@ -69,11 +69,11 @@ it('shows holiday days with red background', function () {
         'date' => Carbon::now()->format('Y-m-d 00:00:00'),
         'name' => 'Test Holiday',
         'type' => 'public',
-        'rule' => '01-01'
+        'rule' => '01-01',
     ];
 
     Http::fake([
-        'api.generadordni.es/v2/holidays/holidays*' => Http::response([$holiday])
+        'api.generadordni.es/v2/holidays/holidays*' => Http::response([$holiday]),
     ]);
 
     Livewire::test(Calendar::class)
@@ -94,11 +94,11 @@ it('shows holiday information when clicking on a holiday', function () {
         'date' => Carbon::now()->format('Y-m-d 00:00:00'),
         'name' => 'Test Holiday',
         'type' => 'public',
-        'rule' => '01-01'
+        'rule' => '01-01',
     ];
 
     Http::fake([
-        'api.generadordni.es/v2/holidays/holidays*' => Http::response([$holiday])
+        'api.generadordni.es/v2/holidays/holidays*' => Http::response([$holiday]),
     ]);
 
     Livewire::test(Calendar::class)

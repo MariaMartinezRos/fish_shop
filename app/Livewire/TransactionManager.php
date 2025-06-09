@@ -182,5 +182,4 @@ class TransactionManager extends Component
     {
         $this->resetPage();
     }
-
 }

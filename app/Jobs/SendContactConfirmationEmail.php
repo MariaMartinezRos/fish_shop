@@ -30,8 +30,7 @@ class SendContactConfirmationEmail implements ShouldQueue
     {
         try {
 
-
-            if (!$this->user || !$this->user->email) {
+            if (! $this->user || ! $this->user->email) {
                 throw new \Exception('Invalid user or missing email address');
             }
 
@@ -39,7 +38,7 @@ class SendContactConfirmationEmail implements ShouldQueue
 
             \Log::info('Contact confirmation email queued successfully');
         } catch (\Exception $e) {
-            \Log::error('Failed to queue contact confirmation email: ' . $e->getMessage());
+            \Log::error('Failed to queue contact confirmation email: '.$e->getMessage());
             throw $e;
         }
     }

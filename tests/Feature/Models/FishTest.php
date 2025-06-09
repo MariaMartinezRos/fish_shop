@@ -13,7 +13,7 @@ it('can create a fish with basic attributes', function () {
         'diet' => 'Omnivore',
         'lifespan_years' => 5,
         'habitat' => 'Freshwater',
-        'conservation_status' => 'Least Concern'
+        'conservation_status' => 'Least Concern',
     ]);
 
     expect($fish)
@@ -30,7 +30,7 @@ it('can create a fish with basic attributes', function () {
 it('casts numeric attributes correctly', function () {
     $fish = Fish::factory()->create([
         'average_size_cm' => '20.75',
-        'lifespan_years' => 10
+        'lifespan_years' => 10,
     ]);
 
     expect($fish)
@@ -51,7 +51,7 @@ it('can be associated with type waters', function () {
         'oxygen_level' => '6mg/L',
         'migration_pattern' => 'Non-migratory',
         'recorded_since' => now(),
-        'notes' => 'Test notes'
+        'notes' => 'Test notes',
     ]);
 
     expect($fish->TypeWater)->toHaveCount(1)
@@ -69,11 +69,11 @@ it('can be associated with type waters', function () {
 it('can be associated with products', function () {
     $fish = Fish::factory()->create();
     $category = \App\Models\Category::factory()->create();
-    $product = Product::factory()->create(['category_id' =>$category->id]);
+    $product = Product::factory()->create(['category_id' => $category->id]);
 
     $fish->products()->attach($product->id, [
         'days_on_sale' => 5,
-        'supplier' => 'Test Supplier'
+        'supplier' => 'Test Supplier',
     ]);
 
     expect($fish->products)

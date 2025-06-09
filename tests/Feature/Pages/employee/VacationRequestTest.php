@@ -1,7 +1,6 @@
 <?php
 
 use App\Jobs\VacationRequestEmailJob;
-use App\Models\Role;
 use App\Models\User;
 use App\Models\VacationRequest;
 use Illuminate\Support\Facades\Mail;
@@ -12,9 +11,8 @@ use function Pest\Laravel\get;
 
 beforeEach(function () {
 
-
     $this->employee = User::factory()->create([
-        'role_id' =>2,
+        'role_id' => 2,
     ]);
 
     $this->admin = User::factory()->create([

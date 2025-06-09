@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\VacationRequest;
 use App\Mail\VacationRequestNotification;
 use App\Models\User;
 use App\Models\VacationRequest as VacationRequestModel;

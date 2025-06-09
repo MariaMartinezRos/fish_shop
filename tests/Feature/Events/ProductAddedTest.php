@@ -38,15 +38,15 @@ it('logs message when product is added', function () {
     $category = Category::factory()->create();
     $product = Product::factory()->create([
         'category_id' => $category->id,
-        'name' => 'Test Product'
+        'name' => 'Test Product',
     ]);
-    
+
     $event = new ProductAdded($product);
-    
+
     // Trigger the event listener
     app()->make(\App\Listeners\SendNotificationOnProductAdded::class)->handle($event);
-    
+
     // Check the log file for the message
     $logContent = file_get_contents(storage_path('logs/laravel.log'));
-    expect($logContent)->toContain('Product added successfully: ' . $product->name);
+    expect($logContent)->toContain('Product added successfully: '.$product->name);
 });

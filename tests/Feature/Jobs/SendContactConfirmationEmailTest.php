@@ -1,12 +1,13 @@
 <?php
+
 //
-//use App\Jobs\SendContactConfirmationEmail;
-//use App\Mail\ContactConfirmation;
-//use App\Models\Role;
-//use App\Models\User;
-//use Illuminate\Support\Facades\Mail;
+// use App\Jobs\SendContactConfirmationEmail;
+// use App\Mail\ContactConfirmation;
+// use App\Models\Role;
+// use App\Models\User;
+// use Illuminate\Support\Facades\Mail;
 //
-//it('sends contact confirmation email', function () {
+// it('sends contact confirmation email', function () {
 //    Mail::fake();
 //
 //    $role = Role::factory()->create(['name' => 'employee']);
@@ -24,9 +25,9 @@
 //        return $mail->hasTo($user->email) &&
 //               $mail->message === $message;
 //    });
-//});
+// });
 //
-//it('handles long messages', function () {
+// it('handles long messages', function () {
 //    Mail::fake();
 //
 //    $role = Role::factory()->create(['name' => 'employee']);
@@ -39,9 +40,9 @@
 //    Mail::assertSent(ContactConfirmation::class, function ($mail) use ($longMessage) {
 //        return $mail->message === $longMessage;
 //    });
-//});
+// });
 //
-//it('handles special characters in message', function () {
+// it('handles special characters in message', function () {
 //    Mail::fake();
 //
 //    $role = Role::factory()->create(['name' => 'employee']);
@@ -54,9 +55,9 @@
 //    Mail::assertSent(ContactConfirmation::class, function ($mail) use ($message) {
 //        return $mail->message === $message;
 //    });
-//});
+// });
 //
-//it('handles different user roles', function () {
+// it('handles different user roles', function () {
 //    Mail::fake();
 //
 //    $roles = [
@@ -77,9 +78,9 @@
 //                   $mail->message === $message;
 //        });
 //    }
-//});
+// });
 //
-//it('handles empty message', function () {
+// it('handles empty message', function () {
 //    Mail::fake();
 //
 //    $role = Role::factory()->create(['name' => 'employee']);
@@ -92,4 +93,4 @@
 //    Mail::assertSent(ContactConfirmation::class, function ($mail) use ($message) {
 //        return $mail->message === $message;
 //    });
-//});
+// });

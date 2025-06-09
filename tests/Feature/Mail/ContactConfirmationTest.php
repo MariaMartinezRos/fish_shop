@@ -2,8 +2,6 @@
 
 use App\Mail\ContactConfirmation;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
 
 it('has correct subject', function () {
     $user = User::factory()->create();
@@ -36,4 +34,3 @@ it('has no attachments', function () {
 it('can be dispatched', function () {
     expect(method_exists(ContactConfirmation::class, 'dispatch'))->toBeTrue();
 })->todo();
-

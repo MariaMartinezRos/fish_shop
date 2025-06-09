@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Requests\UserRequest;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +14,7 @@ it('validates correctly for a new user creation', function () {
         'email' => 'testuser@example.com',
         'password' => 'password123',
         'password2' => 'password123',
-        'role_id' =>1,
+        'role_id' => 1,
     ];
 
     // Assert

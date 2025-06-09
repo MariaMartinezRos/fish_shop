@@ -16,4 +16,4 @@ class ContactPolicy
     {
         return true;
     }
-} 
+}

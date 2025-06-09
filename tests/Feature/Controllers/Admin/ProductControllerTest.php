@@ -4,12 +4,10 @@ use App\Events\ProductAdded;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
-
 
 beforeEach(function () {
     Event::fake();
@@ -21,7 +19,7 @@ beforeEach(function () {
 it('displays list of products', function () {
     $category = Category::factory()->create();
     $products = Product::factory()->count(3)->create([
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ]);
 
     $response = $this->get(route('stock'));
@@ -34,9 +32,8 @@ it('displays list of products', function () {
 it('shows individual product', function () {
     $category = Category::factory()->create();
     $product = Product::factory()->create([
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ]);
-
 
     $response = $this->get(route('products.show', $product->id));
 
@@ -51,7 +48,7 @@ it('imports products from excel file', function () {
     $file = UploadedFile::fake()->create('products.xlsx', 100);
 
     $response = $this->post(route('products.import'), [
-        'file' => $file
+        'file' => $file,
     ]);
 
     Excel::assertImported('products.xlsx');
@@ -75,7 +72,7 @@ it('stores new product', function () {
         'description' => 'Test Description',
         'price' => 99.99,
         'stock' => 100,
-        'category_id' => Category::factory()->create()->id
+        'category_id' => Category::factory()->create()->id,
     ];
 
     $response = $this->post(route('products.store'), $productData);
@@ -89,9 +86,8 @@ it('stores new product', function () {
 it('shows edit product form', function () {
     $category = Category::factory()->create();
     $product = Product::factory()->create([
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ]);
-
 
     $response = $this->get(route('products.edit', $product));
 
@@ -102,8 +98,8 @@ it('shows edit product form', function () {
 
 it('updates product', function () {
     $category = Category::factory()->create();
-    $product= Product::factory()->create([
-        'category_id' => $category->id
+    $product = Product::factory()->create([
+        'category_id' => $category->id,
     ]);
 
     $updateData = [
@@ -111,7 +107,7 @@ it('updates product', function () {
         'description' => 'Updated Description',
         'price' => 149.99,
         'stock' => 50,
-        'category_id' => $product->category_id
+        'category_id' => $product->category_id,
     ];
 
     $response = $this->put(route('products.update', $product), $updateData);
@@ -124,9 +120,8 @@ it('updates product', function () {
 it('soft deletes product', function () {
     $category = Category::factory()->create();
     $product = Product::factory()->create([
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ]);
-
 
     $response = $this->delete(route('products.destroy', $product));
 
@@ -138,9 +133,8 @@ it('soft deletes product', function () {
 it('deletes all products', function () {
     $category = Category::factory()->create();
     $products = Product::factory()->count(3)->create([
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ]);
-
 
     $response = $this->delete(route('products.delete-all'));
 
@@ -158,9 +152,8 @@ it('validates required fields when creating product', function () {
 it('validates required fields when updating product', function () {
     $category = Category::factory()->create();
     $product = Product::factory()->create([
-        'category_id' => $category->id
+        'category_id' => $category->id,
     ]);
-
 
     $response = $this->put(route('products.update', $product), []);
 

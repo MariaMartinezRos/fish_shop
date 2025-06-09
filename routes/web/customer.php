@@ -44,4 +44,3 @@ Route::get('/stock-client', [ProductController::class, 'indexClient'])
 
 Route::get('/products-client/{id}', [ProductController::class, 'showClient'])
     ->name('products.show-client');
-

@@ -64,6 +64,6 @@ class FishPolicy
     public function forceDelete(User $user): bool
     {
         // Only admins can permanently delete fish entries
-        return $user->role_id === 1 ;
+        return $user->role_id === 1;
     }
 }

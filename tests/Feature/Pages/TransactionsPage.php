@@ -2,11 +2,11 @@
 
 use App\Livewire\TransactionSearcher;
 use App\Models\Role;
-use App\Models\User;
 use App\Models\Transaction;
+use App\Models\User;
+use Livewire\Livewire;
 
 use function Pest\Laravel\get;
-use Livewire\Livewire;
 
 //
 // it('returns a successful response for transactions page', function () {

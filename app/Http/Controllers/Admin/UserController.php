@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Events\PageAccessed;
 use App\Events\UserCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;

@@ -2,13 +2,11 @@
 
 use App\Models\Category;
 use App\Models\Role;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
 
 it('renders select component with options', function () {
     $options = collect([
-        (object)['id' => 1, 'display_name' => 'Option 1'],
-        (object)['id' => 2, 'display_name' => 'Option 2'],
+        (object) ['id' => 1, 'display_name' => 'Option 1'],
+        (object) ['id' => 2, 'display_name' => 'Option 2'],
     ]);
 
     $view = $this->blade('<x-select name="test" :options="$options" />', ['options' => $options]);
@@ -19,8 +17,8 @@ it('renders select component with options', function () {
 
 it('renders select component with selected value', function () {
     $options = collect([
-        (object)['id' => 1, 'display_name' => 'Option 1'],
-        (object)['id' => 2, 'display_name' => 'Option 2'],
+        (object) ['id' => 1, 'display_name' => 'Option 1'],
+        (object) ['id' => 2, 'display_name' => 'Option 2'],
     ]);
 
     $view = $this->blade('<x-select name="test" :options="$options" selected="2" />', ['options' => $options]);
@@ -32,8 +30,8 @@ it('renders select component with selected value', function () {
 
 it('renders select component with label', function () {
     $options = collect([
-        (object)['id' => 1, 'display_name' => 'Option 1'],
-        (object)['id' => 2, 'display_name' => 'Option 2'],
+        (object) ['id' => 1, 'display_name' => 'Option 1'],
+        (object) ['id' => 2, 'display_name' => 'Option 2'],
     ]);
 
     $view = $this->blade('<x-select name="test" :options="$options" label="Test Label" />', ['options' => $options]);
@@ -45,8 +43,8 @@ it('renders select component with label', function () {
 
 it('renders select component with error state', function () {
     $options = collect([
-        (object)['id' => 1, 'display_name' => 'Option 1'],
-        (object)['id' => 2, 'display_name' => 'Option 2'],
+        (object) ['id' => 1, 'display_name' => 'Option 1'],
+        (object) ['id' => 2, 'display_name' => 'Option 2'],
     ]);
 
     $view = $this->blade('<x-select name="test" :options="$options" :error="true" />', ['options' => $options]);

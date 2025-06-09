@@ -41,9 +41,9 @@ class VacationRequestForm extends Component
         ]);
 
         // Calculate days requested
-        
-        //$vacationRequest->days_requested = $daysRequested;
-        //$vacationRequest->save();
+
+        // $vacationRequest->days_requested = $daysRequested;
+        // $vacationRequest->save();
 
         // Dispatch email job
         VacationRequestEmailJob::dispatch($vacationRequest);

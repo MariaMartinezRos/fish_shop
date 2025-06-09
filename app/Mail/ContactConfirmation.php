@@ -43,7 +43,7 @@ class ContactConfirmation extends Mailable
         return new Content(
             view: 'emails.contact-confirmation',
             with: [
-                'user' => $this->user
+                'user' => $this->user,
             ]
         );
     }

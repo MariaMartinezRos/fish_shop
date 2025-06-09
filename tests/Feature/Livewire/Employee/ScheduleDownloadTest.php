@@ -2,7 +2,6 @@
 
 use App\Livewire\Employee\ScheduleDownload;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\View;
 use Livewire\Livewire;
 
 it('generates and downloads schedule pdf', function () {

@@ -11,7 +11,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
-use App\Models\VacationRequest as VacationRequestModel;
 
 class VacationRequestEmailJob implements ShouldQueue
 {
@@ -35,7 +34,6 @@ class VacationRequestEmailJob implements ShouldQueue
 
             $admin = User::admin()->first();
 
-
             if (! $admin) {
                 throw new \Exception(__('No admin user found to send vacation request notification'));
             }
@@ -43,7 +41,7 @@ class VacationRequestEmailJob implements ShouldQueue
             \Log::info('Sending vacation request email', [
                 'admin_email' => $admin->email,
                 'employee_name' => $user->name,
-                'vacation_request_id' => $this->vacationRequest->id
+                'vacation_request_id' => $this->vacationRequest->id,
             ]);
 
             Mail::to($admin->email)
@@ -52,7 +50,6 @@ class VacationRequestEmailJob implements ShouldQueue
                     $user,
                     $this->vacationRequest->totalDays()
                 ));
-
 
         } catch (\Exception $e) {
 

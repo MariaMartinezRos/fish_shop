@@ -8,7 +8,6 @@ use App\Listeners\SendNotificationOnFishAdded;
 use App\Listeners\SendNotificationOnProductAdded;
 use App\Listeners\SendWelcomeEmail;
 use App\Listeners\ShowSweetAlertOnPageAccess;
-use App\Mail\WelcomeMail;
 use App\Models\Fish;
 use App\Models\Product;
 use App\Models\User;
@@ -131,7 +130,7 @@ it('registers all required events', function () {
         UserCreated::class,
         FishAdded::class,
         ProductAdded::class,
-        PageAccessed::class
+        PageAccessed::class,
     ];
 
     foreach ($requiredEvents as $event) {

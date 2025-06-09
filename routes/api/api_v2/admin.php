@@ -42,5 +42,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('categories/{category}', [CategoryController::class, 'destroy']);
 
 });
-
-

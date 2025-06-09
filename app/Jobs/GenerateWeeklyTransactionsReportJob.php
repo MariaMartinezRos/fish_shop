@@ -49,9 +49,9 @@ class GenerateWeeklyTransactionsReportJob implements ShouldQueue
             ];
 
             \Log::info('Sending weekly transactions report', [
-                'period' => $startDate->toDateString() . ' to ' . $endDate->toDateString(),
+                'period' => $startDate->toDateString().' to '.$endDate->toDateString(),
                 'total_sales' => $totalAmount,
-                'transaction_count' => $count
+                'transaction_count' => $count,
             ]);
 
             $admin = User::admin()->first();
@@ -60,7 +60,7 @@ class GenerateWeeklyTransactionsReportJob implements ShouldQueue
 
             \Log::info('Weekly transactions report sent successfully');
         } catch (\Exception $e) {
-            \Log::error('Failed to generate weekly transactions report: ' . $e->getMessage());
+            \Log::error('Failed to generate weekly transactions report: '.$e->getMessage());
             throw $e;
         }
     }

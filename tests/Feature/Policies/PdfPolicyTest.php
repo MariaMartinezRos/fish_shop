@@ -4,7 +4,7 @@ use App\Models\User;
 use App\Policies\PdfPolicy;
 
 beforeEach(function () {
-    $this->policy = new PdfPolicy();
+    $this->policy = new PdfPolicy;
     $this->regularUser = User::factory()->create(['role_id' => 3]);
     $this->employee = User::factory()->create(['role_id' => 2]);
     $this->admin = User::factory()->create(['role_id' => 1]);

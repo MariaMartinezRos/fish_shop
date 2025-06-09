@@ -3,7 +3,6 @@
 use App\Models\Category;
 use App\Models\Fish;
 use App\Models\Product;
-use App\Models\Role;
 use App\Models\User;
 
 beforeEach(function () {
@@ -230,14 +229,14 @@ it('stores a new product with fish relationships successfully', function () {
             [
                 'fish_id' => $fish1->id,
                 'days_on_sale' => 5,
-                'supplier' => 'Supplier 1'
+                'supplier' => 'Supplier 1',
             ],
             [
                 'fish_id' => $fish2->id,
                 'days_on_sale' => 10,
-                'supplier' => 'Supplier 2'
-            ]
-        ]
+                'supplier' => 'Supplier 2',
+            ],
+        ],
     ];
 
     $response = $this->postJson('/api/v2/products', $data);
@@ -255,7 +254,7 @@ it('stores a new product with fish relationships successfully', function () {
                     'id',
                     'name',
                     'days_on_sale',
-                    'supplier'
+                    'supplier',
                 ]],
                 'created_at',
                 'updated_at',
@@ -275,13 +274,13 @@ it('stores a new product with fish relationships successfully', function () {
         'product_id' => $product->id,
         'fish_id' => $fish1->id,
         'days_on_sale' => 5,
-        'supplier' => 'Supplier 1'
+        'supplier' => 'Supplier 1',
     ]);
     $this->assertDatabaseHas('fish_product', [
         'product_id' => $product->id,
         'fish_id' => $fish2->id,
         'days_on_sale' => 10,
-        'supplier' => 'Supplier 2'
+        'supplier' => 'Supplier 2',
     ]);
 });
 
@@ -295,7 +294,7 @@ it('updates a product with fish relationships successfully', function () {
     // First attach some initial fish relationships
     $product->fishes()->attach($fish1->id, [
         'days_on_sale' => 5,
-        'supplier' => 'Initial Supplier 1'
+        'supplier' => 'Initial Supplier 1',
     ]);
 
     $updateData = [
@@ -308,14 +307,14 @@ it('updates a product with fish relationships successfully', function () {
             [
                 'fish_id' => $fish2->id,
                 'days_on_sale' => 7,
-                'supplier' => 'New Supplier 2'
+                'supplier' => 'New Supplier 2',
             ],
             [
                 'fish_id' => $fish3->id,
                 'days_on_sale' => 12,
-                'supplier' => 'New Supplier 3'
-            ]
-        ]
+                'supplier' => 'New Supplier 3',
+            ],
+        ],
     ];
 
     $response = $this->putJson("/api/v2/products/{$product->id}", $updateData);
@@ -333,7 +332,7 @@ it('updates a product with fish relationships successfully', function () {
                     'id',
                     'name',
                     'days_on_sale',
-                    'supplier'
+                    'supplier',
                 ]],
                 'created_at',
                 'updated_at',
@@ -361,13 +360,13 @@ it('updates a product with fish relationships successfully', function () {
         'product_id' => $product->id,
         'fish_id' => $fish2->id,
         'days_on_sale' => 7,
-        'supplier' => 'New Supplier 2'
+        'supplier' => 'New Supplier 2',
     ]);
     $this->assertDatabaseHas('fish_product', [
         'product_id' => $product->id,
         'fish_id' => $fish3->id,
         'days_on_sale' => 12,
-        'supplier' => 'New Supplier 3'
+        'supplier' => 'New Supplier 3',
     ]);
 });
 
@@ -385,9 +384,9 @@ it('validates fish relationship data when storing a product', function () {
             [
                 'fish_id' => $nonExistentFishId,
                 'days_on_sale' => 'not-a-number',
-                'supplier' => 123 // Not a string
-            ]
-        ]
+                'supplier' => 123, // Not a string
+            ],
+        ],
     ];
 
     $response = $this->postJson('/api/v2/products', $data);
@@ -396,7 +395,7 @@ it('validates fish relationship data when storing a product', function () {
         ->assertJsonValidationErrors([
             'fishes.0.fish_id',
             'fishes.0.days_on_sale',
-            'fishes.0.supplier'
+            'fishes.0.supplier',
         ]);
 });
 
@@ -415,9 +414,9 @@ it('validates fish relationship data when updating a product', function () {
             [
                 'fish_id' => $nonExistentFishId,
                 'days_on_sale' => 'not-a-number',
-                'supplier' => 123 // Not a string
-            ]
-        ]
+                'supplier' => 123, // Not a string
+            ],
+        ],
     ];
 
     $response = $this->putJson("/api/v2/products/{$product->id}", $updateData);
@@ -426,6 +425,6 @@ it('validates fish relationship data when updating a product', function () {
         ->assertJsonValidationErrors([
             'fishes.0.fish_id',
             'fishes.0.days_on_sale',
-            'fishes.0.supplier'
+            'fishes.0.supplier',
         ]);
 });

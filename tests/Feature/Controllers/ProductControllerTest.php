@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Product;
-use App\Models\Role;
 use App\Models\User;
 
 beforeEach(function () {

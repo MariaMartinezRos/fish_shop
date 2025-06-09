@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
@@ -42,7 +41,7 @@ function loginAsUser(?User $user = null)
 
 function loginAsAdmin(?User $user = null)
 {
-    $user = $user ?? User::factory()->create(['role_id' =>1]);
+    $user = $user ?? User::factory()->create(['role_id' => 1]);
 
     actingAs($user);
 

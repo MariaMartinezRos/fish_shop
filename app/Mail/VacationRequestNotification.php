@@ -14,7 +14,9 @@ class VacationRequestNotification extends Mailable
     use Queueable, SerializesModels;
 
     public $vacationRequest;
+
     private $days_requested;
+
     public $employee;
 
     /**
@@ -29,7 +31,7 @@ class VacationRequestNotification extends Mailable
         \Log::info('VacationRequestNotification constructed', [
             'vacation_request_id' => $vacationRequest->id,
             'employee_id' => $employee->id,
-            'days_requested' => $days_requested
+            'days_requested' => $days_requested,
         ]);
     }
 
@@ -50,7 +52,7 @@ class VacationRequestNotification extends Mailable
     {
         \Log::info('Preparing email content', [
             'vacation_request_id' => $this->vacationRequest->id,
-            'employee_name' => $this->employee->name
+            'employee_name' => $this->employee->name,
         ]);
 
         return new Content(
@@ -62,7 +64,6 @@ class VacationRequestNotification extends Mailable
             ]
         );
     }
-
 
     /**
      * Get the attachments for the message.

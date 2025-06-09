@@ -4,7 +4,7 @@ use App\Models\User;
 use App\Policies\RecipePolicy;
 
 beforeEach(function () {
-    $this->policy = new RecipePolicy();
+    $this->policy = new RecipePolicy;
     $this->regularUser = User::factory()->create(['role_id' => 3]);
     $this->employee = User::factory()->create(['role_id' => 2]);
     $this->admin = User::factory()->create(['role_id' => 1]);
@@ -40,4 +40,4 @@ it('allows employee to view specific recipe', function () {
 
 it('allows admin to view specific recipe', function () {
     expect($this->policy->view($this->admin))->toBeTrue();
-}); 
+});

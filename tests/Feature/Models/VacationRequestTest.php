@@ -14,7 +14,7 @@ it('can create a vacation request with all attributes', function () {
         'start_date' => $startDate,
         'end_date' => $endDate,
         'comments' => 'Vacation request for family trip',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     expect($request)
@@ -31,7 +31,7 @@ it('casts dates correctly', function () {
         'start_date' => '2024-01-01',
         'end_date' => '2024-01-05',
         'comments' => 'Vacation request for family trip',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     expect($request->start_date)->toBeInstanceOf(Carbon::class)
@@ -45,7 +45,7 @@ it('can be associated with a user', function () {
         'start_date' => now(),
         'end_date' => now()->addDays(5),
         'comments' => 'Vacation request for family trip',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     expect($request->user)
@@ -58,7 +58,7 @@ it('calculates total days correctly', function () {
         'start_date' => '2024-01-01',
         'end_date' => '2024-01-05',
         'comments' => 'Vacation request for family trip',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     expect($request->totalDays())->toBe(5.0);
@@ -70,7 +70,7 @@ it('can update status', function () {
         'start_date' => now(),
         'end_date' => now(),
         'comments' => 'Vacation request for family trip',
-        'status' => 'pending'
+        'status' => 'pending',
     ]);
 
     $request->update(['status' => 'approved']);
@@ -85,7 +85,7 @@ it('can update comments', function () {
         'start_date' => now(),
         'end_date' => now(),
         'status' => 'pending',
-        'comments' => 'Initial comment'
+        'comments' => 'Initial comment',
     ]);
 
     $request->update(['comments' => 'Updated comment']);

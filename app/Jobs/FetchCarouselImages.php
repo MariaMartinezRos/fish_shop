@@ -23,7 +23,7 @@ class FetchCarouselImages implements ShouldQueue
             \Log::info('Starting FetchCarouselImages job');
 
             $imagePath = public_path('images/fishes/');
-            if (!File::exists($imagePath)) {
+            if (! File::exists($imagePath)) {
                 session()->flash('error', __('Ooops, something happened...'));
             }
 
@@ -35,7 +35,7 @@ class FetchCarouselImages implements ShouldQueue
             Cache::put('carousel_images', $images, now()->addMinutes(10));
 
         } catch (\Exception $e) {
-            session()->flash('error',__('Failed to fetch carousel images: ') . $e->getMessage());
+            session()->flash('error', __('Failed to fetch carousel images: ').$e->getMessage());
         }
     }
 }

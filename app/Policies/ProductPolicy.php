@@ -39,7 +39,7 @@ class ProductPolicy
      */
     public function update(User $user): bool
     {
-        return $user->role_id === 1 || $user->role->name === 'supplier' ;
+        return $user->role_id === 1 || $user->role->name === 'supplier';
     }
 
     /**
@@ -73,5 +73,4 @@ class ProductPolicy
     {
         return true;
     }
-
 }

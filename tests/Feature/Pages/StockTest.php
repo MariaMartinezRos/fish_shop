@@ -2,7 +2,6 @@
 
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Role;
 use App\Models\User;
 
 use function Pest\Laravel\get;

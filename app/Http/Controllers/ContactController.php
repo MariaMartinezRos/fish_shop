@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendContactConfirmationEmail;
 use App\Models\User;
-use App\Policies\ContactPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 

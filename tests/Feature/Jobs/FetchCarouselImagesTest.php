@@ -6,21 +6,21 @@ use Illuminate\Support\Facades\File;
 
 beforeEach(function () {
     $this->fishesDir = public_path('images/fishes');
-//    File::deleteDirectory($this->fishesDir); // limpiar antes del test
+    //    File::deleteDirectory($this->fishesDir); // limpiar antes del test
 });
 
-//afterEach(function () {
+// afterEach(function () {
 //    File::deleteDirectory($this->fishesDir); // limpiar despues del test
 //    Cache::forget('carousel_images');
-//});
+// });
 
 it('caches image URLs from the fish directory', function () {
     File::ensureDirectoryExists($this->fishesDir);
 
-//    File::put($this->fishesDir . '/fish1.jpg', 'fake content');
-//    File::put($this->fishesDir . '/fish2.png', 'fake content');
+    //    File::put($this->fishesDir . '/fish1.jpg', 'fake content');
+    //    File::put($this->fishesDir . '/fish2.png', 'fake content');
 
-    (new FetchCarouselImages())->handle();
+    (new FetchCarouselImages)->handle();
 
     $cached = Cache::get('carousel_images');
 
@@ -40,7 +40,7 @@ it('flashes an error if job fails', function () {
 it('caches an empty array if the directory is empty', function () {
     File::ensureDirectoryExists($this->fishesDir);
 
-    (new FetchCarouselImages())->handle();
+    (new FetchCarouselImages)->handle();
 
     $cached = Cache::get('carousel_images');
 
@@ -50,7 +50,7 @@ it('caches an empty array if the directory is empty', function () {
 it('logs image count correctly', function () {
     File::ensureDirectoryExists($this->fishesDir);
 
-    File::put($this->fishesDir . '/fish1.jpg', 'fake content');
+    File::put($this->fishesDir.'/fish1.jpg', 'fake content');
 
     \Illuminate\Support\Facades\Log::shouldReceive('info')
         ->once()
@@ -59,21 +59,19 @@ it('logs image count correctly', function () {
     \Illuminate\Support\Facades\Log::shouldReceive('info')
         ->once()
         ->with('Carousel images fetched and cached successfully', \Mockery::subset([
-            'count' => 1
+            'count' => 1,
         ]));
 
-    (new FetchCarouselImages())->handle();
+    (new FetchCarouselImages)->handle();
 })->todo();
 
-
-
-//<?php
+// <?php
 //
-//use App\Jobs\FetchCarouselImages;
-//use Illuminate\Support\Facades\Storage;
-//use Illuminate\Support\Facades\File;
+// use App\Jobs\FetchCarouselImages;
+// use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\File;
 //
-//it('fetches and stores carousel images', function () {
+// it('fetches and stores carousel images', function () {
 //    Storage::fake('public');
 //
 //    $job = new FetchCarouselImages();
@@ -81,18 +79,18 @@ it('logs image count correctly', function () {
 //
 //    $images = Storage::disk('public')->files('carousel');
 //    expect($images)->not->toBeEmpty();
-//});
+// });
 //
-//it('creates carousel directory if it does not exist', function () {
+// it('creates carousel directory if it does not exist', function () {
 //    Storage::fake('public');
 //
 //    $job = new FetchCarouselImages();
 //    $job->handle();
 //
 //    expect(Storage::disk('public')->exists('carousel'))->toBeTrue();
-//});
+// });
 //
-//it('handles empty carousel directory', function () {
+// it('handles empty carousel directory', function () {
 //    Storage::fake('public');
 //    Storage::disk('public')->makeDirectory('carousel');
 //
@@ -101,9 +99,9 @@ it('logs image count correctly', function () {
 //
 //    $images = Storage::disk('public')->files('carousel');
 //    expect($images)->not->toBeEmpty();
-//});
+// });
 //
-//it('handles existing carousel images', function () {
+// it('handles existing carousel images', function () {
 //    Storage::fake('public');
 //    Storage::disk('public')->makeDirectory('carousel');
 //
@@ -116,9 +114,9 @@ it('logs image count correctly', function () {
 //
 //    $images = Storage::disk('public')->files('carousel');
 //    expect($images)->not->toBeEmpty();
-//});
+// });
 //
-//it('validates image files', function () {
+// it('validates image files', function () {
 //    Storage::fake('public');
 //    Storage::disk('public')->makeDirectory('carousel');
 //
@@ -129,9 +127,9 @@ it('logs image count correctly', function () {
 //    foreach ($images as $image) {
 //        expect(File::extension($image))->toBeIn(['jpg', 'jpeg', 'png', 'gif']);
 //    }
-//});
+// });
 //
-//it('handles failed image downloads', function () {
+// it('handles failed image downloads', function () {
 //    Storage::fake('public');
 //    Storage::disk('public')->makeDirectory('carousel');
 //
@@ -140,9 +138,9 @@ it('logs image count correctly', function () {
 //
 //    $images = Storage::disk('public')->files('carousel');
 //    expect($images)->not->toBeEmpty();
-//});
+// });
 //
-//it('maintains image quality', function () {
+// it('maintains image quality', function () {
 //    Storage::fake('public');
 //    Storage::disk('public')->makeDirectory('carousel');
 //
@@ -154,4 +152,4 @@ it('logs image count correctly', function () {
 //        $size = Storage::disk('public')->size($image);
 //        expect($size)->toBeGreaterThan(0);
 //    }
-//});
+// });

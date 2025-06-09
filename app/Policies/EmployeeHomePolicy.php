@@ -14,9 +14,10 @@ class EmployeeHomePolicy
      */
     public function view(?User $user): bool
     {
-        if (!$user) {
+        if (! $user) {
             return false;
         }
+
         return $user->role_id === 1 || $user->role_id === 2;
     }
 }
