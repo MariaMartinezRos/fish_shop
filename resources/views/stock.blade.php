@@ -21,10 +21,22 @@
         @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                 <div id="product-list">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form method="GET" action="{{ route('stock') }}" class="mb-6">
+                        <x-product-scope-filter :categories="$categories" />
+                        <x-product-metrics-filter />
+                        
+                        <div class="mt-4">
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Filtrar
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="product-list">
                         @include('components.product-list-all', ['products' => $products])
                     </div>
-
+                </div>
             </div>
         </div>
     </div>

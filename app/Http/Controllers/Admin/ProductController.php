@@ -8,6 +8,7 @@ use App\Http\Requests\ProductRequest;
 use App\Imports\ProductsImport;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -25,11 +26,37 @@ class ProductController extends Controller
     {
         $this->authorize('viewAny', User::class);
 
-        $search = $request->input('search');
+        $query = Product::query();
 
-        $products = Product::search($search)->paginate(10);
+        // Apply existing scopes based on checkboxes
+        if ($request->boolean('use_search_scope') && $request->filled('search')) {
+            $query->search($request->search);
+        }
 
-        return view('stock', compact('products'));
+        if ($request->boolean('use_category_scope') && $request->filled('category_id')) {
+            $query->byCategory($request->category_id);
+        }
+
+        if ($request->boolean('use_supplier_scope') && $request->filled('supplier')) {
+            $query->bySupplier($request->supplier);
+        }
+
+        // Apply metrics scope if requested
+        if ($request->boolean('use_inventory_metrics')) {
+            $query->byInventoryMetrics(
+                categoryIds: $request->input('category_ids'),
+                stockThreshold: $request->input('stock_threshold'),
+                minPrice: $request->input('min_price'),
+                maxPrice: $request->input('max_price'),
+                includeSalesMetrics: $request->boolean('include_sales_metrics'),
+                daysOnSaleThreshold: $request->input('days_on_sale_threshold')
+            );
+        }
+
+        $products = $query->paginate(10)->withQueryString();
+        $categories = Category::all();
+
+        return view('stock', compact('products', 'categories'));
     }
 
     /**
