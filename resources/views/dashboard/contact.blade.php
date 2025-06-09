@@ -8,6 +8,12 @@
         <h2 class="text-4xl font-bold mb-8">{{ __('Contact Us') }}</h2>
         <p class="text-xl mb-6">{{ __('If you have any questions or need more information, feel free to get in touch with us.') }}</p>
 
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <span class="block sm:inline">{{ session('success') }}</span>
+            </div>
+        @endif
+
         <!-- Formulario de contacto -->
         <form action="{{ route('contact.submit') }}" method="POST" class="max-w-2xl mx-auto bg-blue-700 p-8 rounded-lg shadow-lg space-y-6">
             <div>

@@ -7,11 +7,16 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use App\Policies\CategoryPolicy;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Get a list of all categories.
      *
@@ -30,9 +35,36 @@ class CategoryController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', Category::class);
+
         $categories = Category::all();
 
         return CategoryResource::collection($categories);
+    }
+    /**
+     * Get a specific category.
+     *
+     * @group Categories V2
+     *
+     * @authenticated
+     *
+     * @urlParam category int required The ID of the category. Example: 1
+     *
+     * @response 200 {
+     *    "data": {
+     *      "id": 1,
+     *      "name": "Frozen",
+     *      "display_name": "Frozen Fish",
+     *      "description": "Fish that live in freshwater environments"
+     *    }
+     * }
+     * @response 404 {"message": "Category not found"}
+     */
+    public function show(Category $category): CategoryResource
+    {
+        $this->authorize('view', $category);
+
+        return new CategoryResource($category);
     }
 
     /**
@@ -56,34 +88,14 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request): CategoryResource
     {
+        $this->authorize('create', Category::class);
+
         $category = Category::create($request->validated());
+        Cache::forget('categories');
 
         return new CategoryResource($category);
     }
 
-    /**
-     * Get a specific category.
-     *
-     * @group Categories V2
-     *
-     * @authenticated
-     *
-     * @urlParam category int required The ID of the category. Example: 1
-     *
-     * @response 200 {
-     *    "data": {
-     *      "id": 1,
-     *      "name": "Frozen",
-     *      "display_name": "Frozen Fish",
-     *      "description": "Fish that live in freshwater environments"
-     *    }
-     * }
-     * @response 404 {"message": "Category not found"}
-     */
-    public function show(Category $category): CategoryResource
-    {
-        return new CategoryResource($category);
-    }
 
     /**
      * Update an existing category.
@@ -110,7 +122,10 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category): CategoryResource
     {
+        $this->authorize('update', $category);
+
         $category->update($request->validated());
+        Cache::forget('categories');
 
         return new CategoryResource($category);
     }
@@ -128,8 +143,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): JsonResponse
     {
-        $category->delete();
+        $this->authorize('delete', $category);
 
-        return response()->json(['message' => __('Category deleted successfully')], 204);
+        $category->delete();
+        Cache::forget('categories');
+
+        return response()->json(['message' => __('Category deleted successfully')], 200);
     }
 }

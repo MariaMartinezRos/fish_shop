@@ -7,6 +7,8 @@ use App\Http\Requests\StoreFishRequest;
 use App\Http\Resources\FishResource;
 use App\Models\Fish;
 use App\Models\TypeWater;
+use App\Policies\FishPolicy;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -17,6 +19,8 @@ use Illuminate\Support\Str;
  */
 class FishController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Get a list of all fishes.
      *
@@ -38,6 +42,8 @@ class FishController extends Controller
      */
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
+        $this->authorize('viewAny', Fish::class);
+
         return FishResource::collection(Cache::rememberForever('fishes', function () {
             return Fish::all();
         }));
@@ -64,6 +70,8 @@ class FishController extends Controller
      */
     public function show(Fish $fish): FishResource
     {
+        $this->authorize('view', $fish);
+
         return new FishResource($fish);
     }
 
@@ -94,6 +102,8 @@ class FishController extends Controller
      */
     public function store(StoreFishRequest $request): FishResource
     {
+        $this->authorize('create', Fish::class);
+
         $data = $request->all();
 
         if ($request->hasFile('photo')) {
@@ -141,6 +151,8 @@ class FishController extends Controller
      */
     public function update(Fish $fish, StoreFishRequest $request): FishResource
     {
+        $this->authorize('update', $fish);
+
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -168,6 +180,8 @@ class FishController extends Controller
      */
     public function destroy(Fish $fish): JsonResponse
     {
+        $this->authorize('delete', $fish);
+
         $fish->delete();
 
         return response()->json(['message' => __('Fish deleted successfully')], 200);

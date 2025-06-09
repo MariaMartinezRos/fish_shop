@@ -212,14 +212,12 @@ it('can delete a product successfully', function () {
 
 it('can be downloaded as a PDF file', function () {
     // Arrange
+    $admin = User::factory()->create(['role_id' => 1]);
     $category = Category::factory()->create();
     $product = Product::factory()->create(['category_id' => $category->id]);
 
     // Act
-    $response = get(route('products.pdf'));
-
-    // Assert
-    $response->assertOk()
+    $this->actingAs($admin)->get(route('products.pdf'))->assertOk()
         ->assertHeader('Content-Type', 'application/pdf')
         ->assertHeader('Content-Disposition', 'attachment; filename=products.pdf');
 });

@@ -111,3 +111,62 @@
 //
 //    expect($this->policy->forceDelete($this->employee, $vacationRequest))->toBeFalse();
 //});
+
+use App\Models\User;
+use App\Models\VacationRequest;
+use App\Policies\VacationRequestPolicy;
+
+beforeEach(function () {
+    $this->policy = new VacationRequestPolicy();
+    $this->regularUser = User::factory()->create(['role_id' => 3]);
+    $this->employee = User::factory()->create(['role_id' => 2]);
+    $this->admin = User::factory()->create(['role_id' => 1]);
+});
+
+it('denies regular user from viewing all vacation requests', function () {
+    expect($this->policy->viewAny($this->regularUser))->toBeFalse();
+});
+
+it('denies employee from viewing all vacation requests', function () {
+    expect($this->policy->viewAny($this->employee))->toBeFalse();
+});
+
+it('allows admin to view all vacation requests', function () {
+    expect($this->policy->viewAny($this->admin))->toBeTrue();
+});
+
+it('denies regular user from creating vacation requests', function () {
+    expect($this->policy->create($this->regularUser))->toBeFalse();
+});
+
+it('allows employee to create vacation requests', function () {
+    expect($this->policy->create($this->employee))->toBeTrue();
+});
+
+it('allows admin to create vacation requests', function () {
+    expect($this->policy->create($this->admin))->toBeTrue();
+});
+
+it('denies regular user from updating vacation requests', function () {
+    expect($this->policy->update($this->regularUser))->toBeFalse();
+});
+
+it('allows employee to update vacation requests', function () {
+    expect($this->policy->update($this->employee))->toBeTrue();
+});
+
+it('allows admin to update vacation requests', function () {
+    expect($this->policy->update($this->admin))->toBeTrue();
+});
+
+it('denies regular user from deleting vacation requests', function () {
+    expect($this->policy->delete($this->regularUser))->toBeFalse();
+});
+
+it('allows employee to delete vacation requests', function () {
+    expect($this->policy->delete($this->employee))->toBeTrue();
+});
+
+it('allows admin to delete vacation requests', function () {
+    expect($this->policy->delete($this->admin))->toBeTrue();
+});

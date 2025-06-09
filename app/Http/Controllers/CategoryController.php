@@ -25,6 +25,7 @@ class CategoryController extends Controller
             return view('category', ['categories' => []]);
         }
 
+
         return view('category', compact('categories'));
     }
 }

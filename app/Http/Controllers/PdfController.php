@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Policies\PdfPolicy;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -22,6 +23,5 @@ class PdfController extends Controller
 
         // Descargar el archivo PDF con el nombre 'products.pdf'
         return $pdf->download('products.pdf');
-
     }
 }

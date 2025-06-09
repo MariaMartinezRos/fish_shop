@@ -7,12 +7,16 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Policies\ProductPolicy;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Get a list of all products.
      *
@@ -37,9 +41,11 @@ class ProductController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $products = Product::with(['category', 'fishes'])->get();
+        $this->authorize('viewAny', Product::class);
 
-        return ProductResource::collection($products);
+        return ProductResource::collection(Cache::rememberForever('products', function () {
+            return Product::with(['category', 'fishes'])->get();
+        }));
     }
 
     /**
@@ -67,7 +73,9 @@ class ProductController extends Controller
      */
     public function show(Product $product): ProductResource
     {
-        return new ProductResource($product->load(['category', 'fishes']));
+        $this->authorize('view', $product);
+
+        return new ProductResource($product->load('category', 'fishes'));
     }
 
     /**
@@ -101,6 +109,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request): ProductResource
     {
+        $this->authorize('create', Product::class);
+
         $product = Product::create($request->validated());
         Cache::forget('products');
 
@@ -139,8 +149,10 @@ class ProductController extends Controller
      * @response 404 {"message": "Product not found"}
      * @response 422 {"message": "The given data was invalid.", "errors": {"name": ["The name field is required."]}}
      */
-    public function update(UpdateProductRequest $request, Product $product): ProductResource
+    public function update(Product $product, StoreProductRequest $request): ProductResource
     {
+        $this->authorize('update', $product);
+
         $product->update($request->validated());
         Cache::forget('products');
 
@@ -160,6 +172,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product): JsonResponse
     {
+        $this->authorize('delete', $product);
+
         $product->delete();
         Cache::forget('products');
 

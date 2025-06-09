@@ -31,7 +31,9 @@ it('allows anyone to view products', function () {
 });
 
 it('allows anyone to view client products', function () {
-    expect($this->productPolicy->viewClient())->toBeTrue();
+    expect($this->productPolicy->viewClient($this->admin))->toBeTrue()
+        ->and($this->productPolicy->viewClient($this->client))->toBeTrue()
+        ->and($this->productPolicy->viewClient(null))->toBeTrue();
 });
 
 it('allows only admin to restore products', function () {

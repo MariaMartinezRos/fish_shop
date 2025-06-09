@@ -10,8 +10,7 @@ use function Pest\Laravel\get;
 // uses(RefreshDatabase::class);
 
 it('returns a successful response for stock client page', function () {
-    $response = $this->get('stock-client');
-
+    $response = $this->get(route('stock-client'));
     $response->assertStatus(200);
 });
 
@@ -24,6 +23,7 @@ it('shows stock client overview', function () {
 
     // Act
     get(route('stock-client'))
+        ->assertOk()
         ->assertSeeText([
             $firstProduct->name,
             $secondProduct->name,

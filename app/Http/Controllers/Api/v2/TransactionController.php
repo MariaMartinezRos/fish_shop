@@ -8,9 +8,12 @@ use App\Http\Requests\UpdateTransactionRequest;
 use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TransactionController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Get a list of all transactions.
      *
@@ -38,6 +41,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Transaction::class);
+        
         return TransactionResource::collection(Cache::rememberForever('transactions', function () {
             return Transaction::with('user')->get();
         }));
@@ -71,6 +76,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
+        $this->authorize('view', $transaction);
         return new TransactionResource($transaction->load('user'));
     }
 
@@ -112,6 +118,7 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
+        $this->authorize('create', Transaction::class);
         $transaction = Transaction::create($request->validated());
         Cache::forget('transactions');
 
@@ -158,6 +165,7 @@ class TransactionController extends Controller
      */
     public function update(UpdateTransactionRequest $request, Transaction $transaction)
     {
+        $this->authorize('update', $transaction);
         $transaction->update($request->validated());
         Cache::forget('transactions');
 
@@ -177,6 +185,7 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
+        $this->authorize('delete', $transaction);
         $transaction->delete();
         Cache::forget('transactions');
 

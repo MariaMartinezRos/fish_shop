@@ -8,11 +8,16 @@ use App\Http\Requests\StoreFishRequest;
 use App\Http\Resources\FishResource;
 use App\Models\Fish;
 use App\Models\TypeWater;
+use App\Policies\FishPolicy;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class FishController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Get a list of all fishes.
      *
@@ -56,8 +61,10 @@ class FishController extends Controller
      *    ]
      * }
      */
-    public function index()
+    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
+        $this->authorize('viewAny', Fish::class);
+
         return FishResource::collection(Cache::rememberForever('fishes', function () {
             return Fish::with('typeWater')->get();
         }));
@@ -106,8 +113,10 @@ class FishController extends Controller
      *     }
      * }
      */
-    public function show(Fish $fish)
+    public function show(Fish $fish): FishResource
     {
+        $this->authorize('view', $fish);
+
         return new FishResource($fish->load('typeWater'));
     }
 
@@ -174,8 +183,10 @@ class FishController extends Controller
      *     }
      * }
      */
-    public function store(StoreFishRequest $request)
+    public function store(StoreFishRequest $request): FishResource
     {
+        $this->authorize('create', Fish::class);
+
         $data = $request->validated();
         $characteristics = $data['characteristics'];
         unset($data['characteristics']);
@@ -266,8 +277,10 @@ class FishController extends Controller
      *     }
      * }
      */
-    public function update(Fish $fish, StoreFishRequest $request)
+    public function update(Fish $fish, StoreFishRequest $request): FishResource
     {
+        $this->authorize('update', $fish);
+
         $data = $request->validated();
         $characteristics = $data['characteristics'];
         unset($data['characteristics']);
@@ -302,11 +315,13 @@ class FishController extends Controller
      *
      * @response 200
      */
-    public function destroy(Fish $fish)
+    public function destroy(Fish $fish): JsonResponse
     {
+        $this->authorize('delete', $fish);
+
         $fish->delete();
         Cache::forget('fishes');
 
-        return response()->json(null, 200);
+        return response()->json(['message' => __('Fish deleted successfully')], 200);
     }
 }

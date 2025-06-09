@@ -36,7 +36,6 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::post('/products/delete-all', [ProductController::class, 'deleteAll'])->name('products.delete-all');
 
     Route::post('/products/import', [ProductController::class, 'import'])->name('products.import');
-    //        Route::get('/products/pdf', [PdfController::class, 'generatePdf'])->name('products.pdf');
 
     Route::resource('users', UserController::class);
 

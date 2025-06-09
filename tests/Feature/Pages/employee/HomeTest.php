@@ -11,7 +11,7 @@ it('returns a successful response for home page', function () {
 
     // Act
     $this->actingAs($employee)
-        ->get('employee/home')
+        ->get('/employee/home')
         ->assertOk()
         ->assertStatus(200);
 });
@@ -28,16 +28,16 @@ it('cannot be accessed by customer', function () {
 
     // Act
     $this->actingAs($customer)
-        ->get('employee/home')
+        ->get('/employee/home')
         ->assertRedirect(route('login'));
 });
 
-it('cannot be accessed by admin', function () {
+it('can be accessed by admin', function () {
     // Arrange
     $admin = User::factory()->create(['role_id' => 1]);
 
     // Act
     $this->actingAs($admin)
-        ->get('employee/home')
-        ->assertRedirect(route('login'));
+        ->get('/employee/home')
+        ->assertOk();
 });
