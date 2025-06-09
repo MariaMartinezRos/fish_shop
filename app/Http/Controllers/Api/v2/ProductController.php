@@ -90,6 +90,10 @@ class ProductController extends Controller
      * @bodyParam price number required The price of the product in dollars. Example: 19.99
      * @bodyParam stock integer required The current stock quantity. Example: 100
      * @bodyParam category_id integer required The ID of the category this product belongs to. Example: 1
+     * @bodyParam fishes array optional Array of fish relationships. Example: [{"fish_id": 1, "days_on_sale": 5, "supplier": "Local Fishery"}]
+     * @bodyParam fishes.*.fish_id integer required The ID of the fish. Example: 1
+     * @bodyParam fishes.*.days_on_sale integer optional Number of days the fish will be on sale. Example: 5
+     * @bodyParam fishes.*.supplier string optional Name of the supplier. Example: "Local Fishery"
      *
      * @response 201 {
      *    "data": {
@@ -102,7 +106,17 @@ class ProductController extends Controller
      *        "id": 1,
      *        "name": "Frozen",
      *        "display_name": "Frozen Fish"
-     *      }
+     *      },
+     *      "fishes": [
+     *        {
+     *          "id": 1,
+     *          "name": "Atlantic Salmon",
+     *          "pivot": {
+     *            "days_on_sale": 5,
+     *            "supplier": "Local Fishery"
+     *          }
+     *        }
+     *      ]
      *    }
      * }
      * @response 422 {"message": "The given data was invalid.", "errors": {"name": ["The name field is required."]}}
@@ -112,9 +126,21 @@ class ProductController extends Controller
         $this->authorize('create', Product::class);
 
         $product = Product::create($request->validated());
+        
+        if ($request->has('fishes')) {
+            $fishData = collect($request->fishes)->mapWithKeys(function ($fish) {
+                return [$fish['fish_id'] => [
+                    'days_on_sale' => $fish['days_on_sale'] ?? null,
+                    'supplier' => $fish['supplier'] ?? null,
+                ]];
+            })->all();
+            
+            $product->fishes()->syncWithoutDetaching($fishData);
+        }
+        
         Cache::forget('products');
 
-        return new ProductResource($product->load('category'));
+        return new ProductResource($product->load(['category', 'fishes']));
     }
 
     /**
@@ -131,6 +157,10 @@ class ProductController extends Controller
      * @bodyParam price number required The price of the product in dollars. Example: 19.99
      * @bodyParam stock integer required The current stock quantity. Example: 100
      * @bodyParam category_id integer required The ID of the category this product belongs to. Example: 1
+     * @bodyParam fishes array optional Array of fish relationships. Example: [{"fish_id": 1, "days_on_sale": 5, "supplier": "Local Fishery"}]
+     * @bodyParam fishes.*.fish_id integer required The ID of the fish. Example: 1
+     * @bodyParam fishes.*.days_on_sale integer optional Number of days the fish will be on sale. Example: 5
+     * @bodyParam fishes.*.supplier string optional Name of the supplier. Example: "Local Fishery"
      *
      * @response 200 {
      *    "data": {
@@ -143,7 +173,17 @@ class ProductController extends Controller
      *        "id": 1,
      *        "name": "Frozen",
      *        "display_name": "Frozen Fish"
-     *      }
+     *      },
+     *      "fishes": [
+     *        {
+     *          "id": 1,
+     *          "name": "Atlantic Salmon",
+     *          "pivot": {
+     *            "days_on_sale": 5,
+     *            "supplier": "Local Fishery"
+     *          }
+     *        }
+     *      ]
      *    }
      * }
      * @response 404 {"message": "Product not found"}
@@ -154,9 +194,21 @@ class ProductController extends Controller
         $this->authorize('update', $product);
 
         $product->update($request->validated());
+        
+        if ($request->has('fishes')) {
+            $fishData = collect($request->fishes)->mapWithKeys(function ($fish) {
+                return [$fish['fish_id'] => [
+                    'days_on_sale' => $fish['days_on_sale'] ?? null,
+                    'supplier' => $fish['supplier'] ?? null,
+                ]];
+            })->all();
+            
+            $product->fishes()->sync($fishData);
+        }
+        
         Cache::forget('products');
 
-        return new ProductResource($product->load('category'));
+        return new ProductResource($product->load(['category', 'fishes']));
     }
 
     /**
