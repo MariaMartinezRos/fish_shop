@@ -193,7 +193,7 @@ endpoints:
         name: diet
         description: ''
         required: true
-        example: Omnivore
+        example: Carnivore
         type: string
         enumValues:
           - Carnivore
@@ -256,7 +256,7 @@ endpoints:
         name: characteristics.state
         description: ''
         required: true
-        example: Forbidden
+        example: Allowed
         type: string
         enumValues:
           - Allowed
@@ -309,7 +309,7 @@ endpoints:
         name: characteristics.migration_pattern
         description: ''
         required: true
-        example: Catadromous
+        example: Anadromous
         type: string
         enumValues:
           - Non-migratory
@@ -363,18 +363,18 @@ endpoints:
       scientific_name: 'n'
       description: 'A popular fish known for its pink flesh and rich flavor.'
       average_size_cm: 1
-      diet: Omnivore
+      diet: Carnivore
       lifespan_years: 42
       habitat: l
       conservation_status: j
       type: Freshwater
       characteristics:
-        state: Forbidden
+        state: Allowed
         temperature_range: b
         ph_range: 'n'
         salinity: 0
         oxygen_level: 1
-        migration_pattern: Catadromous
+        migration_pattern: Anadromous
         recorded_since: 17
         notes: architecto
       price: 10.5
@@ -504,7 +504,7 @@ endpoints:
         name: diet
         description: ''
         required: true
-        example: Carnivore
+        example: Herbivore
         type: string
         enumValues:
           - Carnivore
@@ -567,7 +567,7 @@ endpoints:
         name: characteristics.state
         description: ''
         required: true
-        example: 'Biological rest'
+        example: Allowed
         type: string
         enumValues:
           - Allowed
@@ -620,7 +620,7 @@ endpoints:
         name: characteristics.migration_pattern
         description: ''
         required: true
-        example: Non-migratory
+        example: Anadromous
         type: string
         enumValues:
           - Non-migratory
@@ -664,18 +664,18 @@ endpoints:
       scientific_name: 'n'
       description: 'A popular fish known for its pink flesh and rich flavor.'
       average_size_cm: 1
-      diet: Carnivore
+      diet: Herbivore
       lifespan_years: 42
       habitat: l
       conservation_status: j
       type: Freshwater
       characteristics:
-        state: 'Biological rest'
+        state: Allowed
         temperature_range: b
         ph_range: 'n'
         salinity: 0
         oxygen_level: 1
-        migration_pattern: Non-migratory
+        migration_pattern: Anadromous
         recorded_since: 17
         notes: architecto
     fileParameters:

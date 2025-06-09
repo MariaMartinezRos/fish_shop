@@ -1,16 +1,276 @@
-name: 'Transactions V2'
+name: 'Categories V2'
 description: ''
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/v2/transactions
+      - POST
+    uri: api/v2/categories
     metadata:
-      groupName: 'Transactions V2'
+      groupName: 'Categories V2'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Get a list of all transactions.'
+      title: 'Store a new category.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The unique identifier of the category (lowercase, no spaces).'
+        required: true
+        example: freshwater
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      display_name:
+        name: display_name
+        description: 'The human-readable name of the category.'
+        required: true
+        example: 'Freshwater Fish'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      description:
+        name: description
+        description: 'A detailed description of the category and its characteristics.'
+        required: true
+        example: 'Fish that live in freshwater environments such as rivers, lakes, and ponds.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      name: freshwater
+      display_name: 'Freshwater Fish'
+      description: 'Fish that live in freshwater environments such as rivers, lakes, and ponds.'
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Frozen",
+               "display_name": "Frozen Fish",
+               "description": "Fish that live in freshwater environments"
+             }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"message": "The given data was invalid.", "errors": {"name": ["The name field is required."]}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v2/categories/{category_id}'
+    metadata:
+      groupName: 'Categories V2'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update an existing category.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      category_id:
+        name: category_id
+        description: 'The ID of the category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      category:
+        name: category
+        description: 'The ID of the category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      category_id: 1
+      category: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      display_name:
+        name: display_name
+        description: 'The human-readable name of the category.'
+        required: true
+        example: 'Freshwater Fish'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      description:
+        name: description
+        description: 'A detailed description of the category and its characteristics.'
+        required: true
+        example: 'Fish that live in freshwater environments such as rivers, lakes, and ponds.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      name: b
+      display_name: 'Freshwater Fish'
+      description: 'Fish that live in freshwater environments such as rivers, lakes, and ponds.'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+             "data": {
+               "id": 1,
+               "name": "Frozen",
+               "display_name": "Updated Frozen Fish",
+               "description": "Updated description of freshwater fish and their habitats"
+             }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"message": "Category not found"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"message": "The given data was invalid.", "errors": {"display_name": ["The display name field is required."]}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v2/categories/{category_id}'
+    metadata:
+      groupName: 'Categories V2'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a specific category.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      category_id:
+        name: category_id
+        description: 'The ID of the category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      category:
+        name: category
+        description: 'The ID of the category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      category_id: 1
+      category: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 204
+        content: '{"message": "Category deleted successfully"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v2/categories
+    metadata:
+      groupName: 'Categories V2'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a list of all categories.'
       description: ''
       authenticated: false
       custom: []
@@ -32,18 +292,9 @@ endpoints:
              "data": [
                {
                  "id": 1,
-                 "tpv": "TPV001",
-                 "serial_number": "SN123456",
-                 "terminal_number": "TN789012",
-                 "operation": "SALE",
-                 "amount": 150.50,
-                 "card_number": "4111111111111111",
-                 "date_time": "2024-02-11T18:24:59.000000Z",
-                 "transaction_number": "TRX123456",
-                 "sale_id": 1,
-
-                 "created_at": "2024-02-11T18:24:59.000000Z",
-                 "updated_at": "2024-02-11T18:24:59.000000Z"
+                 "name": "Frozen",
+                 "display_name": "Frozen Fish",
+                 "description": "Fish that live in freshwater environments"
                }
              ]
           }
@@ -58,186 +309,25 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - POST
-    uri: api/v2/transactions
-    metadata:
-      groupName: 'Transactions V2'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Store a new transaction.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      tpv:
-        name: tpv
-        description: 'The TPV (Point of Sale Terminal) identifier.'
-        required: true
-        example: TPV001
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      serial_number:
-        name: serial_number
-        description: 'The unique serial number of the terminal.'
-        required: true
-        example: SN123456
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      terminal_number:
-        name: terminal_number
-        description: 'The terminal number used for the transaction.'
-        required: true
-        example: TN789012
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      operation:
-        name: operation
-        description: 'The type of operation (SALE, REFUND, VOID).'
-        required: true
-        example: SALE
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      amount:
-        name: amount
-        description: 'The transaction amount in dollars.'
-        required: true
-        example: '150.50'
-        type: numeric
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      card_number:
-        name: card_number
-        description: 'The masked card number used for the transaction.'
-        required: true
-        example: '4111111111111111'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      date_time:
-        name: date_time
-        description: 'The date and time of the transaction.'
-        required: true
-        example: '2024-02-11 18:24:59'
-        type: datetime
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      transaction_number:
-        name: transaction_number
-        description: 'The unique transaction reference number.'
-        required: true
-        example: TRX123456
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      sale_id:
-        name: sale_id
-        description: 'The ID of the associated sale.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      tpv: TPV001
-      serial_number: SN123456
-      terminal_number: TN789012
-      operation: SALE
-      amount: '150.50'
-      card_number: '4111111111111111'
-      date_time: '2024-02-11 18:24:59'
-      transaction_number: TRX123456
-      sale_id: 1
-    fileParameters: []
-    responses:
-      -
-        status: 201
-        content: |-
-          {
-              "data": {
-                "id": 1,
-                "tpv": "TPV001",
-                "serial_number": "SN123456",
-                "terminal_number": "TN789012",
-                "operation": "SALE",
-                "amount": 150.50,
-                "card_number": "4111111111111111",
-                "date_time": "2024-02-11T18:24:59.000000Z",
-                "transaction_number": "TRX123456",
-                "sale_id": 1,
-
-                "created_at": "2024-02-11T18:24:59.000000Z",
-                "updated_at": "2024-02-11T18:24:59.000000Z"
-              }
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 422
-        content: '{"message": "The given data was invalid.", "errors": {"tpv": ["The tpv field is required."]}}'
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
       - GET
-    uri: 'api/v2/transactions/{id}'
+    uri: 'api/v2/categories/{category_id}'
     metadata:
-      groupName: 'Transactions V2'
+      groupName: 'Categories V2'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Get a specific transaction.'
+      title: 'Get a specific category.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the transaction.'
+      category_id:
+        name: category_id
+        description: 'The ID of the category.'
         required: true
         example: 1
         type: integer
@@ -245,9 +335,9 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
-      transaction:
-        name: transaction
-        description: 'The ID of the transaction.'
+      category:
+        name: category
+        description: 'The ID of the category.'
         required: true
         example: 1
         type: integer
@@ -256,8 +346,8 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
-      transaction: 1
+      category_id: 1
+      category: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -268,277 +358,19 @@ endpoints:
         status: 200
         content: |-
           {
-              "data": {
-                "id": 1,
-                "tpv": "TPV001",
-                "serial_number": "SN123456",
-                "terminal_number": "TN789012",
-                "operation": "SALE",
-                "amount": 150.50,
-                "card_number": "4111111111111111",
-                "date_time": "2024-02-11T18:24:59.000000Z",
-                "transaction_number": "TRX123456",
-                "sale_id": 1,
-
-                "created_at": "2024-02-11T18:24:59.000000Z",
-                "updated_at": "2024-02-11T18:24:59.000000Z"
-              }
+             "data": {
+               "id": 1,
+               "name": "Frozen",
+               "display_name": "Frozen Fish",
+               "description": "Fish that live in freshwater environments"
+             }
           }
         headers: []
         description: ''
         custom: []
       -
         status: 404
-        content: '{"message": "Transaction not found"}'
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v2/transactions/{id}'
-    metadata:
-      groupName: 'Transactions V2'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update an existing transaction.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the transaction.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      transaction:
-        name: transaction
-        description: 'The ID of the transaction.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 1
-      transaction: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      tpv:
-        name: tpv
-        description: 'The TPV (Point of Sale Terminal) identifier.'
-        required: true
-        example: TPV001
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        custom: []
-      serial_number:
-        name: serial_number
-        description: 'The unique serial number of the terminal.'
-        required: true
-        example: SN123456
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        custom: []
-      terminal_number:
-        name: terminal_number
-        description: 'The terminal number used for the transaction.'
-        required: true
-        example: TN789012
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        custom: []
-      operation:
-        name: operation
-        description: 'The type of operation (SALE, REFUND, VOID).'
-        required: true
-        example: SALE
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        custom: []
-      amount:
-        name: amount
-        description: 'The transaction amount in dollars.'
-        required: true
-        example: '150.50'
-        type: numeric
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        custom: []
-      card_number:
-        name: card_number
-        description: 'The masked card number used for the transaction.'
-        required: true
-        example: '4111111111111111'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        custom: []
-      date_time:
-        name: date_time
-        description: 'The date and time of the transaction.'
-        required: true
-        example: '2024-02-11 18:24:59'
-        type: datetime
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        custom: []
-      transaction_number:
-        name: transaction_number
-        description: 'The unique transaction reference number.'
-        required: true
-        example: TRX123456
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        custom: []
-      sale_id:
-        name: sale_id
-        description: 'The ID of the associated sale.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        custom: []
-    cleanBodyParameters:
-      tpv: TPV001
-      serial_number: SN123456
-      terminal_number: TN789012
-      operation: SALE
-      amount: '150.50'
-      card_number: '4111111111111111'
-      date_time: '2024-02-11 18:24:59'
-      transaction_number: TRX123456
-      sale_id: 1
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-              "data": {
-                "id": 1,
-                "tpv": "TPV001",
-                "serial_number": "SN123456",
-                "terminal_number": "TN789012",
-                "operation": "SALE",
-                "amount": 150.50,
-                "card_number": "4111111111111111",
-                "date_time": "2024-02-11T18:24:59.000000Z",
-                "transaction_number": "TRX123456",
-                "sale_id": 1,
-                "created_at": "2024-02-11T18:24:59.000000Z",
-                "updated_at": "2024-02-11T18:24:59.000000Z"
-              }
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 404
-        content: '{"message": "Transaction not found"}'
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 422
-        content: '{"message": "The given data was invalid.", "errors": {"tpv": ["The tpv field is required."]}}'
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v2/transactions/{id}'
-    metadata:
-      groupName: 'Transactions V2'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Delete a transaction.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the transaction.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      transaction:
-        name: transaction
-        description: 'The ID of the transaction.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 1
-      transaction: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 204
-        content: '{}'
+        content: '{"message": "Category not found"}'
         headers: []
         description: ''
         custom: []
