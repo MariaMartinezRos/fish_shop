@@ -3,6 +3,7 @@
 use App\Http\Controllers\Employee\HomeController;
 use App\Http\Middleware\EmployeeMiddleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Employee\CalendarController;
 
 // =====================================================
 // RUTAS PARA EMPLEADOS (AUTENTICADO + EMPLOYEE)
@@ -25,5 +26,8 @@ Route::middleware([EmployeeMiddleware::class])->group(function () {
 
     Route::post('/employee/vacation-request/pdf', [App\Livewire\Employee\VacationRequestForm::class, 'downloadPdf'])
         ->name('employee.vacation-request.pdf');
+
+    Route::get('/employee/calendar', [CalendarController::class, 'index'])->name('employee.calendar');
+
 
 });

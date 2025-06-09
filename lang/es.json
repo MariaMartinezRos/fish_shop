@@ -769,6 +769,18 @@
     "Carousel images fetched and cached successfully": "Imágenes del carrusel obtenidas y almacenadas en caché correctamente",
     "Failed to fetch carousel images: ": "Error al obtener imágenes del carrusel: ",
     "Image directory does not exist: ": "El directorio de imágenes no existe: ",
-    "Show only today's SALES": "Mostrar solo las VENTAS de hoy"
+    "Show only today's SALES": "Mostrar solo las VENTAS de hoy",
+    "The holidays will be available soon!": "¡Las vacaciones estarán disponibles pronto!",
+    "Sun": "Dom",
+    "Mon": "Lun",
+    "Tue": "Mar",
+    "Wed": "Mié",
+    "Thu": "Jue",
+    "Fri": "Vie",
+    "Sat": "Sáb",
+    "Type:": "Tipo:",
+    "National Holiday": "Fiesta Nacional",
+    "Regional Holiday": "Fiesta Regional",
+    "Date:": "Fecha:"
 }
 

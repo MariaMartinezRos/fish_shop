@@ -10,7 +10,7 @@
 
         @livewireStyles
 
-        <h1 class="text-3xl font-bold text-white">{{ $title }}</h1>
+{{--        <h1 class="text-3xl font-bold text-white">{{ $title }}</h1>--}}
     </header>
 
     <body class="font-sans antialiased">
@@ -23,14 +23,10 @@
         @if(empty($content))
             <section class="dashboard">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <a href="#" class="panel-link">{{ __('Calendar')}}</a>
+                    <a href="{{ route('employee.calendar') }}" class="panel-link">{{ __('Calendar') }}</a>
                     @livewire('employee.schedule-download')
-
-                    {{--                <a href="#" class="panel-link text-red-600">{{ __('Schedule')}}</a>--}}
-                    <a href="#" class="panel-link">{{ __('Download Paycheck')}}</a>
                     <a href="{{ route('employee.transactions') }}" class="panel-link">{{ __('Add a New Transaction')}}</a>
                     <a href="{{ route('employee.vacation-request') }}" class="panel-link">{{ __('Request vacation')}}</a>
-                    <a href="#" class="panel-link">{{ __('Study')}}</a>
                 </div>
             </section>
         @endif
@@ -57,13 +53,13 @@
         min-height: 100vh;
     }
 
-    header {
-        background-color: #4CAF50;
-        color: white;
-        text-align: center;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+    /*header {*/
+    /*    background-color: #4CAF50;*/
+    /*    color: white;*/
+    /*    text-align: center;*/
+    /*    padding: 20px;*/
+    /*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+    /*}*/
 
     main {
         padding: 40px 20px;
