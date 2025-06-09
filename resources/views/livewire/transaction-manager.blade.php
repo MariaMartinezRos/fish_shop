@@ -2,10 +2,10 @@
     <!-- Search and Add Button -->
     <div class="flex justify-between items-center mb-4">
         <div class="w-1/3">
-            <x-input 
+            <x-input
                 name="search"
-                type="text" 
-                placeholder="{{ __('Search transactions...') }}" 
+                type="text"
+                placeholder="{{ __('Search transactions...') }}"
                 class="w-full"
                 wire:model.live="search"
             />
@@ -47,11 +47,11 @@
                 <form wire:submit="{{ $editing ? 'update' : 'store' }}">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <x-label for="tpv" value="{{ __('TPV') }}" />
-                            <x-input 
+                            <x-label for="tpv" value="{{ __('TPV') }}" required />
+                            <x-input
                                 name="tpv"
-                                type="text" 
-                                class="mt-1 block w-full" 
+                                type="text"
+                                class="mt-1 block w-full"
                                 required
                                 wire:model="tpv"
                                 placeholder="e.g., PESCADERIA BENITO ALHAMA"
@@ -60,10 +60,10 @@
                         </div>
 
                         <div>
-                            <x-label for="serial_number" value="{{ __('Serial Number') }}" />
-                            <x-input 
+                            <x-label for="serial_number" value="{{ __('Serial Number') }}" required  />
+                            <x-input
                                 name="serial_number"
-                                type="text" 
+                                type="text"
                                 class="mt-1 block w-full"
                                 required
                                 wire:model="serial_number"
@@ -73,10 +73,10 @@
                         </div>
 
                         <div>
-                            <x-label for="terminal_number" value="{{ __('Terminal Number') }}" />
-                            <x-input 
+                            <x-label for="terminal_number" value="{{ __('Terminal Number') }}" required />
+                            <x-input
                                 name="terminal_number"
-                                type="text" 
+                                type="text"
                                 class="mt-1 block w-full"
                                 required
                                 wire:model="terminal_number"
@@ -86,25 +86,25 @@
                         </div>
 
                         <div>
-                            <x-label for="operation" value="{{ __('Operation') }}" />
-                            <select 
+                            <x-label for="operation" value="{{ __('Operation') }}" required  />
+                            <select
                                 name="operation"
                                 class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                                 required
                                 wire:model="operation"
                             >
                                 <option value="">{{ __('Select Operation') }}</option>
-                                <option value="sale">{{ __('Sale') }}</option>
-                                <option value="refund">{{ __('Refund') }}</option>
+                                <option value="{{  __('SALE') }}">{{ __('Sale') }}</option>
+                                <option value="{{  __('REFUND') }}">{{ __('Refund') }}</option>
                             </select>
                             <x-input-error :messages="$errors->get('operation')" class="mt-2" />
                         </div>
 
                         <div>
-                            <x-label for="amount" value="{{ __('Amount') }}" />
-                            <x-input 
+                            <x-label for="amount" value="{{ __('Amount') }}" required  />
+                            <x-input
                                 name="amount"
-                                type="number" 
+                                type="number"
                                 step="0.01"
                                 class="mt-1 block w-full"
                                 required
@@ -115,10 +115,10 @@
                         </div>
 
                         <div>
-                            <x-label for="card_number" value="{{ __('Card Number') }}" />
-                            <x-input 
+                            <x-label for="card_number" value="{{ __('Card Number') }}" required  />
+                            <x-input
                                 name="card_number"
-                                type="text" 
+                                type="text"
                                 class="mt-1 block w-full"
                                 required
                                 wire:model="card_number"
@@ -128,22 +128,22 @@
                         </div>
 
                         <div>
-                            <x-label for="date_time" value="{{ __('Date and Time') }}" />
-                            <x-input 
+                            <x-label for="date_time" value="{{ __('Date') }}" required  />
+                            <x-date
                                 name="date_time"
-                                type="datetime-local" 
-                                class="mt-1 block w-full"
-                                required
+                                type="datetime-local"
                                 wire:model="date_time"
+                                class="w-full"
+                                :error="$errors->first('date_time')"
                             />
-                            <x-input-error :messages="$errors->get('date_time')" class="mt-2" />
                         </div>
 
+
                         <div>
-                            <x-label for="transaction_number" value="{{ __('Transaction Number') }}" />
-                            <x-input 
+                            <x-label for="transaction_number" value="{{ __('Transaction Number') }}" required  />
+                            <x-input
                                 name="transaction_number"
-                                type="text" 
+                                type="text"
                                 class="mt-1 block w-full"
                                 required
                                 wire:model="transaction_number"
@@ -153,10 +153,10 @@
                         </div>
 
                         <div>
-                            <x-label for="sale_id" value="{{ __('Sale ID') }}" />
-                            <x-input 
+                            <x-label for="sale_id" value="{{ __('Sale ID') }}" required />
+                            <x-input
                                 name="sale_id"
-                                type="number" 
+                                type="number"
                                 class="mt-1 block w-full"
                                 required
                                 wire:model="sale_id"
@@ -229,4 +229,4 @@
             </div>
         </div>
     </div>
-</div> 
+</div>

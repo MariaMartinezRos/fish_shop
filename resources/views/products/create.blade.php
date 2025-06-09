@@ -9,66 +9,39 @@
             <form action="{{ route('products.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
-                    <label for="name" class="block text-gray-700">{{ __('Product Name') }}</label>
-                    <input type="text" name="name" id="name" class="w-full border border-gray-300 rounded-lg px-4 py-2" required>
+                    <x-label for="name" value="{{ __('Product Name') }}" />
+                    <x-input type="text" name="name" id="name" class="w-full" required />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
-
-                @error('name')
-                <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                    <p>{{ $message }}</p>
-                </div>
-                @enderror
 
                 <div class="mb-4">
-                    <label for="category_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Category') }}</label>
-                    <select name="category_id" id="category_id" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
-                        <option value="">{{ __('Select Category') }}</option>
-                        <option value="1">{{ __('Fresh') }}</option>
-                        <option value="2">{{ __('Frozen') }}</option>
-                        <option value="3">{{ __('Cut') }}</option>
-                        <option value="4">{{ __('Seafood') }}</option>
-                        <option value="5">{{ __('Other') }}</option>
-                    </select>
+                    <x-label for="category_id" value="{{ __('Category') }}" />
+                    <x-select 
+                        name="category_id" 
+                        :options="$categories"
+                        placeholder="{{ __('Select Category') }}"
+                        required
+                    />
+                    <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
                 </div>
-
-                @error('category_id')
-                <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                    <p>{{ $message }}</p>
-                </div>
-                @enderror
 
                 <div class="mb-4">
-                    <label for="price_per_kg" class="block text-gray-700">{{ __('Price (€/Kg)') }}</label>
-                    <input type="number" step="0.01" name="price_per_kg" id="price_per_kg" class="w-full border border-gray-300 rounded-lg px-4 py-2" required>
+                    <x-label for="price_per_kg" value="{{ __('Price (€/Kg)') }}" />
+                    <x-input type="number" step="0.01" name="price_per_kg" id="price_per_kg" class="w-full" required />
+                    <x-input-error :messages="$errors->get('price_per_kg')" class="mt-2" />
                 </div>
-
-                @error('price_per_kg')
-                <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                    <p>{{ $message }}</p>
-                </div>
-                @enderror
 
                 <div class="mb-4">
-                    <label for="stock_kg" class="block text-gray-700">{{ __('Stock (Kg)') }}</label>
-                    <input type="number" step="0.01" name="stock_kg" id="stock_kg" class="w-full border border-gray-300 rounded-lg px-4 py-2" required>
+                    <x-label for="stock_kg" value="{{ __('Stock (Kg)') }}" />
+                    <x-input type="number" step="0.01" name="stock_kg" id="stock_kg" class="w-full" required />
+                    <x-input-error :messages="$errors->get('stock_kg')" class="mt-2" />
                 </div>
-
-                @error('stock_kg')
-                <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                    <p>{{ $message }}</p>
-                </div>
-                @enderror
 
                 <div class="mb-4">
-                    <label for="description" class="block text-gray-700">{{ __('Description') }}</label>
-                    <textarea name="description" id="description" class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+                    <x-label for="description" value="{{ __('Description') }}" />
+                    <x-input type="textarea" name="description" id="description" class="w-full" />
+                    <x-input-error :messages="$errors->get('description')" class="mt-2" />
                 </div>
-
-                @error('description')
-                <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                    <p>{{ $message }}</p>
-                </div>
-                @enderror
 
                 <div class="flex justify-end">
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">{{ __('Add Product') }}</button>

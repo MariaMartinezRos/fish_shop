@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
             'category_id' => 'required|integer|exists:categories,id',
             'price_per_kg' => 'required|numeric',
             'stock_kg' => 'required|numeric',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
         ];
     }
 
@@ -44,6 +44,7 @@ class ProductRequest extends FormRequest
             'price_per_kg.numeric' => __('The price must be a number.'),
             'stock_kg.required' => __('The stock is required.'),
             'stock_kg.numeric' => __('The stock must be a number.'),
+            'description.required' => __('The description is required.'),
             'description.string' => __('The description must be a string.'),
             'name.max' => __('The name cannot exceed 255 characters.'),
         ];

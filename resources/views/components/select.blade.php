@@ -22,9 +22,9 @@
             <option value="">{{ $placeholder }}</option>
         @endif
 
-        @foreach($options as $value => $label)
-            <option value="{{ $value }}" {{ old($name, $selected) == $value ? 'selected' : '' }}>
-                {{ $label }}
+        @foreach($options as $option)
+            <option value="{{ $option->id }}" {{ old($name, $selected) == $option->id ? 'selected' : '' }}>
+                {{ $option->display_name }}
             </option>
         @endforeach
     </select>

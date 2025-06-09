@@ -1,5 +1,11 @@
 <?php
 
+
+it('shows chekbox component', function () {
+    $employee = \App\Models\User::factory()->create(['role_id' => 2]);
+    $this->actingAs($employee)->get(route('employee.vacation-request'))
+        ->assertSee('Reconozco que he leído y acepto la política de vacaciones de la empresa');
+});
 //
 // use App\Models\Role;
 // use App\Models\User;

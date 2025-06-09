@@ -111,7 +111,7 @@ it('filters transactions to show only todays transactions when checkbox is check
         'tpv' => 'PESCADERIA BENITO ALHAMA',
         'serial_number' => 'SN-001',
         'terminal_number' => 'TN-001',
-        'operation' => 'sale',
+        'operation' => 'VENTA',
         'amount' => 100.50,
         'card_number' => '1234567890123456',
         'date_time' => now(),
@@ -126,7 +126,7 @@ it('filters transactions to show only todays transactions when checkbox is check
         'tpv' => 'PESCADERIA BENITO LIBRILLA',
         'serial_number' => 'SN-002',
         'terminal_number' => 'TN-002',
-        'operation' => 'sale',
+        'operation' => 'VENTA',
         'amount' => 200.75,
         'card_number' => '2345678901234567',
         'date_time' => now()->subDay(),
@@ -147,4 +147,8 @@ it('filters transactions to show only todays transactions when checkbox is check
             return $transactions->count() === 1 && // Should only show today's transaction
                    $transactions->first()->id === $todayTransaction->id;
         });
+
+    $this->actingAs($admin)
+        ->get(route('transaction'))
+        ->assertSee('Mostrar solo las VENTAS de hoy');
 });

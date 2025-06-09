@@ -16,20 +16,20 @@
     <form wire:submit.prevent="submit" class="space-y-6">
         <div>
             <label for="start_date" class="block text-sm font-medium text-gray-700">{{ __('Start Date') }}</label>
-            <input type="date"
-                   id="start_date"
-                   wire:model="start_date"
-                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-            @error('start_date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            <x-date
+                name="start_date"
+                wire:model="start_date"
+                :error="$errors->first('start_date')"
+            />
         </div>
 
         <div>
             <label for="end_date" class="block text-sm font-medium text-gray-700">{{ __('End Date') }}</label>
-            <input type="date"
-                   id="end_date"
-                   wire:model="end_date"
-                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-            @error('end_date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            <x-date
+                name="end_date"
+                wire:model="end_date"
+                :error="$errors->first('end_date')"
+            />
         </div>
 
         <div>

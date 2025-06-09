@@ -22,9 +22,7 @@
         >
 
         @if($label)
-            <x-label :for="$name" class="ml-2">
-                {{ $label }}
-            </x-label>
+            <x-label :for="$name" class="ml-2" :value="$label" />
         @endif
     </div>
 

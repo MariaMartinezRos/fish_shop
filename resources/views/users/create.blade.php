@@ -35,71 +35,39 @@
                         @csrf
 
                         <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Name') }}</label>
-                            <input type="text" name="name" id="name" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                            <x-label for="name" value="{{ __('Name') }}" />
+                            <x-input type="text" name="name" id="name" class="w-full" required />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
-
-                        @error('name')
-                        <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                            <p>{{ $message }}</p>
-                        </div>
-                        @enderror
 
                         <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Email') }}</label>
-                            <input type="email" name="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                            <x-label for="email" value="{{ __('Email') }}" />
+                            <x-input type="email" name="email" id="email" class="w-full" required />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
-
-                        @error('email')
-                            <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @enderror
 
                         <div class="mb-4">
-                            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Password') }}</label>
-                            <input type="password" name="password" id="password" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                            <x-label for="password" value="{{ __('Password') }}" />
+                            <x-input type="password" name="password" id="password" class="w-full" required />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
-
-                        @error('password')
-                        <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                            <p>{{ $message }}</p>
-                        </div>
-                        @enderror
 
                         <div class="mb-4">
-                            <label for="password2" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Password Again') }}</label>
-                            <input type="password" name="password2" id="password2" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                            <x-label for="password2" value="{{ __('Password Again') }}" />
+                            <x-input type="password" name="password2" id="password2" class="w-full" required />
+                            <x-input-error :messages="$errors->get('password2')" class="mt-2" />
                         </div>
-
-                        @error('password2')
-                        <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                            <p>{{ $message }}</p>
-                        </div>
-                        @enderror
-
 
                         <div class="mb-4">
-                            <label for="role_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Role') }}</label>
-                            <select name="role_id" id="role_id" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
-
-                                <option value="">{{ __('Select Role') }}</option>
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                                @endforeach
-
-{{--                                <option value="">{{ __('Select Role') }}</option>--}}
-{{--                                <option value="1">{{ __('Admin') }}</option>--}}
-{{--                                <option value="3">{{ __('Employee') }}</option>--}}
-{{--                                <option value="4">{{ __('Customer') }}</option>--}}
-                            </select>
+                            <x-label for="role_id" value="{{ __('Role') }}" />
+                            <x-select 
+                                name="role_id" 
+                                :options="$roles"
+                                placeholder="{{ __('Select Role') }}"
+                                required
+                            />
+                            <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
                         </div>
-
-                        @error('role_id')
-                        <div class="bg-red-100 border-l-4 border-red-500 text-black p-4 mb-4" role="alert">
-                            <p>{{ $message }}</p>
-                        </div>
-                        @enderror
 
                         <div class="flex items-center justify-end mt-4">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

@@ -67,7 +67,9 @@ class ProductController extends Controller
     {
         $this->authorize('create', User::class);
 
-        return view('products.create');
+        $categories = \App\Models\Category::all();
+
+        return view('products.create', compact('categories'));
     }
 
     public function store(ProductRequest $request)
