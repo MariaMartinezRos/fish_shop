@@ -15,14 +15,30 @@ use App\Models\User;
 use App\Providers\EventServiceProvider;
 use Illuminate\Support\Facades\Event;
 
-it('registers event listeners correctly', function () {
+it('registers all event listeners correctly', function () {
+    // Test UserCreated event
     Event::fake();
-
-    event(new UserCreated(User::factory()->make()));
-
     Event::assertListening(
         UserCreated::class,
-        SendWelcomeEmail::class,
+        SendWelcomeEmail::class
+    );
+
+    // Test FishAdded event
+    Event::assertListening(
+        FishAdded::class,
+        SendNotificationOnFishAdded::class
+    );
+
+    // Test ProductAdded event
+    Event::assertListening(
+        ProductAdded::class,
+        SendNotificationOnProductAdded::class
+    );
+
+    // Test PageAccessed event
+    Event::assertListening(
+        PageAccessed::class,
+        ShowSweetAlertOnPageAccess::class
     );
 });
 
