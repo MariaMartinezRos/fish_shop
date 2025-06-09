@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 
 /**
  * @deprecated This controller is deprecated and will be removed in a future release.
- * Please use App\Http\Controllers\Api\v2\FishController instead.
+ * Please use App\Http\Controllers\Api\v2\auth\FishController instead.
  */
 class FishController extends Controller
 {

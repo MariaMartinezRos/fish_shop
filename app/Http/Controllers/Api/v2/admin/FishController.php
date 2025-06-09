@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\v2;
+namespace App\Http\Controllers\Api\v2\admin;
 
 use App\Events\FishAdded;
 use App\Http\Controllers\Controller;
@@ -8,7 +8,6 @@ use App\Http\Requests\StoreFishRequest;
 use App\Http\Resources\FishResource;
 use App\Models\Fish;
 use App\Models\TypeWater;
-use App\Policies\FishPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;

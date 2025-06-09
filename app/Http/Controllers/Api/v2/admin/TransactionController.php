@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api\v2;
+namespace App\Http\Controllers\Api\v2\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Cache;
 
 class TransactionController extends Controller
 {
@@ -42,7 +42,7 @@ class TransactionController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Transaction::class);
-        
+
         return TransactionResource::collection(Cache::rememberForever('transactions', function () {
             return Transaction::with('user')->get();
         }));
