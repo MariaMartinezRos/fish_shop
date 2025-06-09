@@ -27,18 +27,14 @@ class VacationRequestEmailJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            \Log::info('Starting VacationRequestEmailJob', [
-                'vacation_request_id' => $this->vacationRequest->id,
-            ]);
 
             $user = $this->vacationRequest->user;
             if (! $user) {
                 throw new \Exception(__('User not found for vacation request'));
             }
 
-            $admin = User::whereHas('role', function ($query) {
-                $query->where('name', 'admin');
-            })->first();
+            $admin = User::admin()->first();
+
 
             if (! $admin) {
                 throw new \Exception(__('No admin user found to send vacation request notification'));
@@ -57,13 +53,9 @@ class VacationRequestEmailJob implements ShouldQueue
                     $this->vacationRequest->totalDays()
                 ));
 
-            \Log::info('Vacation request email sent successfully');
-            
+
         } catch (\Exception $e) {
-            \Log::error('Failed to send vacation request email: ' . $e->getMessage(), [
-                'exception' => $e,
-                'vacation_request_id' => $this->vacationRequest->id ?? null
-            ]);
+
             throw $e;
         }
     }

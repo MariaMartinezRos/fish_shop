@@ -99,4 +99,11 @@ class User extends Authenticatable
             $q->where('status', 'approved');
         });
     }
+
+    public function scopeAdmin($query)
+    {
+        return $query->whereHas('role', function ($q) {
+            $q->where('name', 'admin');
+        });
+    }
 }

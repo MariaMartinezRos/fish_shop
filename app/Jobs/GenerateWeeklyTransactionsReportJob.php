@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\WeeklyTransactionsReportEmail;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
@@ -53,8 +54,10 @@ class GenerateWeeklyTransactionsReportJob implements ShouldQueue
                 'transaction_count' => $count
             ]);
 
-            Mail::to('mariaamartinezros@gmail.com')->send(new WeeklyTransactionsReportEmail($summary));
-            
+            $admin = User::admin()->first();
+
+            Mail::to($admin->email)->send(new WeeklyTransactionsReportEmail($summary));
+
             \Log::info('Weekly transactions report sent successfully');
         } catch (\Exception $e) {
             \Log::error('Failed to generate weekly transactions report: ' . $e->getMessage());

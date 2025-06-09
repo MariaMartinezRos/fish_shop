@@ -74,6 +74,8 @@ it('sends a weekly report email with the correct summary', function () {
     $startOfWeek = Carbon::now()->startOfWeek();
     $withinWeek = $startOfWeek->copy()->addDays(5);
 
+    $admin = User::factory()->create(['role_id' => 1]);
+
     // Act
     Transaction::factory()->create([
         'amount' => 50,
@@ -89,10 +91,10 @@ it('sends a weekly report email with the correct summary', function () {
 
     // Assert
     Mail::assertSent(WeeklyTransactionsReportEmail::class, function ($mail) use ($startOfWeek) {
-        expect($mail->summary)->toBeArray();
-        expect($mail->summary['transaction_count'])->toBe(1);
-        expect($mail->summary['total_sales'])->toBe(50);
-        expect($mail->summary['start'])->toBe($startOfWeek->toDateString());
+        expect($mail->summary)->toBeArray()
+            ->and($mail->summary['transaction_count'])->toBe(1)
+            ->and($mail->summary['total_sales'])->toBe(50)
+            ->and($mail->summary['start'])->toBe($startOfWeek->toDateString());
 
         return true;
     });
