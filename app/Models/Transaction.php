@@ -58,4 +58,16 @@ class Transaction extends Model
     {
         return $query->where('tpv', 'like', "%{$tpv}%");
     }
+
+    /**
+     * Scope a query to only include today's transactions.
+     */
+    public function scopeToday(Builder $query): Builder
+    {
+//        return $query->whereDate('date_time', now());
+        return $query
+            ->whereDate('date_time', now())
+            ->where('operation', 'VENTA')
+            ->orderBy('date_time', 'asc');
+    }
 }

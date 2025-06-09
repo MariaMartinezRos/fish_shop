@@ -42,20 +42,15 @@
             @error('comments') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
-        <div class="flex items-start">
-            <div class="flex items-center h-5">
-                <input id="policy_acknowledged"
-                       type="checkbox"
-                       wire:model="policy_acknowledged"
-                       class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
-            </div>
-            <div class="ml-3 text-sm">
-                <label for="policy_acknowledged" class="font-medium text-gray-700">
-                    {{ __('I acknowledge that I have read and agree to the company vacation policy') }}
-                </label>
-            </div>
+        <div>
+            <x-checkbox
+                name="policy_acknowledged"
+                wire:model="policy_acknowledged"
+                :label="__('I acknowledge that I have read and agree to the company vacation policy')"
+                class="text-green-600 focus:ring-green-500"
+            />
+            @error('policy_acknowledged') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
-        @error('policy_acknowledged') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
 
         <div class="flex space-x-4">
             <button type="submit"

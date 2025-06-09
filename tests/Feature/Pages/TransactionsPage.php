@@ -3,8 +3,10 @@
 use App\Livewire\TransactionSearcher;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Transaction;
 
 use function Pest\Laravel\get;
+use Livewire\Livewire;
 
 //
 // it('returns a successful response for transactions page', function () {
@@ -99,3 +101,50 @@ use function Pest\Laravel\get;
 //        return $transactions->count() === 20;
 //    });
 // });
+
+it('filters transactions to show only todays transactions when checkbox is checked', function () {
+    // Arrange
+    $admin = User::factory()->create(['role_id' => 1]);
+
+    // Create a transaction from today
+    $todayTransaction = Transaction::create([
+        'tpv' => 'PESCADERIA BENITO ALHAMA',
+        'serial_number' => 'SN-001',
+        'terminal_number' => 'TN-001',
+        'operation' => 'sale',
+        'amount' => 100.50,
+        'card_number' => '1234567890123456',
+        'date_time' => now(),
+        'transaction_number' => 'TXN-001',
+        'sale_id' => 1,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    // Create a transaction from yesterday
+    $yesterdayTransaction = Transaction::create([
+        'tpv' => 'PESCADERIA BENITO LIBRILLA',
+        'serial_number' => 'SN-002',
+        'terminal_number' => 'TN-002',
+        'operation' => 'sale',
+        'amount' => 200.75,
+        'card_number' => '2345678901234567',
+        'date_time' => now()->subDay(),
+        'transaction_number' => 'TXN-002',
+        'sale_id' => 2,
+        'created_at' => now()->subDay(),
+        'updated_at' => now()->subDay(),
+    ]);
+
+    // Act & Assert
+    Livewire::actingAs($admin)
+        ->test(TransactionSearcher::class)
+        ->assertViewHas('transactions', function ($transactions) {
+            return $transactions->count() === 2; // Should show both transactions initially
+        })
+        ->set('todays_transactions', true)
+        ->assertViewHas('transactions', function ($transactions) use ($todayTransaction) {
+            return $transactions->count() === 1 && // Should only show today's transaction
+                   $transactions->first()->id === $todayTransaction->id;
+        });
+});

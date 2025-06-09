@@ -768,6 +768,7 @@
     "Fish images directory does not exist": "El directorio de imágenes de pescado no existe",
     "Carousel images fetched and cached successfully": "Imágenes del carrusel obtenidas y almacenadas en caché correctamente",
     "Failed to fetch carousel images: ": "Error al obtener imágenes del carrusel: ",
-    "Image directory does not exist: ": "El directorio de imágenes no existe: "
+    "Image directory does not exist: ": "El directorio de imágenes no existe: ",
+    "Show only today's SALES": "Mostrar solo las VENTAS de hoy"
 }
 

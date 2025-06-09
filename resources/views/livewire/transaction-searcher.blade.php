@@ -1,12 +1,21 @@
 <div>
     <div class="p-6 bg-white shadow-lg rounded-lg">
         <div class="mb-4">
+            <x-checkbox
+                name="todays_transactions"
+                wire:model.live="todays_transactions"
+                :label="__('Show only today\'s SALES')"
+                class="text-green-600 focus:ring-green-500"
+            />
+        </div>
+
+        <div class="mb-4">
             <label for="tpv" class="block text-lg font-semibold text-gray-700">{{ __('Filter by Fish Shop') }}</label>
-                    <select wire:model.live="tpv" id="tpv" class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                        <option value="">{{ __('All') }}</option>
-                        <option value="PESCADERIA BENITO ALHAMA">{{ __('Pescadería Benito')}} ALHAMA</option>
-                        <option value="PESCADERIA BENITO LIBRILLA">{{ __('Pescadería Benito')}} LIBRILLA</option>
-                    </select>
+            <select wire:model.live="tpv" id="tpv" class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                <option value="">{{ __('All') }}</option>
+                <option value="PESCADERIA BENITO ALHAMA">{{ __('Pescadería Benito')}} ALHAMA</option>
+                <option value="PESCADERIA BENITO LIBRILLA">{{ __('Pescadería Benito')}} LIBRILLA</option>
+            </select>
         </div>
 
         <div class="overflow-x-auto">

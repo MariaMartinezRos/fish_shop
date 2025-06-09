@@ -11,13 +11,24 @@ use Livewire\Component;
 class TransactionSearcher extends Component
 {
     public string $tpv = '';
+    public bool $todays_transactions = false;
 
     /**
      * Render the Livewire component.
      */
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
     {
-        $transactions = Transaction::search($this->tpv)->get();
+        $query = Transaction::query();
+        
+        if ($this->tpv) {
+            $query->search($this->tpv);
+        }
+        
+        if ($this->todays_transactions) {
+            $query->today();
+        }
+
+        $transactions = $query->get();
 
         return view('livewire.transaction-searcher', [
             'transactions' => $transactions,
